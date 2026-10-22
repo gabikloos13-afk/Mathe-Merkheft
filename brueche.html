@@ -30,16 +30,18 @@
 .ref-input{font:inherit;padding:10px;border:1px solid #b9aab5;border-radius:10px;width:100%}
 .ref-footer{display:flex;justify-content:space-between;gap:12px;margin-top:25px}
 @media(max-width:640px){.ref-grid{grid-template-columns:1fr}.choco{padding:7px;gap:2px}.piece{min-height:72px}.reference-shell{padding:18px 12px}.ref-tools{align-items:stretch}.ref-tools button{flex:1}}
-</style></head>
+</style>
+<style id="register-style">[data-panel][hidden]{display:none!important}.ref-nav a[aria-current="page"]{background:#713d58;color:white;border-color:#713d58}.ref-nav a:focus-visible{outline:3px solid #0c7890;outline-offset:3px}</style>
+</head>
 <body>
 <header class="sitehead"><a href="index.html" style="color:white;text-decoration:none">◇ Mathe-Merkheft</a> <span>Klasse 6</span></header>
 <main class="reference-shell">
 <a href="index.html">← Alle Themen</a>
 <p class="phase ref-heading">THEMA 1 VON 6 · BRÜCHE</p><h1>Brüche verstehen</h1>
 <p class="ref-lead">Was bedeutet ein Bruch wirklich? Du entdeckst es selbst – mit einer Schokoladentafel, die du verändern kannst.</p>
-<nav class="ref-nav" aria-label="Seitenbereiche"><a href="#entdecken">Entdecken</a><a href="#verstehen">Verstehen</a><a href="#uebung">Selbst probieren</a><a href="#nachschlagen">Nachschlagen</a></nav>
+<nav class="ref-nav" aria-label="Lernbereiche"><a href="#entdecken" data-tab="entdecken">Entdecken</a><a href="#verstehen" data-tab="verstehen">Verstehen</a><a href="#uebung" data-tab="uebung">Selbst probieren</a><a href="#nachschlagen" data-tab="nachschlagen">Nachschlagen</a></nav>
 
-<section id="entdecken" class="ref-panel">
+<section id="entdecken" class="ref-panel" data-panel="entdecken">
 <p class="phase">01 · ENTDECKEN</p><h2>Die Schokoladen-Werkstatt</h2>
 <p>Eine ganze Tafel wird in <strong>gleich große Stücke</strong> geteilt. Tippe einzelne Stücke an: Welche Menge hast du ausgewählt?</p>
 <div class="ref-tools"><label for="parts">Einteilung:</label><button id="less" type="button" aria-label="Ein Teil weniger">−</button><output id="parts" class="ref-counter">8 Stücke</output><button id="more" type="button" aria-label="Ein Teil mehr">+</button><button id="clear" type="button">Auswahl löschen</button></div>
@@ -49,7 +51,7 @@
 <details class="ref-explain"><summary>Erst überlegen – dann Erklärung aufdecken</summary><p>Je mehr gleich große Stücke eine Tafel hat, desto kleiner ist jedes Stück. Deshalb ist ein Achtel kleiner als ein Viertel – wenn die Tafeln gleich groß sind.</p></details>
 </section>
 
-<section id="verstehen" class="ref-panel">
+<section id="verstehen" class="ref-panel" data-panel="verstehen">
 <p class="phase">02 · VERSTEHEN</p>
 <h2>Was erzählen dir die zwei Zahlen?</h2>
 <p>Stell dir vor, du möchtest jemandem sagen, wie viel Schokolade du noch hast. Nur „drei Stücke“ zu sagen, reicht nicht: Sind es große oder kleine Stücke? Ein Bruch beantwortet beide Fragen.</p>
@@ -83,13 +85,13 @@
 <details class="ref-explain"><summary>Teste deinen Gedanken: Ist ¾ einer kleinen Tafel immer mehr als ½ einer großen?</summary><p>Nein. Ohne die Größe der Tafeln kannst du das nicht sicher sagen. Die Hälfte einer sehr großen Tafel kann mehr sein als drei Viertel einer kleinen.</p></details>
 </section>
 
-<section id="uebung" class="ref-panel">
+<section id="uebung" class="ref-panel" data-panel="uebung">
 <p class="phase">03 · SELBST PROBIEREN</p><h2>Denk-Check ohne Lösungs-Verrat</h2>
 <p class="ref-small">Du entscheidest zuerst. Wenn du unsicher bist, bekommst du einen Hinweis – nicht sofort die Lösung.</p>
 <div id="exercise" aria-live="polite"></div>
 </section>
 
-<section id="nachschlagen" class="ref-panel">
+<section id="nachschlagen" class="ref-panel" data-panel="nachschlagen">
 <p class="phase">04 · NACHSCHLAGEN</p>
 <h2>Deine Hilfe für Hausaufgaben</h2>
 <p>Hier findest du schnell die Bedeutung eines Bruchs und einen ausführlichen Rechenweg. Du kannst zuerst nur die Kurzregel lesen und bei Bedarf die einzelnen Schritte öffnen.</p>
@@ -170,5 +172,21 @@ function draw(){
 draw();
 document.getElementById("explain-toggle").onclick=function(){var p=document.getElementById("explain-text");p.hidden=!p.hidden};
 var own=document.getElementById("own");try{own.value=localStorage.getItem("mathe_merkheft_brueche_eigene_erklaerung_v1")||"";own.addEventListener("input",function(){localStorage.setItem("mathe_merkheft_brueche_eigene_erklaerung_v1",own.value)})}catch(e){}
+})();
+</script><script>
+(function(){
+"use strict";
+var ids=["entdecken","verstehen","uebung","nachschlagen"];
+var links=Array.from(document.querySelectorAll(".ref-nav [data-tab]"));
+var panels=Array.from(document.querySelectorAll("[data-panel]"));
+function show(id){
+ if(!ids.includes(id))id="entdecken";
+ panels.forEach(function(p){p.hidden=p.dataset.panel!==id});
+ links.forEach(function(a){if(a.dataset.tab===id){a.setAttribute("aria-current","page")}else{a.removeAttribute("aria-current")}});
+}
+function fromUrl(){show(decodeURIComponent(location.hash.slice(1)))}
+links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();var id=a.dataset.tab;if(location.hash.slice(1)!==id)history.pushState({tab:id},"","#"+id);show(id)})});
+window.addEventListener("popstate",fromUrl);window.addEventListener("hashchange",fromUrl);
+fromUrl();
 })();
 </script></body></html>
