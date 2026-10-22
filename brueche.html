@@ -32,7 +32,9 @@
 @media(max-width:640px){.ref-grid{grid-template-columns:1fr}.choco{padding:7px;gap:2px}.piece{min-height:72px}.reference-shell{padding:18px 12px}.ref-tools{align-items:stretch}.ref-tools button{flex:1}}
 </style>
 <style id="register-style">[data-panel][hidden]{display:none!important}.ref-nav a[aria-current="page"]{background:#713d58;color:white;border-color:#713d58}.ref-nav a:focus-visible{outline:3px solid #0c7890;outline-offset:3px}</style>
-</head>
+<style id="heftaufschrieb">
+.school-title{margin-top:26px}.school-example{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(235px,1fr);gap:18px;margin:20px 0}.school-paper{background:repeating-linear-gradient(to bottom,#fff 0,#fff 37px,#e5eaf2 38px);border:1px solid #d6dce8;border-left:5px solid #9c5977;border-radius:14px;padding:20px;min-width:0}.school-task{font-size:1.08rem;font-weight:700;margin:0 0 17px}.school-row{display:grid;grid-template-columns:30px minmax(105px,150px) 1fr;gap:10px;align-items:start;margin:16px 0}.school-no{background:#f0e5eb;color:#743e59;border-radius:50%;width:27px;height:27px;display:grid;place-items:center;font-weight:700;font-size:.85rem}.school-math{font-family:"Cambria Math","STIX Two Math",Georgia,serif;color:#283b56;font-size:1.33rem;white-space:nowrap}.school-why{font-size:.9rem;line-height:1.45;color:#554e58}.school-result{border-top:2px solid #b58ba1;margin-top:16px;padding-top:12px;color:#243b55}.school-result span{display:block;font-weight:700}.school-visual{background:#faf5f8;border:1px solid #e5d9e1;border-radius:14px;padding:16px}.school-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}.school-group{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:12px 6px;border:2px solid #c1b1ba;border-radius:10px;min-width:0;background:#fff}.school-group.active{border-color:#96607d;background:#f5eaf0}.school-group i{aspect-ratio:1;background:#ded5da;border-radius:50%}.school-group.active i{background:#a36887}.school-rule{margin-top:20px}@media(max-width:780px){.school-example{grid-template-columns:1fr}.school-row{grid-template-columns:30px 128px 1fr}}@media(max-width:480px){.school-paper{padding:12px}.school-row{grid-template-columns:24px 1fr;gap:4px 10px}.school-why{grid-column:2}.school-groups{gap:7px}.school-group{padding:9px 5px}}
+</style></head>
 <body>
 <header class="sitehead"><a href="index.html" style="color:white;text-decoration:none">◇ Mathe-Merkheft</a> <span>Klasse 6</span></header>
 <main class="reference-shell">
@@ -99,17 +101,30 @@
 <div class="ref-note"><h3>1 · Einen Bruch lesen</h3><div style="text-align:center"><span class="ref-fraction"><span>3</span><span>8</span></span></div><p><strong>Unten: 8</strong> – ein Ganzes wurde in acht gleich große Teile geteilt.</p><p><strong>Oben: 3</strong> – drei dieser Teile sind gemeint.</p><p><strong>So sprichst du es:</strong> „drei Achtel“.</p></div>
 <div class="ref-note"><h3>2 · Das Ganze finden</h3><p>Frage zuerst: <strong>Wovon ist der Bruch ein Anteil?</strong></p><p>Das Ganze kann eine Tafel, eine Strecke, eine Menge Bonbons oder eine Zeitspanne sein.</p><p><strong>Wichtig:</strong> Nur wenn das Ganze gleich groß ist, kannst du die tatsächlichen Mengen direkt anhand der Brüche vergleichen.</p></div>
 </div>
-<h3 style="margin-top:24px">So berechnest du einen Bruchteil einer Menge</h3>
-<p><strong>Beispiel: Wie viel sind drei Viertel von 20 Bonbons?</strong></p>
-<div class="ref-note"><p><strong>Bevor du rechnest:</strong> Stelle dir 20 Bonbons vor, die auf vier gleich große Schälchen verteilt werden. Du möchtest den Inhalt von drei Schälchen wissen.</p></div>
-<ol style="padding-left:24px">
-<li style="margin:12px 0"><strong>Das Ganze finden:</strong> Insgesamt sind es 20 Bonbons. Die 20 ist also unsere Ausgangsmenge.</li>
-<li style="margin:12px 0"><strong>Auf gleich große Gruppen verteilen:</strong> Die <strong>4 unten</strong> bedeutet vier gleich große Gruppen. Rechne <strong>20 : 4 = 5</strong>. In jedem Schälchen liegen fünf Bonbons.</li>
-<li style="margin:12px 0"><strong>Die benötigten Gruppen nehmen:</strong> Die <strong>3 oben</strong> bedeutet drei Gruppen. Rechne <strong>3 · 5 = 15</strong>.</li>
-<li style="margin:12px 0"><strong>Ergebnis mit Einheit aufschreiben:</strong> Drei Viertel von 20 Bonbons sind <strong>15 Bonbons</strong>.</li>
-<li style="margin:12px 0"><strong>Mit dem Kopf kontrollieren:</strong> Drei Viertel sind weniger als ein Ganzes, aber mehr als die Hälfte. 15 liegt zwischen 10 und 20 – das ist plausibel.</li>
-</ol>
-<div class="ref-note"><strong>Dein Rechenweg für ähnliche Aufgaben:</strong> Ganze Menge <strong>durch den Nenner teilen</strong>, das Ergebnis <strong>mit dem Zähler multiplizieren</strong>. Bei Aufgaben mit Einheiten die Einheit im Ergebnis nicht vergessen.</div>
+<h3 class="school-title">So schreibst du einen Rechenweg ins Heft</h3>
+<p class="ref-small">Beispiel: <strong>Wie viel sind ¾ von 20 Bonbons?</strong> Wir schreiben nicht nur das Ergebnis auf, sondern zeigen, wie wir es herausfinden.</p>
+<div class="school-example">
+ <div class="school-paper">
+  <div class="school-task">Aufgabe: ¾ von 20 Bonbons</div>
+  <div class="school-row"><span class="school-no">1</span><span class="school-math">20 : 4 = 5</span><span class="school-why">Ein Viertel finden: 20 Bonbons in 4 gleiche Gruppen teilen.</span></div>
+  <div class="school-row"><span class="school-no">2</span><span class="school-math">5 · 3 = 15</span><span class="school-why">Drei Viertel finden: 3 Gruppen mit je 5 Bonbons nehmen.</span></div>
+  <div class="school-result"><span>Antwort:</span> ¾ von 20 Bonbons sind <strong>15 Bonbons.</strong></div>
+ </div>
+ <div class="school-visual" role="img" aria-label="Vier gleich große Gruppen mit je fünf Punkten; drei der Gruppen sind markiert.">
+  <p><strong>Das Bild zum Rechenweg</strong></p>
+  <div class="school-groups"><div class="school-group active"><i></i><i></i><i></i><i></i><i></i></div><div class="school-group active"><i></i><i></i><i></i><i></i><i></i></div><div class="school-group active"><i></i><i></i><i></i><i></i><i></i></div><div class="school-group"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <p class="ref-small">4 Gruppen mit je 5 Bonbons. 3 Gruppen sind ausgewählt: 15 Bonbons.</p>
+ </div>
+</div>
+<details class="ref-explain"><summary>Warum teilen wir zuerst durch 4 und nehmen danach mal 3?</summary>
+ <p>Der <strong>Nenner 4</strong> sagt uns, in wie viele gleich große Gruppen die 20 Bonbons verteilt werden: <strong>20 : 4 = 5</strong>. So wissen wir, wie viel <em>ein Viertel</em> ist.</p>
+ <p>Der <strong>Zähler 3</strong> sagt, wie viele dieser Gruppen wir brauchen: <strong>3 · 5 = 15</strong>. Das ist die gesuchte Menge.</p>
+</details>
+<details class="ref-explain"><summary>Wie kannst du dein Ergebnis prüfen?</summary>
+ <p>Die Hälfte von 20 ist 10, das Ganze ist 20. Drei Viertel liegen zwischen einer Hälfte und einem Ganzen. <strong>15 liegt zwischen 10 und 20</strong> – das passt.</p>
+ <p>Du kannst auch die vier Gruppen wieder zusammenzählen: <strong>5 + 5 + 5 + 5 = 20</strong>.</p>
+</details>
+<div class="ref-note school-rule"><strong>Rechenweg zum Merken:</strong> Ganze Menge <strong>durch den Nenner teilen</strong> → Ergebnis <strong>mit dem Zähler multiplizieren</strong> → Antwort mit Einheit aufschreiben.</div>
 <h3 style="margin-top:28px">Drei Denkfallen – und wie du sie vermeidest</h3>
 <details class="ref-explain"><summary>Denkfalle 1: „Ein Achtel ist größer als ein Viertel, weil 8 größer als 4 ist.“</summary><p>Stell dir dieselbe Tafel vor: In vier Stücke geteilt ist jedes Stück groß. In acht Stücke geteilt ist jedes Stück kleiner. Deshalb gilt <strong>1/8 &lt; 1/4</strong>. Acht steht hier für die Anzahl der Teile, nicht für acht ganze Tafeln.</p></details>
 <details class="ref-explain"><summary>Denkfalle 2: „Wenn ich drei Stücke habe, ist es immer derselbe Bruch.“</summary><p>Nein. Drei von vier gleich großen Stücken sind <strong>3/4</strong>. Drei von acht gleich großen Stücken sind <strong>3/8</strong>. Du brauchst immer zwei Angaben: die Anzahl aller gleich großen Teile und die Anzahl der ausgewählten Teile.</p></details>
