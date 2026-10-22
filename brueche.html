@@ -115,25 +115,34 @@ document.getElementById("less").onclick=function(){recount(count-1)};
 document.getElementById("more").onclick=function(){recount(count+1)};
 document.getElementById("clear").onclick=function(){selected.clear();paint()};paint();
 var tasks=[
- {q:"Eine Tafel hat 8 gleich große Stücke. Drei davon sind markiert. Welcher Bruch passt?",o:["3/8","8/3","5/8"],a:0,h:["Was steht unten: alle Stücke oder nur die gefärbten?","Der Nenner sagt, wie viele Stücke die ganze Tafel hat."],why:"3/8: Unten 8 Teile der ganzen Tafel, oben 3 ausgewählte."},
- {q:"Wie viel sind 2/5 von 20 Bonbons?",o:["8","10","4"],a:0,h:["Zuerst musst du 20 in fünf gleiche Gruppen aufteilen.","Eine Gruppe hat 20 : 5 = 4 Bonbons. Du brauchst zwei Gruppen."],why:"20 : 5 = 4. Zwei Gruppen sind 2 · 4 = 8 Bonbons."},
- {q:"Mila isst ½ einer großen Pizza, Leo ¾ einer kleinen. Wer hat mehr gegessen?",o:["Das lässt sich noch nicht sagen.","Leo, weil ¾ größer als ½ ist.","Mila, weil ihre Pizza größer ist."],a:0,h:["Ein Anteil ist nur zusammen mit dem Ganzen eine Menge.","Wir kennen nicht, wie groß die beiden Pizzen tatsächlich sind."],why:"Ohne die Größen der ganzen Pizzen ist der Mengenvergleich nicht sicher möglich."}
+ {q:"Eine Tafel hat 8 gleich große Stücke. Drei davon sind markiert. Welcher Bruch passt?",o:["3/8","8/3","5/8"],a:0,
+ steps:["Schritt 1 · Suche das Ganze: Die ganze Tafel besteht aus 8 gleich großen Stücken.","Schritt 2 · Unten steht der Nenner: Die 8 sagt, wie die Tafel eingeteilt ist.","Schritt 3 · Oben steht der Zähler: Genau 3 Stücke sind markiert.","Schritt 4 · Schreibe den Bruch: 3/8. Kontrolle: Die obere Zahl 3 ist kleiner als die gesamte Stückzahl 8."],
+ wrong:"8/3 vertauscht Zähler und Nenner. 5/8 würde fünf markierte Stücke bedeuten."},
+ {q:"Wie viel sind 2/5 von 20 Bonbons?",o:["8","10","4"],a:0,
+ steps:["Schritt 1 · Das Ganze sind 20 Bonbons.","Schritt 2 · Der Nenner 5 sagt: Teile die 20 Bonbons in fünf gleich große Gruppen. 20 : 5 = 4 Bonbons pro Gruppe.","Schritt 3 · Der Zähler 2 sagt: Nimm zwei dieser Gruppen. 2 · 4 = 8.","Schritt 4 · Kontrolle: 1/5 von 20 sind 4 Bonbons. Zwei Fünftel sind deshalb 8 Bonbons."],
+ wrong:"10 wäre die Hälfte von 20. 4 wäre nur ein Fünftel statt zwei Fünftel."},
+ {q:"Mila isst ½ einer großen Pizza, Leo ¾ einer kleinen. Wer hat mehr gegessen?",o:["Das lässt sich noch nicht sagen.","Leo, weil ¾ größer als ½ ist.","Mila, weil ihre Pizza größer ist."],a:0,
+ steps:["Schritt 1 · Beide Brüche beziehen sich auf verschiedene ganze Pizzen.","Schritt 2 · Für einen Mengenvergleich musst du wissen, wie groß jede Pizza ist.","Schritt 3 · Beispiel: Eine große Pizza wiegt 600 g, eine kleine 200 g. Mila isst 300 g, Leo 150 g.","Schritt 4 · Bei anderen Pizzagrößen kann es anders sein. Ohne genaue Größen lässt sich die Frage nicht entscheiden."],
+ wrong:"Nur die Brüche zu vergleichen genügt nicht, wenn die beiden Ganzen unterschiedlich groß sind."}
 ];
 var index=0,chosen=null,hints=0,checked=false,box=document.getElementById("exercise");
+var orders=[[2,0,1],[1,2,0],[0,2,1]]; // unterschiedliche Antwortpositionen
+function node(tag,cls,content){var el=document.createElement(tag);if(cls)el.className=cls;if(content!==undefined)el.textContent=content;return el}
 function draw(){
- var t=tasks[index];box.innerHTML="";
- var title=document.createElement("p");title.className="ref-chip";title.textContent="Aufgabe "+(index+1)+" von 3";box.appendChild(title);
- var q=document.createElement("p");q.className="ref-question";q.textContent=t.q;box.appendChild(q);
- t.o.forEach(function(label,i){var b=document.createElement("button");b.className="ref-choice";b.type="button";b.textContent=label;b.setAttribute("aria-pressed",chosen===i?"true":"false");b.onclick=function(){if(!checked){chosen=i;draw()}};box.appendChild(b)});
- var actions=document.createElement("div");actions.className="ref-tools";box.appendChild(actions);
- var check=document.createElement("button");check.className="ref-button primary";check.textContent="Antwort prüfen";check.disabled=chosen===null||checked;check.onclick=function(){checked=true;draw()};actions.appendChild(check);
- var hint=document.createElement("button");hint.className="ref-button";hint.textContent="Hinweis "+(hints<2?"anzeigen":"noch einmal lesen");hint.onclick=function(){hints=Math.min(2,hints+1);draw()};actions.appendChild(hint);
- var response=document.createElement("div");response.className="ref-answer";response.setAttribute("role","status");
- if(hints>0)response.textContent="Hinweis: "+t.h[hints-1];box.appendChild(response);
- if(checked){var correct=chosen===t.a;var feedback=document.createElement("div");feedback.className="ref-feedback "+(correct?"good":"bad");feedback.textContent=correct?"Gut erkannt. "+t.why:"Noch nicht. Überlege mit den Hinweisen, bevor du den Denkweg ansiehst.";box.appendChild(feedback);
- if(!correct){var reveal=document.createElement("button");reveal.className="ref-button";reveal.textContent="Denkweg aufdecken";reveal.onclick=function(){feedback.textContent=t.why};actions.appendChild(reveal)}
- var next=document.createElement("button");next.className="ref-button primary";next.textContent=index===2?"Wiederholen":"Nächste Aufgabe";next.onclick=function(){index=(index+1)%tasks.length;chosen=null;checked=false;hints=0;draw()};actions.appendChild(next);
- }else if(chosen!==null){response.textContent=(hints?"Hinweis: "+t.h[hints-1]+" · ":"")+"Du hast eine Antwort gewählt. Prüfe sie, wenn du bereit bist."}
+ var t=tasks[index],order=orders[index];box.replaceChildren();
+ box.appendChild(node("p","ref-chip","Aufgabe "+(index+1)+" von "+tasks.length));
+ box.appendChild(node("p","ref-question",t.q));
+ order.forEach(function(original){var b=node("button","ref-choice",t.o[original]);b.type="button";b.setAttribute("aria-pressed",chosen===original?"true":"false");if(checked&&original===t.a)b.style.borderColor="#26805a";b.onclick=function(){if(!checked){chosen=original;draw()}};box.appendChild(b)});
+ var actions=node("div","ref-tools");box.appendChild(actions);
+ var check=node("button","ref-button primary","Antwort prüfen");check.type="button";check.disabled=chosen===null||checked;check.onclick=function(){checked=true;draw()};actions.appendChild(check);
+ var hint=node("button","ref-button",hints===0?"Hilfe Schritt für Schritt":"Nächsten Hilfeschritt zeigen");hint.type="button";hint.disabled=hints>=4;hint.onclick=function(){hints=Math.min(4,hints+1);draw()};actions.appendChild(hint);
+ if(hints>0){var help=node("div","ref-note");help.style.marginTop="16px";var head=node("strong",null,"Dein Lösungsweg – Schritt für Schritt");help.appendChild(head);for(var i=0;i<hints;i++)help.appendChild(node("p",null,t.steps[i]));box.appendChild(help)}
+ if(checked){
+  var correct=chosen===t.a;var feedback=node("div","ref-feedback "+(correct?"good":"bad"),correct?"Richtig entschieden. Kannst du deinen Weg auch erklären?":"Noch nicht richtig. Vergleiche deine Antwort mit den Rechenschritten.");box.appendChild(feedback);
+  if(!correct){var retry=node("button","ref-button","Erneut versuchen");retry.type="button";retry.onclick=function(){checked=false;chosen=null;draw()};actions.appendChild(retry)}
+  var reveal=node("button","ref-button","Vollständige Erklärung anzeigen");reveal.type="button";reveal.onclick=function(){hints=4;draw();var old=box.querySelector(".complete-explanation");if(!old){var full=node("div","ref-note complete-explanation");full.style.marginTop="14px";full.appendChild(node("strong",null,"Warum die anderen Antworten nicht passen"));full.appendChild(node("p",null,t.wrong));box.appendChild(full)}};actions.appendChild(reveal);
+  if(correct){var next=node("button","ref-button primary",index===tasks.length-1?"Noch einmal üben":"Nächste Aufgabe");next.type="button";next.onclick=function(){index=(index+1)%tasks.length;chosen=null;checked=false;hints=0;draw()};actions.appendChild(next)}
+ }
 }
 draw();
 document.getElementById("explain-toggle").onclick=function(){var p=document.getElementById("explain-text");p.hidden=!p.hidden};
