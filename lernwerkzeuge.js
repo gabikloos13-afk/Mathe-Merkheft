@@ -1,18 +1,97 @@
-(()=>{"use strict";const q=(s,p=document)=>p.querySelector(s);const root=q("#lab");if(!root)return;const topic=root.dataset.topic;const safe=(v,min,max)=>Math.min(max,Math.max(min,Number(v)));const fraction=(a,b)=>'<span class="fraction"><span>'+a+'</span><span>'+b+'</span></span>';const bar=(n,d)=>'<div class="bar" role="img" aria-label="'+n+' von '+d+' Teilen eingefärbt">'+Array.from({length:d},(_,i)=>'<span class="'+(i<n?'filled':'')+'"></span>').join('')+'</div>';const label=(text,id,min,max,value)=>'<div class="slider-control"><label class="slider-label" for="'+id+'"><span>'+text+'</span><output id="'+id+'Out">'+value+'</output></label><input type="range" id="'+id+'" min="'+min+'" max="'+max+'" value="'+value+'"></div>';let area=q(".lab-display",root),controls=q(".lab-controls",root),puzzle=q(".challenge",root);let values={};let setup,paint;
-if(topic==="brueche"){controls.innerHTML=label("So viele gleich große Teile","d",2,12,8)+label("So viele Teile färben","n",0,12,3);setup=()=>{values.d=safe(q("#d").value,2,12);q("#n").max=values.d;values.n=safe(q("#n").value,0,values.d);q("#n").value=values.n};paint=()=>{area.innerHTML=bar(values.n,values.d)+'<p class="big-math">'+fraction(values.n,values.d)+' = '+values.n+' von '+values.d+' gleich großen Stücken</p><p>Wenn du die <strong>Einteilung</strong> änderst, ändert sich die Größe eines Stücks.</p>'}};
-if(topic==="gleichwertig"){controls.innerHTML=label("Zähler","n",1,5,2)+label("Nenner","d",2,6,3)+label("Vergrößerung der Einteilung","k",1,4,2);setup=()=>{values.d=safe(q("#d").value,2,6);q("#n").max=values.d;values.n=safe(q("#n").value,1,values.d);q("#n").value=values.n;values.k=safe(q("#k").value,1,4)};paint=()=>{area.innerHTML='<div class="model-pair"><div>'+bar(values.n,values.d)+'<p>'+fraction(values.n,values.d)+'</p></div><div>'+bar(values.n*values.k,values.d*values.k)+'<p>'+fraction(values.n*values.k,values.d*values.k)+'</p></div></div><p><strong>Gleich viel gefärbt!</strong> Oben und unten mal '+values.k+' bedeutet: kleinere Teile, gleicher Anteil.</p>'}};
-if(topic==="gemischt"){controls.innerHTML=label("Anzahl der Bruchstücke","n",1,24,11)+label("Stücke pro Ganzem","d",2,8,4);setup=()=>{values.n=+q("#n").value;values.d=+q("#d").value};paint=()=>{let full=Math.floor(values.n/values.d),rest=values.n%values.d;let bars=Array.from({length:Math.ceil(values.n/values.d)},(_,i)=>bar(Math.min(values.d,Math.max(0,values.n-i*values.d)),values.d)).join('');area.innerHTML='<div class="stack-bars">'+bars+'</div><p class="big-math">'+fraction(values.n,values.d)+' = '+full+(rest?' Ganze und '+fraction(rest,values.d):' Ganze')+'</p><p>Packe immer '+values.d+' Stücke zu einem Ganzen zusammen. Der Rest bleibt übrig.</p>'}};
-if(topic==="vergleichen"){controls.innerHTML='<div class="model-pair"><div>'+label("Links: Zähler","a",1,10,3)+label("Links: Nenner","b",2,10,4)+'</div><div>'+label("Rechts: Zähler","c",1,10,2)+label("Rechts: Nenner","d",2,10,3)+'</div></div>';setup=()=>{values.b=+q("#b").value;values.d=+q("#d").value;q("#a").max=values.b;q("#c").max=values.d;values.a=safe(q("#a").value,1,values.b);values.c=safe(q("#c").value,1,values.d);q("#a").value=values.a;q("#c").value=values.c};paint=()=>{let sign=values.a*values.d>values.c*values.b?'>':values.a*values.d<values.c*values.b?'<':'=';area.innerHTML='<div class="model-pair"><div>'+bar(values.a,values.b)+fraction(values.a,values.b)+'</div><div>'+bar(values.c,values.d)+fraction(values.c,values.d)+'</div></div><p class="big-math">'+fraction(values.a,values.b)+' '+sign+' '+fraction(values.c,values.d)+'</p><p>Vergleiche <strong>gleich große Ganze</strong>. Der längere gefärbte Balken zeigt den größeren Bruch.</p>'}};
-if(topic==="zahlenstrahl"){controls.innerHTML=label("Nenner (Einteilung)","d",2,10,4)+label("Markierung in Bruchstücken","n",0,20,5);setup=()=>{values.d=+q("#d").value;values.n=+q("#n").value};paint=()=>{let p=values.n/values.d;let min=0,max=3;area.innerHTML='<div class="line-wrap"><div class="line-labels"><span>0</span><span>1</span><span>2</span><span>3</span></div><div class="math-line"><span class="pointer" style="left:'+Math.min(100,p/3*100)+'%"></span></div></div><p class="big-math">Markierung: '+fraction(values.n,values.d)+' = '+(Math.floor(p))+(values.n%values.d?' Ganze und '+fraction(values.n%values.d,values.d):' Ganze')+'</p><p>Zwischen zwei ganzen Zahlen liegt immer <strong>ein Ganzes</strong>. Zähle die Abstände, nicht die Striche.</p>'}};
-if(topic==="dezimal"){controls.innerHTML=label("Zehntel","t",0,9,3)+label("Hundertstel","h",0,9,5);setup=()=>{values.t=+q("#t").value;values.h=+q("#h").value};paint=()=>{let n=values.t*10+values.h;area.innerHTML='<div class="hundred-grid" role="img" aria-label="'+n+' von 100 Kästchen eingefärbt">'+Array.from({length:100},(_,i)=>'<i class="'+(i<n?'filled':'')+'"></i>').join('')+'</div><p class="big-math">'+fraction(n,100)+' = 0,'+values.t+values.h+'</p><p>Eine volle Zeile sind <strong>zehn Hundertstel = ein Zehntel</strong>. Jede kleine Zelle ist ein Hundertstel.</p>'}};
-function render(){setup();root.querySelectorAll('input[type="range"]').forEach(el=>{let o=q("#"+el.id+"Out");if(o)o.textContent=el.value});paint();}
-controls.addEventListener("input",render);render();
-const exercises={
-brueche:[["Von 12 Bonbons sind 3 rot. Welcher Bruch ist rot?","3/12","12/3","3/9","Zähle erst alle Bonbons, dann die roten.","Drei von zwölf sind rot: 3/12, gekürzt 1/4."],["Welcher Anteil von 20 ist 3/5?","12","15","8","Teile 20 zuerst durch 5.","20 : 5 · 3 = 12."],["Kann 1/2 einer großen Pizza mehr sein als 3/4 einer kleinen?","Ja","Nein","Nie","Denke an die Größe des Ganzen.","Ja, wenn die große Pizza entsprechend viel größer ist."]],
-gleichwertig:[["Was ist gleich 2/3?","6/9","3/4","4/9","Oben und unten mit derselben Zahl multiplizieren.","2 · 3 = 6 und 3 · 3 = 9."],["Kürze 12/16 vollständig.","3/4","6/8","4/3","Teile oben und unten durch 4.","12/16 = 3/4."],["Ist 3/5 dasselbe wie 4/6?","Nein","Ja","Immer","Einfach 1 dazuzählen ist nicht Erweitern.","Die Werte sind verschieden: 3/5 = 0,6 und 4/6 = 2/3."]],
-gemischt:[["Wie heißt 11/4 als gemischte Zahl?","2 3/4","3 2/4","2 1/4","11 : 4 rechnen.","Zwei volle Vierergruppen, drei Viertel Rest."],["Was ist 2 1/3 als Bruch?","7/3","6/3","5/3","2 · 3 + 1.","Sieben Drittel."],["Was bedeutet −2 1/2?","−2,5","−1,5","2,5","Das Minus gehört zur ganzen gemischten Zahl.","−(2 + 1/2) = −2,5."]],
-vergleichen:[["Was ist größer?","3/4","2/3","Beide gleich","Stelle dir zwei gleich lange Balken vor.","3/4 ist größer als 2/3."],["Was liegt näher an 1?","9/10","7/8","Gleich nah","Was fehlt jeweils bis 1?","1/10 ist kleiner als 1/8, also liegt 9/10 näher an 1."],["Welche negative Zahl ist größer?","−1/3","−2/3","Gleich groß","Weiter rechts ist größer.","−1/3 liegt näher an 0."]],
-zahlenstrahl:[["Zwischen 0 und 1 liegen vier gleiche Abschnitte. Der dritte Strich nach 0 ist …","3/4","3/5","4/3","Zähle die Lücken.","Drei von vier Lücken sind 3/4."],["Was liegt genau zwischen 1/4 und 1/2?","3/8","1/3","2/5","Schreibe beide als Achtel.","2/8 und 4/8 haben die Mitte 3/8."],["Was liegt rechts von −2?","−1 3/4","−2 1/4","−3","Rechts wird die Zahl größer.","−1 3/4 ist größer als −2."]],
-dezimal:[["Wie schreibt man 25/100?","0,25","0,025","2,5","Hundertstel: zwei Stellen nach dem Komma.","25 Hundertstel = 0,25."],["Was ist größer?","0,5","0,05","Gleich groß","Denke an 50 Cent und 5 Cent.","0,5 = 50 Hundertstel."],["Was ist 1/8 als Dezimalzahl?","0,125","0,8","0,18","Erweitere auf Tausendstel.","1/8 = 125/1000 = 0,125."]]};
-let current=0;function task(){let [question,...rest]=exercises[topic][current];const correct=rest[0],wrong=rest.slice(1,3),hint=rest[3],why=rest[4];const options=[correct,...wrong];const shuffled=[options[(current+1)%3],options[(current+2)%3],options[current%3]];puzzle.innerHTML='<div class="eyebrow">DENK-CHECK · '+(current+1)+' VON 3</div><h3>'+question+'</h3><div class="choices">'+shuffled.map((a,i)=>'<button type="button" data-choice="'+i+'">'+a+'</button>').join('')+'</div><button type="button" class="hint-btn">Ich brauche einen Hinweis</button><p class="response" role="status" aria-live="polite"></p><button type="button" class="next-task" hidden>'+(current===2?'Noch einmal üben':'Nächste Aufgabe →')+'</button>';q(".hint-btn",puzzle).onclick=()=>{q(".response",puzzle).textContent=hint};puzzle.querySelectorAll("[data-choice]").forEach(b=>b.onclick=()=>{let ok=b.textContent===correct;q(".response",puzzle).textContent=(ok?'Richtig! ':'Noch nicht. ')+why;q(".response",puzzle).className="response "+(ok?"good":"retry");q(".next-task",puzzle).hidden=false});q(".next-task",puzzle).onclick=()=>{current=(current+1)%3;task()}}task();
+
+(function(){
+  function $(sel, root=document){ return root.querySelector(sel); }
+  function all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+  function frac(a,b){ return `<span class="fraction"><span>${a}</span><span>${b}</span></span>`; }
+  function clamp(v,min,max){ v=Number(v)||0; return Math.max(min,Math.min(max,v)); }
+  function bar(n,d){ return `<div class="bar" role="img" aria-label="${n} von ${d} Teilen gefärbt">${Array.from({length:d},(_,i)=>`<span class="${i<n?'filled':''}"></span>`).join('')}</div>`; }
+  function updateOutput(el){ const out = $('#'+el.id+'Out', el.closest('.control')); if(out) out.textContent = el.value; }
+
+  function buildLab(root){
+    const topic=root.dataset.topic;
+    const controls=$('.controls',root), board=$('.visual-board',root), expl=$('.helper',root);
+    const V={};
+    const makeControl=(id,label,min,max,val)=>`<div class="control"><label for="${id}">${label} <output id="${id}Out">${val}</output></label><input id="${id}" type="range" min="${min}" max="${max}" value="${val}"></div>`;
+    let render=()=>{};
+
+    if(topic==='brueche'){
+      controls.innerHTML=makeControl('d','Wie viele gleich große Stücke hat das Ganze?',2,12,8)+makeControl('n','Wie viele Stücke sind gemeint?',0,12,3);
+      render=()=>{
+        V.d=clamp($('#d',root).value,2,12); $('#n',root).max=V.d; V.n=clamp($('#n',root).value,0,V.d); $('#n',root).value=V.n;
+        board.innerHTML=bar(V.n,V.d)+`<p class="big-math">${frac(V.n,V.d)} = ${V.n} von ${V.d} gleich großen Teilen</p><div class="eq">Denkbild: Erst in <strong>${V.d}</strong> gleiche Stücke teilen, dann <strong>${V.n}</strong> Stücke nehmen.</div>`;
+        expl.textContent='Je größer der Nenner, desto kleiner wird jedes einzelne Stück.';
+      };
+    }
+    if(topic==='gleichwertig'){
+      controls.innerHTML=makeControl('n','Zähler',1,6,2)+makeControl('d','Nenner',2,8,3)+makeControl('k','Mit welcher Zahl vergrößern?',1,5,2);
+      render=()=>{
+        V.d=clamp($('#d',root).value,2,8); $('#n',root).max=V.d; V.n=clamp($('#n',root).value,1,V.d); $('#n',root).value=V.n; V.k=clamp($('#k',root).value,1,5);
+        board.innerHTML=`<div class="model-pair"><div class="model-card">${bar(V.n,V.d)}<p class="big-math">${frac(V.n,V.d)}</p></div><div class="model-card">${bar(V.n*V.k,V.d*V.k)}<p class="big-math">${frac(V.n*V.k,V.d*V.k)}</p></div></div><div class="eq">Erweitern: ${frac(V.n,V.d)} · ${V.k}/${V.k} = ${frac(V.n*V.k,V.d*V.k)}</div>`;
+        expl.textContent='Die Einteilung wird feiner, aber die gefärbte Fläche bleibt gleich groß.';
+      };
+    }
+    if(topic==='gemischt'){
+      controls.innerHTML=makeControl('n','Wie viele Bruchstücke hast du insgesamt?',1,24,11)+makeControl('d','Wie viele Stücke ergeben ein Ganzes?',2,8,4);
+      render=()=>{
+        V.n=clamp($('#n',root).value,1,24); V.d=clamp($('#d',root).value,2,8);
+        const whole=Math.floor(V.n/V.d), rest=V.n%V.d, rows=[];
+        for(let i=0;i<Math.ceil(V.n/V.d);i++){ rows.push(bar(Math.max(0,Math.min(V.d,V.n-i*V.d)),V.d)); }
+        board.innerHTML=`<div class="stack">${rows.join('')}</div><p class="big-math">${frac(V.n,V.d)} = ${whole}${rest?` und ${frac(rest,V.d)}`:''}</p><div class="eq">${V.n} : ${V.d} = ${whole} Rest ${rest}. Der Rest bleibt als Bruch stehen.</div>`;
+        expl.textContent='Volle Gruppen werden zu Ganzen. Übrig gebliebene Stücke bilden den Restbruch.';
+      };
+    }
+    if(topic==='vergleichen'){
+      controls.innerHTML=makeControl('a','Links: Zähler',1,10,3)+makeControl('b','Links: Nenner',2,10,4)+makeControl('c','Rechts: Zähler',1,10,2)+makeControl('d','Rechts: Nenner',2,10,3);
+      render=()=>{
+        V.b=clamp($('#b',root).value,2,10); $('#a',root).max=V.b; V.a=clamp($('#a',root).value,1,V.b); $('#a',root).value=V.a;
+        V.d=clamp($('#d',root).value,2,10); $('#c',root).max=V.d; V.c=clamp($('#c',root).value,1,V.d); $('#c',root).value=V.c;
+        const left=V.a/V.b,right=V.c/V.d; const sign = left===right ? '=' : (left>right?'>' : '<');
+        board.innerHTML=`<div class="model-pair"><div class="model-card">${bar(V.a,V.b)}<p class="big-math">${frac(V.a,V.b)}</p></div><div class="model-card">${bar(V.c,V.d)}<p class="big-math">${frac(V.c,V.d)}</p></div></div><div class="eq">${frac(V.a,V.b)} ${sign} ${frac(V.c,V.d)}</div>`;
+        expl.textContent='Wenn die Bilder nicht reichen, kannst du beide Brüche auch auf einen gemeinsamen Nenner bringen.';
+      };
+    }
+    if(topic==='zahlenstrahl'){
+      controls.innerHTML=makeControl('d','Wie fein ist die Einteilung?',2,10,4)+makeControl('n','Wie viele Bruchschritte nach rechts?',0,12,5);
+      render=()=>{
+        V.d=clamp($('#d',root).value,2,10); V.n=clamp($('#n',root).value,0,12); const value=V.n/V.d; const min=0,max=3, pos=Math.min(100,(value/max)*100);
+        const ticks=[]; for(let i=0;i<=max;i++){ ticks.push(`<span class="tick" style="left:${i/max*100}%"></span><span class="tick-label" style="left:${i/max*100}%">${i}</span>`); }
+        board.innerHTML=`<div class="number-line"><div class="number-line-track">${ticks.join('')}<span class="pointer" style="left:${pos}%"><i></i><b>${value%1===0?value:value.toFixed(2).replace('.',',')}</b></span></div></div><p class="big-math">Markierung: ${frac(V.n,V.d)}${value>=1?` = ${Math.floor(value)}${value%1?` und ${frac(V.n%V.d,V.d)}`:''}`:''}</p>`;
+        expl.textContent='Suche immer zuerst den Abschnitt zwischen zwei ganzen Zahlen und teile ihn dann gleichmäßig.';
+      };
+    }
+    if(topic==='dezimal'){
+      controls.innerHTML=makeControl('z','Zehntel',0,9,3)+makeControl('h','Hundertstel',0,9,5);
+      render=()=>{
+        V.z=clamp($('#z',root).value,0,9); V.h=clamp($('#h',root).value,0,9); const n=V.z*10+V.h;
+        board.innerHTML=`<div class="hundred-grid" role="img" aria-label="${n} von 100 Kästchen gefärbt">${Array.from({length:100},(_,i)=>`<i class="${i<n?'filled':''}"></i>`).join('')}</div><p class="big-math">0,${V.z}${V.h} = ${frac(n,100)}</p><div class="eq">${V.z} Zehntel und ${V.h} Hundertstel zusammen ergeben ${n} Hundertstel.</div>`;
+        expl.textContent='Eine volle Zeile im Hunderterfeld sind 10 Kästchen, also ein Zehntel.';
+      };
+    }
+
+    all('input[type="range"]',root).forEach(inp=> inp.addEventListener('input',()=>{ all('input[type="range"]',root).forEach(updateOutput); render(); }));
+    all('input[type="range"]',root).forEach(updateOutput); render();
+  }
+
+  function buildChecks(root){
+    const data=JSON.parse(root.dataset.questions);
+    let index=0, chosen=null;
+    const q=$('.q',root), choices=$('.choices',root), fb=$('.feedback',root), hintBtn=$('.hint-btn',root), nextBtn=$('.next-btn',root);
+    function paint(){
+      const item=data[index]; chosen=null; fb.className='feedback'; fb.innerHTML='';
+      q.innerHTML=`<div class="eyebrow">Denk-Check ${index+1} von ${data.length}</div><h3>${item.q}</h3>`;
+      choices.innerHTML=item.a.map((ans,i)=>`<button type="button" class="choice" data-i="${i}">${ans}</button>`).join('');
+      hintBtn.textContent='Ich brauche einen Hinweis'; nextBtn.textContent=index===data.length-1?'Nochmal von vorn':'Nächste Aufgabe';
+      all('.choice',choices).forEach(btn=>btn.addEventListener('click',()=>{
+        chosen=Number(btn.dataset.i); all('.choice',choices).forEach(b=>b.disabled=true);
+        const correct=item.correct; all('.choice',choices).forEach((b,i)=>{ b.classList.add(i===correct?'correct':(i===chosen?'wrong':'')); });
+        fb.className='feedback show'; fb.innerHTML=`<strong>${chosen===correct?'Richtig gedacht.':'Noch nicht ganz.'}</strong><p>${item.explain}</p>`;
+      }));
+    }
+    hintBtn.addEventListener('click',()=>{ const item=data[index]; fb.className='feedback show'; fb.innerHTML=`<strong>Hinweis:</strong><p>${item.hint}</p>`; });
+    nextBtn.addEventListener('click',()=>{ index=(index+1)%data.length; paint(); });
+    paint();
+  }
+
+  all('[data-lab]').forEach(buildLab);
+  all('[data-questions]').forEach(buildChecks);
 })();
