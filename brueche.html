@@ -1,62 +1,115 @@
 <!doctype html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Brüche verstehen · Mathe-Merkheft</title>
-<link rel="stylesheet" href="style.css?v=fix20261022b">
-<script defer src="lernwerkzeuge.js?v=fix20261022b"></script>
-</head>
+<link rel="stylesheet" href="style.css?v=20261022referenz1">
+<style>
+:root{--aubergine:#703c57;--mist:#f8f5f6;--green:#22734b}
+*{box-sizing:border-box}body{color:#292c37}.reference-shell{max-width:1050px;margin:auto;padding:24px 18px 80px}
+.ref-heading{margin:12px 0 8px}.ref-lead{font-size:1.1rem;max-width:700px;color:#55505c}
+.ref-nav{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.ref-nav a{padding:9px 13px;background:#fff;border:1px solid #ddd4dc;border-radius:30px;text-decoration:none}
+.ref-panel{background:#fff;border:1px solid #e7dce2;border-radius:20px;padding:clamp(19px,3vw,33px);margin:20px 0;box-shadow:0 5px 22px #4d25330b}
+.ref-panel h2{margin:4px 0 14px;color:#283b56}.phase{font-size:.8rem;letter-spacing:.07em;color:var(--aubergine);font-weight:800}
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.ref-note{background:#f7f0f4;padding:17px;border-radius:12px;border-left:4px solid var(--aubergine)}
+.ref-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:16px 0}
+.ref-button,.ref-tools button{border:1px solid #865770;background:#fff;color:#6c3650;border-radius:12px;padding:10px 16px;cursor:pointer;font:inherit}
+.ref-button.primary{background:#713d58;color:white}.ref-button:disabled{opacity:.45;cursor:not-allowed}
+.ref-button:focus-visible,.piece:focus-visible{outline:3px solid #0c7890;outline-offset:3px}
+.ref-counter{font-size:1.05rem;font-weight:700;color:#713d58}.choco{display:grid;grid-template-columns:repeat(var(--count),minmax(0,1fr));gap:3px;max-width:780px;margin:20px 0;padding:12px;border-radius:14px;background:#e9d9cc;border:4px solid #8e5e44}
+.piece{appearance:none;min-width:0;min-height:88px;border:2px solid #9e6b4c;border-radius:7px;background:linear-gradient(130deg,#d4a57d,#bb805b);position:relative;cursor:pointer;padding:5px}
+.piece:after{content:"";display:block;position:absolute;inset:9px;border:2px solid #ad7651;border-radius:4px}
+.piece.chosen{background:linear-gradient(130deg,#92536d,#713b56);border-color:#6d3550}.piece.chosen:after{border-color:#ca9aae}
+.ref-fraction{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;font-size:1.45rem;line-height:1.1;font-weight:700;min-width:1.4em}.ref-fraction span:first-child{border-bottom:2px solid;padding:0 8px 5px}.ref-fraction span:last-child{padding-top:5px}
+.ref-answer{min-height:42px;margin:10px 0;padding:12px;border-radius:12px;background:#f8f4f6}
+.ref-answer:empty{padding:0;background:none}.ref-explain{border:1px solid #e6d7de;border-radius:12px;padding:14px;margin-top:15px}
+.ref-question{font-size:1.1rem;font-weight:700;margin-bottom:15px}
+.ref-choice{display:block;text-align:left;width:100%;padding:14px;border:1px solid #cbbec8;border-radius:12px;margin:9px 0;background:#fff;font:inherit;cursor:pointer}.ref-choice[aria-pressed=true]{border:2px solid #713d58;background:#f8f0f5}
+.ref-choice:disabled{opacity:.85}.ref-feedback{padding:15px;border-radius:12px;background:#f6f2f5;margin-top:12px}
+.ref-feedback.good{background:#e8f4ec;color:#1f603e}.ref-feedback.bad{background:#fff2e7;color:#79502c}
+.ref-chip{display:inline-block;background:#f0e7eb;color:#713d58;padding:4px 10px;border-radius:10px;font-size:.85rem}
+.ref-small{color:#625c64;font-size:.93rem}
+.ref-input{font:inherit;padding:10px;border:1px solid #b9aab5;border-radius:10px;width:100%}
+.ref-footer{display:flex;justify-content:space-between;gap:12px;margin-top:25px}
+@media(max-width:640px){.ref-grid{grid-template-columns:1fr}.choco{padding:7px;gap:2px}.piece{min-height:72px}.reference-shell{padding:18px 12px}.ref-tools{align-items:stretch}.ref-tools button{flex:1}}
+</style></head>
 <body>
-<header class="sitehead"><div class="sitehead-inner"><a class="brand" href="index.html"><span class="brand-mark"></span><span>Mathe-Merkheft</span></a><div class="site-sub">Klasse 6 · Thema 1 von 6</div></div></header>
-<main class="shell">
-  <a class="backlink" href="index.html">← Alle Themen</a>
-  <p class="eyebrow">THEMA 1 VON 6</p>
-  <h1>Brüche verstehen</h1>
-  <p class="intro">Teile ein Ganzes in gleich große Stücke und deute den Anteil richtig.</p>
-  <nav class="topic-nav" aria-label="Themen wechseln"><a href="brueche.html" aria-current="page">Brüche verstehen</a><a href="gleichwertig.html">Kürzen und Erweitern</a><a href="gemischt.html">Gemischte Zahlen</a><a href="vergleichen.html">Brüche vergleichen</a><a href="zahlenstrahl.html">Brüche am Zahlenstrahl</a><a href="dezimal.html">Brüche und Dezimalzahlen</a></nav>
+<header class="sitehead"><a href="index.html" style="color:white;text-decoration:none">◇ Mathe-Merkheft</a> <span>Klasse 6</span></header>
+<main class="reference-shell">
+<a href="index.html">← Alle Themen</a>
+<p class="phase ref-heading">THEMA 1 VON 6 · BRÜCHE</p><h1>Brüche verstehen</h1>
+<p class="ref-lead">Was bedeutet ein Bruch wirklich? Du entdeckst es selbst – mit einer Schokoladentafel, die du verändern kannst.</p>
+<nav class="ref-nav" aria-label="Seitenbereiche"><a href="#entdecken">Entdecken</a><a href="#verstehen">Verstehen</a><a href="#uebung">Selbst probieren</a><a href="#nachschlagen">Nachschlagen</a></nav>
 
-  <section class="panel">
-    <p class="eyebrow">1 · VERSTEHEN</p>
-    <div class="layout">
-      <div>
-        <h2>Ein Bruch ist eine Teil-Anleitung</h2>
-        <p>Der Nenner unten sagt dir, in wie viele <strong>gleich große</strong> Stücke ein Ganzes geteilt wird. Der Zähler oben sagt, wie viele dieser Stücke gemeint sind.</p>
-        <p>Wichtig ist immer: Alle Stücke müssen gleich groß sein. Sonst ist es kein fairer Bruch.</p>
-        <div class="note"><strong>Merksatz:</strong> Erst teilen, dann zählen: Beispiel: 3/8 heißt 8 gleich große Stücke, davon 3 genommen.</div>
-      </div>
-      <aside class="mission">
-        <h3>Bild im Kopf</h3>
-        <p>Denk an eine Schokoladentafel. Wenn du sie in 8 gleiche Stücke zerbrichst und 3 davon auswählst, hast du 3/8 der Tafel.</p>
-      </aside>
-    </div>
-  </section>
+<section id="entdecken" class="ref-panel">
+<p class="phase">01 · ENTDECKEN</p><h2>Die Schokoladen-Werkstatt</h2>
+<p>Eine ganze Tafel wird in <strong>gleich große Stücke</strong> geteilt. Tippe einzelne Stücke an: Welche Menge hast du ausgewählt?</p>
+<div class="ref-tools"><label for="parts">Einteilung:</label><button id="less" type="button" aria-label="Ein Teil weniger">−</button><output id="parts" class="ref-counter">8 Stücke</output><button id="more" type="button" aria-label="Ein Teil mehr">+</button><button id="clear" type="button">Auswahl löschen</button></div>
+<div id="choco" class="choco" style="--count:8" role="group" aria-label="Anklickbare Stücke einer Schokoladentafel"></div>
+<p id="selection" class="ref-counter" aria-live="polite"></p>
+<div class="ref-note"><strong>Forscherfrage:</strong> Wenn du dieselben drei Stücke auswählst, aber die ganze Tafel in mehr Stücke teilst: Ist jedes Stück dann größer oder kleiner?</div>
+<details class="ref-explain"><summary>Erst überlegen – dann Erklärung aufdecken</summary><p>Je mehr gleich große Stücke eine Tafel hat, desto kleiner ist jedes Stück. Deshalb ist ein Achtel kleiner als ein Viertel – wenn die Tafeln gleich groß sind.</p></details>
+</section>
 
-  <section class="panel">
-    <p class="eyebrow">2 · SELBST ENTDECKEN</p>
-    <h2>Das Ganze in Stücke teilen</h2>
-    <p>Verschiebe die Regler. Beobachte, wie sich Zähler und Nenner auf den Bruch auswirken.</p>
-    <div id="lab-brueche" class="lab-box" data-lab data-topic="brueche" style="padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--paper-2)">
-      <div class="controls"></div>
-      <div class="visual-board"></div>
-      <p class="helper"></p>
-    </div>
-  </section>
+<section id="verstehen" class="ref-panel">
+<p class="phase">02 · VERSTEHEN</p><h2>Was sagen die beiden Zahlen?</h2>
+<div class="ref-grid"><div><p><strong>Der Nenner</strong> steht unten. Er verrät, in wie viele gleich große Teile das Ganze zerlegt wurde.</p><p><strong>Der Zähler</strong> steht oben. Er verrät, wie viele dieser Teile gemeint sind.</p></div><div class="ref-note"><div style="text-align:center"><span class="ref-fraction"><span>3</span><span>8</span></span></div><p>Die <strong>8</strong> bestimmt die Einteilung. Die <strong>3</strong> zählt die gewählten Teile.</p></div></div>
+<h3>Die wichtigste Denkfalle: Was ist überhaupt das Ganze?</h3>
+<p>Eine halbe kleine Pizza und eine halbe große Pizza sind beides ein Halb. Aber sie enthalten nicht unbedingt gleich viel Pizza. Deshalb fragst du bei Sachaufgaben zuerst: <strong>Wovon ist die Rede?</strong></p>
+<div class="ref-grid"><div class="ref-note"><strong>½ von 200 g</strong><p>100 g</p></div><div class="ref-note"><strong>½ von 400 g</strong><p>200 g</p></div></div>
+</section>
 
-  <section class="panel">
-    <p class="eyebrow">3 · DENK-CHECK</p>
-    <div class="check-box" data-questions='[{"q": "Welcher Bruch bedeutet: 3 von 8 gleich großen Teilen?", "a": ["3/8", "8/3", "5/8"], "correct": 0, "hint": "Der Zähler zählt die gemeinten Stücke.", "explain": "3/8 ist richtig: 8 Stücke insgesamt, 3 davon gemeint."}, {"q": "Was ist 2/5 von 20?", "a": ["8", "10", "4"], "correct": 0, "hint": "Teile 20 zuerst durch 5.", "explain": "20 : 5 = 4. Dann 4 · 2 = 8."}, {"q": "Kann 1/2 einer großen Pizza mehr sein als 3/4 einer kleinen?", "a": ["Ja", "Nein", "Nie"], "correct": 0, "hint": "Vergleiche erst die Größe des Ganzen.", "explain": "Ja. Wenn die große Pizza deutlich größer ist, kann ihre Hälfte mehr sein."}]'>
-      <div class="q"></div>
-      <div class="choices"></div>
-      <div class="actions">
-        <button class="btn alt hint-btn" type="button">Ich brauche einen Hinweis</button>
-        <button class="btn ghost next-btn" type="button">Nächste Aufgabe</button>
-      </div>
-      <div class="feedback"></div>
-    </div>
-  </section>
+<section id="uebung" class="ref-panel">
+<p class="phase">03 · SELBST PROBIEREN</p><h2>Denk-Check ohne Lösungs-Verrat</h2>
+<p class="ref-small">Du entscheidest zuerst. Wenn du unsicher bist, bekommst du einen Hinweis – nicht sofort die Lösung.</p>
+<div id="exercise" aria-live="polite"></div>
+</section>
 
-  <p class="footer-note">Wenn etwas noch unsicher ist, gehe zurück ins Lernlabor und verändere die Zahlen noch einmal bewusst.</p>
+<section id="nachschlagen" class="ref-panel">
+<p class="phase">04 · NACHSCHLAGEN</p><h2>Das Wichtigste auf einen Blick</h2>
+<div class="ref-grid"><div><h3>Kurz merken</h3><p>Ein Bruch beschreibt einen Anteil eines Ganzen. Alle Teile müssen gleich groß sein.</p><p><span class="ref-fraction"><span>3</span><span>8</span></span> heißt: drei von acht gleich großen Teilen.</p></div><div><h3>Typische Denkfallen</h3><p>Ein größerer Nenner bedeutet bei gleichem Zähler und gleich großem Ganzen kleinere Stücke.</p><p>Ein Halb einer großen Menge kann größer sein als drei Viertel einer kleinen Menge.</p></div></div>
+<h3>So berechnest du einen Bruchteil einer Menge</h3><p><strong>¾ von 20</strong>: 20 zuerst in vier gleiche Teile teilen: 20 : 4 = 5. Dann drei Teile nehmen: 5 · 3 = 15.</p>
+<details class="ref-explain"><summary>Warum funktioniert das?</summary><p>Der Nenner 4 sagt, dass ein Teil ein Viertel von 20 ist. Der Zähler 3 sagt, dass du drei solcher Teile brauchst.</p></details>
+<h3>Erklär es in deinen Worten</h3><label for="own">Warum ist ¼ einer Tafel größer als ⅛ derselben Tafel?</label><textarea id="own" class="ref-input" rows="3" placeholder="Schreibe deine Erklärung hier hinein …"></textarea>
+<button id="explain-toggle" class="ref-button" type="button">Beispielerklärung ansehen</button><p id="explain-text" hidden>Bei vier gleich großen Teilen sind die Stücke größer als bei acht gleich großen Teilen. Ein Viertel ist deshalb größer als ein Achtel, wenn das Ganze gleich groß bleibt.</p>
+</section>
+<div class="ref-footer"><a href="index.html">← Übersicht</a><a href="gleichwertig.html">Nächstes Thema →</a></div>
 </main>
-</body>
-</html>
+<script>
+(function(){
+"use strict";
+var count=8,selected=new Set([0,1,2]);var board=document.getElementById("choco");
+function paint(){
+ board.style.setProperty("--count",String(count));board.innerHTML="";
+ for(var i=0;i<count;i++){(function(index){var b=document.createElement("button");b.type="button";b.className="piece"+(selected.has(index)?" chosen":"");b.setAttribute("aria-pressed",selected.has(index)?"true":"false");b.setAttribute("aria-label","Stück "+(index+1)+(selected.has(index)?", ausgewählt":", nicht ausgewählt"));b.onclick=function(){if(selected.has(index))selected.delete(index);else selected.add(index);paint()};board.appendChild(b)})(i)}
+ document.getElementById("parts").textContent=count+" Stücke";
+ document.getElementById("selection").textContent=selected.size+" von "+count+" Stücken ausgewählt: "+selected.size+"/"+count;
+ document.getElementById("less").disabled=count<=2;document.getElementById("more").disabled=count>=12;
+}
+function recount(v){count=Math.max(2,Math.min(12,v));selected=new Set(Array.from(selected).filter(function(i){return i<count}));paint()}
+document.getElementById("less").onclick=function(){recount(count-1)};
+document.getElementById("more").onclick=function(){recount(count+1)};
+document.getElementById("clear").onclick=function(){selected.clear();paint()};paint();
+var tasks=[
+ {q:"Eine Tafel hat 8 gleich große Stücke. Drei davon sind markiert. Welcher Bruch passt?",o:["3/8","8/3","5/8"],a:0,h:["Was steht unten: alle Stücke oder nur die gefärbten?","Der Nenner sagt, wie viele Stücke die ganze Tafel hat."],why:"3/8: Unten 8 Teile der ganzen Tafel, oben 3 ausgewählte."},
+ {q:"Wie viel sind 2/5 von 20 Bonbons?",o:["8","10","4"],a:0,h:["Zuerst musst du 20 in fünf gleiche Gruppen aufteilen.","Eine Gruppe hat 20 : 5 = 4 Bonbons. Du brauchst zwei Gruppen."],why:"20 : 5 = 4. Zwei Gruppen sind 2 · 4 = 8 Bonbons."},
+ {q:"Mila isst ½ einer großen Pizza, Leo ¾ einer kleinen. Wer hat mehr gegessen?",o:["Das lässt sich noch nicht sagen.","Leo, weil ¾ größer als ½ ist.","Mila, weil ihre Pizza größer ist."],a:0,h:["Ein Anteil ist nur zusammen mit dem Ganzen eine Menge.","Wir kennen nicht, wie groß die beiden Pizzen tatsächlich sind."],why:"Ohne die Größen der ganzen Pizzen ist der Mengenvergleich nicht sicher möglich."}
+];
+var index=0,chosen=null,hints=0,checked=false,box=document.getElementById("exercise");
+function draw(){
+ var t=tasks[index];box.innerHTML="";
+ var title=document.createElement("p");title.className="ref-chip";title.textContent="Aufgabe "+(index+1)+" von 3";box.appendChild(title);
+ var q=document.createElement("p");q.className="ref-question";q.textContent=t.q;box.appendChild(q);
+ t.o.forEach(function(label,i){var b=document.createElement("button");b.className="ref-choice";b.type="button";b.textContent=label;b.setAttribute("aria-pressed",chosen===i?"true":"false");b.onclick=function(){if(!checked){chosen=i;draw()}};box.appendChild(b)});
+ var actions=document.createElement("div");actions.className="ref-tools";box.appendChild(actions);
+ var check=document.createElement("button");check.className="ref-button primary";check.textContent="Antwort prüfen";check.disabled=chosen===null||checked;check.onclick=function(){checked=true;draw()};actions.appendChild(check);
+ var hint=document.createElement("button");hint.className="ref-button";hint.textContent="Hinweis "+(hints<2?"anzeigen":"noch einmal lesen");hint.onclick=function(){hints=Math.min(2,hints+1);draw()};actions.appendChild(hint);
+ var response=document.createElement("div");response.className="ref-answer";response.setAttribute("role","status");
+ if(hints>0)response.textContent="Hinweis: "+t.h[hints-1];box.appendChild(response);
+ if(checked){var correct=chosen===t.a;var feedback=document.createElement("div");feedback.className="ref-feedback "+(correct?"good":"bad");feedback.textContent=correct?"Gut erkannt. "+t.why:"Noch nicht. Überlege mit den Hinweisen, bevor du den Denkweg ansiehst.";box.appendChild(feedback);
+ if(!correct){var reveal=document.createElement("button");reveal.className="ref-button";reveal.textContent="Denkweg aufdecken";reveal.onclick=function(){feedback.textContent=t.why};actions.appendChild(reveal)}
+ var next=document.createElement("button");next.className="ref-button primary";next.textContent=index===2?"Wiederholen":"Nächste Aufgabe";next.onclick=function(){index=(index+1)%tasks.length;chosen=null;checked=false;hints=0;draw()};actions.appendChild(next);
+ }else if(chosen!==null){response.textContent=(hints?"Hinweis: "+t.h[hints-1]+" · ":"")+"Du hast eine Antwort gewählt. Prüfe sie, wenn du bereit bist."}
+}
+draw();
+document.getElementById("explain-toggle").onclick=function(){var p=document.getElementById("explain-text");p.hidden=!p.hidden};
+})();
+</script></body></html>
