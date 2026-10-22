@@ -1,207 +1,45 @@
 <!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Brüche verstehen · Mathe-Merkheft</title>
-<link rel="stylesheet" href="style.css?v=20261022referenz1">
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Brüche verstehen · Mathe-Merkheft</title>
 <style>
-:root{--aubergine:#703c57;--mist:#f8f5f6;--green:#22734b}
-*{box-sizing:border-box}body{color:#292c37}.reference-shell{max-width:1050px;margin:auto;padding:24px 18px 80px}
-.ref-heading{margin:12px 0 8px}.ref-lead{font-size:1.1rem;max-width:700px;color:#55505c}
-.ref-nav{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.ref-nav a{padding:9px 13px;background:#fff;border:1px solid #ddd4dc;border-radius:30px;text-decoration:none}
-.ref-panel{background:#fff;border:1px solid #e7dce2;border-radius:20px;padding:clamp(19px,3vw,33px);margin:20px 0;box-shadow:0 5px 22px #4d25330b}
-.ref-panel h2{margin:4px 0 14px;color:#283b56}.phase{font-size:.8rem;letter-spacing:.07em;color:var(--aubergine);font-weight:800}
-.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.ref-note{background:#f7f0f4;padding:17px;border-radius:12px;border-left:4px solid var(--aubergine)}
-.ref-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:16px 0}
-.ref-button,.ref-tools button{border:1px solid #865770;background:#fff;color:#6c3650;border-radius:12px;padding:10px 16px;cursor:pointer;font:inherit}
-.ref-button.primary{background:#713d58;color:white}.ref-button:disabled{opacity:.45;cursor:not-allowed}
-.ref-button:focus-visible,.piece:focus-visible{outline:3px solid #0c7890;outline-offset:3px}
-.ref-counter{font-size:1.05rem;font-weight:700;color:#713d58}.choco{display:grid;grid-template-columns:repeat(var(--count),minmax(0,1fr));gap:3px;max-width:780px;margin:20px 0;padding:12px;border-radius:14px;background:#e9d9cc;border:4px solid #8e5e44}
-.piece{appearance:none;min-width:0;min-height:88px;border:2px solid #9e6b4c;border-radius:7px;background:linear-gradient(130deg,#d4a57d,#bb805b);position:relative;cursor:pointer;padding:5px}
-.piece:after{content:"";display:block;position:absolute;inset:9px;border:2px solid #ad7651;border-radius:4px}
-.piece.chosen{background:linear-gradient(130deg,#92536d,#713b56);border-color:#6d3550}.piece.chosen:after{border-color:#ca9aae}
-.ref-fraction{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;font-size:1.45rem;line-height:1.1;font-weight:700;min-width:1.4em}.ref-fraction span:first-child{border-bottom:2px solid;padding:0 8px 5px}.ref-fraction span:last-child{padding-top:5px}
-.ref-answer{min-height:42px;margin:10px 0;padding:12px;border-radius:12px;background:#f8f4f6}
-.ref-answer:empty{padding:0;background:none}.ref-explain{border:1px solid #e6d7de;border-radius:12px;padding:14px;margin-top:15px}
-.ref-question{font-size:1.1rem;font-weight:700;margin-bottom:15px}
-.ref-choice{display:block;text-align:left;width:100%;padding:14px;border:1px solid #cbbec8;border-radius:12px;margin:9px 0;background:#fff;font:inherit;cursor:pointer}.ref-choice[aria-pressed=true]{border:2px solid #713d58;background:#f8f0f5}
-.ref-choice:disabled{opacity:.85}.ref-feedback{padding:15px;border-radius:12px;background:#f6f2f5;margin-top:12px}
-.ref-feedback.good{background:#e8f4ec;color:#1f603e}.ref-feedback.bad{background:#fff2e7;color:#79502c}
-.ref-chip{display:inline-block;background:#f0e7eb;color:#713d58;padding:4px 10px;border-radius:10px;font-size:.85rem}
-.ref-small{color:#625c64;font-size:.93rem}
-.ref-input{font:inherit;padding:10px;border:1px solid #b9aab5;border-radius:10px;width:100%}
-.ref-footer{display:flex;justify-content:space-between;gap:12px;margin-top:25px}
-@media(max-width:640px){.ref-grid{grid-template-columns:1fr}.choco{padding:7px;gap:2px}.piece{min-height:72px}.reference-shell{padding:18px 12px}.ref-tools{align-items:stretch}.ref-tools button{flex:1}}
-</style>
-<style id="register-style">[data-panel][hidden]{display:none!important}.ref-nav a[aria-current="page"]{background:#713d58;color:white;border-color:#713d58}.ref-nav a:focus-visible{outline:3px solid #0c7890;outline-offset:3px}</style>
-<style id="heftaufschrieb">
-.school-title{margin-top:26px}.school-example{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(235px,1fr);gap:18px;margin:20px 0}.school-paper{background:repeating-linear-gradient(to bottom,#fff 0,#fff 37px,#e5eaf2 38px);border:1px solid #d6dce8;border-left:5px solid #9c5977;border-radius:14px;padding:20px;min-width:0}.school-task{font-size:1.08rem;font-weight:700;margin:0 0 17px}.school-row{display:grid;grid-template-columns:30px minmax(105px,150px) 1fr;gap:10px;align-items:start;margin:16px 0}.school-no{background:#f0e5eb;color:#743e59;border-radius:50%;width:27px;height:27px;display:grid;place-items:center;font-weight:700;font-size:.85rem}.school-math{font-family:"Cambria Math","STIX Two Math",Georgia,serif;color:#283b56;font-size:1.33rem;white-space:nowrap}.school-why{font-size:.9rem;line-height:1.45;color:#554e58}.school-result{border-top:2px solid #b58ba1;margin-top:16px;padding-top:12px;color:#243b55}.school-result span{display:block;font-weight:700}.school-visual{background:#faf5f8;border:1px solid #e5d9e1;border-radius:14px;padding:16px}.school-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}.school-group{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:12px 6px;border:2px solid #c1b1ba;border-radius:10px;min-width:0;background:#fff}.school-group.active{border-color:#96607d;background:#f5eaf0}.school-group i{aspect-ratio:1;background:#ded5da;border-radius:50%}.school-group.active i{background:#a36887}.school-rule{margin-top:20px}@media(max-width:780px){.school-example{grid-template-columns:1fr}.school-row{grid-template-columns:30px 128px 1fr}}@media(max-width:480px){.school-paper{padding:12px}.school-row{grid-template-columns:24px 1fr;gap:4px 10px}.school-why{grid-column:2}.school-groups{gap:7px}.school-group{padding:9px 5px}}
-</style></head>
-<body>
-<header class="sitehead"><a href="index.html" style="color:white;text-decoration:none">◇ Mathe-Merkheft</a> <span>Klasse 6</span></header>
-<main class="reference-shell">
-<a href="index.html">← Alle Themen</a>
-<p class="phase ref-heading">THEMA 1 VON 6 · BRÜCHE</p><h1>Brüche verstehen</h1>
-<p class="ref-lead">Was bedeutet ein Bruch wirklich? Du entdeckst es selbst – mit einer Schokoladentafel, die du verändern kannst.</p>
-<nav class="ref-nav" aria-label="Lernbereiche"><a href="#entdecken" data-tab="entdecken">Entdecken</a><a href="#verstehen" data-tab="verstehen">Verstehen</a><a href="#uebung" data-tab="uebung">Selbst probieren</a><a href="#nachschlagen" data-tab="nachschlagen">Nachschlagen</a></nav>
-
-<section id="entdecken" class="ref-panel" data-panel="entdecken">
-<p class="phase">01 · ENTDECKEN</p><h2>Die Schokoladen-Werkstatt</h2>
-<p>Eine ganze Tafel wird in <strong>gleich große Stücke</strong> geteilt. Tippe einzelne Stücke an: Welche Menge hast du ausgewählt?</p>
-<div class="ref-tools"><label for="parts">Einteilung:</label><button id="less" type="button" aria-label="Ein Teil weniger">−</button><output id="parts" class="ref-counter">8 Stücke</output><button id="more" type="button" aria-label="Ein Teil mehr">+</button><button id="clear" type="button">Auswahl löschen</button></div>
-<div id="choco" class="choco" style="--count:8" role="group" aria-label="Anklickbare Stücke einer Schokoladentafel"></div>
-<p id="selection" class="ref-counter" aria-live="polite"></p>
-<div class="ref-note"><strong>Forscherfrage:</strong> Wenn du dieselben drei Stücke auswählst, aber die ganze Tafel in mehr Stücke teilst: Ist jedes Stück dann größer oder kleiner?</div>
-<details class="ref-explain"><summary>Erst überlegen – dann Erklärung aufdecken</summary><p>Je mehr gleich große Stücke eine Tafel hat, desto kleiner ist jedes Stück. Deshalb ist ein Achtel kleiner als ein Viertel – wenn die Tafeln gleich groß sind.</p></details>
+:root{--wine:#75415c;--navy:#233f60;--ink:#29313e;--muted:#585763;--line:#e3d9df;--cream:#faf6f3;--pale:#f7f2f5}
+*{box-sizing:border-box}body{margin:0;background:#f6f2f5;color:var(--ink);font:17px/1.65 system-ui,Arial,sans-serif}button,textarea{font:inherit}h1,h2,h3{line-height:1.22;color:var(--navy)}h1{font-size:clamp(2rem,4vw,3.2rem);margin:10px 0}h2{font-size:1.6rem;margin:8px 0 14px}h3{font-size:1.14rem}p{margin:9px 0 15px}.top{background:linear-gradient(115deg,#713e59,#294564);color:white;padding:13px 20px}.topin{max-width:1050px;margin:auto;display:flex;justify-content:space-between;gap:15px}.top a{color:white;text-decoration:none}.wrap{max-width:1050px;margin:auto;padding:25px 17px 80px}.eyebrow{color:var(--wine);font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;font-weight:750}.lead{font-size:1.1rem;color:var(--muted)}.tabs{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0}.btn,.tabs a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 16px;border:1.5px solid #be9eaf;border-radius:999px;background:white;color:var(--wine);font-weight:600;text-decoration:none;cursor:pointer}.tabs a[aria-current],.btn.primary{color:white;background:var(--wine);border-color:var(--wine)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,.tabs a:focus-visible,.slice:focus-visible{outline:3px solid #167c91;outline-offset:3px}.panel{background:white;border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,34px);box-shadow:0 5px 22px #51394a10}.panel[hidden],[hidden]{display:none!important}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.note{padding:17px;background:var(--pale);border-left:4px solid var(--wine);border-radius:13px}.paper{background:repeating-linear-gradient(#fff 0px,#fff 37px,#e7edf3 38px);border:1px solid #d8e0e9;border-left:5px solid #9b6982;border-radius:15px;padding:18px;margin:17px 0}.write{display:grid;grid-template-columns:minmax(115px,190px) 1fr;gap:10px;align-items:center;margin:15px 0}.math{font-family:Georgia,"Cambria Math",serif;font-size:1.27rem;font-weight:700;color:var(--navy)}.frac{display:inline-flex;vertical-align:middle;flex-direction:column;align-items:center;line-height:1.1;font-family:Georgia,"Cambria Math",serif;font-weight:700;min-width:1.45em;margin:0 .12em}.frac span:first-child{border-bottom:2px solid currentColor;padding:0 .23em .13em}.frac span:last-child{padding:.13em .23em 0}.bigfrac{font-size:2rem}.result{padding:13px 16px;background:#eaf4ed;border:1px solid #c9e2d2;border-radius:12px}.pizza-area{display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:center;margin:16px 0}.pizza-svg{width:min(100%,330px);height:auto;filter:drop-shadow(0 7px 10px #43291b22)}.slice{cursor:pointer;stroke:#a65233;stroke-width:2}.slice.on{fill:#965c79}.slice.off{fill:#f6c47c}.slice:hover{stroke-width:4}.tiles{display:flex;gap:3px;margin:12px 0;max-width:450px}.tiles i{height:45px;flex:1;border:1px solid #a8784a;background:#f1c08c;border-radius:4px}.tiles i.on{background:#965c79}.controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:15px 0}.info{background:#fff8eb;border:1px solid #ead6b0;border-radius:14px;padding:15px}.option{width:100%;display:flex;justify-content:flex-start;align-items:center;gap:10px;padding:13px;border:1px solid #d8c6d0;background:white;border-radius:12px;margin:8px 0;cursor:pointer}.option.selected{background:#faf0f5;border:2px solid var(--wine)}.help{background:#f9f3f6;padding:15px;border-radius:12px;margin:13px 0}.help p{margin:8px 0}.mini-pizzas{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}.mini-pizzas svg{width:170px;max-width:42vw}.trap{border:1px solid var(--line);border-radius:12px;margin:11px 0;padding:0 14px}summary{padding:14px 0;cursor:pointer;font-weight:650;color:var(--navy)}.trap .inside{padding:0 0 15px}.taskline{border-left:4px solid #9d6d85;padding-left:15px;margin:12px 0}.groups{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.group{padding:12px;border:2px solid #bb9aab;border-radius:13px;display:flex;gap:5px;background:#fff}.group.on{background:#f4e6ee;border-color:var(--wine)}.group i{width:13px;height:13px;background:#986482;border-radius:50%}.group:not(.on) i{background:#cebfc8}textarea{width:100%;min-height:115px;border:1px solid #c8b4c0;border-radius:12px;padding:13px;resize:vertical}.foot{display:flex;justify-content:space-between;gap:15px;margin-top:25px}a{color:var(--wine)}@media(max-width:720px){.two{grid-template-columns:1fr}.write{grid-template-columns:1fr;gap:0}.pizza-svg{width:min(100%,270px)}.wrap{padding:16px 12px 55px}}
+</style></head><body><header class="top"><div class="topin"><a href="index.html">◇ Mathe-Merkheft</a><span>Klasse 6</span></div></header>
+<main class="wrap"><a class="btn" href="index.html">← Alle Themen</a><p class="eyebrow">Thema 1 von 6</p><h1>Brüche verstehen</h1><p class="lead">Entdecke Brüche mit Pizza und Schokolade. Sieh dir die Bilder an, probiere selbst und lerne, Rechnungen sauber ins Schulheft zu schreiben.</p>
+<nav class="tabs" aria-label="Lernbereiche"><a data-tab="entdecken" href="#entdecken">Entdecken</a><a data-tab="verstehen" href="#verstehen">Verstehen</a><a data-tab="probieren" href="#probieren">Selbst probieren</a><a data-tab="nachschlagen" href="#nachschlagen">Nachschlagen</a></nav>
+<section class="panel" id="entdecken" data-panel><p class="eyebrow">01 · Entdecken</p><h2>Die Pizza-Werkstatt</h2><p>Die Pizza ist immer gleich groß. Verändere die Zahl der gleich großen Stücke. Tippe dann die Stücke an, die du nehmen möchtest.</p>
+<div class="controls"><button class="btn" id="minus" type="button">−</button><output id="count">8 Stücke</output><button class="btn" id="plus" type="button">+</button><button class="btn" id="clear" type="button">Auswahl löschen</button></div>
+<div class="pizza-area"><svg class="pizza-svg" id="pizza" viewBox="0 0 320 320" role="group" aria-label="Pizza mit anklickbaren Stücken"></svg><div><div class="bigfrac" id="chosenFraction"></div><p id="chosenWords" aria-live="polite"></p><p class="note">Die <strong>untere Zahl</strong> sagt, wie viele gleich große Stücke es insgesamt gibt. Die <strong>obere Zahl</strong> zählt deine Auswahl.</p></div></div>
+<h3>Schokolade zeigt dasselbe auf andere Weise</h3><p>Bei der Schokolade sind die Stücke rechteckig. Trotzdem kann sie genau denselben Bruch zeigen.</p><div class="tiles" id="chocolate" aria-label="Schokoladenbalken mit denselben markierten Anteilen"></div>
+<div class="info"><strong>Forscherauftrag:</strong> Zeige zuerst ein Viertel, dann ein Achtel. Was fällt dir auf, wenn du immer nur ein Stück auswählst?<details class="trap"><summary>Erklärung ansehen</summary><div class="inside">Ein Achtel ist kleiner als ein Viertel derselben Pizza. Denn acht gleich große Stücke sind jeweils kleiner als vier gleich große Stücke.</div></details></div>
 </section>
-
-<section id="verstehen" class="ref-panel" data-panel="verstehen">
-<p class="phase">02 · VERSTEHEN</p>
-<h2>Was erzählen dir die zwei Zahlen?</h2>
-<p>Stell dir vor, du möchtest jemandem sagen, wie viel Schokolade du noch hast. Nur „drei Stücke“ zu sagen, reicht nicht: Sind es große oder kleine Stücke? Ein Bruch beantwortet beide Fragen.</p>
-<div class="ref-grid">
-<div class="ref-note">
-<h3>Unten steht der Nenner</h3>
-<p><strong>In wie viele gleich große Stücke</strong> wurde die ganze Tafel geteilt?</p>
-<p>Die <strong>8</strong> bedeutet: Die ganze Tafel besteht aus acht gleich großen Stücken.</p>
-</div>
-<div class="ref-note">
-<h3>Oben steht der Zähler</h3>
-<p><strong>Wie viele dieser Stücke</strong> sind gemeint?</p>
-<p>Die <strong>3</strong> bedeutet: Drei Stücke wurden ausgewählt.</p>
-</div>
-</div>
-<div class="ref-note" style="margin-top:18px">
-<div style="text-align:center"><span class="ref-fraction"><span>3</span><span>8</span></span></div>
-<div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px;margin:16px 0" role="img" aria-label="Drei von acht gleich großen Schokoladenstücken sind gefärbt">
-<span style="height:52px;min-width:0;border:1px solid #946981;border-radius:5px;background:#995d7b"></span><span style="height:52px;min-width:0;border:1px solid #946981;border-radius:5px;background:#995d7b"></span><span style="height:52px;min-width:0;border:1px solid #946981;border-radius:5px;background:#995d7b"></span><span style="height:52px;min-width:0;border:1px solid #946981;border-radius:5px;background:#fff"></span><span style="height:52px;min-width:0;border:1px solid #946981;border-radius:5px;background:#fff"></span><span style="height:52px;min-width:0;border:1px solid #946981;border-radius:5px;background:#fff"></span><span style="height:52px;min-width:0;border:1px solid #946981;border-radius:5px;background:#fff"></span><span style="height:52px;min-width:0;border:1px solid #946981;border-radius:5px;background:#fff"></span>
-</div>
-<p style="text-align:center"><strong>3 von 8</strong> gleich großen Stücken: Das ist drei Achtel.</p>
-</div>
-<p><strong>Warum brauchst du beide Zahlen?</strong> Drei Stücke aus einer Tafel mit vier Stücken sind viel mehr als drei Stücke aus einer Tafel mit zwölf Stücken. Die Anzahl allein verrät dir also noch nicht, wie viel Schokolade du hast.</p>
-<h3>Eine wichtige Denkfalle: Wie groß ist das Ganze?</h3>
-<p>Eine halbe kleine Tafel und eine halbe große Tafel heißen beide <strong>ein Halb</strong>. Aber ihre Mengen sind verschieden. Vergleiche die gefärbten Flächen:</p>
-<div style="display:grid;gap:18px;margin:20px 0">
-<div class="ref-note"><strong>Kleine Tafel: 200 g</strong><div style="display:flex;width:50%;min-width:150px;height:46px;margin:10px 0"><span style="flex:1;background:#995d7b;border-radius:5px 0 0 5px"></span><span style="flex:1;background:white;border:1px solid #946981;border-radius:0 5px 5px 0"></span></div><p>Die Hälfte sind <strong>100 g</strong>.</p></div>
-<div class="ref-note"><strong>Große Tafel: 400 g</strong><div style="display:flex;width:100%;height:46px;margin:10px 0"><span style="flex:1;background:#995d7b;border-radius:5px 0 0 5px"></span><span style="flex:1;background:white;border:1px solid #946981;border-radius:0 5px 5px 0"></span></div><p>Die Hälfte sind <strong>200 g</strong>.</p></div>
-</div>
-<div class="ref-note"><strong>Merke:</strong> Ein Bruch sagt dir, <em>welcher Anteil</em> gemeint ist. Wie groß die Menge tatsächlich ist, hängt vom Ganzen ab. Frage deshalb immer: <strong>Wovon nehme ich den Anteil?</strong></div>
-<details class="ref-explain"><summary>Teste deinen Gedanken: Ist ¾ einer kleinen Tafel immer mehr als ½ einer großen?</summary><p>Nein. Ohne die Größe der Tafeln kannst du das nicht sicher sagen. Die Hälfte einer sehr großen Tafel kann mehr sein als drei Viertel einer kleinen.</p></details>
+<section class="panel" id="verstehen" data-panel hidden><p class="eyebrow">02 · Verstehen</p><h2>Wozu braucht ein Bruch zwei Zahlen?</h2><div class="two"><div><p>„Ich habe drei Pizzastücke“ reicht nicht. Drei von vier Stücken sind viel mehr als drei von acht Stücken derselben Pizza.</p><p><strong>Der Nenner steht unten.</strong> Er zeigt die Einteilung der ganzen Pizza.</p><p><strong>Der Zähler steht oben.</strong> Er zeigt, wie viele dieser Teile du meinst.</p></div><div class="note"><div class="bigfrac" style="text-align:center"><span class="frac"><span>3</span><span>8</span></span></div><p>Die <strong>8</strong> bedeutet: acht gleich große Stücke insgesamt. Die <strong>3</strong> bedeutet: drei Stücke ausgewählt.</p></div></div>
+<h3>Die Denkfalle: Nicht jede Pizza ist gleich groß</h3><p>Hier sind zwei unterschiedlich große Pizzen. Bei beiden ist genau die Hälfte markiert. Trotzdem ist die markierte Menge unterschiedlich groß.</p>
+<div class="mini-pizzas" id="sizePizzas"></div><div class="note"><strong>Merke:</strong> Ein Bruch nennt den <em>Anteil</em>. Wie viel das tatsächlich ist, hängt von der Größe des Ganzen ab.</div>
+<h3>Wenn du einen Bruchteil einer Menge berechnest</h3><p>Bei <span class="frac"><span>3</span><span>4</span></span> von 20 Bonbons bedeutet die 4: Teile 20 Bonbons in vier gleich große Gruppen. Die 3 bedeutet: Nimm drei dieser Gruppen.</p>
+<div class="groups" id="bonbonGroups"></div><div class="paper"><strong>So steht es im Heft:</strong><div class="write"><span class="math">20 : 4 = 5</span><span>Ein Viertel sind fünf Bonbons.</span></div><div class="write"><span class="math">5 · 3 = 15</span><span>Drei Viertel sind drei Gruppen zu je fünf Bonbons.</span></div><div class="result">Antwort: <span class="frac"><span>3</span><span>4</span></span> von 20 Bonbons sind <strong>15 Bonbons.</strong></div></div>
 </section>
-
-<section id="uebung" class="ref-panel" data-panel="uebung">
-<p class="phase">03 · SELBST PROBIEREN</p><h2>Denk-Check ohne Lösungs-Verrat</h2>
-<p class="ref-small">Du entscheidest zuerst. Wenn du unsicher bist, bekommst du einen Hinweis – nicht sofort die Lösung.</p>
-<div id="exercise" aria-live="polite"></div>
-</section>
-
-<section id="nachschlagen" class="ref-panel" data-panel="nachschlagen">
-<p class="phase">04 · NACHSCHLAGEN</p>
-<h2>Deine Hilfe für Hausaufgaben</h2>
-<p>Hier findest du schnell die Bedeutung eines Bruchs und einen ausführlichen Rechenweg. Du kannst zuerst nur die Kurzregel lesen und bei Bedarf die einzelnen Schritte öffnen.</p>
-<div class="ref-grid">
-<div class="ref-note"><h3>1 · Einen Bruch lesen</h3><div style="text-align:center"><span class="ref-fraction"><span>3</span><span>8</span></span></div><p><strong>Unten: 8</strong> – ein Ganzes wurde in acht gleich große Teile geteilt.</p><p><strong>Oben: 3</strong> – drei dieser Teile sind gemeint.</p><p><strong>So sprichst du es:</strong> „drei Achtel“.</p></div>
-<div class="ref-note"><h3>2 · Das Ganze finden</h3><p>Frage zuerst: <strong>Wovon ist der Bruch ein Anteil?</strong></p><p>Das Ganze kann eine Tafel, eine Strecke, eine Menge Bonbons oder eine Zeitspanne sein.</p><p><strong>Wichtig:</strong> Nur wenn das Ganze gleich groß ist, kannst du die tatsächlichen Mengen direkt anhand der Brüche vergleichen.</p></div>
-</div>
-<h3 class="school-title">So schreibst du einen Rechenweg ins Heft</h3>
-<p class="ref-small">Beispiel: <strong>Wie viel sind ¾ von 20 Bonbons?</strong> Wir schreiben nicht nur das Ergebnis auf, sondern zeigen, wie wir es herausfinden.</p>
-<div class="school-example">
- <div class="school-paper">
-  <div class="school-task">Aufgabe: ¾ von 20 Bonbons</div>
-  <div class="school-row"><span class="school-no">1</span><span class="school-math">20 : 4 = 5</span><span class="school-why">Ein Viertel finden: 20 Bonbons in 4 gleiche Gruppen teilen.</span></div>
-  <div class="school-row"><span class="school-no">2</span><span class="school-math">5 · 3 = 15</span><span class="school-why">Drei Viertel finden: 3 Gruppen mit je 5 Bonbons nehmen.</span></div>
-  <div class="school-result"><span>Antwort:</span> ¾ von 20 Bonbons sind <strong>15 Bonbons.</strong></div>
- </div>
- <div class="school-visual" role="img" aria-label="Vier gleich große Gruppen mit je fünf Punkten; drei der Gruppen sind markiert.">
-  <p><strong>Das Bild zum Rechenweg</strong></p>
-  <div class="school-groups"><div class="school-group active"><i></i><i></i><i></i><i></i><i></i></div><div class="school-group active"><i></i><i></i><i></i><i></i><i></i></div><div class="school-group active"><i></i><i></i><i></i><i></i><i></i></div><div class="school-group"><i></i><i></i><i></i><i></i><i></i></div></div>
-  <p class="ref-small">4 Gruppen mit je 5 Bonbons. 3 Gruppen sind ausgewählt: 15 Bonbons.</p>
- </div>
-</div>
-<details class="ref-explain"><summary>Warum teilen wir zuerst durch 4 und nehmen danach mal 3?</summary>
- <p>Der <strong>Nenner 4</strong> sagt uns, in wie viele gleich große Gruppen die 20 Bonbons verteilt werden: <strong>20 : 4 = 5</strong>. So wissen wir, wie viel <em>ein Viertel</em> ist.</p>
- <p>Der <strong>Zähler 3</strong> sagt, wie viele dieser Gruppen wir brauchen: <strong>3 · 5 = 15</strong>. Das ist die gesuchte Menge.</p>
-</details>
-<details class="ref-explain"><summary>Wie kannst du dein Ergebnis prüfen?</summary>
- <p>Die Hälfte von 20 ist 10, das Ganze ist 20. Drei Viertel liegen zwischen einer Hälfte und einem Ganzen. <strong>15 liegt zwischen 10 und 20</strong> – das passt.</p>
- <p>Du kannst auch die vier Gruppen wieder zusammenzählen: <strong>5 + 5 + 5 + 5 = 20</strong>.</p>
-</details>
-<div class="ref-note school-rule"><strong>Rechenweg zum Merken:</strong> Ganze Menge <strong>durch den Nenner teilen</strong> → Ergebnis <strong>mit dem Zähler multiplizieren</strong> → Antwort mit Einheit aufschreiben.</div>
-<h3 style="margin-top:28px">Drei Denkfallen – und wie du sie vermeidest</h3>
-<details class="ref-explain"><summary>Denkfalle 1: „Ein Achtel ist größer als ein Viertel, weil 8 größer als 4 ist.“</summary><p>Stell dir dieselbe Tafel vor: In vier Stücke geteilt ist jedes Stück groß. In acht Stücke geteilt ist jedes Stück kleiner. Deshalb gilt <strong>1/8 &lt; 1/4</strong>. Acht steht hier für die Anzahl der Teile, nicht für acht ganze Tafeln.</p></details>
-<details class="ref-explain"><summary>Denkfalle 2: „Wenn ich drei Stücke habe, ist es immer derselbe Bruch.“</summary><p>Nein. Drei von vier gleich großen Stücken sind <strong>3/4</strong>. Drei von acht gleich großen Stücken sind <strong>3/8</strong>. Du brauchst immer zwei Angaben: die Anzahl aller gleich großen Teile und die Anzahl der ausgewählten Teile.</p></details>
-<details class="ref-explain"><summary>Denkfalle 3: „Drei Viertel sind immer mehr als eine Hälfte.“</summary><p>Als <em>Anteile vom selben Ganzen</em> stimmt das. Aber bei unterschiedlich großen Ganzen kann eine Hälfte mehr enthalten: Eine Hälfte von 400 g sind 200 g, drei Viertel von 200 g sind 150 g.</p></details>
-<h3 style="margin-top:28px">Kannst du es selbst erklären?</h3>
-<p>Stell dir vor, du erklärst es einem Kind, das Brüche gerade erst kennenlernt.</p>
-<label for="own"><strong>Warum ist ein Viertel derselben Tafel größer als ein Achtel?</strong></label>
-<textarea id="own" class="ref-input" rows="4" placeholder="Bei einem Viertel wird die Tafel …"></textarea>
-<p class="ref-small">Deine Erklärung wird nur in diesem Browser gespeichert. Versuche zuerst selbst zu formulieren.</p>
-<button id="explain-toggle" class="ref-button" type="button">Beispielerklärung vergleichen</button>
-<div id="explain-text" class="ref-note" style="margin-top:12px" hidden><p><strong>Mögliche Erklärung:</strong> Beide Tafeln sind gleich groß. Wenn ich die erste in vier Stücke teile, ist jedes Stück ein Viertel. Wenn ich die zweite in acht Stücke teile, sind die Stücke nur halb so groß. Ein Viertel ist deshalb größer als ein Achtel.</p><p><strong>Prüfe deine Antwort:</strong> Hast du erwähnt, dass das Ganze gleich groß bleibt? Und hast du erklärt, warum sich die Größe eines Stücks verändert?</p></div>
-</section>
-<div class="ref-footer"><a href="index.html">← Übersicht</a><a href="gleichwertig.html">Nächstes Thema →</a></div>
-</main>
+<section class="panel" id="probieren" data-panel hidden><p class="eyebrow">03 · Selbst probieren</p><h2>Dein Denk-Check</h2><p>Überlege zuerst selbst. Bei Bedarf kannst du ausführliche Hilfeschritte öffnen. Die richtige Antwort steht nicht immer an derselben Stelle.</p><div id="exercise"></div></section>
+<section class="panel" id="nachschlagen" data-panel hidden><p class="eyebrow">04 · Nachschlagen</p><h2>So verstehst und notierst du Brüche</h2>
+<div class="two"><div class="note"><h3>Was bedeuten die Zahlen?</h3><p><span class="frac"><span>3</span><span>8</span></span> heißt drei Achtel.</p><p><strong>8 unten:</strong> Die Pizza hat acht gleich große Teile.</p><p><strong>3 oben:</strong> Drei davon sind gemeint.</p></div><div class="note"><h3>Was ist das Ganze?</h3><p>Bei einer Pizza ist es die ganze Pizza. Bei Bonbons ist es die gesamte Anzahl. Bei einer Strecke die gesamte Strecke.</p><p>Nur bei gleich großem Ganzen kann man Anteile unmittelbar als Mengen vergleichen.</p></div></div>
+<h3>Beispiel für einen sauberen Heftaufschrieb</h3><p>Aufgabe: Berechne <span class="frac"><span>3</span><span>4</span></span> von 20 Bonbons.</p>
+<div class="paper"><p><strong>Gegeben:</strong> 20 Bonbons</p><div class="write"><span class="math">20 : 4 = 5</span><span>Die 4 im Nenner: vier gleiche Gruppen bilden.</span></div><div class="write"><span class="math">5 · 3 = 15</span><span>Die 3 im Zähler: drei dieser Gruppen nehmen.</span></div><div class="result">Antwort: Das sind <strong>15 Bonbons</strong>.</div></div>
+<p><strong>Kontrolle:</strong> Ein Halb von 20 sind 10; ein Ganzes ist 20. Drei Viertel liegen dazwischen. 15 passt also.</p>
+<h3>Andere Aufgabe: Brüche erweitern</h3><p>In deinem Schulheft kann außerdem stehen: <strong>Erweitere mit 4.</strong> Dabei werden <em>Zähler und Nenner</em> mit 4 multipliziert – nicht die Menge vergrößert.</p>
+<div class="paper"><div class="math" style="display:flex;align-items:center;flex-wrap:wrap;gap:12px"><span class="frac"><span>1</span><span>2</span></span> = <span class="frac"><span>1 · 4</span><span>2 · 4</span></span> = <span class="frac"><span>4</span><span>8</span></span></div><p>Ein Halb und vier Achtel sind <strong>gleich viel</strong>. Du hast die Teile nur feiner eingeteilt. Das ausführliche Üben dazu findest du unter <a href="gleichwertig.html">Kürzen und Erweitern</a>.</p></div>
+<h3>Denkfallen – zum Aufklappen</h3>
+<details class="trap"><summary>„Achtel müssen größer sein als Viertel, denn 8 ist größer als 4.“</summary><div class="inside"><p>Vergleiche dieselbe Pizza. Bei vier Stücken ist jedes Stück größer als bei acht Stücken. Deshalb:</p><div class="math"><span class="frac"><span>1</span><span>8</span></span> &lt; <span class="frac"><span>1</span><span>4</span></span></div></div></details>
+<details class="trap"><summary>„Drei Stücke bedeuten immer denselben Anteil.“</summary><div class="inside"><p>Nein. Drei von vier sind <span class="frac"><span>3</span><span>4</span></span>, drei von acht sind <span class="frac"><span>3</span><span>8</span></span>. Die Einteilung ist entscheidend.</p></div></details>
+<details class="trap"><summary>„Drei Viertel sind immer mehr als eine Hälfte.“</summary><div class="inside"><p>Als Anteil derselben Pizza ja. Bei verschieden großen Pizzen kann die halbe große Pizza mehr enthalten als drei Viertel der kleinen.</p></div></details>
+<h3>Erklär es mit eigenen Worten</h3><label for="own">Warum ist ein Viertel derselben Pizza größer als ein Achtel?</label><textarea id="own" placeholder="Meine Erklärung …"></textarea><div class="controls"><button class="btn" id="sample" type="button">Beispielerklärung anzeigen</button></div><div class="note" id="sampleText" hidden>Die ganze Pizza bleibt gleich groß. Wenn ich sie in vier Stücke teile, ist jedes Stück größer, als wenn ich sie in acht Stücke teile. Deshalb ist ein Viertel größer als ein Achtel.</div>
+</section><footer class="foot"><a href="index.html">← Themenübersicht</a><a href="gleichwertig.html">Nächstes Thema →</a></footer></main>
 <script>
-(function(){
-"use strict";
-var count=8,selected=new Set([0,1,2]);var board=document.getElementById("choco");
-function paint(){
- board.style.setProperty("--count",String(count));board.innerHTML="";
- for(var i=0;i<count;i++){(function(index){var b=document.createElement("button");b.type="button";b.className="piece"+(selected.has(index)?" chosen":"");b.setAttribute("aria-pressed",selected.has(index)?"true":"false");b.setAttribute("aria-label","Stück "+(index+1)+(selected.has(index)?", ausgewählt":", nicht ausgewählt"));b.onclick=function(){if(selected.has(index))selected.delete(index);else selected.add(index);paint()};board.appendChild(b)})(i)}
- document.getElementById("parts").textContent=count+" Stücke";
- document.getElementById("selection").textContent=selected.size+" von "+count+" Stücken ausgewählt: "+selected.size+"/"+count;
- document.getElementById("less").disabled=count<=2;document.getElementById("more").disabled=count>=12;
-}
-function recount(v){count=Math.max(2,Math.min(12,v));selected=new Set(Array.from(selected).filter(function(i){return i<count}));paint()}
-document.getElementById("less").onclick=function(){recount(count-1)};
-document.getElementById("more").onclick=function(){recount(count+1)};
-document.getElementById("clear").onclick=function(){selected.clear();paint()};paint();
-var tasks=[
- {q:"Eine Tafel hat 8 gleich große Stücke. Drei davon sind markiert. Welcher Bruch passt?",o:["3/8","8/3","5/8"],a:0,
- steps:["Schritt 1 · Suche das Ganze: Die ganze Tafel besteht aus 8 gleich großen Stücken.","Schritt 2 · Unten steht der Nenner: Die 8 sagt, wie die Tafel eingeteilt ist.","Schritt 3 · Oben steht der Zähler: Genau 3 Stücke sind markiert.","Schritt 4 · Schreibe den Bruch: 3/8. Kontrolle: Die obere Zahl 3 ist kleiner als die gesamte Stückzahl 8."],
- wrong:"8/3 vertauscht Zähler und Nenner. 5/8 würde fünf markierte Stücke bedeuten."},
- {q:"Wie viel sind 2/5 von 20 Bonbons?",o:["8","10","4"],a:0,
- steps:["Schritt 1 · Das Ganze sind 20 Bonbons.","Schritt 2 · Der Nenner 5 sagt: Teile die 20 Bonbons in fünf gleich große Gruppen. 20 : 5 = 4 Bonbons pro Gruppe.","Schritt 3 · Der Zähler 2 sagt: Nimm zwei dieser Gruppen. 2 · 4 = 8.","Schritt 4 · Kontrolle: 1/5 von 20 sind 4 Bonbons. Zwei Fünftel sind deshalb 8 Bonbons."],
- wrong:"10 wäre die Hälfte von 20. 4 wäre nur ein Fünftel statt zwei Fünftel."},
- {q:"Mila isst ½ einer großen Pizza, Leo ¾ einer kleinen. Wer hat mehr gegessen?",o:["Das lässt sich noch nicht sagen.","Leo, weil ¾ größer als ½ ist.","Mila, weil ihre Pizza größer ist."],a:0,
- steps:["Schritt 1 · Beide Brüche beziehen sich auf verschiedene ganze Pizzen.","Schritt 2 · Für einen Mengenvergleich musst du wissen, wie groß jede Pizza ist.","Schritt 3 · Beispiel: Eine große Pizza wiegt 600 g, eine kleine 200 g. Mila isst 300 g, Leo 150 g.","Schritt 4 · Bei anderen Pizzagrößen kann es anders sein. Ohne genaue Größen lässt sich die Frage nicht entscheiden."],
- wrong:"Nur die Brüche zu vergleichen genügt nicht, wenn die beiden Ganzen unterschiedlich groß sind."}
-];
-var index=0,chosen=null,hints=0,checked=false,box=document.getElementById("exercise");
-var orders=[[2,0,1],[1,2,0],[0,2,1]]; // unterschiedliche Antwortpositionen
-function node(tag,cls,content){var el=document.createElement(tag);if(cls)el.className=cls;if(content!==undefined)el.textContent=content;return el}
-function draw(){
- var t=tasks[index],order=orders[index];box.replaceChildren();
- box.appendChild(node("p","ref-chip","Aufgabe "+(index+1)+" von "+tasks.length));
- box.appendChild(node("p","ref-question",t.q));
- order.forEach(function(original){var b=node("button","ref-choice",t.o[original]);b.type="button";b.setAttribute("aria-pressed",chosen===original?"true":"false");if(checked&&original===t.a)b.style.borderColor="#26805a";b.onclick=function(){if(!checked){chosen=original;draw()}};box.appendChild(b)});
- var actions=node("div","ref-tools");box.appendChild(actions);
- var check=node("button","ref-button primary","Antwort prüfen");check.type="button";check.disabled=chosen===null||checked;check.onclick=function(){checked=true;draw()};actions.appendChild(check);
- var hint=node("button","ref-button",hints===0?"Hilfe Schritt für Schritt":"Nächsten Hilfeschritt zeigen");hint.type="button";hint.disabled=hints>=4;hint.onclick=function(){hints=Math.min(4,hints+1);draw()};actions.appendChild(hint);
- if(hints>0){var help=node("div","ref-note");help.style.marginTop="16px";var head=node("strong",null,"Dein Lösungsweg – Schritt für Schritt");help.appendChild(head);for(var i=0;i<hints;i++)help.appendChild(node("p",null,t.steps[i]));box.appendChild(help)}
- if(checked){
-  var correct=chosen===t.a;var feedback=node("div","ref-feedback "+(correct?"good":"bad"),correct?"Richtig entschieden. Kannst du deinen Weg auch erklären?":"Noch nicht richtig. Vergleiche deine Antwort mit den Rechenschritten.");box.appendChild(feedback);
-  if(!correct){var retry=node("button","ref-button","Erneut versuchen");retry.type="button";retry.onclick=function(){checked=false;chosen=null;draw()};actions.appendChild(retry)}
-  var reveal=node("button","ref-button","Vollständige Erklärung anzeigen");reveal.type="button";reveal.onclick=function(){hints=4;draw();var old=box.querySelector(".complete-explanation");if(!old){var full=node("div","ref-note complete-explanation");full.style.marginTop="14px";full.appendChild(node("strong",null,"Warum die anderen Antworten nicht passen"));full.appendChild(node("p",null,t.wrong));box.appendChild(full)}};actions.appendChild(reveal);
-  if(correct){var next=node("button","ref-button primary",index===tasks.length-1?"Noch einmal üben":"Nächste Aufgabe");next.type="button";next.onclick=function(){index=(index+1)%tasks.length;chosen=null;checked=false;hints=0;draw()};actions.appendChild(next)}
- }
-}
-draw();
-document.getElementById("explain-toggle").onclick=function(){var p=document.getElementById("explain-text");p.hidden=!p.hidden};
-var own=document.getElementById("own");try{own.value=localStorage.getItem("mathe_merkheft_brueche_eigene_erklaerung_v1")||"";own.addEventListener("input",function(){localStorage.setItem("mathe_merkheft_brueche_eigene_erklaerung_v1",own.value)})}catch(e){}
-})();
-</script><script>
-(function(){
-"use strict";
-var ids=["entdecken","verstehen","uebung","nachschlagen"];
-var links=Array.from(document.querySelectorAll(".ref-nav [data-tab]"));
-var panels=Array.from(document.querySelectorAll("[data-panel]"));
-function show(id){
- if(!ids.includes(id))id="entdecken";
- panels.forEach(function(p){p.hidden=p.dataset.panel!==id});
- links.forEach(function(a){if(a.dataset.tab===id){a.setAttribute("aria-current","page")}else{a.removeAttribute("aria-current")}});
-}
-function fromUrl(){show(decodeURIComponent(location.hash.slice(1)))}
-links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();var id=a.dataset.tab;if(location.hash.slice(1)!==id)history.pushState({tab:id},"","#"+id);show(id)})});
-window.addEventListener("popstate",fromUrl);window.addEventListener("hashchange",fromUrl);
-fromUrl();
+(()=>{'use strict';const F=(a,b)=>'<span class="frac"><span>'+a+'</span><span>'+b+'</span></span>';const panels=[...document.querySelectorAll('[data-panel]')],tabs=[...document.querySelectorAll('[data-tab]')];function show(id){if(!panels.some(p=>p.id===id))id='entdecken';panels.forEach(p=>p.hidden=p.id!==id);tabs.forEach(t=>t.getAttribute('data-tab')===id?t.setAttribute('aria-current','page'):t.removeAttribute('aria-current'))}tabs.forEach(t=>t.onclick=e=>{e.preventDefault();const id=t.dataset.tab;history.pushState({id},'','#'+id);show(id)});addEventListener('popstate',()=>show(location.hash.slice(1)));addEventListener('hashchange',()=>show(location.hash.slice(1)));show(location.hash.slice(1));
+const NS='http://www.w3.org/2000/svg';function el(tag,attrs){let e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs||{}))e.setAttribute(k,v);return e}function sector(cx,cy,r,a,b){const rad=t=>t*Math.PI/180;let x1=cx+r*Math.cos(rad(a)),y1=cy+r*Math.sin(rad(a)),x2=cx+r*Math.cos(rad(b)),y2=cy+r*Math.sin(rad(b));return 'M '+cx+' '+cy+' L '+x1+' '+y1+' A '+r+' '+r+' 0 '+(b-a>180?1:0)+' 1 '+x2+' '+y2+' Z'}function pie(svg,n,chosen,r=138){svg.replaceChildren();svg.appendChild(el('circle',{cx:160,cy:160,r:r+7,fill:'#b77d4b'}));for(let i=0;i<n;i++){let p=el('path',{d:sector(160,160,r,-90+i*360/n,-90+(i+1)*360/n),class:'slice '+(chosen.has(i)?'on':'off'),tabindex:'0',role:'button','aria-label':'Pizzastück '+(i+1),'aria-pressed':chosen.has(i)});p.onclick=()=>{chosen.has(i)?chosen.delete(i):chosen.add(i);render()};p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();p.click()}};svg.appendChild(p)}}
+let n=8,chosen=new Set([0,1,2]);function render(){pie(document.getElementById('pizza'),n,chosen);document.getElementById('count').textContent=n+' Stücke';document.getElementById('chosenFraction').innerHTML=F(chosen.size,n);document.getElementById('chosenWords').textContent=chosen.size+' von '+n+' Stücken ausgewählt';document.getElementById('chocolate').innerHTML=Array.from({length:n},(_,i)=>'<i class="'+(chosen.has(i)?'on':'')+'"></i>').join('');document.getElementById('minus').disabled=n<=2;document.getElementById('plus').disabled=n>=12}document.getElementById('minus').onclick=()=>{n=Math.max(2,n-1);chosen=new Set([...chosen].filter(i=>i<n));render()};document.getElementById('plus').onclick=()=>{n=Math.min(12,n+1);render()};document.getElementById('clear').onclick=()=>{chosen.clear();render()};render();
+const sizes=document.getElementById('sizePizzas');function mini(r,label){const svg=el('svg',{viewBox:'0 0 320 320',role:'img','aria-label':label});svg.appendChild(el('circle',{cx:160,cy:160,r:r+5,fill:'#b77d4b'}));for(let i=0;i<2;i++)svg.appendChild(el('path',{d:sector(160,160,r,-90+i*180,-90+(i+1)*180),fill:i===0?'#945b78':'#f6c47c',stroke:'#a65233','stroke-width':2}));const box=document.createElement('div');box.style.textAlign='center';box.appendChild(svg);let p=document.createElement('p');p.textContent=label;box.appendChild(p);return box}sizes.append(mini(90,'Kleinere Pizza: die Hälfte ist kleiner'),mini(135,'Größere Pizza: die Hälfte ist größer'));
+document.getElementById('bonbonGroups').innerHTML=Array.from({length:4},(_,j)=>'<div class="group '+(j<3?'on':'')+'">'+Array.from({length:5},()=>'<i></i>').join('')+'</div>').join('');
+const tasks=[{q:'Eine Pizza ist in acht gleich große Stücke geteilt. Drei sind markiert. Welcher Bruch passt?',opts:['8/3','3/8','5/8'],answer:1,h:['Was beschreibt die untere Zahl eines Bruchs?','Die Pizza ist in acht gleich große Stücke geteilt: Der Nenner ist also acht.','Drei Stücke sind markiert: Der Zähler ist drei.','Der gesuchte Bruch hat die Drei oben und die Acht unten: '+F(3,8)+'.'],why:'Die Zahl 8 oben würde acht ausgewählte Stücke bedeuten. Fünf Achtel wären fünf markierte Stücke.'},{q:'Wie viele Bonbons sind zwei Fünftel von zwanzig Bonbons?',opts:['10','4','8'],answer:2,h:['Das Ganze sind 20 Bonbons. Was sagt der Nenner fünf?','Teile 20 in fünf gleich große Gruppen: 20 : 5 = 4.','Der Zähler zwei verlangt zwei Gruppen. Rechne 4 · 2 = 8.','Heftaufschrieb: 20 : 5 = 4; 4 · 2 = 8. Antwort: acht Bonbons.'],why:'Vier Bonbons sind erst ein Fünftel. Zehn Bonbons wären die Hälfte.'},{q:'Wer isst mehr: eine Hälfte einer großen oder drei Viertel einer kleinen Pizza?',opts:['Das kann man ohne die Pizzagrößen nicht entscheiden.','Die Person mit drei Vierteln.','Die Person mit der Hälfte.'],answer:0,h:['Sind die ganzen Pizzen gleich groß?','Beide Brüche beziehen sich auf verschieden große Ganze.','Eine Hälfte von 600 g sind 300 g, drei Viertel von 200 g sind 150 g.','Ohne die Pizzagrößen kann niemand sicher sagen, welche Menge größer ist.'],why:'Ein Bruch allein gibt die konkrete Menge nicht an, wenn das Ganze unterschiedlich groß ist.'}];
+let idx=0,choice=null,checked=false,help=0,full=false;const taskEl=document.getElementById('exercise');function button(label,fn,disabled=false,primary=false){const b=document.createElement('button');b.type='button';b.className='btn'+(primary?' primary':'');b.textContent=label;b.disabled=disabled;b.onclick=fn;return b}function draw(){const t=tasks[idx];taskEl.replaceChildren();const c=document.createElement('p');c.className='eyebrow';c.textContent='Aufgabe '+(idx+1)+' von '+tasks.length;taskEl.append(c);const title=document.createElement('h3');title.textContent=t.q;taskEl.append(title);t.opts.forEach((x,i)=>{let b=document.createElement('button');b.type='button';b.className='option'+(choice===i?' selected':'');b.innerHTML=x.replace(/(\d+)\/(\d+)/g,(_,a,b)=>F(a,b));b.setAttribute('aria-pressed',choice===i);b.onclick=()=>{if(!checked){choice=i;draw()}};taskEl.append(b)});const acts=document.createElement('div');acts.className='controls';taskEl.append(acts);acts.append(button('Antwort prüfen',()=>{checked=true;draw()},choice===null||checked,true));acts.append(button(help?'Nächster Hilfeschritt':'Hinweis anzeigen',()=>{help=Math.min(4,help+1);draw()},help>=4));if(help){const box=document.createElement('div');box.className='help';box.innerHTML='<strong>Dein Lösungsweg – Schritt für Schritt:</strong>'+t.h.slice(0,help).map((s,i)=>'<div class="taskline"><strong>Schritt '+(i+1)+'</strong><p>'+s+'</p></div>').join('');taskEl.append(box)}if(checked){const fb=document.createElement('div');fb.className='result';fb.textContent=choice===t.answer?'Richtig – überprüfe auch deinen Denkweg.':'Noch nicht richtig. Arbeite mit den Hilfeschritten und versuche es erneut.';taskEl.append(fb);if(choice!==t.answer){acts.append(button('Erneut versuchen',()=>{checked=false;choice=null;draw()}));acts.append(button('Alle Rechenschritte zeigen',()=>{help=4;full=true;draw()}));if(full){const p=document.createElement('p');p.className='info';p.textContent=t.why;taskEl.append(p)}}else acts.append(button(idx===2?'Noch einmal üben':'Nächste Aufgabe',()=>{idx=(idx+1)%3;choice=null;checked=false;help=0;full=false;draw()},false,true))}}draw();
+const own=document.getElementById('own');try{own.value=localStorage.getItem('mathe_brueche_erklaerung_v3')||'';own.addEventListener('input',()=>localStorage.setItem('mathe_brueche_erklaerung_v3',own.value))}catch(e){}document.getElementById('sample').onclick=()=>{const e=document.getElementById('sampleText');e.hidden=!e.hidden};
 })();
 </script></body></html>
