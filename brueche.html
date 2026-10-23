@@ -142,19 +142,23 @@ exercises.forEach((t,i)=>{
   hint.innerHTML='<h4>So schreibst du es ins Heft</h4><div class="school-writing guided-paper">'+t.parts.map((p,j)=>'<div class="guided-paper-step"><span class="guided-number">Schritt '+(j+1)+' · '+p.label+'</span><div class="guided-math">'+(p.f?frac(...p.f)+' = ':'')+p.calc+'</div><p>'+p.why+'</p></div>').join('')+'<p class="guided-result">'+t.answer+'</p></div><p class="school-note"><strong>Kontrolle:</strong> '+t.check+'</p>';
  };
 });
-document.querySelector('#unitCheck').onclick=()=>{unitTried=true;if(unitHints===3){unitHelp.disabled=false;unitHelp.textContent='Heftaufschrieb ansehen';unitHelp.onclick=()=>{unitExplanation.innerHTML=fullUnit;unitExplanation.hidden=false}}const a=Number(document.querySelector('#schoolUnit').value),b=Number(document.querySelector('#schoolPart').value),c=Number(document.querySelector('#schoolUnitResult').value);document.querySelector('#unitFeedback').textContent=a===1000&&b===125&&c===625?'Richtig: zuerst umgerechnet, dann einen Teil berechnet und anschließend fünf Teile genommen.':'Prüfe erst die Umrechnung, dann den Wert eines Achtels und schließlich fünf Achtel.'};let unitTried=false,unitHints=0;
-const unitHelp=document.querySelector('#unitHelp'),unitExplanation=document.querySelector('#unitExplanation');
-unitHelp.textContent='Hinweis 1';unitExplanation.hidden=true;
-const fullUnit=unitExplanation.innerHTML;
-unitHelp.onclick=()=>{
- unitHints=Math.min(3,unitHints+1);
- if(unitHints===1)unitExplanation.innerHTML='<p><strong>Denkfrage:</strong> Was ist die kleinere Einheit: Kilometer oder Meter? Mit welcher Einheit kannst du durch 8 teilen?</p>';
- else if(unitHints===2)unitExplanation.innerHTML='<p><strong>Rechenplan:</strong> Erst in Meter umwandeln, dann einen achten Teil ausrechnen, dann fünf dieser Teile nehmen.</p>';
- else unitExplanation.innerHTML='<p><strong>Kontrolle:</strong> Das Ergebnis muss kleiner als 1000 Meter und größer als 500 Meter sein. Überprüfe jede Zeile.</p>';
- unitExplanation.hidden=false;
- unitHelp.textContent=unitHints===3?'Alle Hinweise gezeigt':'Nächster Hinweis';
- unitHelp.disabled=unitHints===3;
- if(unitTried&&unitHints===3){unitHelp.disabled=false;unitHelp.textContent='Heftaufschrieb ansehen';unitHelp.onclick=()=>{unitExplanation.innerHTML=fullUnit;unitExplanation.hidden=false}};
+const unitCheck=document.querySelector('#unitCheck'),unitHelp=document.querySelector('#unitHelp'),unitExplanation=document.querySelector('#unitExplanation'),unitFeedback=document.querySelector('#unitFeedback');
+const fullUnit=unitExplanation.innerHTML;let unitTried=false,unitHints=0,unitSolved=false;
+function unitReady(){unitHelp.disabled=false;unitHelp.textContent=unitSolved||unitTried&&unitHints>=3?'Heftaufschrieb ansehen':unitHints===0?'Hinweis 1':unitHints===3?'Alle Hinweise gezeigt':'Nächster Hinweis'}
+unitCheck.onclick=()=>{
+ unitTried=true;
+ const fields=['schoolUnit','schoolPart','schoolUnitResult'].map(id=>document.getElementById(id));
+ const expected=[1000,125,625];const k=fields.findIndex((input,i)=>input.value===''||Number(input.value)!==expected[i]);
+ unitSolved=k<0;
+ unitFeedback.textContent=unitSolved?'Richtig. Du hast die Umrechnung und beide Rechenschritte selbst gelöst.':k===0?'Prüfe zuerst, wie viele Meter ein Kilometer hat.':k===1?'Prüfe, wie groß ein Achtel der umgerechneten Menge ist.':'Prüfe, wie du aus einem Achtel fünf Achtel erhältst.';
+ unitReady();
 };
+unitHelp.onclick=()=>{
+ if(unitSolved||unitTried&&unitHints>=3){unitExplanation.innerHTML=fullUnit;unitExplanation.hidden=false;unitHelp.textContent='Heftaufschrieb angezeigt';unitHelp.disabled=true;return}
+ unitHints=Math.min(3,unitHints+1);
+ const help=['<p><strong>1 · Denkfrage:</strong> Welche Einheit eignet sich, um die ganze Menge in acht gleich große Teile aufzuteilen?</p>','<p><strong>2 · Rechenplan:</strong> Wandle zunächst in Meter um. Berechne dann ein Achtel und danach fünf Achtel.</p>','<p><strong>3 · Denkstütze:</strong> Der Nenner sagt, durch welche Zahl du die ganze Menge teilst. Der Zähler sagt, wie viele dieser Teile du nimmst. Überprüfe jede deiner Eingaben.</p>'];
+ unitExplanation.innerHTML=help.slice(0,unitHints).join('');unitExplanation.hidden=false;unitReady();
+ if(unitHints===3&&!unitTried){unitHelp.textContent='Jetzt eigene Antworten prüfen';unitHelp.disabled=true}
+};unitReady();
 })();
 </script><script id="nine-grid-js">(()=>{const grid=document.querySelector('#nineGrid');let picked=new Set();function paint(){grid.replaceChildren();for(let i=0;i<9;i++){let b=document.createElement('button');b.type='button';b.className='school-cell';b.setAttribute('aria-label','Feld '+(i+1));b.setAttribute('aria-pressed',picked.has(i));b.onclick=()=>{picked.has(i)?picked.delete(i):picked.add(i);paint()};grid.append(b)}}document.querySelector('#nineCheck').onclick=()=>document.querySelector('#nineFeedback').textContent=picked.size===5?'Richtig. Fünf von neun gleich großen Feldern sind gefärbt.':'Noch nicht richtig. Zähle alle neun Felder und färbe genau fünf davon.';document.querySelector('#nineClear').onclick=()=>{picked.clear();document.querySelector('#nineFeedback').textContent='';paint()};paint()})();</script></body></html>
