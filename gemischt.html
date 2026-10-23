@@ -37,17 +37,18 @@ function info(){const t=tasks[current],to=['to','missing'].includes(t.mode);if(t
 function fieldsMarkup(defs){return defs.map(([id,label])=>'<div class="field"><label for="'+id+'">'+label+'</label><input id="'+id+'" type="number" inputmode="numeric"></div>').join('')}
 function renderTask(){
 const x=info();attempts=0;hints=0;correct=false;$('taskHeading').textContent=x.title;
-if(x.mode==='picture'){$('taskQuestion').innerHTML='<p>Auf den Kreisbildern siehst du neun Viertelstücke. Schreibe die passende gemischte Zahl und den Rechenschritt auf.</p><div class="circles">'+Array.from({length:Math.ceil(x.n/x.d)},(_,i)=>pie(x.d,Math.min(x.d,x.n-i*x.d))).join('')+'</div>';}
+if(x.mode==='picture'){$('taskQuestion').innerHTML='<p>Diese Viertelstücke liegen noch einzeln vor. Fasse sie im Kopf zu vollständigen Kreisen zusammen. Wie viele Ganze entstehen und was bleibt übrig?</p><div class="circles" role="img" aria-label="Neun einzeln dargestellte Viertelstücke">'+Array.from({length:x.n},()=>'<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 50 L50 6 A44 44 0 0 1 94 50 Z" fill="#a47691" stroke="#74516a" stroke-width="1.5"/></svg>').join('')+'</div>';}
 else if(x.mode==='missing'){$('taskQuestion').innerHTML='Ergänze die fehlende Zahl: '+x.w+' '+frac(x.r,x.d)+' = '+frac('□',x.d)+'. Zeige den Rechenweg.';}
 else $('taskQuestion').innerHTML=x.back?'Wandle '+x.w+' '+frac(x.r,x.d)+' in einen unechten Bruch um.':'Wandle '+frac(x.n,x.d)+' in eine gemischte Zahl oder ganze Zahl um.';
 const defs=x.back?[['step','Ganze · Nenner (ohne Vorzeichen)'],['sum','Danach plus Restzähler'],['answerN','Endzähler mit Vorzeichen'],['answerD','Nenner']]:x.rest===0?[['step','Anzahl voller Gruppen (Division ohne Rest)'],['answerW','Endergebnis: ganze Zahl']]:[['step','Anzahl voller Gruppen'],['divisionRest','Rest der Division'],['answerW','Ganze mit Vorzeichen'],['answerR','Restzähler'],['answerD','Nenner']];
 $('taskFields').innerHTML=fieldsMarkup(defs);$('feedback').textContent='';$('help').hidden=true;$('writing').hidden=true;$('hint').disabled=false;$('hint').textContent='Hinweis 1';$('solution').disabled=true;
 }
+$('taskFields').addEventListener('input',()=>{correct=false;$('solution').disabled=true;$('writing').hidden=true;$('feedback').textContent='Eingabe geändert – prüfe deinen neuen Rechenweg.';});
 $('taskSelect').onchange=()=>{current=Number($('taskSelect').value);renderTask()};
 function expected(x){if(x.back)return{step:Math.abs(x.w)*x.d,sum:Math.abs(x.w)*x.d+x.r,answerN:x.n,answerD:x.d};if(x.rest===0)return{step:x.quotient,answerW:x.whole};return{step:x.quotient,divisionRest:x.rest,answerW:x.whole,answerR:x.rest,answerD:x.d}}
 $('check').onclick=()=>{
 attempts++;const x=info(),e=expected(x),keys=Object.keys(e),missing=keys.find(k=>$(k).value==='');correct=false;
-if(missing){$('feedback').textContent='Es fehlt noch eine Angabe im Rechenweg. Fülle die Felder der Reihe nach aus.';return}
+if(missing){$('solution').disabled=true;$('writing').hidden=true;$('feedback').textContent='Es fehlt noch eine Angabe im Rechenweg. Fülle die Felder der Reihe nach aus.';return}
 const wrong=keys.find(k=>Number($(k).value)!==e[k]);correct=!wrong;
 const messages={step:x.back?'Prüfe zuerst: Wie viele Teilstücke stecken in den ganzen Einheiten?':'Wie viele vollständige Gruppen kannst du bilden?',sum:'Addiere zum Ergebnis der Multiplikation die übrigen Teilstücke.',divisionRest:'Der Divisionsrest ist noch nicht richtig. Er muss kleiner sein als der Nenner.',answerW:'Zähle die ganzen Gruppen. Beachte bei einer negativen Zahl das Vorzeichen.',answerR:'Der Restzähler entspricht dem Rest der Division.',answerD:'Der Nenner bleibt beim Umwandeln gleich.',answerN:'Überprüfe den Gesamtzähler. Bei einer negativen gemischten Zahl gilt das Minus für die gesamte Zahl.'};
 $('feedback').textContent=correct?'Richtig: Dein Rechenweg und dein Ergebnis passen zusammen.':messages[wrong];$('solution').disabled=!(correct||(attempts>0&&hints===3));
