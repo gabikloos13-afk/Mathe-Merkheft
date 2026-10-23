@@ -69,7 +69,7 @@ const cases=[
 {a:[3,4],b:[15,null],method:'expand',factor:5,value:20,why:'3 · 5 = 15. Deshalb gilt auch 4 · 5 = 20.'},
 {a:[15,18],b:[null,6],method:'reduce',factor:3,value:5,why:'18 : 3 = 6. Daher wird auch 15 durch 3 geteilt: 15 : 3 = 5.'},
 {a:[18,24],b:[3,null],method:'reduce',factor:6,value:4,why:'18 : 6 = 3. Deshalb 24 : 6 = 4.'},
-{a:[4,6],b:[null,9],method:'expand',factor:1.5,value:6,why:'Diese Aufgabe ist eine Denkfalle: 6 auf 9 bedeutet Faktor 1,5. Ein Erweitern mit einer natürlichen Zahl größer als 1 ist hier nicht möglich; aber 4/6 = 6/9 ist trotzdem mathematisch gleichwertig.'},
+{a:[4,6],b:[null,18],method:'expand',factor:3,value:12,why:'6 · 3 = 18. Deshalb 4 · 3 = 12. Erst das Verfahren erkennen, dann den Faktor auf beide Zahlen anwenden.'},
 {a:[2,3],b:[4,5],method:'impossible',factor:null,value:null,why:'2 · 2 = 4, aber 3 · 2 = 6 und nicht 5. Die Brüche sind nicht gleichwertig.'}
 ];
 let attempts=0,hints=0;
@@ -77,14 +77,13 @@ function render(){const c=cases[Number($('missingCase').value)];$('missingPrompt
 $('missingCase').onchange=render;
 $('missingCheck').onclick=()=>{attempts++;const c=cases[Number($('missingCase').value)],m=$('missingMethod').value,k=Number($('missingFactor').value),v=Number($('missingValue').value);let msg='';
 if(!m)msg='Schritt 1: Entscheide zuerst, ob die Zahlen größer oder kleiner werden.';
-else if(c.method==='impossible'){if(m!=='impossible')msg='Vergleiche die Veränderungen oben und unten. Entsteht wirklich derselbe Faktor?';else msg='Richtig: Oben und unten lässt sich kein gemeinsamer Faktor finden.'}
-else if(Number($('missingCase').value)===4){msg=m==='expand'?'Gut erkannt: Der Wert bleibt gleich, obwohl kein ganzzahliger Erweiterungsfaktor vorliegt. Vergleiche jetzt die Erklärung.':'Vergleiche die beiden Brüche auf Gleichwertigkeit, bevor du dich entscheidest.'}
+else if(c.method==='impossible'){if(m!=='impossible')msg='Vergleiche die Veränderungen oben und unten. Entsteht wirklich derselbe Faktor?';else msg='Richtig erkannt: Die beiden angegebenen Brüche sind nicht gleichwertig.'}
 else if(m!==c.method)msg='Schritt 1: Die Richtung stimmt nicht. Wird die bekannte Zahl größer oder kleiner?';
 else if(!$('missingFactor').value||k!==c.factor)msg='Schritt 2: Vergleiche die zwei bekannten Zahlen in derselben Zeile des Bruchs. Mit welcher Zahl kommst du von der ersten zur zweiten?';
 else if(!$('missingValue').value||v!==c.value)msg='Schritt 3: Das Verfahren und dein Faktor stimmen. Rechne mit genau dieser Zahl auch in der anderen Zeile.';
 else msg='Alle drei Schritte stimmen. Vergleiche jetzt mit dem Heftaufschrieb.';
 $('missingFeedback').textContent=msg;
-$('missingSolution').hidden=!(c.method==='impossible'?m==='impossible':Number($('missingCase').value)===4?m==='expand':m===c.method&&k===c.factor&&v===c.value);
+$('missingSolution').hidden=!(c.method==='impossible'?m==='impossible':m===c.method&&k===c.factor&&v===c.value);
 if(!$('missingSolution').hidden)$('missingSolution').textContent=c.why;
 };
 $('missingHint').onclick=()=>{hints=Math.min(3,hints+1);const p=['Welche Zahl ist bereits im Ausgangsbruch und im Zielbruch bekannt?','Vergleiche die beiden bekannten Zahlen: Wird der Wert größer oder kleiner?','Die Operation muss im Zähler und im Nenner denselben Wert erhalten. Prüfe den Faktor durch Nachrechnen.'];$('missingHelp').hidden=false;$('missingHelp').textContent=p.slice(0,hints).map((x,i)=>(i+1)+'. '+x).join(' ');$('missingHint').textContent=hints===3?'Alle Hinweise gezeigt':'Nächster Hinweis';$('missingHint').disabled=hints===3};render()})();</script></body></html>
