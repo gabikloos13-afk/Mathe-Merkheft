@@ -89,7 +89,7 @@ button.btn:hover:not(:disabled),.tabs a:hover{border-color:var(--wine)}
 .learning-orientation small{display:block;margin-top:2px;font-size:.79rem;color:#595767}
 @media(min-width:900px){.learning-orientation ol{grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}}
 @media(max-width:520px){.learning-orientation{padding:11px 12px;margin:12px 0 0}.learning-orientation ol{grid-template-columns:1fr;gap:7px}.learning-orientation li{gap:8px}.learning-orientation small{margin-top:0}.learning-orientation strong{font-size:.83rem}.learning-orientation small{font-size:.76rem}}
-</style></head><body><header class="top"><div class="topin"><a href="index.html">◇ Mathe-Merkheft</a><span>Klasse 6</span></div></header>
+</style><style id="quantity-model-styles">.quantity-model{margin:12px 0;padding:11px 13px;background:#faf7f9;border:1px solid #e6dbe2;border-radius:15px}.quantity-model p{font-size:.88rem;margin:4px 0 7px}.quantity-model-bar{display:flex;gap:3px;min-height:36px}.quantity-model-bar span{flex:1;display:grid;place-items:center;min-width:0;border-radius:5px;background:#b5839d;color:white;font-size:.72rem}.quantity-model-bar .qm-unknown{background:#e8edf3;color:#36495f}.quantity-model-bar .qm-known{background:#b5839d}</style></head><body><header class="top"><div class="topin"><a href="index.html">◇ Mathe-Merkheft</a><span>Klasse 6</span></div></header>
 <main class="wrap"><a class="btn" href="index.html">← Alle Themen</a><p class="eyebrow">Thema 1 von 6</p><h1>Brüche verstehen</h1><p class="lead">Entdecke Brüche mit Pizza und Schokolade. Sieh dir die Bilder an, probiere selbst und lerne, Rechnungen sauber ins Schulheft zu schreiben.</p>
 <div class="learning-orientation" aria-label="Dein Lernweg"><p class="learning-orientation-title">Dein Lernweg in vier Schritten</p><ol><li><span class="learning-orientation-number">1</span><span><strong>Anschauen und ausprobieren</strong><small>Wie entstehen Brüche?</small></span></li><li><span class="learning-orientation-number">2</span><span><strong>Den Zusammenhang verstehen</strong><small>Was ist das Ganze, was ist der Anteil?</small></span></li><li><span class="learning-orientation-number">3</span><span><strong>Eine Aufgabe selbst lösen</strong><small>Ohne vorgezogene Lösung.</small></span></li><li><span class="learning-orientation-number">4</span><span><strong>Den Heftaufschrieb vergleichen</strong><small>Was habe ich richtig gemacht?</small></span></li></ol></div>
 <nav class="tabs" aria-label="Lernbereiche"><a data-tab="entdecken" href="#entdecken">Entdecken</a><a data-tab="verstehen" href="#verstehen">Verstehen</a><a data-tab="probieren" href="#probieren">Selbst probieren</a><a data-tab="nachschlagen" href="#nachschlagen">Nachschlagen</a></nav>
@@ -165,33 +165,69 @@ function calculate(expr){
  if(op===':'&&y===0)return null;
  return {value:op===':'?x/y:op==='·'?x*y:op==='+'?x+y:x-y,op};
 }
+function parseCalculation(raw){
+ const v=tidy(raw);
+ if(!/^\d+(?:\.\d+)?(?:[:·+\-]\d+(?:\.\d+)?)+$/.test(v))return null;
+ const tokens=v.match(/\d+(?:\.\d+)?|[:·+\-]/g);
+ let result=Number(tokens[0]);
+ for(let i=1;i<tokens.length;i+=2){
+  const n=Number(tokens[i+1]),op=tokens[i];
+  if(op===':'&&n===0)return null;
+  result=op===':'?result/n:op==='·'?result*n:op==='+'?result+n:result-n;
+ }
+ return {value:result,tokens};
+}
+function validExpression(t,j,input){
+ const part=t.parts[j],entered=parseCalculation(input),canonical=parseCalculation(part.expression);
+ if(!entered||!canonical)return {kind:'format'};
+ const text=tidy(input),normal=tidy(part.expression);
+ const match=normal.match(/^(\d+(?:\.\d+)?)([:·+\-])(\d+(?:\.\d+)?)$/);
+ if(text===normal)return {valid:true,standard:true};
+ if(match){
+  const [,a,op,b]=match;
+  if(['+','·'].includes(op)&&text===b+op+a)return {valid:true,standard:true};
+  // Schulisch gleichwertige Rechenweise: erst den Zähler vervielfachen, danach teilen.
+  if(j===1&&t.type==='A'){
+   const first=t.parts[0].expression.match(/^(\d+)\s*:\s*(\d+)$/);
+   if(first){const whole=Number(first[1]),den=Number(first[2]),num=Number(part.f?.[0]);if(text===whole+'·'+num+':'+den)return {valid:true,standard:false}}
+  }
+  if(j===1&&t.type==='B'){
+   const first=t.parts[0].expression.match(/^(\d+)\s*:\s*(\d+)$/);
+   if(first){const known=Number(first[1]),num=Number(first[2]),den=Number(part.f?.[0]);if(text===known+'·'+den+':'+num)return {valid:true,standard:false}}
+  }
+ }
+ return {kind:entered.tokens.includes(canonical.tokens[1])?'operands':'operation'};
+}
 function firstIssue(t,fields,route){
  if(route.value!==t.type)return {kind:'route',idx:-1};
  for(let j=0;j<t.parts.length;j++){
   const exp=fields[j].querySelector('.expression-choice'),num=fields[j].querySelector('input[type=number]');
   if(!exp.value.trim()||num.value==='')return {kind:'missing',idx:j};
-  const c=calculate(exp.value);if(!c)return {kind:'format',idx:j};
-  const pattern=/^(-?\d+(?:\.\d+)?)([:·+\-])(-?\d+(?:\.\d+)?)$/;
-  const entered=tidy(exp.value).match(pattern),expected=tidy(t.parts[j].expression).match(pattern);
-  if(!entered||!expected)return {kind:'format',idx:j};
-  if(entered[2]!==expected[2])return {kind:'operation',idx:j};
-  const [a,b]=[Number(entered[1]),Number(entered[3])],[x,y]=[Number(expected[1]),Number(expected[3])];
-  if(!((a===x&&b===y)||(['+','·'].includes(entered[2])&&a===y&&b===x)))return {kind:'operands',idx:j};
-  if(Math.abs(c.value-t.parts[j].value)>1e-8||Math.abs(Number(num.value)-c.value)>1e-8)return {kind:'arithmetic',idx:j};
+  const v=validExpression(t,j,exp.value);
+  if(!v.valid)return {kind:v.kind,idx:j};
+  const calc=parseCalculation(exp.value);
+  if(!calc||Math.abs(calc.value-t.parts[j].value)>1e-8||Math.abs(Number(num.value)-calc.value)>1e-8)return {kind:'arithmetic',idx:j};
  }
  return null;
+}
+function renderQuantityModel(t){
+ const f=t.type==='A'?t.parts[0].f:t.type==='B'?t.parts[0].f:null;
+ if(t.type==='C')return '<div class="quantity-model"><p><strong>Mengenbild: Rest finden</strong></p><div class="quantity-model-bar"><span style="flex:2;background:#bf8ca5">bekannte Anteile</span><span style="flex:1;background:#dce5ef;color:#243c55">Rest</span></div><p>Berechne die bekannten Gruppen einzeln. Erst danach weißt du, wie viele von der Gesamtmenge übrig bleiben.</p></div>';
+ const denom=t.type==='A'?t.parts[0].f[1]:t.parts[0].f[1];
+ const known=t.type==='A'?denom:t.parts[0].f[0];
+ return '<div class="quantity-model"><p><strong>Mengenbild: '+(t.type==='A'?'Anteil aus dem Ganzen':'Aus dem Anteil das Ganze')+'</strong></p><div class="quantity-model-bar">'+Array.from({length:denom},(_,k)=>'<span class="'+(k<known?'qm-known':'qm-unknown')+'">'+(t.type==='B'&&k>=known?'?':'')+'</span>').join('')+'</div><p>'+(t.type==='A'?'Jedes Feld ist ein gleich großer Teil des Ganzen. Wie groß ist ein einzelner Teil?':'Die gefärbten Felder bilden zusammen die bekannte Menge. Wie groß ist ein Feld – und wie viel sind alle Felder?')+'</p></div>';
 }
 function renderTask(t,i){
  const box=document.createElement('article');box.className='school-exercise guided-exercise';box.hidden=i!==activeTask;
  const unit=t.q.includes('Birnen')?'Birnen':t.q.includes('Kinder')?'Kinder':t.q.includes('Fische')?'Fische':t.q.includes('Äpfel')?'Äpfel':'Bücher';
- box.innerHTML='<h3>Aufgabe '+(i+1)+'</h3><p class="school-problem">'+t.q+'</p><p class="school-given">'+t.given+'</p><label for="route-'+i+'">Welcher Weg passt?</label><select id="route-'+i+'"><option value="">Weg auswählen</option><option value="A">Das Ganze ist bekannt</option><option value="B">Ein Anteil ist bekannt – das Ganze gesucht</option><option value="C">Mehrere Anteile – Rest gesucht</option></select><div class="guided-steps">'+t.parts.map((p,j)=>'<div class="guided-step"><label for="expr-'+i+'-'+j+'">'+(j+1)+' · '+(p.f?frac(...p.f)+' ':'')+p.label+'</label><div class="guided-input"><input class="expression-choice" id="expr-'+i+'-'+j+'" type="text" inputmode="text" placeholder="Rechnung: z. B. 60 : 3" autocomplete="off"><input type="number" inputmode="decimal" aria-label="Ergebnis für Schritt '+(j+1)+'" placeholder="Ergebnis"><span>'+unit+'</span></div></div>').join('')+'</div><div class="controls guided-actions"><button class="btn" type="button" data-check>Rechenweg prüfen</button><button class="btn" type="button" data-hint>Hinweis 1</button><button class="btn" type="button" data-solution disabled>Heftaufschrieb ansehen</button></div><p class="school-status" role="status" aria-live="polite"></p><div class="school-hint" hidden></div>';
+ box.innerHTML='<h3>Aufgabe '+(i+1)+'</h3><p class="school-problem">'+t.q +'</p><p class="school-given">'+t.given+'</p>'+renderQuantityModel(t)+'<label for="route-'+i+'">Welcher Weg passt?</label><select id="route-'+i+'"><option value="">Weg auswählen</option><option value="A">Das Ganze ist bekannt</option><option value="B">Ein Anteil ist bekannt – das Ganze gesucht</option><option value="C">Mehrere Anteile – Rest gesucht</option></select><div class="guided-steps">'+t.parts.map((p,j)=>'<div class="guided-step"><label for="expr-'+i+'-'+j+'">'+(j+1)+' · '+(p.f?frac(...p.f)+' ':'')+p.label+'</label><div class="guided-input"><input class="expression-choice" id="expr-'+i+'-'+j+'" type="text" inputmode="text" placeholder="Rechnung: z. B. 60 : 3" autocomplete="off"><input type="number" inputmode="decimal" aria-label="Ergebnis für Schritt '+(j+1)+'" placeholder="Ergebnis"><span>'+unit+'</span></div></div>').join('')+'</div><div class="controls guided-actions"><button class="btn" type="button" data-check>Rechenweg prüfen</button><button class="btn" type="button" data-hint>Hinweis 1</button><button class="btn" type="button" data-solution disabled>Heftaufschrieb ansehen</button></div><p class="school-status" role="status" aria-live="polite"></p><div class="school-hint" hidden></div>';
  host.append(box);sections.push(box);
  const route=box.querySelector('select'),rows=[...box.querySelectorAll('.guided-step')],status=box.querySelector('.school-status'),help=box.querySelector('.school-hint'),hintButton=box.querySelector('[data-hint]'),solutionButton=box.querySelector('[data-solution]');
  let checked=false,hintLevel=0,lastIssue=null;
  const unlock=()=>{solutionButton.disabled=!(checked&&(!firstIssue(t,rows,route)||hintLevel>=3))};
  box.querySelector('[data-check]').onclick=()=>{
   checked=true;lastIssue=firstIssue(t,rows,route);
-  if(!lastIssue)status.textContent='Richtig! Du hast alle Rechnungen selbst aufgebaut. Vergleiche bei Bedarf mit dem Heftaufschrieb.';
+  if(!lastIssue){const different=rows.some((row,j)=>!validExpression(t,j,row.querySelector('.expression-choice').value).standard);status.textContent=different?'Richtig! Dein anderer Rechenweg ist mathematisch gleichwertig. Im Heft kannst du ihn mit dem schulischen Zweischritt vergleichen.':'Richtig! Du hast alle Rechnungen selbst aufgebaut. Vergleiche bei Bedarf mit dem Heftaufschrieb.';}
   else if(lastIssue.kind==='route')status.textContent='Sieh noch einmal nach: Ist das Ganze bekannt oder ist nur ein Teil bekannt?';
   else{const n=lastIssue.idx+1;const msgs={missing:'Hier fehlt noch die Rechnung oder das Ergebnis.',format:'Schreibe zwei Zahlen mit einem Rechenzeichen dazwischen, zum Beispiel 60 : 3.',operation:'Du hast die Rechenart verwechselt. Überlege, ob du aufteilst, mehrere Gruppen nimmst oder einen Rest abziehst.',operands:'Die verwendeten Zahlen passen nicht. Prüfe das Ganze, den Nenner, den Zähler und den vorherigen Schritt.',arithmetic:'Rechenart und Ausgangszahlen stimmen. Rechne das Ergebnis noch einmal nach.'};status.textContent='Schritt '+n+': '+msgs[lastIssue.kind]}
   unlock();
@@ -199,8 +235,9 @@ function renderTask(t,i){
  hintButton.onclick=()=>{
   hintLevel=Math.min(3,hintLevel+1);
   const issue=firstIssue(t,rows,route),index=issue?.idx>=0?issue.idx:0,p=t.parts[index];
-  const question=t.type==='A'?'Du kennst die ganze Menge. Wie groß ist eine von den gleich großen Gruppen?':t.type==='B'?'Die bekannte Menge umfasst mehrere gleich große Teile. Wie kommst du auf einen davon?':'Welche Anteile musst du zuerst einzeln ausrechnen und welche Menge bleibt am Ende übrig?';
-  const plan=t.type==='A'?'Das Ganze zunächst durch den Nenner teilen, danach mit dem Zähler multiplizieren.':t.type==='B'?'Die bekannte Teilmenge zuerst durch den Zähler teilen, danach mit dem Nenner multiplizieren.':'Die einzelnen Teilmengen bestimmen, addieren und von der Gesamtmenge abziehen.';
+  const cues={route:'Markiere zuerst, was du bereits kennst: die gesamte Menge oder nur einen Anteil?',missing:'Welchen ersten Rechenschritt kannst du sicher angeben?',format:'Schreibe deine Rechnung als Zahlen mit Rechenzeichen auf.',operation:'Welche Handlung passt: verteilen, Gruppen zusammennehmen oder einen Rest bestimmen?',operands:'Welche Zahlen stammen aus der Aufgabenstellung und welche aus deinem letzten Rechenschritt?',arithmetic:'Der Aufbau passt. Rechne nur diesen Schritt noch einmal nach.'};
+  const question=cues[issue?.kind]||(t.type==='A'?'Wie groß ist ein gleich großer Teil?':t.type==='B'?'Wie viele gleiche Teile sind bereits bekannt?':'Welche Gruppen musst du zuerst bestimmen?');
+  const plan=t.type==='A'?'Erst einen Teil bestimmen, dann die benötigten Teile nehmen.':t.type==='B'?'Erst einen bekannten Teil bestimmen, dann das ganze Mengenbild ergänzen.':'Die bekannten Gruppen addieren und anschließend den Rest bestimmen.';
   help.hidden=false;
   help.innerHTML='<h4>Hilfe zum Weiterdenken</h4>'+(hintLevel>=1?'<p><strong>1 · Denkfrage:</strong> '+question+'</p>':'')+(hintLevel>=2?'<p><strong>2 · Rechenplan:</strong> '+plan+'</p>':'')+(hintLevel>=3?'<p><strong>3 · Gezielte Erklärung zu Schritt '+(index+1)+':</strong> '+p.why+' Achte auf die Bedeutung der gegebenen Menge: '+t.given+'. Beschreibe zunächst, wie viele gleich große Gruppen vorliegen und wie viele du suchst. Die Zahlen aus der Aufgabe und aus deinem vorherigen Schritt müssen zusammenpassen.</p>':'');
   hintButton.textContent=hintLevel===3?'Alle Hinweise gezeigt':'Nächster Hinweis';hintButton.disabled=hintLevel===3;unlock();
