@@ -34,6 +34,20 @@
 }
 </style><style id="guided-quality-fix">
 .guided-exercise{background:white}.guided-exercise select{width:100%;max-width:100%}.guided-steps{display:grid;gap:11px;margin:17px 0}.guided-step{padding:13px;border:1px solid #e4d8df;border-radius:12px;background:#fcfafb}.guided-step label{font-size:.96rem;margin:0 0 8px;font-weight:650}.guided-step .frac{font-size:1.1em}.guided-input{display:flex;align-items:center;gap:10px}.guided-input input{width:min(160px,60%);max-width:100%}.guided-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.guided-actions .btn{margin:0;padding:10px;font-size:.88rem;line-height:1.35;border-radius:14px;overflow-wrap:anywhere;white-space:normal}.guided-actions [data-solution]{grid-column:1/-1}.guided-paper{background:repeating-linear-gradient(#fff 0,#fff 38px,#e5edf5 39px);padding:16px}.guided-paper-step{padding:10px 0 14px;border-bottom:1px solid #e7e1e6}.guided-number{display:block;font-size:.8rem;font-weight:700;color:#75415c}.guided-math{font-size:1.12rem;color:#233f60;font-weight:700;line-height:2;overflow-wrap:anywhere}.guided-paper-step p{font-size:.88rem;margin:3px 0}.guided-result{background:#eaf5ef;border-radius:10px;padding:10px;font-weight:700}.school-given{font-weight:650;color:#75415c}.guided-exercise .school-hint{padding:12px;margin-top:12px}@media(max-width:600px){.guided-exercise{padding:14px}.guided-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.guided-paper{padding:11px}.guided-math{font-size:1rem}.guided-step{padding:10px}}
+</style><style id="final-mobile-rechenwerkstatt">
+.guided-exercise{padding:clamp(12px,3vw,20px);overflow:hidden}
+.guided-exercise .guided-steps{min-width:0}
+.guided-exercise .guided-input{min-width:0}
+.guided-exercise .guided-input input{width:min(160px,62%);min-width:0}
+.guided-exercise .guided-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.guided-actions .btn{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere;font-size:.88rem;line-height:1.3;min-height:44px;padding:9px 10px;border-radius:13px}
+.guided-actions [data-solution]{grid-column:1/-1}
+.guided-paper-step{padding:12px 0;border-bottom:1px solid #e5dbe1}
+.guided-paper-step .guided-math{display:block;font-size:1.03rem;line-height:2.2;overflow-wrap:anywhere}
+.guided-paper-step p{font-size:.9rem;line-height:1.5;margin:6px 0}
+.guided-exercise .school-hint{margin-top:12px;padding:12px;overflow-wrap:anywhere}
+.guided-paper{padding:12px;background:repeating-linear-gradient(#fff 0px,#fff 37px,#e5edf5 38px)}
+@media(max-width:600px){.guided-exercise h3{font-size:1.2rem}.guided-exercise .school-problem{font-size:1rem;line-height:1.5}.guided-actions .btn{font-size:.85rem}.guided-exercise select{width:100%;font-size:1rem}.guided-input{flex-wrap:wrap}.guided-paper-step .guided-math{font-size:.97rem}}
 </style></head><body><header class="top"><div class="topin"><a href="index.html">◇ Mathe-Merkheft</a><span>Klasse 6</span></div></header>
 <main class="wrap"><a class="btn" href="index.html">← Alle Themen</a><p class="eyebrow">Thema 1 von 6</p><h1>Brüche verstehen</h1><p class="lead">Entdecke Brüche mit Pizza und Schokolade. Sieh dir die Bilder an, probiere selbst und lerne, Rechnungen sauber ins Schulheft zu schreiben.</p>
 <nav class="tabs" aria-label="Lernbereiche"><a data-tab="entdecken" href="#entdecken">Entdecken</a><a data-tab="verstehen" href="#verstehen">Verstehen</a><a data-tab="probieren" href="#probieren">Selbst probieren</a><a data-tab="nachschlagen" href="#nachschlagen">Nachschlagen</a></nav>
@@ -91,13 +105,33 @@ const exercises=[
 const host=document.querySelector('#schoolExercises');
 exercises.forEach((t,i)=>{
  const box=document.createElement('article');box.className='school-exercise guided-exercise';
- box.innerHTML='<h3>Aufgabe '+(i+1)+'</h3><p class="school-problem">'+t.q+'</p><p class="school-given">'+t.given+'</p><label for="route-'+i+'">1 · Welcher Rechenweg passt?</label><select id="route-'+i+'"><option value="">Bitte auswählen</option><option value="A">Das Ganze ist bekannt</option><option value="B">Der Anteil ist bekannt, das Ganze gesucht</option><option value="C">Mehrere Anteile und den Rest berechnen</option></select><div class="guided-steps">'+t.parts.map((p,j)=>'<div class="guided-step"><label for="step-'+i+'-'+j+'">'+(j+2)+' · '+(p.f?frac(...p.f)+' ':'')+p.label+'</label><div class="guided-input"><input id="step-'+i+'-'+j+'" type="number" inputmode="numeric" placeholder="Deine Zahl" aria-label="'+p.label+'"><span>'+ (i===0?'Birnen':i===1?'Kinder':'Fische')+'</span></div></div>').join('')+'</div><div class="controls guided-actions"><button type="button" class="btn" data-check>Antworten prüfen</button><button type="button" class="btn" data-hint>Ersten Hinweis</button><button type="button" class="btn" data-solution>Heftaufschrieb aufdecken</button></div><div class="school-status" role="status" aria-live="polite"></div><div class="school-hint" hidden></div>';
+ const unit=i===0?'Birnen':i===1?'Kinder':'Fische';
+ box.innerHTML='<h3>Aufgabe '+(i+1)+'</h3><p class="school-problem">'+t.q+'</p><p class="school-given">'+t.given+'</p><label for="route-'+i+'">1 · Welcher Rechenweg passt?</label><select id="route-'+i+'"><option value="">Bitte auswählen</option><option value="A">Das Ganze ist bekannt</option><option value="B">Ein Anteil ist bekannt – das Ganze gesucht</option><option value="C">Mehrere Anteile – Rest gesucht</option></select><div class="guided-steps">'+t.parts.map((p,j)=>'<div class="guided-step"><label for="step-'+i+'-'+j+'">'+(j+2)+' · '+(p.f?frac(...p.f)+' ':'')+p.label+'</label><div class="guided-input"><input id="step-'+i+'-'+j+'" type="number" inputmode="numeric" placeholder="Deine Zahl"><span>'+unit+'</span></div></div>').join('')+'</div><div class="controls guided-actions"><button type="button" class="btn" data-check>Antworten prüfen</button><button type="button" class="btn" data-hint>Hinweis 1</button><button type="button" class="btn" data-solution disabled>Heftaufschrieb ansehen</button></div><div class="school-status" role="status" aria-live="polite"></div><div class="school-hint" hidden></div>';
  host.append(box);
- const select=box.querySelector('select'),fields=[...box.querySelectorAll('input')],status=box.querySelector('.school-status'),hint=box.querySelector('.school-hint');let hints=0;
- const show=(all)=>{hint.hidden=false;const steps=all?t.parts:t.parts.slice(0,hints);hint.innerHTML='<h4>'+(all?'Heftaufschrieb und Erklärung':'Hilfen zum Weiterdenken')+'</h4><div class="school-writing guided-paper">'+steps.map((p,j)=>'<div class="guided-paper-step"><span class="guided-number">Schritt '+(j+1)+'</span><div class="guided-math">'+(p.f?frac(...p.f)+' = ':'')+p.calc+'</div><p>'+p.why+'</p></div>').join('')+(all?'<p class="guided-result">'+t.answer+'</p>':'')+'</div>'+(all?'<p class="school-note"><strong>Kontrolle:</strong> '+t.check+'</p>':'')};
- box.querySelector('[data-check]').onclick=()=>{let first=select.value===t.type;let correct=fields.map((field,j)=>field.value!==''&&Number(field.value)===t.parts[j].value);status.textContent=first&&correct.every(Boolean)?'Alles richtig. Du hast den Rechenweg selbst aufgebaut.':'Prüfe '+(!first?'zuerst die Wahl des Rechenwegs. ':'')+(correct.every(Boolean)?'': 'Deine Zwischenergebnisse stimmen noch nicht alle. ')+'Nutze bei Bedarf die gestuften Hilfen.'};
- box.querySelector('[data-hint]').onclick=()=>{hints=Math.min(t.parts.length,hints+1);show(false);box.querySelector('[data-hint]').textContent=hints===t.parts.length?'Alle Schritte gezeigt':'Nächster Hinweis'};
- box.querySelector('[data-solution]').onclick=()=>show(true);
+ const select=box.querySelector('select'),fields=[...box.querySelectorAll('input')],status=box.querySelector('.school-status'),hint=box.querySelector('.school-hint'),solution=box.querySelector('[data-solution]'),hintBtn=box.querySelector('[data-hint]');let attempts=0,helpLevel=0;
+ const valid=()=>select.value===t.type&&fields.every((field,j)=>field.value!==''&&Number(field.value)===t.parts[j].value);
+ const updateUnlock=()=>{solution.disabled=!(attempts>0&&(valid()||helpLevel>=3))};
+ function renderHint(){
+  hint.hidden=false;
+  const steps=['<p><strong>1 · Denkfrage:</strong> '+(t.type==='A'?'Du kennst die ganze Menge. Wie findest du einen einzigen Bruchteil?':t.type==='B'?'Die bekannte Menge ist nur ein Teil. Wie findest du einen einzigen gleich großen Teil?':'Welche einzelnen Arten musst du zuerst berechnen und welche bleiben danach übrig?')+'</p>',
+   '<p><strong>2 · Rechenplan:</strong> '+(t.type==='A'?'Erst durch den Nenner teilen, danach mit dem Zähler multiplizieren.':t.type==='B'?'Erst durch den Zähler teilen, danach mit dem Nenner multiplizieren.':'Erst jeden Anteil berechnen, dann die bekannten Anzahlen zusammenzählen und den Rest bestimmen.')+'</p>',
+   '<div><strong>3 · Schritte aus dem Schulheft:</strong>'+t.parts.map((p,j)=>'<div class="guided-paper-step"><span class="guided-number">Schritt '+(j+1)+'</span><p>'+p.why+'</p></div>').join('')+'</div>'];
+  hint.innerHTML='<h4>Hilfe zum selbstständigen Weiterrechnen</h4>'+steps.slice(0,helpLevel).join('');
+  hintBtn.textContent=helpLevel<3?'Nächster Hinweis':'Alle Hinweise gezeigt';
+  hintBtn.disabled=helpLevel>=3;updateUnlock();
+ }
+ box.querySelector('[data-check]').onclick=()=>{
+  attempts++;const right=valid();
+  if(right){status.textContent='Richtig. Du hast die Rechenart und alle Zwischenschritte selbst gefunden.'}
+  else{let missing=fields.filter(f=>f.value==='').length;status.textContent=select.value!==t.type?'Prüfe zuerst, ob das Ganze oder nur ein Teil bekannt ist.':missing?'Es fehlen noch '+missing+' Eingaben. Bearbeite sie der Reihe nach.':'Mindestens ein Rechenschritt stimmt noch nicht. Prüfe zuerst den einzelnen Bruchteil.'}
+  updateUnlock();
+ };
+ hintBtn.onclick=()=>{helpLevel=Math.min(3,helpLevel+1);renderHint()};
+ solution.onclick=()=>{
+  if(solution.disabled)return;
+  hint.hidden=false;
+  hint.innerHTML='<h4>So schreibst du es ins Heft</h4><div class="school-writing guided-paper">'+t.parts.map((p,j)=>'<div class="guided-paper-step"><span class="guided-number">Schritt '+(j+1)+' · '+p.label+'</span><div class="guided-math">'+(p.f?frac(...p.f)+' = ':'')+p.calc+'</div><p>'+p.why+'</p></div>').join('')+'<p class="guided-result">'+t.answer+'</p></div><p class="school-note"><strong>Kontrolle:</strong> '+t.check+'</p>';
+ };
 });
 document.querySelector('#unitCheck').onclick=()=>{const a=Number(document.querySelector('#schoolUnit').value),b=Number(document.querySelector('#schoolPart').value),c=Number(document.querySelector('#schoolUnitResult').value);document.querySelector('#unitFeedback').textContent=a===1000&&b===125&&c===625?'Richtig: zuerst umgerechnet, dann einen Teil berechnet und anschließend fünf Teile genommen.':'Prüfe erst die Umrechnung, dann den Wert eines Achtels und schließlich fünf Achtel.'};document.querySelector('#unitHelp').onclick=()=>{const el=document.querySelector('#unitExplanation');el.hidden=!el.hidden};
 })();
