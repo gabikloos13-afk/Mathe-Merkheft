@@ -155,7 +155,7 @@ function firstIssue(t,fields,route){
   const c=calculate(exp.value);
   if(!c)return {kind:'format',idx:j};
   const actual=t.parts[j],canonical=calculate(actual.expression);
-  if(!canonical||Math.abs(c.value-actual.value)>1e-8||Math.abs(Number(num.value)-actual.value)>1e-8)return {kind:'math',idx:j};
+  if(!canonical||c.op!==canonical.op||Math.abs(c.value-actual.value)>1e-8||Math.abs(Number(num.value)-actual.value)>1e-8)return {kind:'math',idx:j};
   if(Math.abs(c.value-Number(num.value))>1e-8)return {kind:'math',idx:j};
  }
  return null;
