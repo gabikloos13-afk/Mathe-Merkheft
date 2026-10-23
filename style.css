@@ -84,3 +84,10 @@ p{margin:0 0 14px}
 .mission{background:#f8fbfd;border:1px dashed #b8c8d8;border-radius:16px;padding:16px}
 .footer-note{color:var(--muted);font-size:.92rem;margin-top:16px}
 @media (max-width:900px){.card-grid,.layout,.overview,.model-pair{grid-template-columns:1fr}.sitehead-inner{align-items:flex-start;flex-direction:column}.shell{padding:22px 14px 56px}.hero{padding:22px}.topic-card{padding:18px}.topic-num{min-width:46px;height:46px}}
+
+/* Einheitliche abgerundete Themen-Navigation */
+a.topic-nav-pill{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;padding:9px 17px;border:1.5px solid #9e7189;border-radius:999px;background:#fff;color:#75415c;text-decoration:none;font-weight:700;line-height:1.35;box-sizing:border-box;text-align:center}
+a.topic-nav-pill:hover{background:#f7eff4}
+a.topic-nav-pill:focus-visible{outline:3px solid #16859d;outline-offset:3px}
+.topic-page-footer{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 6px;align-items:center}
+@media(max-width:440px){.topic-page-footer>a.topic-nav-pill{flex:1 1 150px}}
