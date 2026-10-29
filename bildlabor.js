@@ -223,5 +223,14 @@ const relations=[
  {label:'Andere Einteilung – derselbe Zahlenwert',items:[['gleichwertig',1,'Bruch erweitern'],['gleichwertig',2,'Bruch kürzen'],['dezimal',2,'Bruch als Dezimalzahl']],idea:'Die Schreibweise verändert sich. Die Menge und der Punkt auf dem Zahlenstrahl bleiben gleich.'},
  {label:'Eine unbekannte Schrittweite entschlüsseln',items:[['zahlenstrahl',7,'Unbeschriftete Teilstriche'],['groessen',9,'Abschnitte einer Gewichtsskala'],['dezimal',11,'Sprünge zurückverfolgen']],idea:'Abstand der bekannten Werte bestimmen → durch die Zahl der gleich großen Abschnitte teilen.'}
 ];
-$$('.case .transfer').forEach(details=>{const card=details.closest('.case');const relation=relations.find(r=>r.items.some(([t,id])=>t===topic&&card.id==='type-'+id));if(!relation)return;const block=document.createElement('div');block.className='relation-group';block.innerHTML='<b>'+relation.label+'</b>'+miniList(relation.idea)+'<nav class="topics" aria-label="Gleicher Gedanke in anderen Aufgaben">'+relation.items.filter(([t,id])=>t!==topic||card.id!=='type-'+id).map(([t,id,label])=>'<a href="'+t+'.html#type-'+id+'">'+label+' →</a>').join('')+'</nav>';details.append(block);});
+$('.case .transfer').forEach(details=>{
+ const card=details.closest('.case');
+ const relation=relations.find(r=>r.items.some(([t,id])=>t===topic&&card.id==='type-'+id));
+ if(!relation)return;
+ const targets=relation.items.filter(([t,id])=>t===topic&&card.id!=='type-'+id);
+ if(!targets.length)return;
+ const block=document.createElement('div');block.className='relation-group';
+ block.innerHTML='<b>'+relation.label+'</b>'+miniList(relation.idea)+'<nav class="topics" aria-label="Gleicher Gedanke in diesem Thema">'+targets.map(([,id,label])=>'<a href="#type-'+id+'">'+label+' →</a>').join('')+'</nav>';
+ details.append(block);
+});
 })();
