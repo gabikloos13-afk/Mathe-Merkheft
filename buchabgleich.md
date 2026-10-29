@@ -55,3 +55,17 @@ Aufgabenstellungen und Erklärungen sind in einzelne Punkte gegliedert. Schwieri
 ## Direkte Werkzeuge der Vorlage
 
 Die acht ursprünglichen Werkzeugtypen sind direkt bedienbar umgesetzt. Die geführten Bildfolgen ergänzen sie als aufklappbare Erklärung. Der Buchumfang mit neun Kapiteln und 96 Musterwegen bleibt erhalten; die Grenze der fehlenden Buchseiten 11–13 bleibt bestehen. Funktionsumfang und Prüfungen stehen in README.md.
+
+## Ergänzender Heftabgleich
+
+Die nun vorgelegten handschriftlichen Unterrichtsnotizen und ausgefüllten Arbeitsblätter ergänzen die ursprüngliche Buchserie. Sie zeigen unter anderem das Vorgehen über einen Teil, die Rückrechnung zum Ganzen, Rechenzahlen an Bruchgleichungen und das Umwandeln über Zehnernenner. Die neuen Arbeitsheftseiten 11/12 sind nicht automatisch dieselben Seiten wie die zuvor fehlenden Seiten der Schulbuchserie.
+
+| Neu belegte Anforderung | Umsetzung |
+|---|---|
+| Mengenrechnung mit Ganzem, einem Teil und gesuchtem Anteil | Heftrechnungen und kurze Beispiele entsprechend umgestellt |
+| Gleiche Rechenzahl beim Erweitern/Kürzen an der Bruchgleichung | Ober- und unterhalb des Gleichheitszeichens markiert |
+| Zunahme und anschließende Abnahme mit neuem Bezug | Neuer Musterweg 15 bei Brüchen und Anteilen |
+| Rezept: Einheit umrechnen, dann Anteil berechnen | Neuer Musterweg 16 bei Brüchen und Anteilen |
+| Fischarten und Anteil des Restbestands | Musterweg 4 beantwortet beide Teilfragen vollständig |
+
+Aktueller Stand: 98 Musterwege; die Rechenweise wurde an den tatsächlich vorliegenden Vorlagen ausgerichtet. Handschriftliche Ergebnisse wurden nicht ungeprüft übernommen.

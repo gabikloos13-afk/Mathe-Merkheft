@@ -1,6 +1,6 @@
 # Mathe-Merkheft · Klasse 6
 
-Interaktives Merkheft zu Brüchen, rationalen Zahlen und Dezimalzahlen. Neun Kapitel, 96 unterschiedliche Musterwege und neun Bildwerkzeuge. Keine separate Übungseinheit, keine Punkte und keine Antwortbewertung.
+Interaktives Merkheft zu Brüchen, rationalen Zahlen und Dezimalzahlen. Neun Kapitel, 98 unterschiedliche Musterwege und neun Bildwerkzeuge. Keine separate Übungseinheit, keine Punkte und keine Antwortbewertung.
 
 Einstieg: `index.html`. Veröffentlichung über das bestehende GitHub Pages auf `main`.
 
@@ -184,3 +184,17 @@ Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bz
 - Alle 27 SVG-Bilder mit Inkscape gerendert und auf drei Prüfbögen visuell kontrolliert; eine zu lange Bildbeschriftung gekürzt.
 - Die Bildmodelle sind statisch; die vorhandenen direkt bedienbaren Hauptwerkzeuge bleiben daneben erhalten.
 - Eine erneute Prüfung des gesamten Seitenlayouts im Browser bleibt wegen der vorherigen Zeitüberschreitungen des Browserdienstes offen.
+
+## Abgleich mit den vorgelegten Heft- und Arbeitsblattseiten
+
+- Die handschriftlichen Notizen und Arbeitsblätter wurden visuell als Vorlage für Reihenfolge und Schreibweise herangezogen.
+- Anteil: Das Ganze → ein Teil → gesuchter Anteil; mit Einheit in jeder Mengenrechnung.
+- Ganzes: bekannter Anteil → ein Teil → Ganzes.
+- Erweitern/Kürzen: kurze Bruchgleichungen mit gleicher Rechenzahl oberhalb und unterhalb des Gleichheitszeichens.
+- Dezimalzahlen: über Nenner 10, 100 oder 1000; Vorzeichen werden korrekt erhalten.
+- Alle Hauptrechenwege zeigen zunächst die Heftrechnung. Die vorherigen ausführlichen Schrittbegründungen bleiben separat unter „Warum diese Schritte?“.
+- Neue Musterwege: Zunahme/Abnahme um einen Bruchteil mit wechselndem Bezug sowie Rezept mit Einheitenwechsel.
+- Fischbeispiel um alle Tierzahlen und den Anteil der Zebrafische ergänzt.
+- Aktueller Umfang: 9 Kapitel, 98 Musterwege, 27 bebilderte Kurzbeispiele.
+- Geprüft: 98 Antwortblöcke, konsistente Aufdeckschritte, 62 mathematisch korrekte annotierte Bruchumformungen, Mengen- und Einheitenrechnungen sowie lokale Sprungziele. Beide bestehenden Mathematiktests bestehen.
+- Die vorliegenden Fotos belegen bestimmte Unterrichtswege; für nicht gezeigte Themen wird keine identische Heftführung behauptet. Erneute Browser-Sichtprüfung weiterhin offen.

@@ -210,8 +210,8 @@ $$('.case').forEach(card=>{
  const panel=document.createElement('div');panel.className='linked-picture';panel.innerHTML='<div class="eyebrow">DAS BILD GEHÖRT ZU DIESER RECHNUNG</div><div class="linked-board"></div><div class="linked-state" aria-live="polite">Bekanntes ansehen · Rechenweg noch verdeckt</div>';
  worked.insertBefore(panel,$('.work-steps',worked));
  const draw=(i,total)=>{
-  let level=i===0?0:Math.min(3,Math.floor(i/total*3));if(topic==='brueche'&&card.id==='type-10')level=[0,0,0,1,3][i]??3;$$('.work-steps>li',worked).forEach((li,j)=>li.classList.toggle('current-step',j===i-1));
-  if(spec){let params=spec.v;if(topic==='gleichwertig'&&card.id==='type-3'){params=i===1?{n:18,d:24,k:2,reverse:true}:i===2?{n:9,d:12,k:3,reverse:true}:spec.v;if(i===1||i===2)level=2;}$('.linked-board',panel).innerHTML=scenes[spec.kind](params,level);if(i>0&&i<total)$$('.scene-equation',panel).forEach(el=>el.hidden=true);}
+  let level=i===0?0:Math.min(3,Math.floor(i/total*3));if(topic==='brueche'&&card.id==='type-10')level=i===total?3:i>=3?1:0;$$('.work-steps>li',worked).forEach((li,j)=>li.classList.toggle('current-step',j===i-1));
+  if(spec){let params=spec.v;if(topic==='gleichwertig'&&card.id==='type-3'&&i<total){params=i===1?{n:18,d:24,k:2,reverse:true}:i===2?{n:9,d:12,k:3,reverse:true}:spec.v;if(i===1||i===2)level=2;}$('.linked-board',panel).innerHTML=scenes[spec.kind](params,level);if(i>0&&i<total)$$('.scene-equation',panel).forEach(el=>el.hidden=true);}
   else if(picture){$('.linked-board',panel).innerHTML=picture.innerHTML;$('.linked-board',panel).classList.toggle('picture-focus',i>0);}
   $('.linked-state',panel).textContent=i===0?'Bekanntes ansehen · Rechenweg noch verdeckt':`Bild zu Schritt ${i} von ${total}`;
  };
