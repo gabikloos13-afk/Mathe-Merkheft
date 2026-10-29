@@ -1,0 +1,11 @@
+/* Schulrechnung und erklärendes Bild bilden eine gemeinsame Karte. */
+.illustrated-step{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,1fr);gap:18px;align-items:center;border:1px solid #ded4df;border-radius:18px!important;background:#fffdf9!important;overflow:hidden}
+.rechenbild{margin:0;border-radius:16px;background:#fffcf7;border:1px solid #eee1d2;overflow:hidden}
+.rechenbild svg{display:block;width:100%;height:auto;font-family:Arial,Helvetica,sans-serif}
+.picture-step{display:flex;align-items:center;justify-content:center;width:30px;height:30px;margin-bottom:12px;border-radius:50%;background:#98536e;color:white;font-size:.85rem;font-weight:700}
+.illustrated-step .school-row{display:grid;gap:9px}.illustrated-step .school-label{font-size:.9em;color:#497e99}
+.has-rechenbilder .work-steps>li.current-step{border-left-color:#679c88}
+.quick-calculation:has(.illustrated-step){list-style:none;padding-left:0}
+.quick-calculation>.illustrated-step{padding:16px;margin:18px 0}
+@media(max-width:700px){.illustrated-step{grid-template-columns:minmax(0,1fr);gap:14px}.rechenbild{width:100%;max-width:380px;justify-self:center}.quick-calculation>.illustrated-step{padding:14px 10px}.rechenbild svg{min-height:120px}.picture-step{margin-bottom:8px}}
+@media print{.illustrated-step{break-inside:avoid;grid-template-columns:1fr 1fr}.rechenbild svg{max-height:160px}}
