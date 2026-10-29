@@ -152,3 +152,15 @@ Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bz
 - Zwei getrennte Rechnungen für Zähler und Nenner, gleicher gefärbter Anteil in beiden Streifen.
 - Erweitern und Kürzen für alle vier Zahlen, Zurücksetzen, Aufdeckschritte und Auswahl im Browser geprüft.
 - Mobile Darstellung bei 375 CSS-Pixeln ohne horizontalen Überlauf geprüft.
+
+## Sprachprüfung und vollständige Antworten
+
+- Alle 96 Musterwege enthalten einen eigenen Antwortblock im aufdeckbaren Heftbereich.
+- Antworten nennen Ergebnis, nötige Einheiten und sämtliche gefragten Teilantworten.
+- Alle 96 Denkfallen nennen einen konkreten Fehler und den richtigen Weg.
+- Die Kürzungsprüfung bei 3/4 wird mit den Rechnungen 3 : 2 und 4 : 3 erklärt.
+- Zähler und Nenner werden in den Kapitelglossaren mit Beispielen erklärt.
+- Unklare oder verkürzte Aussagen wurden durch konkrete Rechenschritte ersetzt.
+- Statisch geprüft: Antwortblöcke bleiben bis zum letzten Schritt verdeckt, 96 Musterwege erhalten, keine Textabsätze, keine Themenlisten, eindeutige IDs.
+- Bestehende Mathematiktests bestanden.
+- Erneute Browser-Sichtprüfung dieser Textfassung wegen Zeitüberschreitung des Browserdienstes nicht abgeschlossen; frühere Sichtprüfungen beziehen sich auf die vorige Fassung.
