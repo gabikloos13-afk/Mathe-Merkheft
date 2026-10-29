@@ -175,3 +175,12 @@ Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bz
 - Alle 96 ausführlichen Musterwege und vollständigen Antworten bleiben erhalten.
 - Statische Prüfung: 27 Kurzbeispiele, korrekte Sprungziele und eindeutige IDs; JavaScript-Syntax und beide Mathematiktests bestanden.
 - Browser-Sichtprüfung dieser Fassung weiterhin offen, nachdem der Browserdienst bei den vorherigen Versuchen nicht antwortete.
+
+## Bilder direkt an den Kurzbeispielen
+
+- Alle 27 Kurzbeispiele enthalten ein fachlich passendes SVG-Bild vor dem Rechenweg.
+- Anteilflächen, konkrete Gruppen, Vorher-nachher-Streifen, volle Ganze, Zahlenstrahlen, Stellenwertbilder, Hundertstelraster, Uhr und beschrifteter Quader.
+- Mengen in Streifen und Rastern sowie Birnen, Kinder, Pizzadrittel und Minuten zusätzlich rechnerisch gezählt.
+- Alle 27 SVG-Bilder mit Inkscape gerendert und auf drei Prüfbögen visuell kontrolliert; eine zu lange Bildbeschriftung gekürzt.
+- Die Bildmodelle sind statisch; die vorhandenen direkt bedienbaren Hauptwerkzeuge bleiben daneben erhalten.
+- Eine erneute Prüfung des gesamten Seitenlayouts im Browser bleibt wegen der vorherigen Zeitüberschreitungen des Browserdienstes offen.
