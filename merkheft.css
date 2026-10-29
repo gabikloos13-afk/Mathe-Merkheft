@@ -52,3 +52,10 @@
 .heft{line-height:1.9;margin:24px 0;padding:20px}
 .math-line{padding:11px 0;min-height:42px}
 @media(max-width:540px){.question{padding:17px 14px}.task-lines>li{margin:15px 0}.rules-box .rules li{padding:12px 10px}.work-steps>li{padding:12px;margin:20px 0}.heft{padding:15px}.memory-box .explain>li{padding-left:3px}}
+
+/* Expliziter Rückweg zur Themenübersicht in jeder Kapitelkopfzeile. */
+.top{flex-wrap:wrap}
+.overview-back{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:9px 16px;margin-left:auto;border:1px solid #ffffffb3;border-radius:14px;background:#fffdf8;color:#783d53;font-weight:700;text-decoration:none;white-space:nowrap;line-height:1.5}
+.overview-back:hover{background:#f4e3e8}
+@media(max-width:540px){.overview-back{flex-basis:100%;margin-left:0}}
+@media print{.overview-back{display:none}}
