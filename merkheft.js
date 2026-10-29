@@ -24,10 +24,54 @@ $$('.worked').forEach(box=>{
  function paint(){items.forEach((li,j)=>li.hidden=j>=i);box.querySelector('.heft').hidden=i<items.length;box.querySelector('.control').hidden=i<items.length;status.textContent=`${i} von ${items.length} Schritten`;btn.textContent=i===items.length?'Schritte wieder verdecken':i===0?'Ersten Schritt zeigen':'Nächsten Schritt zeigen';box.dispatchEvent(new CustomEvent('merkheft:step',{bubbles:true,detail:{index:i,total:items.length}}))}
  btn.addEventListener('click',()=>{i=i===items.length?0:i+1;paint()});box.addEventListener('toggle',()=>{if(!box.open){i=0;paint()}});paint();
 });
+// Immer genau eine Aufgabenkarte; Suche bleibt in der geschlossenen Auswahl.
 const cases=$$('.case'),jump=$('#task-jump'),search=$('#task-search');
-function filter(){const q=search.value.toLocaleLowerCase('de-DE').trim();let n=0;cases.forEach(c=>{c.hidden=!c.textContent.toLocaleLowerCase('de-DE').includes(q);if(!c.hidden)n++});[...jump.options].forEach(o=>{if(o.value)o.hidden=$('#'+o.value).hidden});$('#case-count').textContent=`${n} von ${cases.length} Musterwegen`;$('#no-cases').hidden=n>0}
-search.addEventListener('input',filter);$('#search-reset').addEventListener('click',()=>{search.value='';filter();jump.value=''});
-jump.addEventListener('change',()=>{if(!jump.value)return;const el=$('#'+jump.value);el.hidden=false;el.querySelectorAll('details').forEach(d=>d.open=false);el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});el.focus({preventScroll:true});history.replaceState(null,'','#'+el.id)});
+if(cases.length){
+ const picker=document.createElement('details');picker.className='task-picker';
+ const summary=document.createElement('summary');summary.textContent='Aufgabentyp auswählen';
+ picker.append(summary);const navigator=$('.navigator');navigator.before(picker);picker.append(navigator);
+ const heading=document.createElement('div');heading.className='reader-current';heading.setAttribute('aria-live','polite');heading.setAttribute('aria-atomic','true');
+ const region=$('.cases');region.before(heading);
+ let active=0;
+ const pagers=['oben','unten'].map(position=>{
+  const nav=document.createElement('nav');nav.className='case-pager';nav.setAttribute('aria-label','Musterwege '+position);
+  const prev=document.createElement('button'),next=document.createElement('button'),count=document.createElement('span');
+  prev.type=next.type='button';prev.textContent='← Vorheriger Musterweg';next.textContent='Nächster Musterweg →';count.className='pager-count';
+  nav.append(prev,count,next);if(position==='oben')region.before(nav);else region.after(nav);
+  prev.addEventListener('click',()=>show(active-1,true));next.addEventListener('click',()=>show(active+1,true));
+  return {prev,next,count};
+ });
+ function show(index,move=false){
+  if(index<0||index>=cases.length)return;
+  if(move)history.replaceState({...history.state,merkheftCase:cases[active].id},'');
+  active=index;cases.forEach((c,i)=>c.hidden=i!==active);
+  const card=cases[active],title=card.querySelector('h3').textContent;
+  heading.textContent=`Musterweg ${active+1} von ${cases.length} · ${title}`;
+  pagers.forEach(p=>{p.prev.disabled=active===0;p.next.disabled=active===cases.length-1;p.count.textContent=`${active+1} / ${cases.length}`});
+  const option=[...jump.options].find(o=>o.value===card.id);jump.value=option&&!option.hidden?card.id:'';
+  if(move){
+   picker.open=false;history.pushState({merkheftCase:card.id},'','#'+card.id);
+   card.focus({preventScroll:true});
+   heading.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  }
+ }
+ function filter(){
+  const q=search.value.toLocaleLowerCase('de-DE').trim();let n=0;
+  cases.forEach(c=>{const match=c.textContent.toLocaleLowerCase('de-DE').includes(q);const o=[...jump.options].find(o=>o.value===c.id);if(o){o.hidden=!match;o.disabled=!match}if(match)n++});
+  $('#case-count').textContent=q?`${n} von ${cases.length} Aufgabentypen passen zur Suche`:`${cases.length} Aufgabentypen zur Auswahl`;
+  $('#no-cases').hidden=n>0;const selected=[...jump.options].find(o=>o.value===cases[active].id);jump.value=selected&&!selected.hidden?cases[active].id:'';
+ }
+ // Die Suche filtert die Auswahl, nicht den geöffneten Musterweg.
+ const empty=$('#no-cases');empty.textContent='Kein Treffer. Versuche ein anderes Wort oder lösche die Suche.';navigator.append(empty);
+ jump.options[0].textContent='Passenden Aufgabentyp wählen';
+ navigator.querySelector('label[for="task-search"]').textContent='Aufgabentyp suchen';
+ navigator.querySelector('label[for="task-jump"]').textContent='Zu diesem Aufgabentyp wechseln';
+ $('#search-reset').textContent='Suche löschen';$('#case-count').setAttribute('aria-live','polite');
+ search.addEventListener('input',filter);$('#search-reset').addEventListener('click',()=>{search.value='';filter();search.focus()});
+ jump.addEventListener('change',()=>{const index=cases.findIndex(c=>c.id===jump.value);if(index>=0)show(index,true)});
+ function fromHash(){const hash=location.hash.slice(1),id=cases.some(c=>c.id===hash)?hash:history.state?.merkheftCase,index=cases.findIndex(c=>c.id===id);if(index>=0){show(index);requestAnimationFrame(()=>cases[index].scrollIntoView({block:'start'}))}}
+ show(0);filter();fromHash();window.addEventListener('hashchange',fromHash);window.addEventListener('popstate',fromHash);
+}
 // Konkrete Bilder für die neu ergänzten Aufgabenfamilien.
 $$('.case-model').forEach(el=>{
  const m=el.dataset.model;let pic='';

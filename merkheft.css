@@ -8,3 +8,17 @@
 
 .task-lines{margin:0;padding-left:22px}.task-lines li{margin:12px 0;padding-left:4px}.task-lines li::marker{color:var(--brand)}.task-lines li:first-child{margin-top:0}.task-lines li:last-child{margin-bottom:0}
 .word-help dl{margin:0}.word-help dt{font-weight:700;color:var(--brand);margin-top:24px;padding-bottom:6px;border-bottom:1px solid var(--line)}.word-help dt:first-child{margin-top:0}.word-help dd{margin:0;padding-top:4px}
+
+/* Ruhige Leseansicht: eine Karte, Auswahl nur bei Bedarf. */
+.task-picker{margin:0 0 24px;background:#f5ece9}
+.task-picker .navigator{margin:14px 0 4px;padding:0;border:0;background:transparent}
+.task-picker #no-cases{grid-column:1/-1;padding:12px;background:#fff8ee;border-radius:10px}
+.reader-current{font-weight:700;color:var(--brand);line-height:1.6;scroll-margin-top:20px;margin:18px 0}
+.case-pager{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px}
+.case-pager button{font-size:.9rem;line-height:1.4;min-height:54px}
+.case-pager button:last-child{background:var(--brand);color:white;border-color:var(--brand)}
+.case-pager button:disabled{opacity:.42;cursor:default}
+.pager-count{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cases .case{margin:22px 0}
+@media(max-width:540px){.case-pager{grid-template-columns:1fr 1fr;gap:10px}.case-pager .pager-count{grid-column:1/-1;grid-row:1;text-align:center}.case-pager button{padding:10px 8px}.reader-current{font-size:.95rem}}
+@media print{.task-picker,.case-pager,.reader-current{display:none}.cases .case[hidden]{display:block!important}}

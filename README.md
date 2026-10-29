@@ -8,7 +8,10 @@ Einstieg: `index.html`. Veröffentlichung über das bestehende GitHub Pages auf 
 
 - Grundidee in kurzen, strukturierten Aussagen
 - Bildwerkzeug zum Verändern, Vergleichen, Bündeln und Vergrößern
-- Suchbarer Navigator für unterschiedliche Aufgabenstellungen
+- Eine sichtbare Aufgabenkarte je Kapitel; Vorheriger/Nächster Musterweg oben und unten
+- Geschlossene Auswahl mit Suche und direktem Sprung zu allen Aufgabentypen
+- Direkte Links und Browser-Zurück wählen die richtige Karte; geöffnete Schritte bleiben beim Blättern erhalten
+- Im Ausdruck bleiben alle Musterwege enthalten
 - Je Musterweg: Denkstütze, begründete Einzelschritte, verdeckte Heftrechnung, Kontrolle, Denkfalle, Übertragung
 - Gemeinsame Grundgestaltung und Navigation: `merkheft.css` und `merkheft.js`; Bildfolgen und Verknüpfungen: `bildlabor.css` und `bildlabor.js`
 
@@ -100,3 +103,14 @@ node tests/bildlabor.test.cjs
 - Geführte Bildfolge nach Umbau weiterhin bedienbar.
 
 Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bzw. Tippaktionen. Kein Test auf einem physischen Android-Gerät.
+
+## Ruhige Aufgabenansicht
+
+- Alle neun Kapitel zeigen im Browser genau einen Musterweg.
+- Vorheriger/Nächster Musterweg stehen oberhalb und unterhalb der Karte.
+- Die geschlossene Auswahl enthält Suche und direkten Sprung zu jedem Aufgabentyp.
+- Suche mit und ohne Treffer, Suchreset, erster/letzter Musterweg und Browser-Zurück geprüft.
+- Geöffnete Schritte bleiben beim Blättern erhalten; direkte Fragmentlinks öffnen die richtige Karte.
+- Schmale Vorschau mit 375 CSS-Pixeln: Auswahl, Blättern und geöffnete Erklärung ohne horizontalen Überlauf.
+- Alle 96 Musterwege und ihre Verlinkungen statisch geprüft; beide bestehenden Mathematiktests bestehen.
+- Druckansicht enthält weiterhin alle Musterwege.
