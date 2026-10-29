@@ -43,3 +43,7 @@ Die grünen Grundwissenaufgaben zu ganzen Zahlen werden als Vorwissen behandelt,
 ## Ergebnis und Prüfung
 
 9 Kapitel, 96 Musterwege. Browserprüfung der Kapitel, Modellzustände, Suche, Aufdecklogik und schmalen Darstellung; Einzelheiten in README.md. Die Zuordnung deckt die sichtbaren Themen- und Aufgabenfamilien ab. Eine Bestätigung für die fehlenden Seiten 11–13 oder eine vollständige Klassenarbeitsstoffliste ist damit nicht verbunden.
+
+## Bildlabor-Weiterentwicklung
+
+Die Themenabdeckung und 96 Musterwege bleiben erhalten. Die neun Hauptwerkzeuge erklären den Vorgang nun in steuerbaren Bildfolgen. Passende Musterwege koppeln Bild und Aufdeckschritte; Strukturverweise verbinden verwandte Aufgaben. Details und Prüfumfang stehen in README.md.
