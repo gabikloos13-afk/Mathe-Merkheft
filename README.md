@@ -1,5 +1,16 @@
 # Mathe-Merkheft · Klasse 6
 
+## Aktueller Aufbau – 29.10.2026
+
+Die neun Themen verwenden denselben geführten Kursaufbau wie das Englisch-Merkheft: Lernen, Beispiele, Bildwerkzeug, Nachschlagen. Unter Lernen führt ein nummerierter Grundlagenpfad durch drei bis fünf passende Musterwege. Im Beispiel bleibt die Aufgabe sichtbar; pro Schritt erscheinen genau das passende Bild und eine Rechenzeile. Antwort und vollständige Heftrechnung erscheinen erst am Ende.
+
+Die 98 Beispiele sind vollständig in `course-data.js` enthalten und pro Kapitel nach Grundlagen, Aufbau und anspruchsvolleren Varianten geordnet. `course.js` steuert den einzigen sichtbaren Beispielbereich, `course.css` gestaltet ihn. Die alten überlagerten Seitentransformationen aus `einfach.js` und die alte Seitennavigation aus `merkheft.js` werden von den Themenseiten nicht mehr geladen. Die nativen Bildwerkzeuge bleiben im Bereich Bildwerkzeug erhalten. `rechenbilder.js` erstellt das zum aktuellen Datenstand passende Bild; Voransichten zeigen keine gesuchten Ergebnisse.
+
+Validierung: 98 Beispiele im tatsächlichen Browser von der Voransicht bis zur Antwort durchlaufen; alle neun Kapitel in Handybreite auch mit Bildwerkzeug und Nachschlagen geprüft. Automatische Prüfung von 383 Bildzuständen, Mengen- und Flächenerhaltung sowie gezielten Fällen gegen vorgezogene Ergebnisse (8/20, 28 Kinder, negative Mitte). Direkte Feldzählung und Würfelnetz ebenfalls bedient.
+
+Die nachfolgenden älteren Änderungsnotizen beschreiben die Entwicklung vor diesem Kursaufbau.
+
+
 Interaktives Merkheft zu Brüchen, rationalen Zahlen und Dezimalzahlen. Neun Kapitel, 98 unterschiedliche Musterwege und neun Bildwerkzeuge. Keine separate Übungseinheit, keine Punkte und keine Antwortbewertung.
 
 Einstieg: `index.html`. Veröffentlichung über das bestehende GitHub Pages auf `main`.

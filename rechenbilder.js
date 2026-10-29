@@ -9,7 +9,7 @@ const SVG=(body,label)=>`<svg viewBox="0 0 360 180" role="img" aria-label="${esc
 const arrow=(x,y)=>`<path d="M${x} ${y}h30m-8 -7 8 7-8 7" stroke="${C.blue}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
 function strip(n,d,x,y,w=140,h=48){
  let b=R(x,y,w,h,C.pale)+`<rect x="${x}" y="${y}" width="${w*n/d}" height="${h}" rx="5" fill="${C.berry}"/>`;
- for(let i=1;i<d;i++)b+=`<path d="M${x+i*w/d} ${y}v${h}" stroke="#fffcf7" stroke-width="2"/>`;
+ for(let i=1;d<=40&&i<d;i++)b+=`<path d="M${x+i*w/d} ${y}v${h}" stroke="#fffcf7" stroke-width="2"/>`;
  return b;
 }
 function groups(o,stage){
@@ -79,7 +79,7 @@ function hundred(n){
  return SVG(body,n+' Hundertstel sind '+fmt(n/100)+'. '+(whole?whole+' Ganzes und ':'')+rest+' gefärbte Hundertstel im Raster.');
 }
 function line(a,b,mark,caption,ticks=8,zoom=false){
- const lo=zoom?Math.min(a,b):Math.floor(Math.min(a,b,mark)),hi=zoom?Math.max(a,b):Math.ceil(Math.max(a,b,mark)),range=hi-lo||1,X=n=>25+(n-lo)/range*310;
+ const lo=zoom?Math.min(a,b):Math.floor(Math.min(a,b,Number.isFinite(mark)?mark:a)),hi=zoom?Math.max(a,b):Math.ceil(Math.max(a,b,Number.isFinite(mark)?mark:a)),range=hi-lo||1,X=n=>25+(n-lo)/range*310;
  let body=`<path d="M25 94H337m-9 -6 9 6-9 6" stroke="${C.blue}" stroke-width="3" fill="none"/>`;
  for(let i=0;i<=ticks;i++)body+=`<path d="M${25+i*310/ticks} 88v12" stroke="#b9aabb"/>`;
  body+=T(25,126,fmt(lo),16)+T(335,126,fmt(hi||lo+1),16);
@@ -90,18 +90,18 @@ function line(a,b,mark,caption,ticks=8,zoom=false){
 function unitPicture(from,to,k,divide=false){
  return SVG(R(14,36,130,80,'#e8f0f4')+T(79,68,'1 '+from,23,C.blue)+T(79,98,k+' '+to,18)+arrow(159,76)+R(211,36,135,80,'#f5e4eb')+T(278,70,divide?'größere Einheit':'kleinere Einheit',14)+T(278,100,(divide?'durch ':'mal ')+k,22,C.berry)+T(180,154,'Die Menge bleibt gleich.',17),'1 '+from+' = '+k+' '+to+'. '+(divide?'Teile':'Multipliziere')+' die Zahl mit '+k+'.');
 }
-function share(n,d){
+function share(n,d,eachN=n,eachD=d){
  let b='';for(let i=0;i<Math.min(d,12);i++){
   let x=30+i%6*59,y=46+Math.floor(i/6)*56;
   b+=`<circle cx="${x}" cy="${y}" r="23" fill="#edf4f6" stroke="#bbd0d8"/><circle cx="${x}" cy="${y}" r="17" fill="#faf2df" stroke="#d6b97a"/>`;
-  for(let j=0;j<d;j++){
-   const a=-Math.PI/2+j*2*Math.PI/d,z=a+2*Math.PI/d,pt=t=>`${x+15*Math.cos(t)},${y+15*Math.sin(t)}`;
-   b+=`<path d="M${x} ${y}L${pt(a)}A15 15 0 ${2*Math.PI/d>Math.PI?1:0} 1 ${pt(z)}Z" fill="${j<n?'#edbd5d':'#faf2df'}" stroke="#d6b97a" stroke-width=".5"/>`;
-   if(j<n)b+=`<circle cx="${x+9*Math.cos((a+z)/2)}" cy="${y+9*Math.sin((a+z)/2)}" r="1.6" fill="#b25848"/>`;
+  for(let j=0;j<eachD;j++){
+   const a=-Math.PI/2+j*2*Math.PI/eachD,z=a+2*Math.PI/eachD,pt=t=>`${x+15*Math.cos(t)},${y+15*Math.sin(t)}`;
+   b+=`<path d="M${x} ${y}L${pt(a)}A15 15 0 ${2*Math.PI/eachD>Math.PI?1:0} 1 ${pt(z)}Z" fill="${j<eachN?'#edbd5d':'#faf2df'}" stroke="#d6b97a" stroke-width=".5"/>`;
+   if(j<eachN)b+=`<circle cx="${x+9*Math.cos((a+z)/2)}" cy="${y+9*Math.sin((a+z)/2)}" r="1.6" fill="#b25848"/>`;
   }
-  b+=T(x,y+37,n+'/'+d,13,C.berry);
+  b+=T(x,y+37,eachN+'/'+eachD,13,C.berry);
  }
- return SVG(T(180,18,n+' Pizzen für '+d+' Kinder',18)+b+T(180,166,'Jeder Teller bekommt gleich viel.',16),n+' Pizzen werden gleich auf '+d+' Kinder verteilt. Jeder erhält '+n+'/'+d+' Pizza.');
+ return SVG(T(180,18,n+' Pizzen für '+d+' Kinder',18)+b+T(180,166,'Jeder Teller bekommt gleich viel.',16),n+' Pizzen werden gleich auf '+d+' Kinder verteilt. Jeder erhält '+eachN+'/'+eachD+' Pizza.');
 }
 function cube(stage){
  const x=95,y=69;
@@ -133,6 +133,137 @@ function attach(row,picture,index){
  if(math){const badge=document.createElement('span');badge.className='picture-step';badge.textContent=String(index+1);badge.setAttribute('aria-label','Rechenzeile '+(index+1));math.prepend(badge);}
  row.append(frame);
 }
+// The course reader asks for exactly one picture for the current school step.
+// Preview pictures contain only values supplied by the task.
+const amountCases={2:{n:2,d:3,known:60,unit:'Birnen',back:false},3:{n:3,d:4,known:21,unit:'Kinder',back:true},6:{n:5,d:6,known:60,unit:'min',back:false},8:{n:5,d:6,known:18,unit:'Kästchen',back:false},9:{n:3,d:4,known:12,unit:'Kästchen',back:true},13:{n:3,d:4,known:80,unit:'l',back:false}};
+const basicTransform={1:[2,3],2:[12,16],3:[18,24],4:[2,5],5:[3,4],6:[3,4],7:[12,18],8:[18,30]};
+const fractionValue=p=>p.n/p.d;
+const fractionText=p=>fmt(p.n)+'/'+fmt(p.d);
+function fractionPicture(p,label='Dieser Bruch ist gegeben.'){
+ if(p.n>=0&&p.n<=p.d&&p.d<=50)return SVG(T(180,29,label,16)+strip(p.n,p.d,30,54,300,66)+T(180,158,fractionText(p),25),label+' '+fractionText(p));
+ return givenPicture({givenTokens:[fractionText(p)]},'Bruch');
+}
+function beforeAfter(p,q){
+ if(q&&typeof q.n==='number'&&typeof q.d==='number'&&Math.abs(fractionValue(p)-fractionValue(q))>1e-8)return fractionLine(p,q);
+ if(p.n<0||p.n>p.d||(q&&typeof q.n==='number'&&typeof q.d==='number'&&(q.n<0||q.n>q.d)))return fractionLine(p,q&&typeof q.d==='number'?q:p);
+ const qn=q?.n??'□',qd=q?.d??'□',right=q&&typeof q.n==='number'&&typeof q.d==='number'?strip(q.n,q.d,208,52):q&&typeof q.d==='number'?strip(p.n*q.d/p.d,q.d,208,52):R(208,52,140,48,C.pale)+T(278,85,'?',25);
+ return SVG(T(82,28,'Vorher',17)+T(278,28,'Nachher',17)+strip(p.n,p.d,12,52)+arrow(164,76)+right+T(82,130,fractionText(p),23)+T(278,130,fmtOrBox(qn)+'/'+fmtOrBox(qd),23)+T(180,165,'Die gefärbte Menge bleibt gleich.',15),`Vorher ${fractionText(p)}. Nachher ${fmtOrBox(qn)}/${fmtOrBox(qd)}. Gleiche Menge.`);
+}
+function fmtOrBox(v){return typeof v==='number'?fmt(v):v;}
+function loosePieces(n,d){
+ let b='';const cols=Math.min(n,8),w=Math.min(32,300/cols),rows=Math.ceil(n/cols);
+ for(let i=0;i<n;i++)b+=R(25+i%cols*(w+7),35+Math.floor(i/cols)*Math.min(35,105/rows),w,25,C.berry);
+ return SVG(T(180,20,n+' einzelne Stücke',18)+b+T(180,165,'Jedes Stück ist 1/'+d+' eines Ganzen.',16),n+' einzelne Stücke. Je '+d+' bilden ein Ganzes.');
+}
+function givenPicture(r,label='Das weißt du schon'){
+ const values=(r.givenTokens||[]).slice(0,4);let b=T(180,23,label,17);
+ values.forEach((s,i)=>{const x=16+i%2*170,y=40+Math.floor(i/2)*61;b+=R(x,y,158,49,i===0?'#f3e1e9':'#e8eff4')+T(x+79,y+31,s,19);});
+ return SVG(b,label+': '+values.join('; '));
+}
+function fractionLine(a,b,mark){
+ const av=fractionValue(a),bv=fractionValue(b),lo=Math.floor(Math.min(av,bv)),hi=Math.ceil(Math.max(av,bv)),span=hi-lo||1,X=v=>25+(v-lo)/span*310;
+ let bdy=`<path d="M25 92H337m-8 -6 8 6-8 6" fill="none" stroke="${C.blue}" stroke-width="3"/>`+T(25,127,fmt(lo),15)+T(335,127,fmt(lo+span),15);
+ for(const [p,y,col] of [[a,43,C.blue],[b,158,C.berry]])bdy+=`<circle cx="${X(fractionValue(p))}" cy="92" r="7" fill="${col}"/>`+T(Math.max(30,Math.min(330,X(fractionValue(p)))),y,fractionText(p),18,col);
+ if(mark)bdy+=`<path d="M${X(fractionValue(mark))} 75v33" stroke="${C.gold}" stroke-width="5"/>`;
+ return SVG(bdy,'Zahlenstrahl mit '+fractionText(a)+' und '+fractionText(b)+(mark?'. Markierung bei '+fractionText(mark):''));
+}
+function areaPicture(stage){
+ let b='';const cell=48;
+ if(stage===0)return SVG(R(120,40,100,100,'#d6b8ca')+T(170,26,'0,5 cm',17)+T(275,98,'0,5 cm',17)+T(180,167,'1 Kästchen = 0,25 cm²',19),'Ein Kästchen: 0,5 cm mal 0,5 cm = 0,25 Quadratzentimeter.');
+ for(let i=0;i<(stage===1?4:8);i++){const x=30+i%4*77,y=34+Math.floor(i/4)*55;b+=R(x,y,cell,cell,C.pale);b+=stage===1?`<path d="M${x} ${y}h${cell}v${cell}Z" fill="${C.berry}"/>`:R(x,y,cell,cell,C.berry);}
+ return SVG(b+T(180,165,stage===1?'4 halbe Kästchen = 2 ganze':stage===2?'Zusammen: 8 ganze Kästchen':'8 · 0,25 cm² = 2 cm²',17),'Kästchenfläche: '+(stage===1?'vier halbe ergeben zwei ganze':stage===2?'acht ganze Kästchen':'zwei Quadratzentimeter'));
+}
+function fieldPicture(stage){
+ let s='';for(let j=0;j<9;j++){
+  const x=111+j%3*47,y=15+Math.floor(j/3)*45,ink=stage===0?C.blue:stage===1&&j<4?C.gold:'#cbbdcb';
+  s+=`<rect x="${x}" y="${y}" width="40" height="38" rx="7" fill="${j<4?C.berry:C.pale}" stroke="${ink}" stroke-width="${stage===0||stage===1&&j<4?3:1}" ${j<4?`data-count-field="${j}" role="button" tabindex="0" aria-label="Gefärbtes Feld ${j+1} zählen" aria-pressed="false"`:''}/>`;
+ }
+ const caption=stage<0?'9 Felder · 4 sind gefärbt':stage===0?'Alle Felder zählen: 9':stage===1?'Gefärbte Felder zählen: 4':'4 von 9: vier Neuntel';
+ return SVG(s+T(180,166,caption,17),caption);
+}
+function coursePicture(topic,id,index,r){
+ const preview=index<0,step=preview?null:r.steps[index],ps=step?.pairs||[],initial=r.givenPairs||[];
+ if(topic==='brueche'&&amountCases[id])return groups(amountCases[id],preview?0:Math.min(index,2));
+ if(topic==='brueche'&&id===1)return fieldPicture(index);
+ if(topic==='gleichwertig'){
+  const pair=basicTransform[id];if(pair){const p={n:pair[0],d:pair[1]};
+   if(preview)return fractionPicture(p,'Diesen Anteil veränderst du.');
+   if(ps.length>=2){
+    const a=ps[0],b=ps[ps.length-1],k=b.d/a.d,divide=a.d/b.d;
+    if(a.n>=0&&b.n>=0&&a.n<=a.d&&b.n<=b.d&&Math.abs(fractionValue(a)-fractionValue(b))<1e-8){
+     if(Number.isInteger(k)&&k>=1)return transform(a.n,a.d,k);
+     if(Number.isInteger(divide)&&divide>=1)return transform(a.n,a.d,divide,true);
+    }
+    return beforeAfter(a,b);
+   }
+   const nums=(step.plain||step.text).match(/\d+/g)||[];
+   if(id===4&&nums.length)return beforeAfter(p,{d:Number(nums[nums.length-1])});
+   if(id===5&&nums.length)return beforeAfter(p,{n:Number(nums[nums.length-1])});
+   return fractionPicture(p,'Suche eine Zahl zum Teilen.');
+  }
+ }
+ if(topic==='gemischt'){
+  const nd={1:[11,4],2:[17,5],3:[12,4],4:[11,4],5:[17,5]}[id];
+  if(preview)return loosePieces(...nd);
+  return bundle(nd[0],nd[1],index,id===4);
+ }
+ if(topic==='vergleichen'&&initial.length>=2&&id!==8){
+  let a=initial[0],b=initial[1];
+  if(a.n<0||b.n<0)return fractionLine(a,b);
+  if(!preview)for(let i=0;i<=index;i++){let row=r.steps[i].pairs;if(row.length>=2){let from=row[0],to=row[row.length-1];if(Math.abs(fractionValue(from)-fractionValue(to))<1e-8){if(Math.abs(fractionValue(from)-fractionValue(a))<1e-8)a=to;else if(Math.abs(fractionValue(from)-fractionValue(b))<1e-8)b=to;}}}
+  if(id===7&&!preview){let middle;for(let i=0;i<=index;i++)if(r.steps[i].pairs.length>=3)middle=r.steps[i].pairs[1];return fractionLine(a,b,middle);}
+  if(id===10&&!preview&&ps.length>=3)return betweenPicture(ps);
+  if(a.n<=a.d&&b.n<=b.d)return compare(a.n,a.d,b.n,b.d);
+  return fractionLine(a,b);
+ }
+ if(topic==='dezimal'){
+  if(preview)return initial[0]?fractionPicture(initial[0]):givenPicture(r,'Diese Kommazahl ist gegeben.');
+  const decimal=(step.plain||step.text).match(/−?\d+,\d+/);
+  if(decimal){const value=Number(decimal[0].replace('−','-').replace(',','.'));if(value>=0&&value<2&&Number.isInteger(Math.round(value*1e6)/10000))return hundred(Math.round(value*100));}
+  if(ps.length)return beforeAfter(ps[0],ps[ps.length-1]);
+ }
+ if(topic==='zahlenstrahl'){
+  if(id===1)return line(0,1,4/6,'Zähle die Lücken von 0 bis zum Punkt.',6);
+  if(id===2)return preview||index===0?line(0,1,undefined,'Von 0 bis 1: vier gleiche Lücken.',4):line(0,1,3/4,'Drei Lücken nach rechts.',4);
+  if(id===3)return preview?loosePieces(11,4):line(2,3,11/4,'Zwei Ganze und noch drei Viertel.',4);
+  if(id===4)return preview?givenPicture(r):line(-3,-2,-7/3,'Links von 0.',3);
+  if(id===6)return fractionLine({n:1,d:3},{n:2,d:3},!preview&&index===r.steps.length-1?{n:1,d:2}:null);
+ }
+ if(topic==='dezimalvergleich'){
+  const nums=(r.questionPlain||'').match(/−?\d+,\d+/g)||[];
+  if(id===2)return preview?givenPicture(r):hundred(60);
+  if(nums.length>=2){let a=Number(nums[0].replace('−','-').replace(',','.')),b=Number(nums[1].replace('−','-').replace(',','.'));
+   const middle=id===10&&!preview&&index===r.steps.length-1;
+   return decimalLine(a,b,middle?(a+b)/2:null);
+  }
+ }
+ if(topic==='quotienten'&&id===2){if(preview)return givenPicture(r,'8 Pizzen für 12 Kinder');const per=ps[ps.length-1]||{n:8,d:12};return share(8,12,per.n,per.d);}
+ if(topic==='groessen'){
+  if(id===13&&!preview)return areaPicture(index);
+  if(id===14)return cube(preview?0:index);
+  if(id===1)return unitPicture('m','cm',100);
+  if(id===2||id===3)return unitPicture('kg','g',1000,id===3);
+  if(id===4&&!preview)return index<2?unitPicture('m²','dm²',100):unitPicture('dm²','cm²',100);
+  if(id===5&&!preview)return index<2?unitPicture('m³','dm³',1000):unitPicture('dm³','cm³',1000);
+ }
+ if(!preview&&ps.length===1&&ps[0].n>=0&&ps[0].n<=ps[0].d&&ps[0].d<=40)return fractionPicture(ps[0],'Dieser Anteil gehört zur Rechnung.');
+ if(!preview&&ps.length>=2)return beforeAfter(ps[0],ps[ps.length-1]);
+ return givenPicture(preview?r:{givenTokens:step.tokens||[]},preview?'Das ist gegeben.':'Das zeigt die Rechnung.');
+}
+function betweenPicture(points){
+ const lo=Math.min(...points.map(fractionValue)),hi=Math.max(...points.map(fractionValue)),X=p=>25+(fractionValue(p)-lo)/(hi-lo||1)*310;
+ let s=`<path d="M25 88H335" stroke="${C.blue}" stroke-width="3"/>`;
+ points.forEach((p,i)=>{const x=X(p),edge=i===0||i===points.length-1;s+=`<circle cx="${x}" cy="88" r="6" fill="${edge?C.blue:C.berry}"/>`+T(x,i%2?143:48,fractionText(p),16);});
+ return SVG(s,'Zahlen zwischen den Grenzen: '+points.map(fractionText).join('; '));
+}
+function decimalLine(a,b,middle){
+ const lo=Math.min(a,b),hi=Math.max(a,b),span=hi-lo||.1,X=n=>36+(n-lo)/span*288;
+ let s=`<path d="M36 90H330m-7-6 7 6-7 6" stroke="${C.blue}" stroke-width="3" fill="none"/>`;
+ for(const [v,y,c] of [[a,48,C.blue],[b,143,C.berry]])s+=`<circle cx="${X(v)}" cy="90" r="7" fill="${c}"/>`+T(X(v),y,fmt(v),18,c);
+ if(middle!==null)s+=`<path d="M${X(middle)} 72v36" stroke="${C.gold}" stroke-width="5"/>`+T(180,167,fmt(middle),20);
+ return SVG(s,(middle===null?'Die beiden Zahlen auf dem Zahlenstrahl: ':'Die Mitte ist '+fmt(middle)+'. ')+fmt(a)+' und '+fmt(b));
+}
+window.MerkheftPictures={render:coursePicture};
 const topic=document.body.dataset.topic;
 document.querySelectorAll('.case').forEach(card=>{
  const id=Number(card.id.slice(5)),draw=specs[topic+':'+id];if(!draw)return;
