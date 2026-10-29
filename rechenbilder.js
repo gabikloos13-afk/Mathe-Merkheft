@@ -183,6 +183,10 @@ function fieldPicture(stage){
 }
 function coursePicture(topic,id,index,r){
  const preview=index<0,step=preview?null:r.steps[index],ps=step?.pairs||[],initial=r.givenPairs||[];
+ if(topic==='brueche'&&id===8){
+  let b='';for(let g=0;g<6;g++)for(let row=0;row<3;row++)b+=R(36+g*48,18+row*40,44,36,!preview&&index===2&&g<5?C.berry:C.pale);
+  return SVG(b+T(180,165,preview?'18 Kästchen':index===0?'Das ganze Rechteck':index===1?'6 Gruppen mit je 3 Kästchen':'5 Gruppen mit je 3 Kästchen',17),'Rechteck aus 18 gleich großen Kästchen in sechs Spalten mit je drei Kästchen.');
+ }
  if(topic==='brueche'&&amountCases[id])return groups(amountCases[id],preview?0:Math.min(index,2));
  if(topic==='brueche'&&id===1)return fieldPicture(index);
  if(topic==='gleichwertig'){

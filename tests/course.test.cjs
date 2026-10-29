@@ -18,3 +18,6 @@ const back=data.brueche.cases[3];assert(!draw('brueche',3,-1,back).includes('28 
 assert(!draw('brueche',10,0,data.brueche.cases[10]).includes('Gleiche Menge'));
 assert(!draw('zahlenstrahl',7,2,data.zahlenstrahl.cases[7]).includes('Gleiche Menge'));
 assert.equal(cases,98);console.log('PASS:',cases,'Beispiele,',frames,'Bildzustände, vollständige Lernwege; keine vorgezogene 8/20, 28 Kinder oder Mitte.');
+
+const paint=data.brueche.cases[8];for(let i=-1;i<3;i++){const svg=draw('brueche',8,i,paint);assert(svg.includes('18 gleich großen Kästchen'));assert.equal((svg.match(/width="44"/g)||[]).length,18);assert(!svg.includes('>?</text>'));}
+console.log('PASS: Färbeaufgabe zeigt in jedem Bild 18 echte Kästchen statt sechs Platzhaltern.');

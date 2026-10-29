@@ -3,10 +3,20 @@
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const topic=document.body.dataset.topic,c=window.MERKHEFT_COURSES[topic];if(!c)return;
 const list=xs=>'<ul>'+xs.map(s=>'<li>'+s+'</li>').join('')+'</ul>';
-const state={mode:'learn',learn:c.lessons[0].id,examples:c.groups[0][0],steps:{}};
+const state={mode:'learn',learn:c.lessons[0].id,examples:c.groups[0][0],steps:{},paint:new Set(),paintGroups:false,paintChecked:false};
 const reader=document.createElement('article');reader.className='lesson-card';reader.id='active-example';
 reader.innerHTML='<div class="example-heading"><span class="example-tag"></span><h2 id="example-title"></h2></div><div class="task-box"><b>Aufgabe</b><div class="task-copy"></div></div><div class="lesson-status"><span id="phase-label"></span><span id="phase-count"></span></div><div class="learning-stage" aria-live="polite" aria-atomic="true"><div class="stage-picture"></div><div class="stage-calculation"></div><div class="stage-note"></div></div><div class="lesson-actions"><button type="button" id="step-back">← Zurück</button><button type="button" id="step-next">Weiter →</button></div><div class="stage-hint" hidden></div><button type="button" id="hint-toggle">Ein kurzer Tipp</button>';
 reader.addEventListener('click',event=>{
+ const cell=event.target.closest('[data-paint-cell]');
+ if(cell){const n=Number(cell.dataset.paintCell);state.paint.has(n)?state.paint.delete(n):state.paint.add(n);state.paintChecked=false;updatePaint();return;}
+ const action=event.target.closest('[data-paint-action]')?.dataset.paintAction;
+ if(action){
+  if(action==='clear'){state.paint.clear();state.paintChecked=false;}
+  if(action==='groups')state.paintGroups=!state.paintGroups;
+  if(action==='check')state.paintChecked=true;
+  if(action==='model'){state.paint=new Set(Array.from({length:15},(_,i)=>i));state.paintChecked=false;}
+  updatePaint();return;
+ }
  const field=event.target.closest('[data-count-field]');if(!field)return;
  const on=field.getAttribute('aria-pressed')!=='true';field.setAttribute('aria-pressed',String(on));field.classList.toggle('field-counted',on);
  let counter=$('.picture-counter',reader);if(!counter){counter=document.createElement('div');counter.className='picture-counter';$('.stage-picture',reader).append(counter);}
@@ -52,6 +62,10 @@ function render(){
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join('')+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
   note.innerHTML='<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
  }
+ if(topic==='brueche'&&id()===8){
+  picture.innerHTML=paintBoard(p);updatePaint();
+  $('#phase-label').textContent=['Selbst färben','Das ganze Rechteck','Eine von sechs Gruppen','Fünf von sechs Gruppen','Rechnung und Antwort'][p];
+ }
  $('#step-back').disabled=p===0;
  $('#step-next').textContent=p===0?'Ersten Schritt zeigen →':p<last?'Weiter →':state.mode==='examples'?(pos<ordered.length-1?'Nächstes Beispiel →':'Noch einmal ansehen'):c.lessons.findIndex(l=>l.id===state.learn)<c.lessons.length-1?'Nächster Lernschritt →':'Weitere Beispiele →';
  const hint=$('.stage-hint',reader);hint.hidden=true;hint.innerHTML=list(r.hint.length?r.hint:[c.rules[0]||c.goal]);$('#hint-toggle').hidden=p===last;$('#hint-toggle').setAttribute('aria-expanded','false');
@@ -65,7 +79,24 @@ function render(){
  };
  $('#hint-toggle').onclick=()=>{hint.hidden=!hint.hidden;$('#hint-toggle').setAttribute('aria-expanded',String(!hint.hidden));};
 }
+function paintBoard(p){
+ let columns='';for(let g=0;g<6;g++){
+  let cells='';for(let row=0;row<3;row++){const n=g*3+row;cells+='<button type="button" data-paint-cell="'+n+'" aria-label="Kästchen '+(n+1)+' färben" aria-pressed="false"></button>';}
+  columns+='<div class="paint-group'+(p===2&&g===0?' focus-group':p===3&&g<5?' focus-group':'')+'">'+cells+'</div>';
+ }
+ return '<div class="paint-activity"><p class="paint-instruction">Tippe auf ein Kästchen: Es wird bunt. Tippe noch einmal: Die Farbe geht weg.</p><div class="paint-board" role="group" aria-label="Rechteck mit 18 färbbaren Kästchen">'+columns+'</div><p class="paint-count" role="status"></p><div class="paint-controls"><button type="button" data-paint-action="groups" aria-pressed="false">6 Gruppen zeigen</button><button type="button" data-paint-action="clear">Alles entfärben</button><button type="button" data-paint-action="check">Färbung prüfen</button>'+(p>=3?'<button type="button" data-paint-action="model">Beispiel färben</button>':'')+'</div><p class="paint-feedback" role="status"></p></div>';
+}
+function updatePaint(){
+ const board=$('.paint-board',reader);if(!board)return;
+ board.classList.toggle('groups-visible',state.paintGroups||phase()>=2);
+ $$('[data-paint-cell]',reader).forEach(b=>{const on=state.paint.has(Number(b.dataset.paintCell));b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label','Kästchen '+(Number(b.dataset.paintCell)+1)+(on?' entfärben':' färben'));b.textContent=on?'✓':'';});
+ const groups=$('[data-paint-action="groups"]',reader);groups.hidden=phase()>=2;groups.setAttribute('aria-pressed',String(state.paintGroups));groups.textContent=state.paintGroups?'Gruppen ausblenden':'6 Gruppen zeigen';
+ const count=state.paint.size;$('.paint-count',reader).textContent=count+' von 18 Kästchen gefärbt.';
+ $('.paint-feedback',reader).textContent=!state.paintChecked?'':count===15?'Das passt: 15 Kästchen sind 5/6 des Rechtecks. Jedes Kästchen zählt gleich viel.':count===0?'Noch ist nichts gefärbt. Die 6 unten heißt: Teile die 18 Kästchen in sechs gleich große Gruppen.':count<15?'Es fehlt noch Farbe. Jede der sechs Gruppen hat drei Kästchen. Du brauchst fünf solcher Gruppen.':'Es ist zu viel gefärbt. Eine der sechs gleich großen Gruppen soll frei bleiben.';
+}
 function entryHint(t,n,r){
+ if(t==='brueche'&&n===1)return 'Das ganze Rechteck ist in gleich große Felder geteilt. Zähle zuerst alle Felder. Zähle dann die bunten Felder. Du kannst die bunten Felder antippen und so mitzählen.';
+ if(t==='brueche'&&n===8)return 'Die 6 unten heißt: sechs gleich große Gruppen. Die 5 oben heißt: fünf davon färben. Probiere es am Rechteck. Danach zeigen wir den Rechenweg.';
  if(t==='brueche'&&n===3)return '21 Kinder sind nur drei Viertel der Klasse. Ein Viertel fehlt noch.';
  if(t==='brueche'&&n===2)return '60 Birnen sind das Ganze. Gesucht sind zwei von drei gleich großen Gruppen.';
  if(t==='gleichwertig')return n===1?'Oben und unten mal 4. Die Menge bleibt gleich.':n===2?'Teile oben und unten durch dieselbe Zahl.':n===4?'Unten steht schon 20. Oben fehlt noch eine Zahl.':r.hint[0]||c.goal;
@@ -75,7 +106,8 @@ function entryHint(t,n,r){
 }
 function stepHint(t,n,i,r){
  const step=r.steps[i];
- const amount={brueche:{2:['Das Ganze sind alle 60 Birnen.','Teile 60 Birnen in drei gleich große Gruppen.','Nimm zwei dieser Gruppen.'],3:['Drei Viertel zusammen sind 21 Kinder.','Teile die 21 Kinder in drei gleich große Gruppen.','Vier solche Gruppen ergeben die ganze Klasse.'],6:['Eine Stunde hat 60 Minuten.','Teile die 60 Minuten in sechs gleiche Teile.','Nimm fünf dieser Teile.'],8:['Alle 18 Kästchen bilden das Ganze.','Teile in sechs gleich große Gruppen.','Färbe fünf dieser Gruppen.']}};
+ if(t==='brueche'&&n===1)return ['Alle neun Felder zusammen sind das Ganze. Die 9 kommt unten in den Bruch. Die Zahl unten heißt Nenner.','Vier Felder sind bunt. Die 4 kommt oben in den Bruch. Die Zahl oben heißt Zähler.','Oben 4, unten 9: vier von neun gleich großen Teilen. Das liest du: vier Neuntel.'][i];
+ const amount={brueche:{2:['Das Ganze sind alle 60 Birnen.','Teile 60 Birnen in drei gleich große Gruppen.','Nimm zwei dieser Gruppen.'],3:['Drei Viertel zusammen sind 21 Kinder.','Teile die 21 Kinder in drei gleich große Gruppen.','Vier solche Gruppen ergeben die ganze Klasse.'],6:['Eine Stunde hat 60 Minuten.','Teile die 60 Minuten in sechs gleiche Teile.','Nimm fünf dieser Teile.'],8:['Alle 18 Kästchen zusammen sind ein Ganzes. Noch ist nichts geteilt worden.','Jede Spalte ist eine von sechs gleich großen Gruppen. In einer Gruppe sind drei Kästchen. Deshalb: 18 : 6 = 3.','Die 5 oben sagt: Nimm fünf Gruppen. Jede hat drei Kästchen. Deshalb: 3 · 5 = 15. Du kannst jede beliebige Auswahl von 15 Kästchen färben.']}};
  if(amount[t]?.[n]?.[i])return amount[t][n][i];
  if(t==='gleichwertig'&&n===4)return i===0?'Von 5 zu 20 rechnest du mal 4.':'Rechne auch oben mal 4: 2 · 4 = 8.';
  if(t==='gleichwertig'&&n===5)return i===0?'Von 3 zu 15 rechnest du mal 5.':'Rechne auch unten mal 5: 4 · 5 = 20.';
@@ -109,6 +141,7 @@ function stepHint(t,n,i,r){
  return 'Lies diese Rechenzeile von links nach rechts.';
 }
 function closingHint(t,n,r){
+ if(t==='brueche'&&n===8)return 'Unten steht, in wie viele gleiche Gruppen du teilst: 6. Oben steht, wie viele Gruppen du nimmst: 5. Erst teilen, dann die gewünschten Gruppen nehmen.';
  if(t==='brueche'&&[3,9,10].includes(n))return 'Ist nur ein Anteil bekannt? Finde zuerst einen Teil, dann das Ganze.';
  if(t==='gleichwertig')return 'Oben und unten dieselbe Rechnung. Die Menge bleibt gleich.';
  const correct=r.trap.find(s=>s.includes('Richtig:'));if(correct)return correct.replace(/<b>Richtig:<\/b>\s*/,'');
