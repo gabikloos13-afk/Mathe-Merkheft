@@ -5,7 +5,7 @@ const topic=document.body.dataset.topic,c=window.MERKHEFT_COURSES[topic];if(!c)r
 const list=xs=>'<ul>'+xs.map(s=>'<li>'+s+'</li>').join('')+'</ul>';
 const state={mode:'learn',learn:c.lessons[0].id,examples:c.groups[0][0],steps:{},paint:new Set(),paintGroups:false,paintChecked:false};
 const reader=document.createElement('article');reader.className='lesson-card';reader.id='active-example';
-reader.innerHTML='<div class="example-heading"><span class="example-tag"></span><h2 id="example-title"></h2></div><div class="task-box"><b>Aufgabe</b><div class="task-copy"></div></div><div class="lesson-status"><span id="phase-label"></span><span id="phase-count"></span></div><div class="learning-stage" aria-live="polite" aria-atomic="true"><div class="stage-picture"></div><div class="stage-calculation"></div><div class="stage-note"></div></div><div class="lesson-actions"><button type="button" id="step-back">← Zurück</button><button type="button" id="step-next">Weiter →</button></div><div class="stage-hint" hidden></div><button type="button" id="hint-toggle">Ein kurzer Tipp</button>';
+reader.innerHTML='<div class="example-heading"><span class="example-tag"></span><h2 id="example-title"></h2></div><div class="task-box"><b>Aufgabe</b><div class="task-copy"></div></div><div class="lesson-status"><span id="phase-label"></span><span id="phase-count"></span></div><div class="learning-stage" aria-live="polite" aria-atomic="true"><div class="stage-calculation"></div><div class="stage-note"></div><div class="stage-picture"></div></div><div class="lesson-actions"><button type="button" id="step-back">← Zurück</button><button type="button" id="step-next">Weiter →</button></div><div class="stage-hint" hidden></div><button type="button" id="hint-toggle">Ein kurzer Tipp</button>';
 reader.addEventListener('click',event=>{
  const cell=event.target.closest('[data-paint-cell]');
  if(cell){const n=Number(cell.dataset.paintCell);state.paint.has(n)?state.paint.delete(n):state.paint.add(n);state.paintChecked=false;updatePaint();return;}
@@ -56,10 +56,10 @@ function render(){
   note.innerHTML='<div class="focus-note">'+entryHint(topic,id(),r)+'</div>';
  }else if(p<last){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),p-1,r);
-  calculation.innerHTML='<div class="school-calculation">'+r.steps[p-1].html+'</div>';
+  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+r.steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+s.html+'</div>').join('')+'</div>';
   note.innerHTML='<div class="focus-note">'+stepHint(topic,id(),p-1,r)+'</div>';
  }else{
-  calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join('')+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
+  calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
   note.innerHTML='<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
  }
  if(topic==='brueche'&&id()===8){
@@ -107,7 +107,7 @@ function entryHint(t,n,r){
 function stepHint(t,n,i,r){
  const step=r.steps[i];
  if(t==='brueche'&&n===1)return ['Alle neun Felder zusammen sind das Ganze. Die 9 kommt unten in den Bruch. Die Zahl unten heißt Nenner.','Vier Felder sind bunt. Die 4 kommt oben in den Bruch. Die Zahl oben heißt Zähler.','Oben 4, unten 9: vier von neun gleich großen Teilen. Das liest du: vier Neuntel.'][i];
- const amount={brueche:{2:['Das Ganze sind alle 60 Birnen.','Teile 60 Birnen in drei gleich große Gruppen.','Nimm zwei dieser Gruppen.'],3:['Drei Viertel zusammen sind 21 Kinder.','Teile die 21 Kinder in drei gleich große Gruppen.','Vier solche Gruppen ergeben die ganze Klasse.'],6:['Eine Stunde hat 60 Minuten.','Teile die 60 Minuten in sechs gleiche Teile.','Nimm fünf dieser Teile.'],8:['Alle 18 Kästchen zusammen sind ein Ganzes. Noch ist nichts geteilt worden.','Jede Spalte ist eine von sechs gleich großen Gruppen. In einer Gruppe sind drei Kästchen. Deshalb: 18 : 6 = 3.','Die 5 oben sagt: Nimm fünf Gruppen. Jede hat drei Kästchen. Deshalb: 3 · 5 = 15. Du kannst jede beliebige Auswahl von 15 Kästchen färben.']}};
+ const amount={brueche:{2:['Das Ganze sind alle 60 Birnen.','Teile 60 Birnen in drei gleich große Gruppen.','Nimm zwei dieser Gruppen.'],3:['Drei Viertel zusammen sind 21 Kinder.','Teile die 21 Kinder in drei gleich große Gruppen.','Vier solche Gruppen ergeben die ganze Klasse.'],6:['Eine Stunde hat 60 Minuten.','Teile die 60 Minuten in sechs gleiche Teile.','Nimm fünf dieser Teile.'],8:['Alle 18 Kästchen zusammen sind ein Ganzes. Noch ist nichts geteilt worden.','Jede Spalte ist eine von sechs gleich großen Gruppen. In einer Gruppe sind drei Kästchen. Deshalb: 18 : 6 = 3.','Die 5 oben sagt: Nimm fünf Gruppen. Jede hat drei Kästchen. Im Heft: 18 : 6 · 5 = 15. Erst durch die Zahl unten teilen, dann mit der Zahl oben malnehmen.']}};
  if(amount[t]?.[n]?.[i])return amount[t][n][i];
  if(t==='gleichwertig'&&n===4)return i===0?'Von 5 zu 20 rechnest du mal 4.':'Rechne auch oben mal 4: 2 · 4 = 8.';
  if(t==='gleichwertig'&&n===5)return i===0?'Von 3 zu 15 rechnest du mal 5.':'Rechne auch unten mal 5: 4 · 5 = 20.';
