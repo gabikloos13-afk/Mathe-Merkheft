@@ -47,3 +47,7 @@ Die grünen Grundwissenaufgaben zu ganzen Zahlen werden als Vorwissen behandelt,
 ## Bildlabor-Weiterentwicklung
 
 Die Themenabdeckung und 96 Musterwege bleiben erhalten. Die neun Hauptwerkzeuge erklären den Vorgang nun in steuerbaren Bildfolgen. Passende Musterwege koppeln Bild und Aufdeckschritte; Strukturverweise verbinden verwandte Aufgaben. Details und Prüfumfang stehen in README.md.
+
+## Sprachliche Überarbeitung
+
+Aufgabenstellungen und Erklärungen sind in einzelne Punkte gegliedert. Schwierige Begriffe sind erklärt; zusätzliche Zwischenschritte erleichtern den Einstieg. Umfang und Buchzuordnung bleiben erhalten.

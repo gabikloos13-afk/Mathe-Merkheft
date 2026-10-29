@@ -53,3 +53,14 @@ node tests/bildlabor.test.cjs
 ```
 
 Die Prüfungen decken u. a. 36 Modellzustände, unveränderte Flächen beim Kürzen/Erweitern, unveränderte Stückzahlen beim Bündeln, 20 Verteilungskombinationen, verschachtelte Vergrößerung und Einheitenumrechnungen ab. Dazu JavaScript-Syntax und lokale Ressourcenverweise geprüft.
+
+## Sprache und Gliederung · 29.10.2026
+
+- Alle 96 Aufgabenstellungen als getrennte Aufgabenzeilen.
+- Schwierige Erklärungen in kürzere, begründete Einzelschritte zerlegt.
+- Begriffe in jedem Kapitel über „Wörter einfach erklärt“ nachschlagbar.
+- Hinweise im Bildlabor, beim Aufgabenwechsel und bei Strukturverweisen als einzelne Punkte.
+- Zusätzliche Zwischenschritte beim Kürzen großer Zahlen und beim Finden eines gemeinsamen Nenners.
+- Alle 96 Musterwege, Aufdeckschritte und mathematischen Bildfunktionen bleiben erhalten.
+
+Prüfung: Ressourcenverweise, eindeutige IDs, 96 vollständige Musterwege und fehlende Absatzblöcke; bestehende Modelltests erfolgreich. Aufdeckfunktion und Sprache im Browser sowie Aufgabenzeilen und Wörterhilfe bei 375 Pixeln Inhaltsbreite geprüft.
