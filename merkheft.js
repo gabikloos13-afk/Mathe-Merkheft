@@ -18,6 +18,12 @@ function numberline(min,max,den,points=[]){
  return svg(b,160,'Zahlenstrahl von '+fmt(min)+' bis '+fmt(max));
 }
 function circle(n,d){return svg(Array.from({length:d},(_,i)=>{const a=-Math.PI/2+i*2*Math.PI/d,b=a+2*Math.PI/d,at=t=>(300+95*Math.cos(t))+','+(110+95*Math.sin(t));return `<path d="M300 110 L${at(a)} A95 95 0 0 1 ${at(b)} Z" fill="${i<n?'#783d53':'#f3e8e2'}" stroke="#9e858b"/>`}).join(''),225,`${n} von ${d} Kreissektoren gefärbt`)}
+// Kurze Beispiele zuerst; jeweils nur eines sichtbar, Regeln auf Abruf.
+$$('.quick-examples').forEach(group=>{
+ const cards=[...group.querySelectorAll('.quick-example')],buttons=[...group.querySelectorAll('[data-example]')];
+ function choose(index){cards.forEach((card,i)=>card.hidden=i!==index);buttons.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));}
+ buttons.forEach(button=>button.addEventListener('click',()=>choose(Number(button.dataset.example))));choose(0);
+});
 // Musterwege: keine Bewertung, keine zufälligen Übungsaufgaben.
 $$('.worked').forEach(box=>{
  const items=[...box.querySelectorAll('.work-steps>li')],btn=box.querySelector('.next-step'),status=box.querySelector('.step-progress');let i=0;

@@ -164,3 +164,14 @@ Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bz
 - Statisch geprüft: Antwortblöcke bleiben bis zum letzten Schritt verdeckt, 96 Musterwege erhalten, keine Textabsätze, keine Themenlisten, eindeutige IDs.
 - Bestehende Mathematiktests bestanden.
 - Erneute Browser-Sichtprüfung dieser Textfassung wegen Zeitüberschreitung des Browserdienstes nicht abgeschlossen; frühere Sichtprüfungen beziehen sich auf die vorige Fassung.
+
+## Beispiele zuerst
+
+- Jedes Kapitel beginnt mit drei auswählbaren Kurzbeispielen; jeweils eines ist sichtbar.
+- Die Kurzbeispiele zeigen konkrete Zahlen, zwei bis drei Rechenschritte, eine Antwort und einen Merksatz.
+- Es sind Kurzfassungen bestehender Musterwege, keine neue Übungseinheit.
+- Die längeren Regeln stehen im geschlossenen Bereich „Regeln nachlesen“.
+- Jeder Kurzweg führt direkt zum passenden ausführlichen Musterweg.
+- Alle 96 ausführlichen Musterwege und vollständigen Antworten bleiben erhalten.
+- Statische Prüfung: 27 Kurzbeispiele, korrekte Sprungziele und eindeutige IDs; JavaScript-Syntax und beide Mathematiktests bestanden.
+- Browser-Sichtprüfung dieser Fassung weiterhin offen, nachdem der Browserdienst bei den vorherigen Versuchen nicht antwortete.
