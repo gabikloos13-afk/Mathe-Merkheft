@@ -1,0 +1,27 @@
+.simple-layout main{max-width:1000px;padding-top:24px}
+.simple-layout h1{font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:14px}
+.simple-layout .subtitle{font-size:1rem;line-height:1.7}
+.simple-tabs{display:flex;gap:10px;margin:24px 0}
+.simple-tabs button{flex:1;background:white;color:#783d53;border:1px solid #cdb6c1;max-width:260px}
+.simple-tabs button[aria-pressed=true]{background:#783d53;color:white}
+.simple-choice{display:grid;gap:10px;margin:0 0 24px}.simple-choice label{font-size:.9rem;font-weight:bold;color:#665164}.simple-choice select{width:100%;min-width:0;max-width:100%;font-size:1rem;background:white}
+.simple-layout #typen{border:0;background:transparent;padding:0;margin:0}
+.simple-layout .case{box-shadow:none;border:0;border-radius:0;padding:0;background:transparent;outline:none}
+.simple-layout .case h3{margin:0 0 20px;font-size:1.4rem}
+.simple-layout .question{margin-bottom:20px;padding:18px;border:0;background:#f3ede8;border-radius:16px}
+.simple-layout .question>b{display:none}
+.simple-layout .task-lines{margin:0;padding-left:20px}.simple-layout .task-lines>li{margin:10px 0}
+.simple-layout .worked{background:white;border:1px solid #c5d9e3;border-radius:16px;padding:16px;margin:18px 0}
+.simple-layout .worked>summary{font-size:1.05rem;padding:6px;color:#326b82}
+.simple-layout .worked>.control,.simple-layout .step-actions{display:none!important}
+.simple-layout .work-steps>li{box-shadow:none;margin:14px 0}
+.simple-layout .answer-block{margin-top:18px;padding:16px}
+.simple-help,.simple-reference{border:0;border-top:1px solid #dfd2d9;border-radius:0;background:transparent;padding:16px 0;margin:12px 0}
+.simple-help>summary,.simple-reference>summary{color:#6f5c6a;font-size:.95rem}
+.simple-help h4{font-size:.95rem;margin:24px 0 10px;color:#326b82}
+.simple-help .explain{padding-left:21px}.simple-help .explain>li{margin:10px 0}
+.simple-layout .case-pager{display:flex;align-items:center;justify-content:space-between;border:0;background:transparent;padding:12px 0;margin:14px 0}
+.simple-layout .case-pager button{min-width:110px;font-size:1rem}
+.simple-reference h2{font-size:1.1rem;margin-top:24px}
+.simple-layout #werkzeug{margin-top:0}.simple-layout .linked-picture{box-shadow:none}
+@media(max-width:540px){.simple-layout main{padding:24px 18px}.simple-tabs{gap:8px}.simple-tabs button{padding:10px 8px;font-size:.9rem}.simple-layout .case-pager button{min-width:90px;padding:10px}.simple-layout .worked{padding:12px 8px}.simple-choice select{font-size:.9rem}}
