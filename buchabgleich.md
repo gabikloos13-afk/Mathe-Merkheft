@@ -51,3 +51,7 @@ Die Themenabdeckung und 96 Musterwege bleiben erhalten. Die neun Hauptwerkzeuge 
 ## Sprachliche Überarbeitung
 
 Aufgabenstellungen und Erklärungen sind in einzelne Punkte gegliedert. Schwierige Begriffe sind erklärt; zusätzliche Zwischenschritte erleichtern den Einstieg. Umfang und Buchzuordnung bleiben erhalten.
+
+## Direkte Werkzeuge der Vorlage
+
+Die acht ursprünglichen Werkzeugtypen sind direkt bedienbar umgesetzt. Die geführten Bildfolgen ergänzen sie als aufklappbare Erklärung. Der Buchumfang mit neun Kapiteln und 96 Musterwegen bleibt erhalten; die Grenze der fehlenden Buchseiten 11–13 bleibt bestehen. Funktionsumfang und Prüfungen stehen in README.md.

@@ -64,3 +64,39 @@ Die Prüfungen decken u. a. 36 Modellzustände, unveränderte Flächen beim Kür
 - Alle 96 Musterwege, Aufdeckschritte und mathematischen Bildfunktionen bleiben erhalten.
 
 Prüfung: Ressourcenverweise, eindeutige IDs, 96 vollständige Musterwege und fehlende Absatzblöcke; bestehende Modelltests erfolgreich. Aufdeckfunktion und Sprache im Browser sowie Aufgabenzeilen und Wörterhilfe bei 375 Pixeln Inhaltsbreite geprüft.
+
+## Umsetzung der acht ursprünglichen Werkzeugideen
+
+Die acht Themen der Vorlage besitzen nun direkt bedienbare Hauptwerkzeuge. Die geführten Bildfolgen bleiben jeweils unter „Ein Beispiel Schritt für Schritt verstehen“ erreichbar. Das zusätzliche Kapitel „Brüche als Division“ behält seine eigene Verteilungs-Bildfolge.
+
+| Werkzeug | Direkte Handlung |
+|---|---|
+| Bruchbaukasten | Einzelne Kreisteile, Streifenteile oder Felder färben/entfärben; Bild bei gleichem Anteil wechseln |
+| Bruch-Werkstatt | Schnittlinien erzeugen, gleich große Teilstücke wieder zusammenfassen; unveränderte Fläche und Umformungsverlauf sehen |
+| Bündelmaschine | Bruchstücke tatsächlich in Schachteln ziehen; alternativ auswählen und ablegen; vollständige Ganze und Rest erkennen |
+| Gleichnamig-Labor | Beide Brüche unabhängig unterteilen und passende Stückgrößen finden |
+| Verschiebbare Zahlenlinie | Punkt direkt ziehen oder mit Pfeiltasten bewegen; Ausschnitt verschieben und vergrößern |
+| Stellenwert-Maschine | Hundertstel und Zehntel in Zehner-Bündler ziehen oder antippen; Zehnertausch und erhaltene Gesamtmenge sehen |
+| Stellenwert-Lupe | Lupe ziehen oder Spalte antippen; die ausgewählte Ziffer bildlich vergrößern; spätere Stellen von der ersten entscheidenden Stelle unterscheiden |
+| Räumliches Einheiten-Labor | Würfel direkt drehen; Füllung und markierte Schicht verändern; Hülle auffalten; Längen- und Flächenstücke direkt markieren |
+
+Bildmodelle und direkte Bedienung: `anfasslabor.js` / `anfasslabor.css`. Die 96 Musterwege und Wörterhilfen bleiben erhalten. Keine Antwortbewertung und keine eigene Übungseinheit.
+
+### Prüfung
+
+```sh
+node tests/anfasslabor.test.cjs
+node tests/bildlabor.test.cjs
+```
+
+- Kürzen/Erweitern: Wertgleichheit für verschiedene Zähler, Nenner und Faktoren.
+- Bündeln: Stückerhaltung und volle/teilweise Gruppen.
+- Stellenwerte: Zehnertausch für alle Ausgangsmengen von 1 bis 199 Hundertsteln.
+- Zahlenlinie: Einrasten auf die gewählte Bruchteilung.
+- Würfel: endliche Projektion und sichtbare Eckpunkte für alle einstellbaren Drehwinkel.
+- Browser: direkte Farbwahl und Bildwechsel, Unterteilen/Zusammenfassen, echtes Ziehen eines Stücks in eine Schachtel, wiederholtes Füllen, Zehnertausch, unabhängige Vergleichsteilung, Lupenauswahl und Tastaturbewegung.
+- Browser: Bruchpunkt mit der Maus verschoben; Würfel mit der Maus gedreht; Füllung und Netz umgeschaltet.
+- Alle acht direkten Werkzeuge bei 375 CSS-Pixeln Inhaltsbreite ohne horizontalen Überlauf. Direkte Farbwahl, Flächenwahl und Würfelnetz zusätzlich in der schmalen Vorschau bedient.
+- Geführte Bildfolge nach Umbau weiterhin bedienbar.
+
+Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bzw. Tippaktionen. Kein Test auf einem physischen Android-Gerät.
