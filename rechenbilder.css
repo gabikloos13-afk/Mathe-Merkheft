@@ -9,3 +9,7 @@
 .quick-calculation>.illustrated-step{padding:16px;margin:18px 0}
 @media(max-width:700px){.illustrated-step{grid-template-columns:minmax(0,1fr);gap:14px}.rechenbild{width:100%;max-width:380px;justify-self:center}.quick-calculation>.illustrated-step{padding:14px 10px}.rechenbild svg{min-height:120px}.picture-step{margin-bottom:8px}}
 @media print{.illustrated-step{break-inside:avoid;grid-template-columns:1fr 1fr}.rechenbild svg{max-height:160px}}
+
+.rechenbild .counted-pear{animation:pear-in .3s ease-out both;animation-delay:calc(var(--piece-order)*.014s);transform-box:fill-box;transform-origin:center}
+@keyframes pear-in{from{opacity:1;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.rechenbild .counted-pear{animation:none}}

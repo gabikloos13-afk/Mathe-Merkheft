@@ -132,12 +132,12 @@ const config={
  brueche:{title:'Anteil und Ganzes im Bild verstehen',kind:'portion',v:{n:3,d:4,known:21,back:true,unit:'Kinder'},steps:['Bekannten Anteil ansehen','Einen Teil bestimmen','Das Ganze ergänzen','Zusammenhang erkennen']},
  gleichwertig:{title:'Andere Einteilung – gleich viel Fläche',kind:'transform',v:{n:2,d:3,k:2},steps:['Ausgangsbruch','Neue Schnitte setzen','Neue Stücke zählen','Beide Schreibweisen verbinden']},
  gemischt:{title:'Bruchstücke wirklich zu Ganzen bündeln',kind:'bundle',v:{n:11,d:4},steps:['Einzelne Stücke','Volle Gruppen bilden','Rest hervorheben','Als Zahl schreiben']},
- zahlenstrahl:{title:'Mit der Lupe zwischen Zahlen schauen',kind:'line',v:{a:.15,b:.151},steps:['Überblick','Ausschnitt vergrößern','Zwischenzahl sichtbar machen','Weiter verfeinern']},
+ zahlenstrahl:{title:'Zahlen unter der Lupe',kind:'line',v:{a:.15,b:.151},steps:['Überblick','Ausschnitt vergrößern','Zwischenzahl sichtbar machen','Weiter verfeinern']},
  quotienten:{title:'Pizzen auf Kinderteller verteilen',kind:'share',v:{n:3,d:4},steps:['Pizzen und Kinder','Gleich große Stücke schneiden','Auf alle Teller verteilen','Einen Teller betrachten']},
  vergleichen:{title:'Zwei Brüche auf dieselbe Einteilung bringen',kind:'compare',v:{a:2,b:3,c:3,d:4},steps:['Verschiedene Stückgrößen','Passende Schnittlinien finden','Beide gleich einteilen','Vergleich ablesen']},
  dezimal:{title:'Hundertstel zu Zehnteln und Ganzen bündeln',kind:'place',v:{hundredths:125},steps:['Einzelne Hundertstel','Zehn Stücke bündeln','Mit Stellenwerttafel verbinden','Als Zahl schreiben']},
  dezimalvergleich:{title:'Die entscheidende Stelle im Bild verfolgen',kind:'decimal',v:{a:.43,b:.418},steps:['Stellen untereinander','Entscheidende Stelle markieren','Lage am Zahlenstrahl','Vergleich begründen']},
- groessen:{title:'Eine Einheit zerlegen – den Faktor verstehen',kind:'units',v:{dim:2,value:1},steps:['Eine große Einheit','In Richtungen zerlegen','Kleine Einheiten zählen','Auf die Menge übertragen']}
+ groessen:{title:'Eine große Einheit in kleine Teile zerlegen',kind:'units',v:{dim:2,value:1},steps:['Eine große Einheit','In Richtungen zerlegen','Kleine Einheiten zählen','Auf die Menge übertragen']}
 };
 let cfg=config[topic],state=0,alternate=false;const mainValues={...cfg.v};
 function select(id,label,opts){return `<div class="control-box"><label for="${id}">${label}</label><select id="${id}">${opts.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select></div>`}
@@ -152,7 +152,7 @@ if(topic==='zahlenstrahl')ui=select('lab-interval','Welcher Zwischenraum?',[[1,'
 if(topic==='dezimal')ui=range('lab-hundredths','Hundertstel insgesamt',1,199,125);
 if(topic==='dezimalvergleich')ui=select('lab-decimals','Zahlenpaar',[[1,'0,43 und 0,418'],[2,'0,6 und 0,600'],[3,'−0,41 und −0,40'],[4,'0,15 und 0,151']]);
 if(topic==='groessen')ui=select('lab-dimension','Eine große Einheit',[[1,'Länge: dm in cm'],[2,'Fläche: dm² in cm²'],[3,'Raum: dm³ in cm³'],[4,'Masse: kg in g'],[5,'Zeit: h in min']])+select('lab-body-mode','Am Würfel betrachten',[['fill','Rauminhalt: Würfel füllen'],['surface','Oberfläche: Hülle auffalten']])+range('lab-quantity','Menge der Ausgangseinheit',.1,3,1,.1);
-lab.innerHTML=`<div class="eyebrow">BILD UND RECHNUNG GEHÖREN ZUSAMMEN</div><h2>${cfg.title}</h2><div class="lab-legend"><span class="part-key">Bekannter Anteil</span><span class="whole-key">Das Ganze</span><span class="unit-key">Ein Teil / Rest</span></div><div class="controls">${ui}</div><div class="scene-stage"><div class="stage-dots" aria-label="Erklärschritte"></div><h3 class="stage-title"></h3><div class="scene-board" id="scene-board"></div></div><div class="scene-actions"><button type="button" id="scene-prev">← Zurück</button><output id="scene-status" aria-live="polite"></output><button type="button" id="scene-next">Nächsten Bildschritt zeigen →</button></div><details class="invariant"><summary>Was verändert sich – was bleibt gleich?</summary><div id="invariant-body"></div></details><div class="transfer-switch"><button type="button" id="scene-transfer">Gleicher Gedanke in einer anderen Aufgabe</button><div id="scene-transfer-note" hidden></div></div>`;
+lab.innerHTML=`<div class="eyebrow">BILD UND RECHNUNG GEHÖREN ZUSAMMEN</div><h2>${cfg.title}</h2><div class="lab-legend"><span class="part-key">Bekannter Anteil</span><span class="whole-key">Das Ganze</span><span class="unit-key">Ein Teil / Rest</span></div><div class="controls">${ui}</div><div class="scene-stage"><div class="stage-dots" aria-label="Erklärschritte"></div><h3 class="stage-title"></h3><div class="scene-board" id="scene-board"></div></div><div class="scene-actions"><button type="button" id="scene-prev">← Zurück</button><output id="scene-status" aria-live="polite"></output><button type="button" id="scene-next">Weiter im Bild →</button></div><details class="invariant"><summary>Was bleibt gleich? Was ändert sich?</summary><div id="invariant-body"></div></details><div class="transfer-switch"><button type="button" id="scene-transfer">Anderes Beispiel zeigen</button><div id="scene-transfer-note" hidden></div></div>`;
 const board=$('#scene-board');
 function invariant(){return {portion:['Die bekannte Menge wird auf gleich große Teile verteilt.','Die Größe eines einzelnen Teils bleibt beim Ergänzen gleich.'],transform:['Anzahl und Größe der Stücke verändern sich.','Gefärbte Fläche und Größe des Ganzen bleiben gleich.'],bundle:['Die Anordnung verändert sich.','Anzahl und Größe aller Bruchstücke bleiben gleich.'],compare:['Die Schnittlinien und die Stückzahlen verändern sich.','Die beiden gefärbten Längen bleiben gleich.'],share:['Die Stücke wechseln von der Pizza auf die Teller.','Alle Kinder erhalten gleich viel. Die Gesamtmenge bleibt erhalten.'],line:['Der sichtbare Ausschnitt wird vergrößert.','Zahlenwerte, Reihenfolge und Lage im Überblick bleiben erhalten.'],place:['Die kleinen Quadrate werden anders gruppiert.','Die Menge der Hundertstel bleibt gleich.'],decimal:['Die Schreibweise wird angeglichen und die wichtige Stelle hervorgehoben.','Der Zahlenwert und seine Lage am Zahlenstrahl ändern sich nicht.'],units:['Maßzahl und Einheit ändern sich.','Die gemessene Größe bleibt dieselbe.']}[cfg.kind]}
 function paint(){
@@ -168,7 +168,7 @@ function paint(){
 $('#scene-prev').addEventListener('click',()=>{state=Math.max(0,state-1);paint()});$('#scene-next').addEventListener('click',()=>{state=(state+1)%4;paint()});
 $('.controls',lab).addEventListener('input',readControls);$('.controls',lab).addEventListener('change',readControls);
 function readControls(){
- alternate=false;$('.controls',lab).hidden=false;$$('.controls input,.controls select',lab).forEach(el=>el.disabled=false);$('#scene-transfer').textContent='Gleicher Gedanke in einer anderen Aufgabe';$('#scene-transfer-note').hidden=true;cfg.v={...mainValues};
+ alternate=false;$('.controls',lab).hidden=false;$$('.controls input,.controls select',lab).forEach(el=>el.disabled=false);$('#scene-transfer').textContent='Anderes Beispiel zeigen';$('#scene-transfer-note').hidden=true;cfg.v={...mainValues};
  const v=id=>+$('#'+id).value;
  if(topic==='brueche')cfg.v=v('lab-situation')===1?{n:3,d:4,known:21,back:true,unit:'Kinder'}:v('lab-situation')===2?{n:2,d:3,known:60,unit:'Birnen'}:{n:4,d:5,known:320,back:true,unit:'g'};
  if(topic==='gleichwertig'){const k=v('lab-factor'),reverse=$('#lab-direction').value==='join';cfg.v={n:reverse?2*k:2,d:reverse?3*k:3,k,reverse};}
@@ -182,7 +182,7 @@ function readControls(){
  state=0;paint();
 }
 $('#scene-transfer').addEventListener('click',()=>{
- alternate=!alternate;$('.controls',lab).hidden=alternate;$$('.controls input,.controls select',lab).forEach(el=>el.disabled=alternate);$('#scene-transfer').textContent=alternate?'Zur Ausgangsaufgabe zurück':'Gleicher Gedanke in einer anderen Aufgabe';
+ alternate=!alternate;$('.controls',lab).hidden=alternate;$$('.controls input,.controls select',lab).forEach(el=>el.disabled=alternate);$('#scene-transfer').textContent=alternate?'Zur Ausgangsaufgabe zurück':'Anderes Beispiel zeigen';
  const alternatives={brueche:{n:3,d:4,known:12,back:true,unit:'Kästchen'},gleichwertig:{n:3,d:4,k:2},gemischt:{n:17,d:5},zahlenstrahl:{a:.32,b:.33},quotienten:{n:2,d:5},vergleichen:{a:4,b:5,c:5,d:6},dezimal:{hundredths:75},dezimalvergleich:{a:.52,b:.7},groessen:{dim:3,value:.5}};
  const messages={brueche:'Vorher Kinder, jetzt Kästchen: Ein bekannter Anteil führt über EINEN Teil zum Ganzen.',gleichwertig:'Auch bei anderen Zahlen gilt: oben und unten mal dieselbe Zahl.',gemischt:'Andere Stückgröße: Jetzt bilden fünf Fünftel jeweils ein Ganzes.',zahlenstrahl:'Andere Grenzen: Überblick und Lupe beschreiben weiterhin denselben Zahlenstrahl.',quotienten:'Andere Pizzenzahl und Kinderzahl: Von jedem Ganzen bekommt jedes Kind denselben Anteil.',vergleichen:'Andere Nenner: Die passenden Schnittlinien müssen wieder zu beiden Einteilungen passen.',dezimal:'Andere Menge: Zehn Hundertstel werden weiterhin zu einem Zehntel gebündelt.',dezimalvergleich:'Andere Ziffern: Wieder entscheidet die erste unterschiedliche Stelle.',groessen:'Vom Quadrat zum Würfel: Es kommt eine dritte Richtung dazu.'};
  if(alternate)cfg.v={...alternatives[topic]};else{readControls();return}
@@ -207,13 +207,13 @@ register('groessen',12,'units',{dim:5,value:1.05});
 $$('.case').forEach(card=>{
  const spec=cases[topic+':'+card.id],worked=$('.worked',card);if(!worked)return;
  const picture=$('.case-model',card);if(!spec&&!picture)return;
- const panel=document.createElement('div');panel.className='linked-picture';panel.innerHTML='<div class="eyebrow">IM BILD</div><div class="linked-board"></div><div class="linked-state" aria-live="polite">Bekanntes ansehen · Rechenweg noch verdeckt</div>';
+ const panel=document.createElement('div');panel.className='linked-picture';panel.innerHTML='<div class="eyebrow">IM BILD</div><div class="linked-board"></div><div class="linked-state" aria-live="polite">Schau zuerst auf das Bild.</div>';
  worked.insertBefore(panel,$('.work-steps',worked));
  const draw=(i,total)=>{
   let level=i===0?0:Math.min(3,Math.floor(i/total*3));if(topic==='brueche'&&card.id==='type-10')level=i===total?3:i>=3?1:0;$$('.work-steps>li',worked).forEach((li,j)=>li.classList.toggle('current-step',j===i-1));
   if(spec){let params=spec.v;if(topic==='gleichwertig'&&card.id==='type-3'&&i<total){params=i===1?{n:18,d:24,k:2,reverse:true}:i===2?{n:9,d:12,k:3,reverse:true}:spec.v;if(i===1||i===2)level=2;}$('.linked-board',panel).innerHTML=scenes[spec.kind](params,level);if(i>0&&i<total)$$('.scene-equation',panel).forEach(el=>el.hidden=true);}
   else if(picture){$('.linked-board',panel).innerHTML=picture.innerHTML;$('.linked-board',panel).classList.toggle('picture-focus',i>0);}
-  $('.linked-state',panel).textContent=i===0?'Bekanntes ansehen · Rechenweg noch verdeckt':i===total?'Bild zur Rechnung':`Bild zur Rechenzeile ${i}`;
+  $('.linked-state',panel).textContent=i===0?'Schau zuerst auf das Bild.':i===total?'Bild zur Rechnung':`Bild zur Rechenzeile ${i}`;
  };
  card.addEventListener('merkheft:step',e=>draw(e.detail.index,e.detail.total));draw(0,$$('.work-steps>li',worked).length);
 });

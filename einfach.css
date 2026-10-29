@@ -13,7 +13,8 @@
 .simple-layout .task-lines{margin:0;padding-left:20px}.simple-layout .task-lines>li{margin:10px 0}
 .simple-layout .worked{background:white;border:1px solid #c5d9e3;border-radius:16px;padding:16px;margin:18px 0}
 .simple-layout .worked>summary{font-size:1.05rem;padding:6px;color:#326b82}
-.simple-layout .worked>.control,.simple-layout .step-actions{display:none!important}
+.simple-layout .worked>.control{display:none!important}
+.simple-layout .step-actions{display:flex!important;flex-wrap:wrap;gap:12px}
 .simple-layout .work-steps>li{box-shadow:none;margin:14px 0}
 .simple-layout .answer-block{margin-top:18px;padding:16px}
 .simple-help,.simple-reference{border:0;border-top:1px solid #dfd2d9;border-radius:0;background:transparent;padding:16px 0;margin:12px 0}
@@ -25,3 +26,5 @@
 .simple-reference h2{font-size:1.1rem;margin-top:24px}
 .simple-layout #werkzeug{margin-top:0}.simple-layout .linked-picture{box-shadow:none}
 @media(max-width:540px){.simple-layout main{padding:24px 18px}.simple-tabs{gap:8px}.simple-tabs button{padding:10px 8px;font-size:.9rem}.simple-layout .case-pager button{min-width:90px;padding:10px}.simple-layout .worked{padding:12px 8px}.simple-choice select{font-size:.9rem}}
+
+.simple-layout #werkzeug{border:0;padding:0;margin:24px 0 40px;background:transparent}.simple-layout #typen{border-top:2px solid #e4d2db;padding-top:28px}.simple-layout .guided-follow{margin-top:20px;background:#fffaf1}.simple-tabs button{max-width:none}.simple-layout .play-stage{box-shadow:0 8px 28px #783d5312}.simple-layout .play-banner h3{font-size:1.5rem}

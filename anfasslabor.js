@@ -30,7 +30,7 @@ const Core={
 const lab=document.querySelector('#werkzeug');if(!lab)return;
 const topic=document.body.dataset.topic;
 if(topic==='quotienten')return; // The distribution chapter keeps its dedicated four-step model.
-const titles={brueche:'Bruchbaukasten',gleichwertig:'Bruch-Werkstatt',gemischt:'Bündelmaschine',vergleichen:'Gleichnamig-Labor',zahlenstrahl:'Verschiebbare Zahlenlinie',dezimal:'Stellenwert-Maschine',dezimalvergleich:'Stellenwert-Lupe',groessen:'Räumliches Einheiten-Labor'};
+const titles={brueche:'Bruchbaukasten',gleichwertig:'Bruch-Werkstatt',gemischt:'Bündelmaschine',vergleichen:'Brüche vergleichen',zahlenstrahl:'Verschiebbare Zahlenlinie',dezimal:'Stellenwert-Maschine',dezimalvergleich:'Stellenwert-Lupe',groessen:'Längen, Flächen und Körper'};
 if(!titles[topic])return;
 const help=document.createElement('details');help.className='guided-follow';help.innerHTML='<summary>Ein Beispiel Schritt für Schritt verstehen</summary>';
 const h2=lab.querySelector('h2');h2.textContent=titles[topic];
@@ -40,14 +40,14 @@ let S={n:3,d:8,mask:new Set([0,1,2]),view:'circle',k:2,workmode:'extend',workSho
 if(topic==='gleichwertig')S.k=4;
 let message='',activeDrag=null;
 const playbook={
- brueche:['Anteil entdecken','Wie viel gehört dir?','Tippe auf die Stücke im Bild.'],
- gleichwertig:['Gleiche Menge · neue Stücke','Mehr Schnitte. Gleicher Anteil.','Unterteile die Schokolade. Beobachte die gefärbte Menge.'],
- gemischt:['Aus Teilen werden Ganze','Füll die Schachteln.','Ziehe ein Bruchstück in eine Schachtel – oder tippe es an.'],
- vergleichen:['Zwei Anteile im Vergleich','Gleiche Stückgröße macht es sichtbar.','Verändere die Schnittlinien bei A und B.'],
+ brueche:['Brüche sehen','Wie viele Stücke nimmst du?','Tippe auf ein Stück. Tippe noch einmal, um es wegzunehmen.'],
+ gleichwertig:['Schokolade teilen','Die Menge bleibt gleich.','Wähle eine Zahl. Klicke dann auf Erweitern oder Kürzen.'],
+ gemischt:['Ganze und Rest','Fülle die Schachteln.','Ziehe ein Stück in die Schachtel. Du kannst es auch antippen.'],
+ vergleichen:['Brüche vergleichen','Welcher Streifen zeigt mehr?','Teile beide Streifen in gleich große Stücke.'],
  zahlenstrahl:['Zahlen in Bewegung','Wo landet dein Bruch?','Ziehe den Punkt. Jede Lücke zählt.'],
- dezimal:['Kleine Teile · große Einheiten','10 hinein. 1 heraus.','Tippe Plättchen an oder ziehe sie in den Bündler.'],
- dezimalvergleich:['Spurensuche bei den Stellenwerten','Welche Stelle entscheidet?','Tippe eine Stelle an oder ziehe die Lupe.'],
- groessen:['Länge · Fläche · Raum','Entdecke, was in einer Einheit steckt.','Drehe den Würfel. Verschiebe die gelbe Schicht.']
+ dezimal:['Zehntel und Hundertstel','Aus 10 kleinen wird 1 größeres.','Lege 10 Plättchen in den Tauschkasten.'],
+ dezimalvergleich:['Kommazahlen vergleichen','Welche Ziffer ist anders?','Tippe auf eine Spalte. Du kannst auch die Lupe ziehen.'],
+ groessen:['Länge, Fläche, Raum','Schau in den Würfel.','Drehe ihn. Fülle ihn Schicht für Schicht.']
 };
 const pairs=[['0,43','0,418'],['0,6','0,600'],['−0,41','−0,40'],['0,15','0,151']];
 // Kurze Rückmeldungen zeigen die Handlung; keine dauernden Animationen.

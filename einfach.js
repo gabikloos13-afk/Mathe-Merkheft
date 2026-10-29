@@ -8,13 +8,13 @@ $('#grundlage')?.remove();$('main > .nav')?.remove();$('main > .eyebrow')?.remov
 $$(':scope > .eyebrow,:scope > h2',examples).forEach(e=>e.remove());
 const switcher=document.createElement('div');switcher.className='simple-tabs';switcher.setAttribute('role','group');switcher.setAttribute('aria-label','Ansicht wählen');
 const exampleButton=document.createElement('button'),toolButton=document.createElement('button');
-exampleButton.textContent='Beispiele';toolButton.textContent='Selbst ausprobieren';exampleButton.type=toolButton.type='button';
+exampleButton.textContent='Beispiele ↓';toolButton.textContent='Ausprobieren ↓';exampleButton.type=toolButton.type='button';
 exampleButton.setAttribute('aria-controls','typen');toolButton.setAttribute('aria-controls','werkzeug');switcher.append(exampleButton,toolButton);
 const subtitle=$('main > .subtitle');(subtitle||$('h1')).after(switcher);
-main.insertBefore(examples,lab);
-function mode(tool){examples.hidden=tool;lab.hidden=!tool;exampleButton.setAttribute('aria-pressed',String(!tool));toolButton.setAttribute('aria-pressed',String(tool));}
-exampleButton.addEventListener('click',()=>mode(false));toolButton.addEventListener('click',()=>mode(true));
-mode(location.hash==='#werkzeug');window.addEventListener('hashchange',()=>mode(location.hash==='#werkzeug'));
+main.insertBefore(lab,examples);
+// The model stays visible. These buttons only move down or up the same page.
+examples.hidden=false;lab.hidden=false;
+exampleButton.addEventListener('click',()=>examples.scrollIntoView({block:'start'}));toolButton.addEventListener('click',()=>lab.scrollIntoView({block:'start'}));
 // One ordinary selection field; no drawer containing a search and another selector.
 const jump=$('#task-jump'),choice=document.createElement('div');choice.className='simple-choice';
 const label=document.createElement('label');label.htmlFor=jump.id;label.textContent='Beispiel auswählen';choice.append(label,jump);examples.prepend(choice);
@@ -43,7 +43,7 @@ $$('.case').forEach(card=>{
  // The old step renderer still owns this node; the empty control stays inert.
  card.append(help);
  const worked=$('.worked',card);$('summary',worked).textContent='So geht’s';
- const action=$('.step-actions',worked);if(action)action.hidden=true;
+ const action=$('.step-actions',worked);if(action)action.hidden=false;
  // A single picture in the solution replaces a second picture-only disclosure.
  for(const extra of $$(':scope > details',card)){
   if(extra===worked||extra===help)continue;
@@ -60,7 +60,9 @@ if(words||rules){const reference=document.createElement('details');reference.cla
  main.append(reference);
 }
 // Keep the direct model. The separate guided laboratory repeats the same idea.
-for(const child of [...lab.children])if(child.tagName==='DETAILS')child.remove();
+for(const child of [...lab.children])if(child.tagName==='DETAILS'&&child.classList.contains('guided-follow')){
+ const heading=$(':scope > summary',child);if(heading)heading.textContent='Schau dir die Bildschritte an';
+}
 $$(':scope > .eyebrow',lab).forEach(e=>e.remove());
 const toolTitles={brueche:'Brüche entdecken',gleichwertig:'Kürzen und Erweitern ausprobieren',gemischt:'Ganze und Reststücke',zahlenstrahl:'Zahlenstrahl',quotienten:'Gerecht verteilen',vergleichen:'Brüche nebeneinander',dezimal:'Zehntel und Hundertstel',dezimalvergleich:'Kommazahlen vergleichen',groessen:'Größen entdecken'};
 const toolTitle=$(':scope > h2',lab);if(toolTitle)toolTitle.textContent=toolTitles[document.body.dataset.topic];

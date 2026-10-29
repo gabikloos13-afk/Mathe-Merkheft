@@ -27,7 +27,7 @@ $$('.quick-examples').forEach(group=>{
 // Musterwege: keine Bewertung, keine zufälligen Übungsaufgaben.
 $$('.worked').forEach(box=>{
  const items=[...box.querySelectorAll('.work-steps>li')],btn=box.querySelector('.next-step'),status=box.querySelector('.step-progress');let i=0;
- function paint(){items.forEach((li,j)=>li.hidden=j>=i);box.querySelector('.heft').hidden=i<items.length;box.querySelector('.control').hidden=i<items.length;status.textContent=i===items.length?'':`${i} von ${items.length} Rechenzeilen`;btn.textContent=i===items.length?'Einzeln durchgehen':i===0?'Erste Zeile zeigen':'Nächste Zeile zeigen';box.dispatchEvent(new CustomEvent('merkheft:step',{bubbles:true,detail:{index:i,total:items.length}}))}
+ function paint(){items.forEach((li,j)=>li.hidden=j>=i);box.querySelector('.heft').hidden=i<items.length;box.querySelector('.control').hidden=i<items.length;status.textContent=i===items.length?'':`${i} von ${items.length} Schritten`;btn.textContent=i===items.length?'Noch einmal – Schritt für Schritt':i===0?'Ersten Schritt zeigen':'Weiter: nächster Schritt';box.dispatchEvent(new CustomEvent('merkheft:step',{bubbles:true,detail:{index:i,total:items.length}}))}
  btn.addEventListener('click',()=>{i=i===items.length?0:i+1;paint()});box.addEventListener('toggle',()=>{i=box.open?items.length:0;paint()});paint();
 });
 // Immer genau eine Aufgabenkarte; Suche bleibt in der geschlossenen Auswahl.

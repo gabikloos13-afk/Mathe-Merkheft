@@ -13,7 +13,25 @@ function strip(n,d,x,y,w=140,h=48){
  return b;
 }
 function groups(o,stage){
- const {n,d,known,unit,back}=o,one=back?known/n:known/d,cols=Math.min(d,5),w=Math.min(62,300/cols),gap=8;
+ const {n,d,known,unit,back}=o,one=back?known/n:known/d;
+ if((unit==='Birnen'||unit==='Kinder')&&Number.isInteger(one)&&one<=30){
+  let body='';const bw=Math.min(170,540/d),gap=12,start=(600-d*bw-(d-1)*gap)/2;
+  for(let g=0;g<d;g++){
+   const x=start+g*(bw+gap),active=stage===0?(back?g<n:true):stage===1?g===0:back||g<n,knownGroup=!back||g<n||stage>=2;
+   body+=`<g opacity="${active?1:.3}"><rect x="${x}" y="24" width="${bw}" height="192" rx="20" fill="${active?'#fff0d8':'#f0ebe5'}" stroke="${active?'#d3a266':'#cdbeb0'}" stroke-width="2"/>`;
+   if(unit==='Birnen')body+=`<path d="M${x+16} 34C${x+16} 4 ${x+bw-16} 4 ${x+bw-16} 34" fill="none" stroke="#c3945e" stroke-width="5"/><path d="M${x+8} 172h${bw-16}m0 40H${x+8}" stroke="#c3945e" stroke-width="3"/>`;
+   if(knownGroup){const cols=unit==='Birnen'?5:4,rows=Math.ceil(one/cols),dx=(bw-24)/cols,dy=Math.min(30,132/rows);
+    for(let j=0;j<one;j++){
+     const px=x+12+j%cols*dx+dx/2,py=40+Math.floor(j/cols)*dy;
+     body+=unit==='Birnen'?`<g class="counted-pear" style="--piece-order:${j}"><path d="M${px} ${py+6}C${px-4} ${py+1} ${px-8} ${py+11} ${px-9} ${py+18}C${px-11} ${py+32} ${px+12} ${py+32} ${px+9} ${py+18}C${px+8} ${py+10} ${px+4} ${py+3} ${px} ${py+6}Z" fill="#d7be4b" stroke="#b99a2f"/><path d="M${px} ${py+7}q-1-6 2-9" stroke="#795c34" stroke-width="2" fill="none"/><ellipse cx="${px+5}" cy="${py+1}" rx="5" ry="2.5" fill="#739866" transform="rotate(-25 ${px+5} ${py+1})"/><path d="M${px-5} ${py+17}q-2 6 1 8" stroke="#eee29b" stroke-width="2" fill="none"/></g>`:`<g class="counted-child"><circle cx="${px}" cy="${py+6}" r="6" fill="#e3bb91"/><path d="M${px-8} ${py+26}v-10q8-7 16 0v10Z" fill="${['#6b95b1','#b07d9c','#7da58e'][j%3]}"/><path d="M${px-4} ${py+26}v8m8-8v8" stroke="#6b5966" stroke-width="3"/></g>`;
+    }
+   }else body+=`<text x="${x+bw/2}" y="116" text-anchor="middle" font-size="50" fill="#ae9e92">?</text>`;
+   body+=`<rect x="${x+8}" y="177" width="${bw-16}" height="31" rx="10" fill="${active?C.berry:'#d5cbd3'}"/><text x="${x+bw/2}" y="199" text-anchor="middle" font-size="21" fill="white">${stage===0?'?':active?fmt(one):'?'} ${esc(unit)}</text></g>`;
+  }
+  const label=stage===0?`${fmt(known)} ${unit}${back?' in '+n+' Teilen':''}`:stage===1?`1 Teil: ${fmt(one)} ${unit}`:`${back?d:n} Teile: ${fmt(back?one*d:one*n)} ${unit}`;
+  return `<svg viewBox="0 0 600 270" role="img" aria-label="${esc(label)}" xmlns="http://www.w3.org/2000/svg">${body}<text x="300" y="253" text-anchor="middle" font-size="23" fill="${C.ink}">${esc(label)}</text></svg>`;
+ }
+ const cols=Math.min(d,5),w=Math.min(62,300/cols),gap=8;
  let b='',rows=Math.ceil(d/cols),h=rows>1?41:61;
  for(let i=0;i<d;i++){
   const active=stage===0?(back?i<n:true):stage===1?i===0:(back?true:i<n);
@@ -32,17 +50,24 @@ function groups(o,stage){
 }
 function transform(n,d,k,reverse=false){
  const goalN=reverse?n/k:n*k,goalD=reverse?d/k:d*k;
- return SVG(T(82,30,'Vorher')+T(278,30,'Nachher')+strip(n,d,12,52)+arrow(164,77)+strip(goalN,goalD,208,52)+T(82,127,n+'/'+d,22)+T(278,127,goalN+'/'+goalD,22)+T(180,163,'Gleich viel – '+(reverse?'größere Stücke':'kleinere Stücke'),16),'Vorher '+n+'/'+d+', nachher '+goalN+'/'+goalD+'. Die gefärbte Fläche bleibt gleich groß.');
+ const chocolate=(num,den,x)=>strip(num,den,x,52).replaceAll(C.berry,'#865342')+Array.from({length:den},(_,i)=>`<path d="M${x+i*140/den+3} 56h${Math.max(1,140/den-6)}v38" stroke="${i<num?'#b47c5c':'#d4c7b6'}" stroke-width="1.5" fill="none"/>`).join('');
+ return SVG(T(82,30,'Vorher')+T(278,30,'Nachher')+chocolate(n,d,12)+arrow(164,77)+chocolate(goalN,goalD,208)+T(82,127,n+'/'+d,22)+T(278,127,goalN+'/'+goalD,22)+T(180,163,'Gleich viel Schokolade',17),'Vorher '+n+'/'+d+', nachher '+goalN+'/'+goalD+'. Die gefärbte Fläche bleibt gleich groß.');
 }
 function bundle(n,d,stage,negative=false){
  let b='',count=Math.ceil(n/d),w=Math.min(95,300/count),gap=9;
  for(let g=0;g<count;g++){
   let x=180-count*(w+gap)/2+g*(w+gap),parts=Math.min(d,n-g*d);
   b+=R(x,37,w,83,'#f0e9dc','stroke="#d2ba92" stroke-width="2"');
-  for(let i=0;i<d;i++)b+=R(x+5,42+(d-i-1)*72/d,w-10,Math.max(3,72/d-3),i<parts?(g===count-1&&parts<d?C.gold:C.berry):'#fffcf7');
+  if(d<=5){
+   for(let i=0;i<d;i++){
+    const cx=x+12+(i%2)*(w-24)/2+(w-24)/4,cy=49+Math.floor(i/2)*23;
+    if(i<parts)b+=`<path d="M${cx-9} ${cy+2}h18l-3 12h-12Z" fill="#ce9573" stroke="#a57356"/><path d="M${cx-11} ${cy+2}q-2-7 5-8q5-8 10 0q8 0 6 8Z" fill="${g===count-1&&parts<d?'#e4bc64':'#91654f'}"/><circle cx="${cx-3}" cy="${cy-3}" r="1.5" fill="#493b37"/><circle cx="${cx+5}" cy="${cy}" r="1.5" fill="#493b37"/>`;
+    else b+=`<rect x="${cx-10}" y="${cy-6}" width="20" height="20" rx="5" fill="none" stroke="#bfb3a4" stroke-dasharray="3 3"/>`;
+   }
+  }else for(let i=0;i<d;i++)b+=R(x+5,42+(d-i-1)*72/d,w-10,Math.max(3,72/d-3),i<parts?(g===count-1&&parts<d?C.gold:C.berry):'#fffcf7');
   b+=T(x+w/2,144,parts===d?'1 Ganzes':parts+'/'+d,15);
  }
- return SVG(b+T(180,20,negative?'Das Bild zeigt die Menge ohne Minus.':n+' Stücke · je '+d+' bilden ein Ganzes',15),n+' Stücke in Gruppen mit je '+d+' Plätzen; '+Math.floor(n/d)+' Ganze und '+n%d+' Reststücke.');
+ return SVG(b+T(180,20,negative?'Das Bild zeigt die Menge ohne Minus.':d<=5?'1 ganze Schachtel = '+d+' Muffins':n+' Stücke · je '+d+' bilden ein Ganzes',15),n+' Stücke in Gruppen mit je '+d+' Plätzen; '+Math.floor(n/d)+' Ganze und '+n%d+' Reststücke.');
 }
 function compare(a,b,c,d){
  return SVG(T(38,43,a+'/'+b,20)+strip(a,b,78,15,260,44)+T(38,111,c+'/'+d,20)+strip(c,d,78,83,260,44)+T(180,162,'Gleich lange Ganze vergleichen',17),'Gleich lange Bruchstreifen: '+a+'/'+b+' und '+c+'/'+d+'.');
@@ -66,7 +91,16 @@ function unitPicture(from,to,k,divide=false){
  return SVG(R(14,36,130,80,'#e8f0f4')+T(79,68,'1 '+from,23,C.blue)+T(79,98,k+' '+to,18)+arrow(159,76)+R(211,36,135,80,'#f5e4eb')+T(278,70,divide?'größere Einheit':'kleinere Einheit',14)+T(278,100,(divide?'durch ':'mal ')+k,22,C.berry)+T(180,154,'Die Menge bleibt gleich.',17),'1 '+from+' = '+k+' '+to+'. '+(divide?'Teile':'Multipliziere')+' die Zahl mit '+k+'.');
 }
 function share(n,d){
- let b='';for(let i=0;i<Math.min(d,12);i++){let x=30+i%6*59,y=46+Math.floor(i/6)*56;b+=`<ellipse cx="${x}" cy="${y}" rx="24" ry="18" fill="#e8f0f4" stroke="#b7cdd7"/>`+T(x,y+5,n+'/'+d,14,C.berry);}
+ let b='';for(let i=0;i<Math.min(d,12);i++){
+  let x=30+i%6*59,y=46+Math.floor(i/6)*56;
+  b+=`<circle cx="${x}" cy="${y}" r="23" fill="#edf4f6" stroke="#bbd0d8"/><circle cx="${x}" cy="${y}" r="17" fill="#faf2df" stroke="#d6b97a"/>`;
+  for(let j=0;j<d;j++){
+   const a=-Math.PI/2+j*2*Math.PI/d,z=a+2*Math.PI/d,pt=t=>`${x+15*Math.cos(t)},${y+15*Math.sin(t)}`;
+   b+=`<path d="M${x} ${y}L${pt(a)}A15 15 0 ${2*Math.PI/d>Math.PI?1:0} 1 ${pt(z)}Z" fill="${j<n?'#edbd5d':'#faf2df'}" stroke="#d6b97a" stroke-width=".5"/>`;
+   if(j<n)b+=`<circle cx="${x+9*Math.cos((a+z)/2)}" cy="${y+9*Math.sin((a+z)/2)}" r="1.6" fill="#b25848"/>`;
+  }
+  b+=T(x,y+37,n+'/'+d,13,C.berry);
+ }
  return SVG(T(180,18,n+' Pizzen für '+d+' Kinder',18)+b+T(180,166,'Jeder Teller bekommt gleich viel.',16),n+' Pizzen werden gleich auf '+d+' Kinder verteilt. Jeder erhält '+n+'/'+d+' Pizza.');
 }
 function cube(stage){
