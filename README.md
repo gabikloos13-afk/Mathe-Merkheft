@@ -114,3 +114,20 @@ Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bz
 - Schmale Vorschau mit 375 CSS-Pixeln: Auswahl, Blättern und geöffnete Erklärung ohne horizontalen Überlauf.
 - Alle 96 Musterwege und ihre Verlinkungen statisch geprüft; beide bestehenden Mathematiktests bestehen.
 - Druckansicht enthält weiterhin alle Musterwege.
+
+## Bildwerkzeuge mit eigener Bildsprache
+
+- Pizza und Schokoladentafel als direkt markierbare, mathematisch gleich große Teile.
+- Modelle stehen vor den Einstellungen; Bild und Rechnung teilen sich eine Arbeitsfläche.
+- Häufige Einstellungen sind direkt sichtbare Auswahltasten statt Dropdowns.
+- Bruchstücke mit Kreisbild, freie Schachtelplätze und Hervorhebung voller Ganzer.
+- Stellenwert-Plättchen mit Mengenbildern, Zehner-Bündler und kurzen Transferbewegungen.
+- Echte Lupenform, vergrößerte Ziffern, farblich getrennte Mengenbilder.
+- Eigene Werkzeugbilder auf der Startseite in `werkzeugbilder.js`; genaue Modelle bleiben SVG/HTML.
+- Ausführliche Begründung und Bedienhilfe in eigenen Aufklappbereichen.
+- Bewegung nur als kurze Handlungsrückmeldung; reduzierte Bewegung wird respektiert.
+- Alle neun Kapitel bei 375 CSS-Pixeln ohne horizontalen Überlauf geprüft.
+- Markieren, Auswahlwechsel, Bündeln, Kürzen/Erweitern, gemeinsame Nenner, Zahlenstrahl per Tastatur, Lupenstelle, Würfelnetz und Flächengitter im Browser geprüft.
+- 96 Musterwege bleiben erhalten; entfernte kapitelübergreifende Themenlisten bleiben entfernt.
+
+![Bruchbaukasten in der Browser-Vorschau](docs/bruchbaukasten-vorschau.jpg)
