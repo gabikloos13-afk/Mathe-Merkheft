@@ -8,7 +8,7 @@ const simplify=(n,d)=>{const g=gcd(n,d);return [n/g,d/g]};
 const list=items=>'<ul class="mini-explain">'+items.flatMap(x=>String(x).split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ])/)).map(x=>'<li>'+x+'</li>').join('')+'</ul>';
 const button=(action,label,more='')=>`<button type="button" data-do="${action}" ${more}>${label}</button>`;
 const option=(id,label,values,value)=>{
- const chips=['pieces','shape','workfactor','bundleden','lineden','unitdimension'].includes(id);
+ const chips=['pieces','shape','workfactor','workmode','bundleden','lineden','unitdimension'].includes(id);
  return `<div class="control-group ${chips?'chip-group':''}"><label for="${id}">${label}</label><select id="${id}" data-control="${id}" ${chips?'class="visually-select" tabindex="-1" aria-hidden="true"':''}>${values.map(([v,t])=>`<option value="${v}" ${String(v)===String(value)?'selected':''}>${t}</option>`).join('')}</select>${chips?`<div class="choice-row" role="group" aria-label="${label}">${values.map(([v,t])=>`<button type="button" data-choice="${id}" data-value="${v}" value="${v}" aria-pressed="${String(v)===String(value)}">${t}</button>`).join('')}</div>`:''}</div>`;
 };
 const range=(id,label,min,max,value,step=1)=>`<label for="${id}">${label}: <b>${fmt(value)}</b><input id="${id}" data-control="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${value}"></label>`;
@@ -36,8 +36,8 @@ const help=document.createElement('details');help.className='guided-follow';help
 const h2=lab.querySelector('h2');h2.textContent=titles[topic];
 let node=h2.nextSibling;while(node){const next=node.nextSibling;help.append(node);node=next}
 const root=document.createElement('div');root.className='direct-workspace';root.id='anfasslabor';lab.append(root,help);
-let S={n:3,d:8,mask:new Set([0,1,2]),view:'circle',k:2,original:{n:2,d:3},work:{n:2,d:3},count:11,den:4,locations:Array(11).fill(0),selected:null,a:2,b:3,c:3,bd:4,fa:1,fb:1,overlay:false,lineN:3,lineD:4,start:-1,span:3,total:35,h:35,hb:0,t:0,tb:0,e:0,pair:0,loupe:0,dim:3,angle:25,layers:5,slice:5,surface:false,lengthMask:new Set([0,1,2,3,4]),areaMask:new Set(Array.from({length:50},(_,i)=>i))};
-let message='',activeDrag=null,history=[];
+let S={n:3,d:8,mask:new Set([0,1,2]),view:'circle',k:2,workmode:'extend',workShown:false,count:11,den:4,locations:Array(11).fill(0),selected:null,a:2,b:3,c:3,bd:4,fa:1,fb:1,overlay:false,lineN:3,lineD:4,start:-1,span:3,total:35,h:35,hb:0,t:0,tb:0,e:0,pair:0,loupe:0,dim:3,angle:25,layers:5,slice:5,surface:false,lengthMask:new Set([0,1,2,3,4]),areaMask:new Set(Array.from({length:50},(_,i)=>i))};
+let message='',activeDrag=null;
 const playbook={
  brueche:['Anteil entdecken','Wie viel gehört dir?','Tippe auf die Stücke im Bild.'],
  gleichwertig:['Gleiche Menge · neue Stücke','Mehr Schnitte. Gleicher Anteil.','Unterteile die Schokolade. Beobachte die gefärbte Menge.'],
@@ -66,7 +66,7 @@ function feedback(kind='change'){
  root.querySelector('.hands-answer').animate([{transform:'scale(.98)',background:'#fff0c7'},{transform:'scale(1)',background:'#ffffffd9'}],{duration:280});
  if(kind==='cut')root.querySelectorAll('.work-cut').forEach(el=>el.animate([{strokeDasharray:'90',strokeDashoffset:'90'},{strokeDasharray:'90',strokeDashoffset:'0'}],{duration:400}));
 }
-function reset(){history=[];message='';if(topic==='brueche'){S.mask=new Set([0,1,2]);S.d=8}if(topic==='gleichwertig')S.work={...S.original};if(topic==='gemischt'){S.locations=Array(S.count).fill(0);S.selected=null}if(topic==='dezimal'){S.h=S.total;S.hb=S.t=S.tb=S.e=0}render()}
+function reset(){message='';if(topic==='brueche'){S.mask=new Set([0,1,2]);S.d=8}if(topic==='gleichwertig')S.workShown=false;if(topic==='gemischt'){S.locations=Array(S.count).fill(0);S.selected=null}if(topic==='dezimal'){S.h=S.total;S.hb=S.t=S.tb=S.e=0}render()}
 function shell(instruction,controls,board,answer,explanation,actions=''){
  const focused=document.activeElement;let focusQuery=null;if(focused&&root.contains(focused)){const names=['data-do','data-group','data-k','data-piece','data-token','data-place','data-loupe','data-area','data-length','data-choice','data-value'];const attrs=names.filter(n=>focused.hasAttribute(n));if(attrs.length)focusQuery=attrs.map(n=>'['+n+'=\"'+focused.getAttribute(n)+'\"]').join('');}
  if(!root.children.length){
@@ -100,11 +100,18 @@ function fractionBuilder(){
  shell(['Tippe direkt auf ein Stück. So färbst du es.','Tippe noch einmal auf dasselbe Stück. So wird es wieder frei.'],option('pieces','Teile pro Ganzem',[[2,'2 Hälften'],[3,'3 Drittel'],[4,'4 Viertel'],[6,'6 Sechstel'],[8,'8 Achtel'],[10,'10 Zehntel'],[12,'12 Zwölftel']],d)+option('shape','Bild wechseln',[['circle','Pizza'],['bar','Streifen'],['grid','Schokolade']],S.view),image,`${F(n,d)} = ${n} von ${d} Teilen`,[`<b>Nenner ${d}:</b> So viele gleich große Teile bilden das Ganze.`,`<b>Zähler ${n}:</b> So viele Teile hast du gefärbt.`,n?`Anderes Bild, gleicher Anteil: ${F(n,d)} = ${b===1?fmt(a):F(a,b)}.`:'Noch kein Teil ist gefärbt.'],button('all','Alle färben')+button('none','Alle freigeben'));
 }
 function workshop(){
- const {n,d}=S.work,base=S.original,divisors=Array.from({length:Math.min(n,d)},(_,i)=>i+1).filter(k=>k>1&&n%k===0&&d%k===0);let b='<rect x="17" y="48" width="566" height="104" rx="9" fill="#b3a4be"/>'+rect(25,55,550,90,'#eee7df')+rect(25,55,550*n/d,90,'#865342');
- for(let i=0;i<=d;i++)b+=`<path d="M${25+i*550/d} 55v90" class="work-cut" data-cut="${i}"/>`;
- b+='<path d="M25 100H575" stroke="#fff7ee" stroke-opacity=".5"/>';b+=text(25,30,'Gleiche Schokolade – andere Einteilung.');
- const log=history.length?`<ol class="work-history">${history.map(x=>`<li>${F(x.n,x.d)} ${x.direction==='split'?'mit '+x.k+' erweitern':'mit '+x.k+' kürzen'} → ${F(x.to.n,x.to.d)}</li>`).join('')}</ol>`:'';
- shell(['Erzeuge neue Schnittlinien mit „Teile unterteilen“.','Fasse Teilstücke mit einer passenden Kürzungszahl zusammen.'],option('workfactor','Jedes Stück unterteilen in',[[2,'2 neue Stücke'],[3,'3 neue Stücke'],[4,'4 neue Stücke'],[5,'5 neue Stücke']],S.k),svg(b,180,'Gleichbleibende Fläche mit veränderbaren Schnittlinien')+log,`${F(base.n,base.d)} = ${F(n,d)}`,[`Du siehst jetzt ${d} Teile insgesamt.`,`Davon sind ${n} Teile gefärbt.`,`Beim Unterteilen und Zusammenfassen verändern sich beide Zahlen mit demselben Faktor.`],button('split','Teile unterteilen',d*S.k>120?'disabled':'')+divisors.map(k=>button('join','Je '+k+' Teile zusammenfassen',`data-k="${k}"`)).join('')+button('reset','Zur Ausgangseinteilung'));
+ const reduce=S.workmode==='reduce',k=S.k;
+ const from=reduce?Core.split(2,3,k):{n:2,d:3},to=reduce?{n:2,d:3}:Core.split(2,3,k),sign=reduce?':':'·';
+ const strip=(n,d,label)=>{
+  let body=rect(20,10,560,80,'#eee7df')+rect(20,10,560*n/d,80,'#865342');
+  for(let i=0;i<=d;i++)body+=`<path d="M${20+i*560/d} 10v80" class="work-cut"/>`;
+  return svg(body,105,label);
+ };
+ const calc=`<div class="workshop-calculation"><div><b>Zähler · oben</b><span>${from.n} ${sign} ${k} = <strong>${to.n}</strong></span></div><div><b>Nenner · unten</b><span>${from.d} ${sign} ${k} = <strong>${to.d}</strong></span></div></div>`;
+ const picture=`<div class="workshop-pair"><div><h4>Vorher: ${F(from.n,from.d)}</h4>${strip(from.n,from.d,'Vorher: '+from.n+' von '+from.d+' gleichen Teilen')}</div><div class="${S.workShown?'':'workshop-awaiting'}"><h4>${S.workShown?'Nachher: '+F(to.n,to.d):'Nachher'}</h4>${S.workShown?strip(to.n,to.d,'Nachher: '+to.n+' von '+to.d+' gleichen Teilen'):'<div class="workshop-placeholder">'+(reduce?'Kürzen':'Erweitern')+' unten anklicken ↓</div>'}</div></div>${S.workShown?calc:''}`;
+ shell([reduce?'Wähle die Zahl, durch die du oben und unten teilen möchtest.':'Wähle die Zahl, mit der du oben und unten malnehmen möchtest.',reduce?'Klicke auf „Mit '+k+' kürzen“.':'Klicke auf „Mit '+k+' erweitern“.'],option('workmode','Was möchtest du ansehen?',[['extend','Erweitern'],['reduce','Kürzen']],S.workmode)+option('workfactor','Mit welcher Zahl?',[[2,'2'],[3,'3'],[4,'4'],[5,'5']],k),picture,S.workShown?`${F(from.n,from.d)} = ${F(to.n,to.d)}`:`Start: ${F(from.n,from.d)}`,[reduce?'Beim Kürzen fasst du kleine Stücke zu größeren Stücken zusammen.':`Beim Erweitern teilst du jedes Stück in ${k} gleich große Stücke.`,reduce?'Es gibt weniger Teile insgesamt.':'Es gibt mehr Teile insgesamt.',reduce?'Auch die gefärbten Teile werden zusammengefasst.':'Auch die gefärbten Teile werden in kleinere Stücke geteilt.','Die gefärbte Menge bleibt gleich.','Darum bleibt auch der Wert des Bruchs gleich.'],button('work-show','Mit '+k+(reduce?' kürzen':' erweitern'),S.workShown?'disabled':'')+(S.workShown?button('reset','Noch einmal ansehen'):''));
+ root.querySelector('.play-banner h3').textContent=reduce?'Oben und unten teilen.':'Oben und unten malnehmen.';
+ root.querySelector('.touch-tip span:last-child').textContent=reduce?'Weniger Stücke. Gleich viel Schokolade.':'Mehr Stücke. Gleich viel Schokolade.';
 }
 function tile(i,group){const a=-Math.PI/2+Math.PI*2/S.den,x=22+18*Math.cos(a),y=22+18*Math.sin(a),icon=`<svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19" fill="#e9e4f4"/><path d="M22 22L22 4A18 18 0 0 1 ${x} ${y}Z" fill="#9860ac" stroke="white"/></svg>`;return `<button type="button" draggable="true" data-token="${i}" class="bundle-token ${S.selected===i?'chosen':''}" aria-label="Bruchstück ${i+1} auswählen: 1 von ${S.den} gleich großen Teilen" data-sourcegroup="${group}">${icon}<span>${F(1,S.den)}</span></button>`}
 function bundler(){
@@ -174,9 +181,8 @@ function action(name,el){message='';
  if(name==='drop-here'&&S.selected!==null){from=root.querySelector('[data-token="'+S.selected+'"]')?.getBoundingClientRect();destination='[data-drop="'+el.dataset.group+'"]'}
  if(name==='ten-h'||name==='ten-t'){kind=name==='ten-h'?'h':'t';from=root.querySelector('[data-place="'+kind+'"]')?.getBoundingClientRect();movingCount=Math.min(kind==='h'?S.h:S.t,10-(kind==='h'?S.hb:S.tb));destination=(kind==='h'?S.hb:S.tb)+movingCount===10?(kind==='h'?'.place-machine-row:nth-child(2) .place-stock':'.whole-stock'):'[data-exchange="'+kind+'"]'}
  if(name==='reset')return reset();
+ if(name==='work-show')S.workShown=true;
  if(name==='all'||name==='none')S.mask=name==='all'?new Set(Array.from({length:S.d},(_,i)=>i)):new Set();
- if(name==='split'){const from={...S.work};if(from.d*S.k<=120){S.work=Core.split(from.n,from.d,S.k);history.push({...from,k:S.k,direction:'split',to:{...S.work}})}}
- if(name==='join'){const k=+el.dataset.k,from={...S.work},to=Core.join(from.n,from.d,k);if(to){S.work=to;history.push({...from,k,direction:'join',to:{...to}})}}
  if(name==='drop-here')dropPiece(+el.dataset.group);if(name==='unpack-selected')dropPiece(0);
  if(name==='auto-piece'){const target=Core.bundleCount(S.locations,S.den).groups.findIndex(n=>n<S.den)+1;S.selected=S.locations.findIndex(x=>x===0);if(S.selected>=0)dropPiece(target);else{S.selected=null;message='Alle Stücke sind bereits zugeordnet.'}}
  if(name==='ungroup'){S.locations.fill(0);S.selected=null}
@@ -192,7 +198,7 @@ function action(name,el){message='';
  if(name==='surface')S.surface=!S.surface;
  if(name==='unit-all'||name==='unit-none'){const key=S.dim===1?'lengthMask':'areaMask',n=S.dim===1?10:100;S[key]=name==='unit-all'?new Set(Array.from({length:n},(_,i)=>i)):new Set()}
  render();
- if(from)motion(from,root.querySelector(destination),kind,movingCount);feedback(name==='split'||name==='join'?'cut':'change');
+ if(from)motion(from,root.querySelector(destination),kind,movingCount);feedback(name==='work-show'?'cut':'change');
 }
 root.addEventListener('click',event=>{
  const el=event.target.closest('[data-choice],[data-do],[data-piece],[data-token],[data-place],[data-loupe],[data-area],[data-length]');if(!el)return;
@@ -211,7 +217,8 @@ root.addEventListener('click',event=>{
 function control(el){const key=el.dataset.control,value=el.value;if(!key)return;message='';
  if(key==='pieces'){S.d=+value;S.mask=new Set([...S.mask].filter(x=>x<S.d))}
  if(key==='shape')S.view=value;
- if(key==='workfactor')S.k=+value;
+ if(key==='workfactor'){S.k=+value;S.workShown=false;}
+ if(key==='workmode'){S.workmode=value;S.workShown=false;}
  if(key==='bundlecount'||key==='bundleden'){if(key==='bundlecount')S.count=+value;else S.den=+value;S.locations=Array(S.count).fill(0);S.selected=null}
  if(key==='comparepair'){S.pair=+value;const p=[[2,3,3,4],[3,4,3,8],[2,3,4,6]][S.pair];[S.a,S.b,S.c,S.bd]=p;S.fa=S.fb=1}
  if(key==='factorA')S.fa=+value;if(key==='factorB')S.fb=+value;

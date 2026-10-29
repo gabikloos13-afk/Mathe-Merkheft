@@ -24,7 +24,7 @@ function transformScene(o,stage){
   if(major||(!reverse&&stage>=1)||(reverse&&stage<2))lines+=`<path class="cut-line ${!major?'new-cut':''}" d="M${x} 75v80" style="opacity:${reverse&&stage===1&&!major?.25:1}"/>`;
  }
  const b=box(40,75,520,80)+box(40,75,unitWidth*n/d,80,colors.part)+lines+txt(40,45,units===1?'Dasselbe Ganze · derselbe gefärbte Anteil':units+' Ganze im sichtbaren Streifen')+Array.from({length:units+1},(_,i)=>`<path d="M${40+i*unitWidth} 70v90" class="unit-line"/><text x="${40+i*unitWidth}" y="184" text-anchor="middle">${i}</text>`).join('');
- const step=['Einen Anteil betrachten',reverse?'Je '+k+' Stücke gehören zusammen':'Jedes Stück wird in '+k+' Teile zerlegt',reverse?'Innere Grenzen verschwinden':'Neue Stücke zählen','Anders geschrieben – gleich viel'][stage];
+ const step=['Einen Anteil betrachten',reverse?'Je '+k+' kleine Stücke werden zu einem größeren Stück':'Jedes Stück wird in '+k+' Teile zerlegt',reverse?'Innere Grenzen verschwinden':'Neue Stücke zählen','Anders geschrieben – gleich viel'][stage];
  return svg(b,200,step)+eq(stage===0?F(sourceN,sourceD):stage<3?`${F(sourceN,sourceD)} <span class="operation">${reverse?':':'·'} ${k} oben und unten</span>`:`${F(sourceN,sourceD)} = ${F(goalN,goalD)}`)+note(step);
 }
 function portionScene(o,stage){
@@ -144,7 +144,7 @@ function select(id,label,opts){return `<div class="control-box"><label for="${id
 function range(id,label,min,max,v,step=1){return `<div class="control-box"><label for="${id}">${label}: <output id="${id}-out">${fmt(v)}</output></label><input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${v}"></div>`}
 let ui='';
 if(topic==='brueche')ui=select('lab-situation','Welche Größe ist bekannt?',[[1,'Anteil: 21 Kinder sind drei Viertel'],[2,'Ganzes: 60 Birnen, davon zwei Drittel'],[3,'Rest: 320 g sind vier Fünftel']]);
-if(topic==='gleichwertig')ui=range('lab-factor','Unterteilungen je altem Stück',2,5,2)+select('lab-direction','Richtung',[['split','Erweitern: zusätzliche Schnitte'],['join','Kürzen: Stücke zusammenfassen']]);
+if(topic==='gleichwertig')ui=range('lab-factor','Mit welcher Zahl?',2,5,2)+select('lab-direction','Erweitern oder kürzen?',[['split','Erweitern: zusätzliche Schnitte'],['join','Kürzen: Stücke zusammenfassen']]);
 if(topic==='gemischt')ui=range('lab-pieces','Stücke insgesamt',1,24,11)+select('lab-den','Stücke je Ganzem',[[3,'Drittel: 3'],[4,'Viertel: 4'],[5,'Fünftel: 5']]);
 if(topic==='quotienten')ui=range('lab-pizzas','Pizzen',1,4,3)+range('lab-children','Kinder',2,6,4);
 if(topic==='vergleichen')ui=select('lab-pair','Zwei Brüche',[[1,'2/3 und 3/4'],[2,'3/4 und 3/8'],[3,'2/3 und 4/6'],[4,'−2/3 und −1/3']]);
@@ -184,7 +184,7 @@ function readControls(){
 $('#scene-transfer').addEventListener('click',()=>{
  alternate=!alternate;$('.controls',lab).hidden=alternate;$$('.controls input,.controls select',lab).forEach(el=>el.disabled=alternate);$('#scene-transfer').textContent=alternate?'Zur Ausgangsaufgabe zurück':'Gleicher Gedanke in einer anderen Aufgabe';
  const alternatives={brueche:{n:3,d:4,known:12,back:true,unit:'Kästchen'},gleichwertig:{n:3,d:4,k:2},gemischt:{n:17,d:5},zahlenstrahl:{a:.32,b:.33},quotienten:{n:2,d:5},vergleichen:{a:4,b:5,c:5,d:6},dezimal:{hundredths:75},dezimalvergleich:{a:.52,b:.7},groessen:{dim:3,value:.5}};
- const messages={brueche:'Vorher Kinder, jetzt Kästchen: Ein bekannter Anteil führt über EINEN Teil zum Ganzen.',gleichwertig:'Andere Zahlen: Wieder müssen Zähler und Nenner denselben Faktor erhalten.',gemischt:'Andere Stückgröße: Jetzt bilden fünf Fünftel jeweils ein Ganzes.',zahlenstrahl:'Andere Grenzen: Überblick und Lupe beschreiben weiterhin denselben Zahlenstrahl.',quotienten:'Andere Pizzenzahl und Kinderzahl: Von jedem Ganzen bekommt jedes Kind denselben Anteil.',vergleichen:'Andere Nenner: Die passenden Schnittlinien müssen wieder zu beiden Einteilungen passen.',dezimal:'Andere Menge: Zehn Hundertstel werden weiterhin zu einem Zehntel gebündelt.',dezimalvergleich:'Andere Ziffern: Wieder entscheidet die erste unterschiedliche Stelle.',groessen:'Vom Quadrat zum Würfel: Es kommt eine dritte Richtung dazu.'};
+ const messages={brueche:'Vorher Kinder, jetzt Kästchen: Ein bekannter Anteil führt über EINEN Teil zum Ganzen.',gleichwertig:'Auch bei anderen Zahlen gilt: oben und unten mal dieselbe Zahl.',gemischt:'Andere Stückgröße: Jetzt bilden fünf Fünftel jeweils ein Ganzes.',zahlenstrahl:'Andere Grenzen: Überblick und Lupe beschreiben weiterhin denselben Zahlenstrahl.',quotienten:'Andere Pizzenzahl und Kinderzahl: Von jedem Ganzen bekommt jedes Kind denselben Anteil.',vergleichen:'Andere Nenner: Die passenden Schnittlinien müssen wieder zu beiden Einteilungen passen.',dezimal:'Andere Menge: Zehn Hundertstel werden weiterhin zu einem Zehntel gebündelt.',dezimalvergleich:'Andere Ziffern: Wieder entscheidet die erste unterschiedliche Stelle.',groessen:'Vom Quadrat zum Würfel: Es kommt eine dritte Richtung dazu.'};
  if(alternate)cfg.v={...alternatives[topic]};else{readControls();return}
  $('#scene-transfer-note').hidden=false;$('#scene-transfer-note').innerHTML=miniList(messages[topic]);state=0;paint();
 });

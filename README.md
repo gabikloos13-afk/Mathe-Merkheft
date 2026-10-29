@@ -142,3 +142,13 @@ Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bz
 - Alle 96 Musterwege, ihre Aufdeckschritte und die interaktiven Bildwerkzeuge bleiben erhalten.
 - Alle neun Seiten statisch geprüft; Aufgabenkarte und geöffnete Erklärung in der schmalen Browseransicht kontrolliert.
 - Mathematiktests für Bildlabor und direkt bedienbare Werkzeuge bestehen.
+
+## Kürzen und Erweitern vereinfacht
+
+- Die Regel steht vor den Fachwörtern: oben und unten mal dieselbe Zahl; beim Kürzen durch dieselbe Zahl teilen.
+- Alle acht Musterwege sprachlich vereinfacht, Zahlen und Aufgabenfamilien erhalten.
+- Werkzeug mit getrenntem Erweitern/Kürzen, Zahlen 2–5 und einem Vorher-nachher-Vergleich.
+- Kein wiederholtes Anwachsen der Stückzahl bei weiteren Klicks.
+- Zwei getrennte Rechnungen für Zähler und Nenner, gleicher gefärbter Anteil in beiden Streifen.
+- Erweitern und Kürzen für alle vier Zahlen, Zurücksetzen, Aufdeckschritte und Auswahl im Browser geprüft.
+- Mobile Darstellung bei 375 CSS-Pixeln ohne horizontalen Überlauf geprüft.
