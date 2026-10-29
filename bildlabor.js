@@ -220,10 +220,9 @@ $$('.case').forEach(card=>{
 const relations=[
  {label:'Ein Teil ist bekannt – das Ganze wird gesucht',items:[['brueche',3,'Kinderzahl einer Klasse'],['brueche',9,'Vollständige Kästchenfigur'],['brueche',10,'Teiggewicht vor dem Backen']],idea:'Bekannten Anteil erkennen → einen Teil bestimmen → alle Teile ergänzen.'},
  {label:'Ein Ganzes ist bekannt – ein Anteil wird gesucht',items:[['brueche',2,'Anteil einer Menge'],['brueche',6,'Bruchteil einer Stunde'],['brueche',13,'Tankanzeige in Litern']],idea:'Ganzes durch den Nenner teilen → so viele Teile nehmen, wie der Zähler angibt.'},
- {label:'Andere Einteilung – derselbe Zahlenwert',items:[['gleichwertig',1,'Bruch erweitern'],['gleichwertig',2,'Bruch kürzen'],['dezimal',2,'Bruch als Dezimalzahl']],idea:'Die Schreibweise verändert sich. Die Menge und der Punkt auf dem Zahlenstrahl bleiben gleich.'},
- {label:'Eine unbekannte Schrittweite entschlüsseln',items:[['zahlenstrahl',7,'Unbeschriftete Teilstriche'],['groessen',9,'Abschnitte einer Gewichtsskala'],['dezimal',11,'Sprünge zurückverfolgen']],idea:'Abstand der bekannten Werte bestimmen → durch die Zahl der gleich großen Abschnitte teilen.'}
+ {label:'Andere Einteilung – derselbe Zahlenwert',items:[['gleichwertig',1,'Bruch erweitern'],['gleichwertig',2,'Bruch kürzen']],idea:'Die Schreibweise verändert sich. Die Menge und der Punkt auf dem Zahlenstrahl bleiben gleich.'},
 ];
-$('.case .transfer').forEach(details=>{
+$$('.case .transfer').forEach(details=>{
  const card=details.closest('.case');
  const relation=relations.find(r=>r.items.some(([t,id])=>t===topic&&card.id==='type-'+id));
  if(!relation)return;

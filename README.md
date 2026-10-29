@@ -131,3 +131,14 @@ Für Touch-Bedienung besitzen die Ziehaktionen gleichwertige Auswahl-/Ablege- bz
 - 96 Musterwege bleiben erhalten; entfernte kapitelübergreifende Themenlisten bleiben entfernt.
 
 ![Bruchbaukasten in der Browser-Vorschau](docs/bruchbaukasten-vorschau.jpg)
+
+## Klare Aufgaben und Farbsystem
+
+- Keine Themenlisten und keine Verweise auf andere Kapitel innerhalb der Themenseiten.
+- Die Startseite bleibt über den Merkheft-Titel erreichbar.
+- Fehlende Arbeitsaufträge ergänzt; unklare Einheiten und Fragen präzisiert.
+- Ein Gedanke pro Stichpunkt, mehr Abstand zwischen Angaben und Rechenschritten.
+- Regeln: lila; Erklärungen: blau; Merksätze: gelb; jeweils auch durch Überschriften erkennbar.
+- Alle 96 Musterwege, ihre Aufdeckschritte und die interaktiven Bildwerkzeuge bleiben erhalten.
+- Alle neun Seiten statisch geprüft; Aufgabenkarte und geöffnete Erklärung in der schmalen Browseransicht kontrolliert.
+- Mathematiktests für Bildlabor und direkt bedienbare Werkzeuge bestehen.

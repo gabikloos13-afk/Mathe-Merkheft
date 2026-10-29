@@ -22,3 +22,33 @@
 .cases .case{margin:22px 0}
 @media(max-width:540px){.case-pager{grid-template-columns:1fr 1fr;gap:10px}.case-pager .pager-count{grid-column:1/-1;grid-row:1;text-align:center}.case-pager button{padding:10px 8px}.reader-current{font-size:.95rem}}
 @media print{.task-picker,.case-pager,.reader-current{display:none}.cases .case[hidden]{display:block!important}}
+
+/* Gleiche Bedeutung, gleiche Farbe – zusätzlich immer mit Textüberschrift. */
+.knowledge-box{border-left-width:5px}
+.rules-box{border-color:#bca5cf;background:#f8f3fc}
+.rules-box h2{color:#634574}
+.rules-box .rules{list-style:disc;padding-left:24px}
+.rules-box .rules li{background:#fffafd;border:1px solid #e7dced;margin:12px 0;padding:12px 14px;line-height:1.85}
+.rules-box .rules li::marker{color:#795292}
+.memory-box{border-color:#d1ac52;background:#fff8e4}
+.memory-box h2{color:#7b5d20}
+.memory-box .explain>li{margin:15px 0;padding:4px 8px;line-height:1.9}
+.memory-box .explain>li::marker{color:#9a7528}
+.thought,.worked{background:#f0f7fb;border-color:#b8d2df}
+.thought>summary,.worked>summary{color:#2e6178}
+.question{background:#f7f3ee;border:1px solid #e1d4c9;padding:20px;margin-bottom:24px}
+.question>b{font-size:.85rem;color:#66505e;letter-spacing:.08em}
+.task-lines{padding-left:23px;line-height:1.9}
+.task-lines>li{margin:15px 0;padding-left:6px}
+.explain{line-height:1.9}
+.explain>li{margin:14px 0;padding-left:6px}
+.work-steps>li{padding:14px 16px;margin:22px 0;background:#f8fcfe;border-left-color:#80afc3}
+.work-steps>li.current-step{background:#e8f4fb;border-left-color:#3d7e9b}
+.work-steps>li>b{color:#2e6178;font-size:.9rem}
+.word-help dd .explain>li{margin:14px 0}
+.pit{background:#fff2ec;border-color:#ddb8a8}.pit>summary{color:#8e4b35}
+.transfer{background:#f1f7fa;border-color:#bed3de}.transfer>summary{color:#2e6178}
+.relation-group{background:#f5fafe;border-color:#bed3de}
+.heft{line-height:1.9;margin:24px 0;padding:20px}
+.math-line{padding:11px 0;min-height:42px}
+@media(max-width:540px){.question{padding:17px 14px}.task-lines>li{margin:15px 0}.rules-box .rules li{padding:12px 10px}.work-steps>li{padding:12px;margin:20px 0}.heft{padding:15px}.memory-box .explain>li{padding-left:3px}}
