@@ -27,8 +27,8 @@ $$('.quick-examples').forEach(group=>{
 // Musterwege: keine Bewertung, keine zufälligen Übungsaufgaben.
 $$('.worked').forEach(box=>{
  const items=[...box.querySelectorAll('.work-steps>li')],btn=box.querySelector('.next-step'),status=box.querySelector('.step-progress');let i=0;
- function paint(){items.forEach((li,j)=>li.hidden=j>=i);box.querySelector('.heft').hidden=i<items.length;box.querySelector('.control').hidden=i<items.length;status.textContent=`${i} von ${items.length} Schritten`;btn.textContent=i===items.length?'Schritte wieder verdecken':i===0?'Ersten Schritt zeigen':'Nächsten Schritt zeigen';box.dispatchEvent(new CustomEvent('merkheft:step',{bubbles:true,detail:{index:i,total:items.length}}))}
- btn.addEventListener('click',()=>{i=i===items.length?0:i+1;paint()});box.addEventListener('toggle',()=>{if(!box.open){i=0;paint()}});paint();
+ function paint(){items.forEach((li,j)=>li.hidden=j>=i);box.querySelector('.heft').hidden=i<items.length;box.querySelector('.control').hidden=i<items.length;status.textContent=i===items.length?'':`${i} von ${items.length} Rechenzeilen`;btn.textContent=i===items.length?'Einzeln durchgehen':i===0?'Erste Zeile zeigen':'Nächste Zeile zeigen';box.dispatchEvent(new CustomEvent('merkheft:step',{bubbles:true,detail:{index:i,total:items.length}}))}
+ btn.addEventListener('click',()=>{i=i===items.length?0:i+1;paint()});box.addEventListener('toggle',()=>{i=box.open?items.length:0;paint()});paint();
 });
 // Immer genau eine Aufgabenkarte; Suche bleibt in der geschlossenen Auswahl.
 const cases=$$('.case'),jump=$('#task-jump'),search=$('#task-search');
@@ -58,7 +58,7 @@ if(cases.length){
   if(move){
    picker.open=false;history.pushState({merkheftCase:card.id},'','#'+card.id);
    card.focus({preventScroll:true});
-   heading.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+   heading.scrollIntoView({behavior:'auto',block:'start'});
   }
  }
  function filter(){
