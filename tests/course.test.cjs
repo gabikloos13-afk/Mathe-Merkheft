@@ -34,3 +34,10 @@ assert.equal(explanations,285);
 assert(!data.brueche.cases[8].notebookHtml,'complete school solution is preserved');
 assert(data.brueche.cases[8].steps[2].html.includes('3 · 5 = 15'));
 console.log('PASS:',explanations,'individuelle Schritterklärungen, 98 kurze Einführungen, vollständiger Weg über einen Teil.');
+
+assert(data.gleichwertig.cases[2].steps[0].choice.join(' ').includes('2 passen'));
+assert(data.gleichwertig.cases[4].steps[0].html.includes('20 : 5 = 4'));
+assert(data.gleichwertig.cases[5].steps[0].html.includes('15 : 3 = 5'));
+assert(data.vergleichen.cases[3].steps[0].choice.join(' ').includes('3er- und in der 4er-Reihe'));
+for(const r of Object.values(data.gleichwertig.cases))assert(r.principle.length>=2);
+console.log('PASS: Grundregeln, mehrere mögliche Kürzungszahlen, berechnete Malzahlen und gemeinsamer Nenner.');

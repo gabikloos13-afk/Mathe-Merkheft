@@ -201,8 +201,8 @@ function coursePicture(topic,id,index,r){
     return beforeAfter(a,b);
    }
    const nums=(step.plain||step.text).match(/\d+/g)||[];
-   if(id===4&&nums.length)return beforeAfter(p,{d:Number(nums[nums.length-1])});
-   if(id===5&&nums.length)return beforeAfter(p,{n:Number(nums[nums.length-1])});
+   if(id===4&&nums.length)return beforeAfter(p,{d:20});
+   if(id===5&&nums.length)return beforeAfter(p,{n:15});
    return fractionPicture(p,'Suche eine Zahl zum Teilen.');
   }
  }

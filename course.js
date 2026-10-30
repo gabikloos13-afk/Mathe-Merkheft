@@ -5,7 +5,7 @@ const topic=document.body.dataset.topic,c=window.MERKHEFT_COURSES[topic];if(!c)r
 const list=xs=>'<ul>'+xs.map(s=>'<li>'+s+'</li>').join('')+'</ul>';
 const state={mode:'learn',learn:c.lessons[0].id,examples:c.groups[0][0],steps:{},paint:new Set(),paintGroups:false,paintChecked:false};
 const reader=document.createElement('article');reader.className='lesson-card';reader.id='active-example';
-reader.innerHTML='<div class="example-heading"><span class="example-tag"></span><h2 id="example-title"></h2></div><div class="task-box"><b>Aufgabe</b><div class="task-copy"></div></div><div class="lesson-status"><span id="phase-label"></span><span id="phase-count"></span></div><div class="learning-stage" aria-live="polite" aria-atomic="true"><div class="stage-calculation"></div><div class="stage-note"></div><div class="stage-picture"></div></div><div class="lesson-actions"><button type="button" id="step-back">← Zurück</button><button type="button" id="step-next">Weiter →</button></div><div class="stage-hint" hidden></div><button type="button" id="hint-toggle">Ein kurzer Tipp</button>';
+reader.innerHTML='<div class="example-heading"><span class="example-tag"></span><h2 id="example-title"></h2></div><div class="principle-box" hidden></div><div class="task-box"><b>Aufgabe</b><div class="task-copy"></div></div><div class="lesson-status"><span id="phase-label"></span><span id="phase-count"></span></div><div class="learning-stage" aria-live="polite" aria-atomic="true"><div class="stage-calculation"></div><div class="stage-note"></div><div class="stage-picture"></div></div><div class="lesson-actions"><button type="button" id="step-back">← Zurück</button><button type="button" id="step-next">Weiter →</button></div><div class="stage-hint" hidden></div><button type="button" id="hint-toggle">Ein kurzer Tipp</button>';
 reader.addEventListener('click',event=>{
  const cell=event.target.closest('[data-paint-cell]');
  if(cell){const n=Number(cell.dataset.paintCell);state.paint.has(n)?state.paint.delete(n):state.paint.add(n);state.paintChecked=false;updatePaint();return;}
@@ -43,6 +43,7 @@ function render(){
  const r=c.cases[id()],p=phase(),last=r.steps.length+1;
  reader.dataset.case=id();reader.dataset.phase=p;
  $('.example-tag',reader).textContent=state.mode==='learn'?'Gemeinsam verstehen':'Ein Beispiel zum Nachsehen';
+ const principle=$('.principle-box',reader);principle.hidden=p!==0||!r.principle;principle.innerHTML=r.principle?'<b>Grundregel</b>'+list(r.principle):'';
  $('#example-title').textContent=r.title;$('.task-copy',reader).innerHTML=list(r.question);
  $$('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.lesson)===state.learn)));
  $('#example-select').value=state.examples;
@@ -53,10 +54,10 @@ function render(){
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
  if(p===0){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),-1,r);
-  note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
+  if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
  }else if(p<last){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),p-1,r);
-  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+r.steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+s.html+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>').join('')+'</div>';
+  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+r.steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+s.html+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>').join('')+'</div>';
 
  }else{
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
