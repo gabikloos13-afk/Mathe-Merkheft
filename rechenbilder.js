@@ -267,7 +267,7 @@ function decimalLine(a,b,middle){
  if(middle!==null)s+=`<path d="M${X(middle)} 72v36" stroke="${C.gold}" stroke-width="5"/>`+T(180,167,fmt(middle),20);
  return SVG(s,(middle===null?'Die beiden Zahlen auf dem Zahlenstrahl: ':'Die Mitte ist '+fmt(middle)+'. ')+fmt(a)+' und '+fmt(b));
 }
-window.MerkheftPictures={render:coursePicture};
+window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
 const topic=document.body.dataset.topic;
 document.querySelectorAll('.case').forEach(card=>{
  const id=Number(card.id.slice(5)),draw=specs[topic+':'+id];if(!draw)return;

@@ -67,3 +67,5 @@
 
 .principle-box{margin:0 0 18px;padding:14px 16px;border-left:4px solid #6b8798;background:#eff5f7;border-radius:12px;font-size:.94rem;color:#3f5967}.principle-box>b{font-size:.85em}.principle-box ul,.choice-note ul{margin:8px 0 0;padding-left:19px}.principle-box li,.choice-note li{margin:8px 0;line-height:1.65}
 .choice-note{font-size:.86em;color:#4d6270;font-weight:normal;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e7d9b7}.choice-note>b{font-size:.87em;color:#8c6726}
+
+.approach-note{color:#3e5d6d;font-size:.95rem;line-height:1.65}.approach-note>b{color:#783d53}.approach-note p{margin:12px 0}.approach-note ul{margin:0;padding-left:20px}.approach-note li{margin:10px 0}

@@ -24,13 +24,14 @@ reader.addEventListener('click',event=>{
  counter.textContent=count===1?'1 gefärbtes Feld gezählt.':count+' gefärbte Felder gezählt.';
 });
 reader.addEventListener('keydown',event=>{if(event.target.matches('[data-count-field]')&&['Enter',' '].includes(event.key)){event.preventDefault();event.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}});
-const path=$('#lesson-path');c.lessons.forEach((l,i)=>{let b=document.createElement('button');b.type='button';b.dataset.lesson=l.id;b.innerHTML='<span>'+(i+1)+'</span> '+l.label;b.addEventListener('click',()=>{state.learn=l.id;state.steps[l.id]=0;render();route();});path.append(b);});
+const path=$('#lesson-path');c.lessons.forEach((l,i)=>{let b=document.createElement('button');b.type='button';b.dataset.lesson=l.id;b.innerHTML='<span>'+(i+1)+'</span> '+l.label;b.addEventListener('click',()=>{state.learn=l.id;state.steps["learn:"+l.id]=0;render();route();});path.append(b);});
 $('#course-goal').textContent=c.goal;
 const ordered=c.groups.flat();
 c.groups.forEach((ids,i)=>{let g=document.createElement('optgroup');g.label=['Grundlagen','Darauf aufbauen','Kniffliger'][i];ids.forEach(id=>{let o=document.createElement('option');o.value=id;o.textContent=c.cases[id].title;g.append(o);});$('#example-select').append(g);});
-$('#example-select').addEventListener('change',e=>{state.examples=Number(e.target.value);state.steps[state.examples]=0;render();route();});
+$('#example-select').addEventListener('change',e=>{state.examples=Number(e.target.value);state.steps["examples:"+state.examples]=0;render();route();});
 function id(){return state.mode==='learn'?state.learn:state.examples;}
-function phase(){return state.steps[id()]||0;}
+function phaseKey(){return state.mode+":"+id();}
+function phase(){return state.steps[phaseKey()]||0;}
 function route(){const hash=state.mode==='learn'?'lernen-type-'+state.learn:state.mode==='examples'?'type-'+state.examples:state.mode==='tool'?'werkzeug':'nachschlagen';history.replaceState(null,'','#'+hash);}
 function setMode(mode){state.mode=mode;render();route();}
 $$('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
@@ -40,24 +41,25 @@ function render(){
  $$('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
  if(state.mode!=='learn'&&state.mode!=='examples')return;
  $('#'+(state.mode==='learn'?'learn-reader':'example-reader')).append(reader);
- const r=c.cases[id()],p=phase(),last=r.steps.length+1;
+ const r=c.cases[id()],steps=state.mode==='learn'?(r.learnSteps||r.steps):r.steps,p=phase(),last=steps.length+1;
  reader.dataset.case=id();reader.dataset.phase=p;
  $('.example-tag',reader).textContent=state.mode==='learn'?'Gemeinsam verstehen':'Ein Beispiel zum Nachsehen';
- const principle=$('.principle-box',reader);principle.hidden=p!==0||!r.principle;principle.innerHTML=r.principle?'<b>Grundregel</b>'+list(r.principle):'';
+ const principle=$('.principle-box',reader);principle.hidden=state.mode!=="learn"||p!==0||!r.principle;principle.innerHTML=r.principle?'<b>Grundregel</b>'+list(r.principle):'';
  $('#example-title').textContent=r.title;$('.task-copy',reader).innerHTML=list(r.question);
  $$('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.lesson)===state.learn)));
  $('#example-select').value=state.examples;
  const pos=ordered.indexOf(state.examples);$('#case-position').textContent=(pos+1)+' / '+ordered.length;$('#case-prev').disabled=pos===0;$('#case-next').disabled=pos===ordered.length-1;
  $('#phase-count').textContent='Schritt '+(p+1)+' von '+(last+1);
  $('#phase-label').textContent=p===0?'1 · Das ist gegeben':p===last?'Fertig · Rechnung und Antwort':'So rechnest du · '+p;
+ if(state.mode==='learn'&&p>0&&p<last)$('#phase-label').textContent=steps[p-1].title;
  const picture=$('.stage-picture',reader),calculation=$('.stage-calculation',reader),note=$('.stage-note',reader);
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
  if(p===0){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),-1,r);
-  if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
+  if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b><p>'+r.recognize+'</p>'+list(r.intro)+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
  }else if(p<last){
-  picture.innerHTML=window.MerkheftPictures.render(topic,id(),p-1,r);
-  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+r.steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+s.html+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>').join('')+'</div>';
+  picture.innerHTML=state.mode==='learn'?window.MerkheftPictures.learning(topic,id(),steps[p-1],r):window.MerkheftPictures.render(topic,id(),p-1,r);
+  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+s.html+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>').join('')+'</div>';
 
  }else{
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
@@ -70,13 +72,13 @@ function render(){
  $('#step-back').disabled=p===0;
  $('#step-next').textContent=p===0?'Ersten Schritt zeigen →':p<last?'Weiter →':state.mode==='examples'?(pos<ordered.length-1?'Nächstes Beispiel →':'Noch einmal ansehen'):c.lessons.findIndex(l=>l.id===state.learn)<c.lessons.length-1?'Nächster Lernschritt →':'Weitere Beispiele →';
  const hint=$('.stage-hint',reader);hint.hidden=true;hint.innerHTML=list(r.hint.length?r.hint:[c.rules[0]||c.goal]);$('#hint-toggle').hidden=p===last;$('#hint-toggle').setAttribute('aria-expanded','false');
- $('#step-back').onclick=()=>{state.steps[id()]=Math.max(0,phase()-1);render();};
+ $('#step-back').onclick=()=>{state.steps[phaseKey()]=Math.max(0,phase()-1);render();};
  $('#step-next').onclick=()=>{
-  if(phase()<last){state.steps[id()]=phase()+1;render();return;}
-  if(state.mode==='examples'){if(pos<ordered.length-1)caseMove(1);else{state.steps[id()]=0;render();}return;}
+  if(phase()<last){state.steps[phaseKey()]=phase()+1;render();return;}
+  if(state.mode==='examples'){if(pos<ordered.length-1)caseMove(1);else{state.steps[phaseKey()]=0;render();}return;}
   const at=c.lessons.findIndex(l=>l.id===state.learn);
-  if(state.mode==='learn'&&at<c.lessons.length-1){state.learn=c.lessons[at+1].id;state.steps[state.learn]=0;render();route();reader.scrollIntoView({block:'start'});}
-  else{state.examples=ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0];state.steps[state.examples]=0;setMode('examples');}
+  if(state.mode==='learn'&&at<c.lessons.length-1){state.learn=c.lessons[at+1].id;state.steps["learn:"+state.learn]=0;render();route();reader.scrollIntoView({block:'start'});}
+  else{state.examples=ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0];state.steps["examples:"+state.examples]=0;setMode('examples');}
  };
  $('#hint-toggle').onclick=()=>{hint.hidden=!hint.hidden;$('#hint-toggle').setAttribute('aria-expanded',String(!hint.hidden));};
 }
@@ -102,7 +104,7 @@ function closingHint(t,n,r){
  const correct=r.trap.find(s=>s.includes('Richtig:'));if(correct)return correct.replace(/<b>Richtig:<\/b>\s*/,'');
  return c.rules[0]||c.goal;
 }
-function caseMove(delta){const at=ordered.indexOf(state.examples),next=ordered[at+delta];if(next!==undefined){state.examples=next;state.steps[next]=0;render();route();reader.scrollIntoView({block:'start'});}}
+function caseMove(delta){const at=ordered.indexOf(state.examples),next=ordered[at+delta];if(next!==undefined){state.examples=next;state.steps["examples:"+next]=0;render();route();reader.scrollIntoView({block:'start'});}}
 $('#case-prev').addEventListener('click',()=>caseMove(-1));$('#case-next').addEventListener('click',()=>caseMove(1));
 const reference=$('#reference-pane');reference.innerHTML='<div class="reference-card"><h2>Kurz merken</h2>'+list(c.rules)+'</div><div class="reference-card"><h2>Wörter verstehen</h2><dl>'+c.words.map(w=>'<dt>'+w.word+'</dt><dd>'+list(w.lines)+'</dd>').join('')+'</dl></div>';
 function parseRoute(){const h=location.hash.slice(1);let m;if((m=/^lernen-type-(\d+)$/.exec(h))&&c.lessons.some(l=>l.id===Number(m[1]))){state.mode='learn';state.learn=Number(m[1]);}else if((m=/^type-(\d+)$/.exec(h))&&c.cases[m[1]]){state.mode='examples';state.examples=Number(m[1]);}else if(h==='werkzeug')state.mode='tool';else if(h==='nachschlagen')state.mode='reference';render();}

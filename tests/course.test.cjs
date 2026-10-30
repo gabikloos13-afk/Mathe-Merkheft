@@ -41,3 +41,13 @@ assert(data.gleichwertig.cases[5].steps[0].html.includes('15 : 3 = 5'));
 assert(data.vergleichen.cases[3].steps[0].choice.join(' ').includes('3er- und in der 4er-Reihe'));
 for(const r of Object.values(data.gleichwertig.cases))assert(r.principle.length>=2);
 console.log('PASS: Grundregeln, mehrere mögliche Kürzungszahlen, berechnete Malzahlen und gemeinsamer Nenner.');
+
+let learnFrames=0;
+for(const [topic,c]of Object.entries(data)){
+ for(const r of Object.values(c.cases))assert(r.recognize.length>15);
+ for(const lesson of c.lessons){const r=c.cases[lesson.id];assert(r.learnSteps.length>=r.steps.length);
+  for(const s of r.learnSteps){assert(s.source>=0&&s.source<r.steps.length);assert(s.explain.length>=2);const svg=context.window.MerkheftPictures.learning(topic,r.id,s,r);assert(svg.includes('<svg'));assert(!/NaN|undefined|Infinity/.test(svg));learnFrames++;}
+ }
+}
+const expand=data.gleichwertig.cases[1];assert.equal(expand.learnSteps.length,4);assert(expand.learnSteps[1].html.includes('2 · 4 = 8'));assert(!expand.learnSteps[1].html.includes('3 · 4 = 12'));assert(context.window.MerkheftPictures.learning('gleichwertig',1,expand.learnSteps[1],expand).includes('8/□'));assert.equal(expand.steps.length,1);
+console.log('PASS:',learnFrames,'eigene Lernschritte mit passenden Bildern; 98 Vorgehenshinweise bei Beispiele.');
