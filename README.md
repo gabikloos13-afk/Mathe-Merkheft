@@ -1,3 +1,11 @@
+## Hinweise zum aktuellen Schritt · 30.10.2026
+
+Der aufgabenweite Tipp-Fallback wurde im gemeinsamen Reader entfernt. Einführungen verwenden `startHint`, jede der 285 Beispielzeilen und jeder der 142 Lernschritte ein eigenes `hint`-Feld. Am Ende öffnet „Ergebnis prüfen“ die Kontrolle genau dieses Beispiels. Beim Rendern wird der Hinweis geschlossen und mit dem Bereich, Beispiel und Schritt neu verknüpft (`data-for-step`).
+
+Die Suche nach der Kürzungszahl wird beim Lernen an 12/16 ausdrücklich als Prüfung kleiner Kandidaten erklärt: 2 passt, 3 passt nicht, 4 passt ebenfalls. Eine größere passende Zahl muss nicht erraten werden. Bei vorgegebenem Zielnenner steht die Regel neuer Nenner geteilt durch alter Nenner im Lernbereich.
+
+Browserprüfung: 216 Hinweisansichten in 37 Lernwegen und 481 Hinweisansichten in allen 98 Beispielen, einschließlich Einstieg und Schlusskontrolle. Alle wurden geöffnet, auf Schrittzuordnung und nichtleeren Inhalt geprüft; beim Weitergehen durfte der alte Hinweis nicht sichtbar bleiben. Die letzten drei Beispielkapitel wurden nach einem Zeitlimit in getrennten Durchläufen vollständig erneut geprüft. Datenprüfung umfasst 427 Schritttipps, 98 Einstiegstipps und 98 Kontrollen. Inhaltliche Zuordnung ist in den datengebundenen Tipps ausformuliert; dies ist kein Nachweis des Lernerfolgs eines Kindes.
+
 ## Getrennte Führung für Lernen und Beispiele · 30.10.2026
 
 Lernen verwendet eigene `learnSteps`: 37 Einstiege mit 142 kleinen Schritten. Bruchumformungen werden in die Wahl der Zahl, Rechnung oben, Rechnung unten und das Schreiben des Bruchs getrennt. Die Bilder zeigen Zwischenstände mit noch offenen Stellen. Die abschließende Heftlösung nutzt weiterhin den zusammenhängenden Schulrechenweg aus `steps`.

@@ -53,3 +53,12 @@ const expand=data.gleichwertig.cases[1];assert.equal(expand.learnSteps.length,4)
 console.log('PASS:',learnFrames,'eigene Lernschritte mit passenden Bildern; 98 Vorgehenshinweise bei Beispiele.');
 
 const signs=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Das Vorzeichen bestimmen');assert.equal(signs.length,2);assert(signs[0].html.includes('15 : (−12)'));assert(signs[1].html.includes('(−15) : (−12)'));console.log('PASS: Vorzeichen vor dem Kürzen ausdrücklich bestimmt.');
+
+let hintCount=0;
+for(const c of Object.values(data))for(const r of Object.values(c.cases)){
+ assert(r.startHint.length>10);assert(r.check.length);
+ for(const s of [...r.steps,...(r.learnSteps||[])]){assert(s.hint.length===1);assert(s.hint[0].length>10);hintCount++;}
+}
+assert.equal(hintCount,427);
+const negativeHints=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Oben rechnen'&&s.pairs[0].n<0);assert(negativeHints.every(s=>s.hint[0].includes('Minus')));
+console.log('PASS:',hintCount,'schrittspezifische Hinweise, 98 Einstiegstipps und 98 aufgabenbezogene Kontrollen.');

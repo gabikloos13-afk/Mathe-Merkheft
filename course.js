@@ -71,7 +71,7 @@ function render(){
  }
  $('#step-back').disabled=p===0;
  $('#step-next').textContent=p===0?'Ersten Schritt zeigen →':p<last?'Weiter →':state.mode==='examples'?(pos<ordered.length-1?'Nächstes Beispiel →':'Noch einmal ansehen'):c.lessons.findIndex(l=>l.id===state.learn)<c.lessons.length-1?'Nächster Lernschritt →':'Weitere Beispiele →';
- const hint=$('.stage-hint',reader);hint.hidden=true;hint.innerHTML=list(r.hint.length?r.hint:[c.rules[0]||c.goal]);$('#hint-toggle').hidden=p===last;$('#hint-toggle').setAttribute('aria-expanded','false');
+ const hint=$('.stage-hint',reader);hint.hidden=true;hint.innerHTML=list(p===0?[r.startHint]:p===last?r.check:steps[p-1].hint);hint.dataset.forStep=state.mode+':'+id()+':'+p;$('#hint-toggle').hidden=false;$('#hint-toggle').textContent=p===last?'Ergebnis prüfen':'Tipp zu diesem Schritt';$('#hint-toggle').setAttribute('aria-expanded','false');
  $('#step-back').onclick=()=>{state.steps[phaseKey()]=Math.max(0,phase()-1);render();};
  $('#step-next').onclick=()=>{
   if(phase()<last){state.steps[phaseKey()]=phase()+1;render();return;}
