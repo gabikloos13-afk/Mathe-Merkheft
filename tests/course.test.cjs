@@ -30,14 +30,14 @@ for(const [topic,c] of Object.entries(data))for(const [id,r] of Object.entries(c
   explanations++;
  }
 }
-assert.equal(explanations,316);
+assert.equal(explanations,314);
 assert(!data.brueche.cases[8].notebookHtml,'complete school solution is preserved');
 assert(data.brueche.cases[8].steps[2].html.includes('3 · 5 = 15'));
 console.log('PASS:',explanations,'individuelle Schritterklärungen, 98 kurze Einführungen, vollständiger Weg über einen Teil.');
 
 assert(data.gleichwertig.cases[2].steps[0].decisionHtml.includes('12 : 2 = 6')); 
-assert(data.gleichwertig.cases[4].steps[0].html.includes('20 : 5 = 4'));
-assert(data.gleichwertig.cases[5].steps[0].html.includes('15 : 3 = 5'));
+assert(data.gleichwertig.cases[4].steps[0].decisionHtml.includes('20 : 5 = 4'));
+assert(data.gleichwertig.cases[5].steps[0].decisionHtml.includes('15 : 3 = 5'));
 assert(data.vergleichen.cases[3].steps[0].choice.join(' ').includes('3er- und in der 4er-Reihe'));
 for(const r of Object.values(data.gleichwertig.cases))assert(r.principle.length>=2);
 console.log('PASS: Grundregeln, mehrere mögliche Kürzungszahlen, berechnete Malzahlen und gemeinsamer Nenner.');
@@ -59,7 +59,7 @@ for(const c of Object.values(data))for(const r of Object.values(c.cases)){
  assert(r.startHint.length>10);assert(r.check.length);
  for(const s of [...r.steps,...(r.learnSteps||[])]){assert(s.hint.length===1);assert(s.hint[0].length>10);hintCount++;}
 }
-assert.equal(hintCount,484);
+assert.equal(hintCount,480);
 const negativeHints=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Oben rechnen'&&s.pairs[0].n<0);assert(negativeHints.every(s=>s.hint[0].includes('Minus')));
 console.log('PASS:',hintCount,'schrittspezifische Hinweise, 98 Einstiegstipps und 98 aufgabenbezogene Kontrollen.');
 
@@ -89,3 +89,17 @@ assert(negativeTop.includes('−4 · 5 = −20'));
 assert(!negativeTop.includes('−20/30'),'no future complete fraction at numerator step');
 assert.equal(data.gleichwertig.referenceCards.length,7);
 console.log('PASS: Alle acht Lernwege vollständig; jeder Bruchwert erhalten; negatives Erweitern ohne Umweg oder vorgezogenes Gesamtergebnis.');
+
+const model=data.gleichwertig.cases[2].steps;
+for(const r of Object.values(data.gleichwertig.cases)){
+ assert.equal(r.steps.length%4,0,'complete four-step rounds');
+ for(const [i,s] of r.steps.entries()){
+  assert.equal(s.title,model[i%4].title,'same visible schema as approved Kürzen');
+  assert.equal(s.chapterVisual.phase,['known','color','all','done'][i%4]);
+  if(i%4===0)assert(s.decisionHtml,'factor explained where selected');
+ }
+}
+assert(data.gleichwertig.cases[4].steps[0].decisionHtml.includes('5 · 3 = 15'));
+assert(data.gleichwertig.cases[4].steps[0].decisionHtml.includes('5 · 4 = 20'));
+assert(data.gleichwertig.cases[8].steps[0].decisionHtml.includes('30 : 9 = 3 Rest 3'));
+console.log('PASS: Jeder Aufgabentyp folgt exakt den vier Schritten des Kürzen-Vorbilds; passende und unpassende Rechenzahlen nachvollziehbar.');

@@ -49,3 +49,10 @@ for(const dim of [1,2,3,4,5])for(let step=0;step<4;step++)good(scenes.units({dim
 assert(scenes.units({dim:3,surface:true},3).includes('600 cm²'));
 assert.equal((scenes.units({dim:3,surface:true},2).match(/<rect /g)||[]).length,6);
 console.log('PASS: 36 basic states, conserved piece counts and areas, 20 distributions, nested zoom, comparisons and dimensional conversions');
+
+for(const [opts,up,down] of [[{n:2,d:3,k:4},'2 · 4 = 8','3 · 4 = 12'],[{n:12,d:16,k:4,reverse:true},'12 : 4 = 3','16 : 4 = 4']]){
+ const numerator=scenes.transform(opts,1),denominator=scenes.transform(opts,2);
+ assert(numerator.includes(up));assert(!numerator.includes(down));assert(denominator.includes(down));
+ assert(numerator.includes('Nur die bunten Stücke'));assert(denominator.includes('Jetzt alle Stücke'));
+}
+console.log('PASS: Geführtes Bild zeigt erst die obere Rechnung und erst danach die untere; beide Richtungen nach demselben Schema.');

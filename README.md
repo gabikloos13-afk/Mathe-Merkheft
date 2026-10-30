@@ -1,3 +1,7 @@
+## Kürzen als verbindliches Vorbild (30.10.2026)
+
+Der bestätigte Kürzen-Lernweg (Aufgabe 2) bleibt inhaltlich unverändert. Jeder andere Aufgabentyp folgt nun denselben vier Schritten mit denselben Überschriften. Zahlensuche bei Zielwerten zeigt passende und unpassende Malzahlen in Tabellen sowie die direkte Rechnung Zielzahl : alte Zahl. Alle Kürzungszahlen werden mit einer vollständigen Kandidatenliste geprüft. Der geführte Bildweg rechnet jetzt oben und unten getrennt; Bilder teilen beziehungsweise gruppieren zuerst nur die bunten und dann alle Stücke.
+
 ## Einheitlicher Bereich Kürzen und Erweitern (30.10.2026)
 
 Alle acht Aufgabentypen haben einen vollständigen Lernweg mit eigener Rechenzahl-Suche, getrennten Rechnungen oben/unten und passendem Hinweis pro Schritt. Lange Aufgaben zeigen während des Lernens nur die aktuelle Rechenrunde. Der negative Bruch −4/6 wird direkt mit 5 auf Nenner 30 erweitert. Nachschlagen enthält sieben kurze Karten mit Rechenbeispielen und zwei Flächenbildern. Das freie Bildwerkzeug kennzeichnet die selbst gewählte Rechenzahl und die vorbereiteten Kürzungsbeispiele.

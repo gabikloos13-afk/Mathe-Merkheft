@@ -17,15 +17,21 @@ function fractionStrip(n,d,x,y,w=520,h=55,cuts=true,ink=colors.part){
  return box(x,y,w,h)+box(x,y,w*n/d,h,ink)+(cuts?Array.from({length:d+1},(_,i)=>`<path class="cut-line" d="M${x+i*w/d} ${y}v${h}"/>`).join(''):'');
 }
 function transformScene(o,stage){
- const {n,d,k=2,reverse=false}=o,small=reverse?d/k:d,big=reverse?d:d*k;
- const sourceD=d,sourceN=n,goalD=reverse?d/k:d*k,goalN=reverse?n/k:n*k,units=Math.max(1,Math.ceil(n/d)),unitWidth=520/units;
+ const {n,d,k=2,reverse=false}=o,goalD=reverse?d/k:d*k,goalN=reverse?n/k:n*k,units=Math.max(1,Math.ceil(n/d)),unitWidth=520/units,sign=reverse?':':'·';
  let lines='';
- for(let i=0;i<=big*units;i++){const major=i%(big/small)===0,x=40+i*unitWidth/big;
-  if(major||(!reverse&&stage>=1)||(reverse&&stage<2))lines+=`<path class="cut-line ${!major?'new-cut':''}" d="M${x} 75v80" style="opacity:${reverse&&stage===1&&!major?.25:1}"/>`;
+ if(reverse){
+  const den=stage===3?goalD:d;
+  for(let i=0;i<=den*units;i++)lines+=`<path class="cut-line" d="M${40+i*unitWidth/den} 75v80"/>`;
+  if(stage===1||stage===2){const groups=stage===1?goalN:goalD*units;for(let i=0;i<groups;i++)lines+=`<rect x="${42+i*k*unitWidth/d}" y="72" width="${k*unitWidth/d-4}" height="86" rx="4" fill="none" stroke="#ac862e" stroke-width="3"/>`;}
+ }else{
+  for(let i=0;i<=d*units;i++)lines+=`<path class="cut-line" d="M${40+i*unitWidth/d} 75v80"/>`;
+  if(stage>0){const pieces=stage===1?n:d*units;for(let i=0;i<pieces;i++)for(let j=1;j<k;j++)lines+=`<path class="cut-line new-cut" d="M${40+(i+j/k)*unitWidth/d} 75v80"/>`;}
  }
- const b=box(40,75,520,80)+box(40,75,unitWidth*n/d,80,colors.part)+lines+txt(40,45,units===1?'Dasselbe Ganze · derselbe gefärbte Anteil':units+' Ganze im sichtbaren Streifen')+Array.from({length:units+1},(_,i)=>`<path d="M${40+i*unitWidth} 70v90" class="unit-line"/><text x="${40+i*unitWidth}" y="184" text-anchor="middle">${i}</text>`).join('');
- const step=['Einen Anteil betrachten',reverse?'Je '+k+' kleine Stücke werden zu einem größeren Stück':'Jedes Stück wird in '+k+' Teile zerlegt',reverse?'Innere Grenzen verschwinden':'Neue Stücke zählen','Anders geschrieben – gleich viel'][stage];
- return svg(b,200,step)+eq(stage===0?F(sourceN,sourceD):stage<3?`${F(sourceN,sourceD)} <span class="operation">${reverse?':':'·'} ${k} oben und unten</span>`:`${F(sourceN,sourceD)} = ${F(goalN,goalD)}`)+note(step);
+ const label=['Die passende Zahl finden','Oben rechnen','Unten genauso rechnen','Den neuen Bruch schreiben'][stage];
+ const b=box(40,75,520,80)+box(40,75,unitWidth*n/d,80,colors.part)+lines+txt(40,45,stage===1?'Nur die bunten Stücke':stage===2?'Jetzt alle Stücke':'Gleich viel gefärbte Fläche')+Array.from({length:units+1},(_,i)=>`<path d="M${40+i*unitWidth} 70v90" class="unit-line"/><text x="${40+i*unitWidth}" y="184" text-anchor="middle">${i}</text>`).join('');
+ const calculation=stage===0?`${F(n,d)} <span class="operation">Gewählt: ${sign} ${k}</span>`:stage===1?`${n} ${sign} ${k} = ${goalN}`:stage===2?`${d} ${sign} ${k} = ${goalD}`:`${F(n,d)} <span class="school-equals" aria-label="oben und unten ${sign} ${k}"><span>${sign} ${k}</span><span>=</span><span>${sign} ${k}</span></span> ${F(goalN,goalD)}`;
+ const explanation=stage===0?(reverse?'Die Zahl ist von dir gewählt. Dieses Beispiel passt dazu.':'Kein Ziel vorgegeben. Du darfst diese Malzahl wählen.'):stage===1?(reverse?'Je '+k+' bunte Stücke werden eine Gruppe.':'Jedes bunte Stück wird in '+k+' kleine Stücke geteilt.'):stage===2?'Unten dieselbe Rechenzahl verwenden.':'Ergebnis oben bleibt oben. Ergebnis unten bleibt unten.';
+ return svg(b,200,label)+eq(calculation)+note(explanation);
 }
 function portionScene(o,stage){
  const {n,d,known,back=false,unit='Gegenstände'}=o,one=back?known/n:known/d,total=back?one*d:known,part=one*n;
@@ -158,7 +164,7 @@ const board=$('#scene-board');
 function invariant(){return {portion:['Die bekannte Menge wird auf gleich große Teile verteilt.','Die Größe eines einzelnen Teils bleibt beim Ergänzen gleich.'],transform:['Stücke: Anzahl und Größe ändern sich.','Die gefärbte Fläche bleibt gleich groß.'],bundle:['Die Anordnung verändert sich.','Anzahl und Größe aller Bruchstücke bleiben gleich.'],compare:['Die Schnittlinien und die Stückzahlen verändern sich.','Die beiden gefärbten Längen bleiben gleich.'],share:['Die Stücke wechseln von der Pizza auf die Teller.','Alle Kinder erhalten gleich viel. Die Gesamtmenge bleibt erhalten.'],line:['Der sichtbare Ausschnitt wird vergrößert.','Zahlenwerte, Reihenfolge und Lage im Überblick bleiben erhalten.'],place:['Die kleinen Quadrate werden anders gruppiert.','Die Menge der Hundertstel bleibt gleich.'],decimal:['Die Schreibweise wird angeglichen und die wichtige Stelle hervorgehoben.','Der Zahlenwert und seine Lage am Zahlenstrahl ändern sich nicht.'],units:['Maßzahl und Einheit ändern sich.','Die gemessene Größe bleibt dieselbe.']}[cfg.kind]}
 function paint(){
  if(cfg.kind==='portion')cfg.steps=cfg.v.back?['Bekannten Anteil ansehen','Einen Teil bestimmen','Das Ganze ergänzen','Zusammenhang erkennen']:['Das Ganze ansehen','Einen Teil bestimmen','Den gesuchten Anteil nehmen','Zusammenhang erkennen'];
- if(cfg.kind==='transform')cfg.steps=cfg.v.reverse?['Ausgangsbruch','Stücke zu Gruppen verbinden','Innere Grenzen entfernen','Gleichen Wert bestätigen']:['Ausgangsbruch','Neue Schnitte setzen','Neue Stücke zählen','Beide Schreibweisen verbinden'];
+ if(cfg.kind==='transform')cfg.steps=['Die passende Zahl finden','Oben rechnen','Unten genauso rechnen','Den neuen Bruch schreiben'];
  if(cfg.kind==='units')cfg.steps=cfg.v.surface?['Würfelhülle ansehen','Sechs Flächen auffalten','Jede Fläche unterteilen','Oberfläche bestimmen']:['Eine große Einheit','In Richtungen zerlegen','Kleine Einheiten zählen','Auf die Menge übertragen'];
  $('.stage-title',lab).textContent=cfg.steps[state];board.innerHTML=scenes[cfg.kind](cfg.v,state);
  $('.stage-dots',lab).innerHTML=cfg.steps.map((x,i)=>`<span class="${i<=state?'done':''}" aria-label="${i+1}: ${E(x)}">${i+1}</span>`).join('');
