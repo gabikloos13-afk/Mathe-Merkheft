@@ -1,10 +1,10 @@
 ## Getrennte Führung für Lernen und Beispiele · 30.10.2026
 
-Lernen verwendet eigene `learnSteps`: 37 Einstiege mit 140 kleinen Schritten. Bruchumformungen werden in die Wahl der Zahl, Rechnung oben, Rechnung unten und das Schreiben des Bruchs getrennt. Die Bilder zeigen Zwischenstände mit noch offenen Stellen. Die abschließende Heftlösung nutzt weiterhin den zusammenhängenden Schulrechenweg aus `steps`.
+Lernen verwendet eigene `learnSteps`: 37 Einstiege mit 142 kleinen Schritten. Bruchumformungen werden in die Wahl der Zahl, Rechnung oben, Rechnung unten und das Schreiben des Bruchs getrennt. Die Bilder zeigen Zwischenstände mit noch offenen Stellen. Die abschließende Heftlösung nutzt weiterhin den zusammenhängenden Schulrechenweg aus `steps`.
 
 Beispiele bietet weiterhin die 98 verschiedenen Aufgabentypen. Jede Einführung zeigt unter „So findest du den Weg“ ein eigenes Erkennungsmerkmal (`recognize`) und die zwei kurzen Einstiegspunkte (`intro`). Der Fortschritt wird je Bereich getrennt gespeichert. Grundregeln stehen beim Lernen; die Beispiele wiederholen sie nicht als zusätzlichen Block.
 
-Browserprüfung in schmaler Ansicht: alle 37 Lernwege mit allen 140 Schritten und Schlussantworten; alle 98 Vorgehenshinweise; Trennung des Fortschritts beim Wechsel der Bereiche. Daten- und Bildprüfung umfasst die normalen 383 Bildzustände und 140 Lernbilder. Verständlichkeit mit dem Kind bleibt eine eigene Beurteilung.
+Browserprüfung in schmaler Ansicht: alle 37 Lernwege mit allen 142 Schritten und Schlussantworten; alle 98 Vorgehenshinweise; Trennung des Fortschritts beim Wechsel der Bereiche. Daten- und Bildprüfung umfasst die normalen 383 Bildzustände und 142 Lernbilder. Verständlichkeit mit dem Kind bleibt eine eigene Beurteilung.
 
 ## Schritterklärungen · 30.10.2026
 
