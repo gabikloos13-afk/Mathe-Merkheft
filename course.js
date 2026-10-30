@@ -53,11 +53,11 @@ function render(){
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
  if(p===0){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),-1,r);
-  note.innerHTML='<div class="focus-note">'+entryHint(topic,id(),r)+'</div>';
+  note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
  }else if(p<last){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),p-1,r);
-  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+r.steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+s.html+'</div>').join('')+'</div>';
-  note.innerHTML='<div class="focus-note">'+stepHint(topic,id(),p-1,r)+'</div>';
+  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+r.steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+s.html+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>').join('')+'</div>';
+
  }else{
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
   note.innerHTML='<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
@@ -93,52 +93,6 @@ function updatePaint(){
  const groups=$('[data-paint-action="groups"]',reader);groups.hidden=phase()>=2;groups.setAttribute('aria-pressed',String(state.paintGroups));groups.textContent=state.paintGroups?'Gruppen ausblenden':'6 Gruppen zeigen';
  const count=state.paint.size;$('.paint-count',reader).textContent=count+' von 18 Kästchen gefärbt.';
  $('.paint-feedback',reader).textContent=!state.paintChecked?'':count===15?'Das passt: 15 Kästchen sind 5/6 des Rechtecks. Jedes Kästchen zählt gleich viel.':count===0?'Noch ist nichts gefärbt. Die 6 unten heißt: Teile die 18 Kästchen in sechs gleich große Gruppen.':count<15?'Es fehlt noch Farbe. Jede der sechs Gruppen hat drei Kästchen. Du brauchst fünf solcher Gruppen.':'Es ist zu viel gefärbt. Eine der sechs gleich großen Gruppen soll frei bleiben.';
-}
-function entryHint(t,n,r){
- if(t==='brueche'&&n===1)return 'Das ganze Rechteck ist in gleich große Felder geteilt. Zähle zuerst alle Felder. Zähle dann die bunten Felder. Du kannst die bunten Felder antippen und so mitzählen.';
- if(t==='brueche'&&n===8)return 'Die 6 unten heißt: sechs gleich große Gruppen. Die 5 oben heißt: fünf davon färben. Probiere es am Rechteck. Danach zeigen wir den Rechenweg.';
- if(t==='brueche'&&n===3)return '21 Kinder sind nur drei Viertel der Klasse. Ein Viertel fehlt noch.';
- if(t==='brueche'&&n===2)return '60 Birnen sind das Ganze. Gesucht sind zwei von drei gleich großen Gruppen.';
- if(t==='gleichwertig')return n===1?'Oben und unten mal 4. Die Menge bleibt gleich.':n===2?'Teile oben und unten durch dieselbe Zahl.':n===4?'Unten steht schon 20. Oben fehlt noch eine Zahl.':r.hint[0]||c.goal;
- if(t==='gemischt')return 'Wie viele Stücke bilden ein Ganzes? Das sagt die Zahl unten im Bruch.';
- if(t==='groessen'&&n===14)return 'Länge, Breite und Höhe stehen in Zentimetern. Innenraum und Außenflächen rechnest du getrennt.';
- return r.hint[0]||c.goal;
-}
-function stepHint(t,n,i,r){
- const step=r.steps[i];
- if(t==='brueche'&&n===1)return ['Alle neun Felder zusammen sind das Ganze. Die 9 kommt unten in den Bruch. Die Zahl unten heißt Nenner.','Vier Felder sind bunt. Die 4 kommt oben in den Bruch. Die Zahl oben heißt Zähler.','Oben 4, unten 9: vier von neun gleich großen Teilen. Das liest du: vier Neuntel.'][i];
- const amount={brueche:{2:['Das Ganze sind alle 60 Birnen.','Teile 60 Birnen in drei gleich große Gruppen.','Nimm zwei dieser Gruppen.'],3:['Drei Viertel zusammen sind 21 Kinder.','Teile die 21 Kinder in drei gleich große Gruppen.','Vier solche Gruppen ergeben die ganze Klasse.'],6:['Eine Stunde hat 60 Minuten.','Teile die 60 Minuten in sechs gleiche Teile.','Nimm fünf dieser Teile.'],8:['Alle 18 Kästchen zusammen sind ein Ganzes. Noch ist nichts geteilt worden.','Jede Spalte ist eine von sechs gleich großen Gruppen. In einer Gruppe sind drei Kästchen. Deshalb: 18 : 6 = 3.','Die 5 oben sagt: Nimm fünf Gruppen. Jede hat drei Kästchen. Im Heft: 18 : 6 · 5 = 15. Erst durch die Zahl unten teilen, dann mit der Zahl oben malnehmen.']}};
- if(amount[t]?.[n]?.[i])return amount[t][n][i];
- if(t==='gleichwertig'&&n===4)return i===0?'Von 5 zu 20 rechnest du mal 4.':'Rechne auch oben mal 4: 2 · 4 = 8.';
- if(t==='gleichwertig'&&n===5)return i===0?'Von 3 zu 15 rechnest du mal 5.':'Rechne auch unten mal 5: 4 · 5 = 20.';
- if(t==='gleichwertig')return n===1?'Zähler und Nenner werden mit 4 malgenommen.':n===2?'Zähler und Nenner werden durch 4 geteilt.':n===3?(i===0?'Teile oben und unten durch 2.':'Jetzt kannst du oben und unten durch 3 teilen.'):'Oben und unten rechnest du mit derselben Zahl.';
- if(t==='gemischt'){
-  const h={1:['Zwei volle Vierergruppen. Drei Viertel bleiben übrig.','Die 2 sind die Ganzen. Die 3 Viertel sind der Rest.'],2:['Drei Ganze sind 15 Fünftel.','Die zwei Fünftel kommen dazu.','Die 17 steht oben. Unten bleibt die 5.'],3:['12 geteilt durch 4 ergibt 3 Ganze. Es bleibt kein Rest.'],4:['Rechne zuerst ohne Minus.','Das Minus gilt für die ganze Zahl und den Bruch zusammen.'],5:['Drei volle Fünfergruppen. Zwei Fünftel bleiben übrig.','Die ganze Zahl steht vor dem Bruch.','Die 3 kommt in das Kästchen.']};
-  return h[n]?.[i]||'Die Zahl unten sagt, wie viele Stücke ein Ganzes bilden.';
- }
- if(t==='quotienten'&&n===2)return ['Die 8 steht oben. Die 12 steht unten.','Teile oben und unten durch 4.','Jedes Kind bekommt gleich viel Pizza.'][i];
- if(t==='quotienten'&&n===1)return ['Die Geteilt-Aufgabe wird ein Bruch.','Teile oben und unten durch 6.','Zwei Hälften bilden ein Ganzes. Eine Hälfte bleibt übrig.'][i];
- if(t==='quotienten'&&n===5)return i===0?'Rechne zuerst die Kilometer in Meter um.':'Teile die 6000 Meter in 20 gleich lange Strecken.';
- if(t==='dezimal'&&n===2)return i===0?'Von 4 zu 100: mal 25. Rechne oben auch mal 25.':'100 unten bedeutet: zwei Stellen nach dem Komma.';
- if(t==='dezimal'&&n===4)return i===0?'Zwei Stellen nach dem Komma: Schreibe Hundertstel.':'Teile oben und unten durch 5.';
- if(t==='dezimal'&&n===6)return i===0?'1,2 sind zwölf Zehntel.':'Teile oben und unten durch 2.';
- if(t==='dezimal'&&n===1)return '100 unten bedeutet: zwei Stellen nach dem Komma. Schreibe 7 deshalb als 0,07.';
- if(t==='zahlenstrahl'&&n===1)return ['Sechs gleiche Lücken: Die 6 kommt unten in den Bruch.','Vier Lücken bis zum Punkt: Die 4 kommt oben in den Bruch.','Teile oben und unten durch 2. Der Punkt bleibt an derselben Stelle.'][i];
- if(t==='zahlenstrahl'&&n===2)return i===0?'Die 4 unten sagt: Teile die Strecke von 0 bis 1 in vier gleiche Lücken.':'Die 3 oben sagt: Gehe drei Lücken von 0 nach rechts.';
- if(t==='vergleichen'&&(step.text.includes('<')||step.text.includes('>'))){
-  if(r.givenPairs.some(p=>p.n<0))return 'Auf dem Zahlenstrahl ist die Zahl weiter links kleiner.';
-  if(n===2)return 'Du nimmst gleich viele Stücke. Ein Viertel ist größer als ein Achtel.';
-  return 'Bei gleich großen Stücken entscheidet die Zahl oben.';
- }
- if(t==='groessen'&&n===14)return ['Rauminhalt: Länge mal Breite mal Höhe.','Vorderseite und Rückseite sind gleich groß.','Die linke und rechte Seite sind gleich groß.','Die obere und untere Seite sind gleich groß.','Zähle die Flächen aller drei Paare zusammen.'][i];
- if(t==='groessen'&&n===1)return ['Ein Meter hat 100 Zentimeter.','Von Meter zu Zentimeter: mal 100.','Die Strecke bleibt gleich lang. Du schreibst sie jetzt in Zentimetern.'][i];
- if(t==='groessen'&&n===2)return ['Ein Kilogramm hat 1000 Gramm.','Von Kilogramm zu Gramm: mal 1000.','Das Gewicht bleibt gleich. Du schreibst es jetzt in Gramm.'][i];
- if(t==='groessen'&&n===12)return ['Eine Stunde hat 60 Minuten.','Rechne den kleinen Stundenanteil mal 60.','Zähle die ganze Stunde und die drei Minuten zusammen.','Eine Minute hat 60 Sekunden. Teile sie in sechs gleiche Teile.','Nimm fünf dieser Teile.'][i];
- if(t==='groessen'&&n===13)return ['Länge mal Breite ergibt die Fläche eines Kästchens.','Zwei halbe Kästchen ergeben ein ganzes Kästchen.','Zähle die ganzen Kästchen zusammen.','Jedes Kästchen hat 0,25 cm². Rechne achtmal diese Fläche.'][i];
- if(step.operation)return step.operation.startsWith(':')?'Teile oben und unten durch '+step.operation.slice(1).trim()+'.':'Rechne oben und unten mal '+step.operation.replace('·','').trim()+'.';
- if(step.pairs.length>=2){const first=step.pairs[0],last=step.pairs[step.pairs.length-1],k=last.d/first.d;if(Math.abs(first.n/first.d-last.n/last.d)<1e-8){if(Number.isInteger(k)&&k>1)return 'Erweitere oben und unten mit '+k+'.';if(Number.isInteger(1/k)&&k<1)return 'Kürze oben und unten durch '+(1/k)+'.';}}
- if(step.label)return 'Hier berechnest du: '+step.label.replace(/\s+/g,' ').trim().replace(/\s+(sind|ist)$/,'')+'.';
- return 'Lies diese Rechenzeile von links nach rechts.';
 }
 function closingHint(t,n,r){
  if(t==='brueche'&&n===8)return 'Unten steht, in wie viele gleiche Gruppen du teilst: 6. Oben steht, wie viele Gruppen du nimmst: 5. Erst teilen, dann die gewünschten Gruppen nehmen.';

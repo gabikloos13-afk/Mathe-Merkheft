@@ -62,3 +62,5 @@
 .course-page .notebook .current-line{background:#fff9e9;border-left-color:#b58b3f}.course-page .notebook .previous-line{border-left-color:#d2dce0;color:#514750}
 .stage-note:not(:empty){margin-bottom:20px}.stage-calculation+.stage-note .focus-note{margin-top:14px}.stage-picture{margin-bottom:0}
 .course-page .school-row{grid-template-columns:1fr;gap:5px}.course-page .school-label{font-size:.86em}.course-page .school-row>span:last-child{color:#342e38}
+
+.step-explanation{border-top:1px solid #e7d9b7;margin-top:14px;padding-top:12px;font-size:.88em;color:#3f5662;font-weight:normal;line-height:1.65}.step-explanation>b{display:block;font-size:.83em;color:#8c6726;margin-bottom:8px}.step-explanation ul,.focus-note ul{margin:0;padding-left:20px}.step-explanation li,.focus-note li{margin:8px 0;line-height:1.65}.course-page .notebook .current-line{padding-bottom:14px}.stage-note .focus-note{font-size:.95rem}

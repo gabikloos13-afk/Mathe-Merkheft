@@ -1,3 +1,11 @@
+## Schritterklärungen · 30.10.2026
+
+Alle 98 Musterbeispiele besitzen eine kurze Einführung und eigene Erklärungen für sämtliche 285 Rechenschritte (`intro`, `steps[].explain` in `course-data.js`). Allgemeine, aus Beschriftungen erzeugte Ersatztexte wurden entfernt. Die Erklärung erscheint als kurze Liste direkt unter der aktuellen Heftzeile; frühere Rechenzeilen bleiben ohne wiederholte Erklärung sichtbar. Beim Färbebeispiel bleibt auch am Schluss der vollständige Weg über ein Sechstel erhalten.
+
+Grundlage für die Schreibweise sind die vorliegenden Heftfotos zu Anteilen und Rückrechnen (u. a. 74769, 74770, 74771, 74778) und die ausgefüllten Blätter zu Anteilen sowie Kürzen/Erweitern (u. a. 74775, 74776, 74779, 74781, 74783). Fehlerhafte Schülerergebnisse werden nicht als Regeln übernommen. Damit ist nicht behauptet, dass jeder der 98 Aufgabentypen im Unterricht bereits genau so behandelt wurde.
+
+Prüfung: alle 98 Beispiele mit allen 285 Erklärungsschritten im Browser durchlaufen, jeweils genau eine aktuelle Erklärung mit 2–3 Punkten, keine vorgezogene Schlussantwort, danach vollständige Antwort. Die bestehenden Modelltests und die erweiterte Datenprüfung bestehen. Technische Prüfung und Inhaltsabgleich ersetzen keine Erprobung der Verständlichkeit mit dem Kind.
+
 # Mathe-Merkheft · Klasse 6
 
 ## Aktueller Aufbau – 29.10.2026

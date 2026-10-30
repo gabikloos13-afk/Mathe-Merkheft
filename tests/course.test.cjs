@@ -21,3 +21,16 @@ assert.equal(cases,98);console.log('PASS:',cases,'Beispiele,',frames,'Bildzustä
 
 const paint=data.brueche.cases[8];for(let i=-1;i<3;i++){const svg=draw('brueche',8,i,paint);assert(svg.includes('18 gleich großen Kästchen'));assert.equal((svg.match(/width="44"/g)||[]).length,18);assert(!svg.includes('>?</text>'));}
 console.log('PASS: Färbeaufgabe zeigt in jedem Bild 18 echte Kästchen statt sechs Platzhaltern.');
+let explanations=0;
+for(const [topic,c] of Object.entries(data))for(const [id,r] of Object.entries(c.cases)){
+ assert.equal(r.intro.length,2,topic+':'+id+' introduction');
+ for(const [i,step] of r.steps.entries()){
+  assert(step.explain.length>=2&&step.explain.length<=3,topic+':'+id+':'+i+' explanation');
+  assert(step.explain.every(s=>s.trim().length>0&&!/Hier berechnest du|Lies diese Rechenzeile/.test(s)));
+  explanations++;
+ }
+}
+assert.equal(explanations,285);
+assert(!data.brueche.cases[8].notebookHtml,'complete school solution is preserved');
+assert(data.brueche.cases[8].steps[2].html.includes('3 · 5 = 15'));
+console.log('PASS:',explanations,'individuelle Schritterklärungen, 98 kurze Einführungen, vollständiger Weg über einen Teil.');
