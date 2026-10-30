@@ -12,7 +12,7 @@ for(const [topic,c] of Object.entries(data)){
   }
  }
 }
-const gap=data.gleichwertig.cases[4];let first=draw('gleichwertig',4,0,gap),second=draw('gleichwertig',4,1,gap);assert(first.includes('Gegeben: 2/5'));assert(!first.includes('?')&&!first.includes('□')); assert(!first.includes('8/20'));assert(second.includes('8/20'));
+const gap=data.gleichwertig.cases[4];let first=draw('gleichwertig',4,0,gap),second=draw('gleichwertig',4,gap.steps.length-1,gap);assert(first.includes('Gegeben: 2/5'));assert(!first.includes('?')&&!first.includes('□')); assert(!first.includes('8/20'));assert(second.includes('8/20'));
 const middle=data.dezimalvergleich.cases[10];assert(!draw('dezimalvergleich',10,-1,middle).includes('−0,405'));assert(draw('dezimalvergleich',10,middle.steps.length-1,middle).includes('-0,405')||draw('dezimalvergleich',10,middle.steps.length-1,middle).includes('−0,405'));
 const back=data.brueche.cases[3];assert(!draw('brueche',3,-1,back).includes('28 Kinder'));assert(draw('brueche',3,2,back).includes('28 Kinder'));
 assert(!draw('brueche',10,0,data.brueche.cases[10]).includes('Gleiche Menge'));
@@ -30,7 +30,7 @@ for(const [topic,c] of Object.entries(data))for(const [id,r] of Object.entries(c
   explanations++;
  }
 }
-assert.equal(explanations,285);
+assert.equal(explanations,294);
 assert(!data.brueche.cases[8].notebookHtml,'complete school solution is preserved');
 assert(data.brueche.cases[8].steps[2].html.includes('3 · 5 = 15'));
 console.log('PASS:',explanations,'individuelle Schritterklärungen, 98 kurze Einführungen, vollständiger Weg über einen Teil.');
@@ -49,7 +49,7 @@ for(const [topic,c]of Object.entries(data)){
   for(const s of r.learnSteps){assert(s.source>=0&&s.source<r.steps.length);assert(s.explain.length>=2);const svg=context.window.MerkheftPictures.learning(topic,r.id,s,r);assert(svg.includes('<svg'));assert(!/NaN|undefined|Infinity/.test(svg));learnFrames++;}
  }
 }
-const expand=data.gleichwertig.cases[1];assert.equal(expand.learnSteps.length,4);assert(expand.learnSteps[1].html.includes('2 · 4 = 8'));assert(!expand.learnSteps[1].html.includes('3 · 4 = 12'));assert(context.window.MerkheftPictures.learning('gleichwertig',1,expand.learnSteps[1],expand).includes('2 mal 4 ergibt 8')); assert.equal(expand.steps.length,1);
+const expand=data.gleichwertig.cases[1];assert.equal(expand.learnSteps.length,4);assert(expand.learnSteps[1].html.includes('2 · 4 = 8'));assert(!expand.learnSteps[1].html.includes('3 · 4 = 12'));assert(context.window.MerkheftPictures.learning('gleichwertig',1,expand.learnSteps[1],expand).includes('2 mal 4 ergibt 8')); assert.equal(expand.steps.length,4);
 console.log('PASS:',learnFrames,'eigene Lernschritte mit passenden Bildern; 98 Vorgehenshinweise bei Beispiele.');
 
 const signs=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Das Vorzeichen bestimmen');assert.equal(signs.length,2);assert(signs[0].html.includes('15 : (−12)'));assert(signs[1].html.includes('(−15) : (−12)'));console.log('PASS: Vorzeichen vor dem Kürzen ausdrücklich bestimmt.');
@@ -59,7 +59,7 @@ for(const c of Object.values(data))for(const r of Object.values(c.cases)){
  assert(r.startHint.length>10);assert(r.check.length);
  for(const s of [...r.steps,...(r.learnSteps||[])]){assert(s.hint.length===1);assert(s.hint[0].length>10);hintCount++;}
 }
-assert.equal(hintCount,427);
+assert.equal(hintCount,436);
 const negativeHints=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Oben rechnen'&&s.pairs[0].n<0);assert(negativeHints.every(s=>s.hint[0].includes('Minus')));
 console.log('PASS:',hintCount,'schrittspezifische Hinweise, 98 Einstiegstipps und 98 aufgabenbezogene Kontrollen.');
 
