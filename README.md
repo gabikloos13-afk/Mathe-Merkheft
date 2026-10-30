@@ -1,3 +1,13 @@
+## Gesamtes Kapitel Kürzen und Erweitern · 30.10.2026
+
+Alle vier Lernwege und alle acht Beispieltypen wurden erneut als zusammenhängendes Kapitel überarbeitet. Die Wahl der Zahl wird an der jeweiligen Stelle durch strukturierte Proberechnungen oder kurze Zahlenzeilen gezeigt. Beispiele: Probe mit 2/3/4 bei 12/16; Zielzahl geteilt durch alte Zahl bei Lücken; Teilerlisten und Prüfung der 18er-Reihe beim Zielnenner 30. Die bisherigen langen `choice`-Texte im Kapitel wurden entfernt. Erläuterungen bestehen aus kurzen Punkten, Rechnungen stehen in `decisionHtml` und gegebenenfalls `afterHtml`.
+
+Die unklaren Fragezeichen- und Leerbalkenbilder wurden im Kapitel durch kontextbezogene Bilder ersetzt: bekannter Bruch, Unterteilen der bunten Stücke, Unterteilen aller Stücke, Zusammenfassen der bunten Stücke, Zusammenfassen aller Stücke und vollständiger Vorher-Nachher-Vergleich. Brüche werden im Bild mit waagerechtem Bruchstrich gezeigt. Negative gleichwertige Brüche werden am selben Punkt einer Zahlengeraden gezeigt. Unbekannte Zahlen in echten Lückenaufgaben bleiben selbstverständlich in der Aufgabenstellung erhalten; die Bilder enthalten keine unerklärten Platzhalter.
+
+Nachschlagen, Antworten, Kontrollen und die kurzen Erklärungen in der freien Bruch-Werkstatt sind ebenfalls überarbeitet. Die geführte Bildfolge besitzt eine zum Kapitel passende Legende. Alle interaktiven Funktionen sind erhalten.
+
+Browserprüfung: alle 59 Ansichten der vier Lernwege und acht Beispiele in schmaler Ansicht einschließlich ihrer Tipps, keine seitliche Überbreite; freies Erweitern und Kürzen; beide vierstufigen Bildfolgen; Nachschlagen. Daten-/Bildprüfung: 43 Kapitelbilder ohne Fragezeichen oder leere Ergebnisbalken, vollständige Entscheidungsbegründungen und kurze Erklärpunkte. Bestehende Modelltests bestehen. Die Prüfung belegt Funktionsfähigkeit und Inhaltszuordnung, keinen garantierten Lernerfolg.
+
 ## Hinweise zum aktuellen Schritt · 30.10.2026
 
 Der aufgabenweite Tipp-Fallback wurde im gemeinsamen Reader entfernt. Einführungen verwenden `startHint`, jede der 285 Beispielzeilen und jeder der 142 Lernschritte ein eigenes `hint`-Feld. Am Ende öffnet „Ergebnis prüfen“ die Kontrolle genau dieses Beispiels. Beim Rendern wird der Hinweis geschlossen und mit dem Bereich, Beispiel und Schritt neu verknüpft (`data-for-step`).

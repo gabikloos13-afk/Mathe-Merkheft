@@ -56,10 +56,10 @@ function render(){
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
  if(p===0){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),-1,r);
-  if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b><p>'+r.recognize+'</p>'+list(r.intro)+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
+  if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b>'+ (topic==='gleichwertig'?list([r.recognize,...r.intro]):'<p>'+r.recognize+'</p>'+list(r.intro))+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
  }else if(p<last){
   picture.innerHTML=state.mode==='learn'?window.MerkheftPictures.learning(topic,id(),steps[p-1],r):window.MerkheftPictures.render(topic,id(),p-1,r);
-  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+s.html+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>').join('')+'</div>';
+  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+(i===p-1&&s.decisionHtml?'<div class="decision-work">'+s.decisionHtml+'</div>':'')+s.html+(i===p-1&&s.afterHtml?'<div class="decision-work after-work">'+s.afterHtml+'</div>':'')+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>').join('')+'</div>';
 
  }else{
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';

@@ -149,6 +149,39 @@ function beforeAfter(p,q){
  const qn=q?.n??'□',qd=q?.d??'□',right=q&&typeof q.n==='number'&&typeof q.d==='number'?strip(q.n,q.d,208,52):q&&typeof q.d==='number'?strip(p.n*q.d/p.d,q.d,208,52):R(208,52,140,48,C.pale)+T(278,85,'?',25);
  return SVG(T(82,28,'Vorher',17)+T(278,28,'Nachher',17)+strip(p.n,p.d,12,52)+arrow(164,76)+right+T(82,130,fractionText(p),23)+T(278,130,fmtOrBox(qn)+'/'+fmtOrBox(qd),23)+T(180,165,'Die gefärbte Menge bleibt gleich.',15),`Vorher ${fractionText(p)}. Nachher ${fmtOrBox(qn)}/${fmtOrBox(qd)}. Gleiche Menge.`);
 }
+function schoolFraction(x,y,p,size=20){
+ const n=fmt(p.n),d=fmt(p.d),w=Math.max(n.length,d.length)*size*.33+8;
+ return T(x,y,n,size,C.berry)+`<path d="M${x-w} ${y+8}H${x+w}" stroke="${C.ink}" stroke-width="1.5"/>`+T(x,y+31,d,size,C.blue);
+}
+function chapterKnown(p){
+ if(p.n<0)return SVG(T(180,28,'Dieser Bruch ist gegeben.',17)+schoolFraction(180,78,p,27)+T(180,165,'Das Minus gehört zum Bruch.',16),'Gegeben: '+fractionText(p));
+ return SVG(T(180,28,'Das ist gegeben.',18)+strip(p.n,p.d,30,49,300,59)+schoolFraction(180,137,p,20),'Gegeben: '+fractionText(p)+'. '+p.n+' von '+p.d+' Teilen sind gefärbt.');
+}
+function chapterFigure(v){
+ const p=v.from,q=v.to,phase=v.phase;
+ if(phase==='known'||!q)return chapterKnown(p);
+ if(p.n<0){
+  const lo=Math.floor(p.n/p.d),hi=Math.ceil(p.n/p.d),span=hi-lo||1,x=25+(p.n/p.d-lo)/span*310;
+  return SVG(schoolFraction(90,27,p,18)+T(180,45,'=',23)+schoolFraction(270,27,q,18)+`<path d="M25 110H335M25 104v12M335 104v12" stroke="${C.blue}" stroke-width="3"/><circle cx="${x}" cy="110" r="7" fill="${C.berry}"/>`+T(25,143,fmt(lo),16)+T(335,143,fmt(lo+span),16)+T(180,172,'Beide Brüche: derselbe Punkt.',16),'Vorher '+fractionText(p)+'. Nachher '+fractionText(q)+'. Beide Brüche liegen am selben Punkt.');
+ }
+ if(p.n>p.d)return beforeAfter(p,q);
+ if(phase==='done'){
+  return SVG(T(90,25,'Vorher',17)+T(270,25,'Nachher',17)+strip(p.n,p.d,20,43,140,49)+strip(q.n,q.d,200,43,140,49)+arrow(165,67)+schoolFraction(90,118,p,19)+schoolFraction(270,118,q,19)+T(180,171,'Gleiche Fläche. Andere Einteilung.',15),'Vorher '+fractionText(p)+'. Nachher '+fractionText(q)+'. Die gefärbte Fläche bleibt gleich.');
+ }
+ const expanding=q.d>p.d,k=expanding?q.d/p.d:p.d/q.d,x=30,y=45,w=300,h=63;
+ let b=T(180,25,phase==='color'?'Nur die bunten Stücke':'Jetzt alle Stücke',18)+strip(p.n,p.d,x,y,w,h);
+ if(expanding){
+  const parts=phase==='color'?p.n:p.d;
+  for(let piece=0;piece<parts;piece++)for(let j=1;j<k;j++){const cx=x+(piece+j/k)*w/p.d;b+=`<path d="M${cx} ${y}v${h}" stroke="#fffdf8" stroke-width="2"/>`;}
+  for(let j=0;j<=p.d;j++){const cx=x+j*w/p.d;b+=`<path d="M${cx} ${y}v${h}" stroke="${C.blue}" stroke-width="2"/>`;}
+  b+=T(180,141,(phase==='color'?p.n:p.d)+' · '+k+' = '+(phase==='color'?q.n:q.d)+(phase==='color'?' bunte Teile':' Teile insgesamt'),20)+T(180,170,'Jedes Stück wird in '+k+' Teile geteilt.',15);
+ }else{
+  const groups=phase==='color'?q.n:q.d;
+  for(let j=0;j<groups;j++)b+=`<rect x="${x+j*k*w/p.d+2}" y="${y-3}" width="${k*w/p.d-4}" height="${h+6}" rx="4" fill="none" stroke="${C.gold}" stroke-width="3"/>`;
+  b+=T(180,141,(phase==='color'?p.n:p.d)+' : '+k+' = '+groups+(phase==='color'?' bunte Gruppen':' Gruppen insgesamt'),20)+T(180,170,'Je '+k+' Stücke bilden eine Gruppe.',15);
+ }
+ return SVG(b,(expanding?'Feiner teilen: ':'Gruppen bilden: ')+(phase==='color'?'bunte Stücke':'alle Stücke')+'. '+(phase==='color'?p.n:p.d)+(expanding?' mal ':' geteilt durch ')+k+' ergibt '+(phase==='color'?q.n:q.d)+'.');
+}
 function fmtOrBox(v){return typeof v==='number'?fmt(v):v;}
 function loosePieces(n,d){
  let b='';const cols=Math.min(n,8),w=Math.min(32,300/cols),rows=Math.ceil(n/cols);
@@ -183,6 +216,10 @@ function fieldPicture(stage){
 }
 function coursePicture(topic,id,index,r){
  const preview=index<0,step=preview?null:r.steps[index],ps=step?.pairs||[],initial=r.givenPairs||[];
+ if(topic==='gleichwertig'){
+  if(preview&&initial.length===2)return SVG(T(90,25,'Erster Bruch',16)+T(270,25,'Zweiter Bruch',16)+schoolFraction(90,76,initial[0],25)+schoolFraction(270,76,initial[1],25)+T(180,165,id===7?'Ziel bei beiden: Nenner 30.':'Vergleiche diese beiden Brüche.',16),'Gegeben: '+fractionText(initial[0])+' und '+fractionText(initial[1]));
+  return preview?chapterKnown(initial[0]):chapterFigure(step.chapterVisual);
+ }
  if(topic==='brueche'&&id===8){
   let b='';for(let g=0;g<6;g++)for(let row=0;row<3;row++)b+=R(36+g*48,18+row*40,44,36,!preview&&index===2&&g<5?C.berry:C.pale);
   return SVG(b+T(180,165,preview?'18 Kästchen':index===0?'Das ganze Rechteck':index===1?'6 Gruppen mit je 3 Kästchen':'5 Gruppen mit je 3 Kästchen',17),'Rechteck aus 18 gleich großen Kästchen in sechs Spalten mit je drei Kästchen.');
@@ -267,7 +304,7 @@ function decimalLine(a,b,middle){
  if(middle!==null)s+=`<path d="M${X(middle)} 72v36" stroke="${C.gold}" stroke-width="5"/>`+T(180,167,fmt(middle),20);
  return SVG(s,(middle===null?'Die beiden Zahlen auf dem Zahlenstrahl: ':'Die Mitte ist '+fmt(middle)+'. ')+fmt(a)+' und '+fmt(b));
 }
-window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
+window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>topic==='gleichwertig'?chapterFigure(step.chapterVisual):step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
 const topic=document.body.dataset.topic;
 document.querySelectorAll('.case').forEach(card=>{
  const id=Number(card.id.slice(5)),draw=specs[topic+':'+id];if(!draw)return;

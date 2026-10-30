@@ -12,7 +12,7 @@ for(const [topic,c] of Object.entries(data)){
   }
  }
 }
-const gap=data.gleichwertig.cases[4];let first=draw('gleichwertig',4,0,gap),second=draw('gleichwertig',4,1,gap);assert(first.includes('□/20'));assert(!first.includes('8/20'));assert(second.includes('8/20'));
+const gap=data.gleichwertig.cases[4];let first=draw('gleichwertig',4,0,gap),second=draw('gleichwertig',4,1,gap);assert(first.includes('Gegeben: 2/5'));assert(!first.includes('?')&&!first.includes('□')); assert(!first.includes('8/20'));assert(second.includes('8/20'));
 const middle=data.dezimalvergleich.cases[10];assert(!draw('dezimalvergleich',10,-1,middle).includes('−0,405'));assert(draw('dezimalvergleich',10,middle.steps.length-1,middle).includes('-0,405')||draw('dezimalvergleich',10,middle.steps.length-1,middle).includes('−0,405'));
 const back=data.brueche.cases[3];assert(!draw('brueche',3,-1,back).includes('28 Kinder'));assert(draw('brueche',3,2,back).includes('28 Kinder'));
 assert(!draw('brueche',10,0,data.brueche.cases[10]).includes('Gleiche Menge'));
@@ -35,7 +35,7 @@ assert(!data.brueche.cases[8].notebookHtml,'complete school solution is preserve
 assert(data.brueche.cases[8].steps[2].html.includes('3 · 5 = 15'));
 console.log('PASS:',explanations,'individuelle Schritterklärungen, 98 kurze Einführungen, vollständiger Weg über einen Teil.');
 
-assert(data.gleichwertig.cases[2].steps[0].choice.join(' ').includes('2 passen'));
+assert(data.gleichwertig.cases[2].steps[0].decisionHtml.includes('12 : 2 = 6')); 
 assert(data.gleichwertig.cases[4].steps[0].html.includes('20 : 5 = 4'));
 assert(data.gleichwertig.cases[5].steps[0].html.includes('15 : 3 = 5'));
 assert(data.vergleichen.cases[3].steps[0].choice.join(' ').includes('3er- und in der 4er-Reihe'));
@@ -49,7 +49,7 @@ for(const [topic,c]of Object.entries(data)){
   for(const s of r.learnSteps){assert(s.source>=0&&s.source<r.steps.length);assert(s.explain.length>=2);const svg=context.window.MerkheftPictures.learning(topic,r.id,s,r);assert(svg.includes('<svg'));assert(!/NaN|undefined|Infinity/.test(svg));learnFrames++;}
  }
 }
-const expand=data.gleichwertig.cases[1];assert.equal(expand.learnSteps.length,4);assert(expand.learnSteps[1].html.includes('2 · 4 = 8'));assert(!expand.learnSteps[1].html.includes('3 · 4 = 12'));assert(context.window.MerkheftPictures.learning('gleichwertig',1,expand.learnSteps[1],expand).includes('8/□'));assert.equal(expand.steps.length,1);
+const expand=data.gleichwertig.cases[1];assert.equal(expand.learnSteps.length,4);assert(expand.learnSteps[1].html.includes('2 · 4 = 8'));assert(!expand.learnSteps[1].html.includes('3 · 4 = 12'));assert(context.window.MerkheftPictures.learning('gleichwertig',1,expand.learnSteps[1],expand).includes('2 mal 4 ergibt 8')); assert.equal(expand.steps.length,1);
 console.log('PASS:',learnFrames,'eigene Lernschritte mit passenden Bildern; 98 Vorgehenshinweise bei Beispiele.');
 
 const signs=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Das Vorzeichen bestimmen');assert.equal(signs.length,2);assert(signs[0].html.includes('15 : (−12)'));assert(signs[1].html.includes('(−15) : (−12)'));console.log('PASS: Vorzeichen vor dem Kürzen ausdrücklich bestimmt.');
@@ -62,3 +62,17 @@ for(const c of Object.values(data))for(const r of Object.values(c.cases)){
 assert.equal(hintCount,427);
 const negativeHints=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Oben rechnen'&&s.pairs[0].n<0);assert(negativeHints.every(s=>s.hint[0].includes('Minus')));
 console.log('PASS:',hintCount,'schrittspezifische Hinweise, 98 Einstiegstipps und 98 aufgabenbezogene Kontrollen.');
+
+let chapterPictures=0;
+for(const r of Object.values(data.gleichwertig.cases)){
+ for(let i=-1;i<r.steps.length;i++){const svg=draw('gleichwertig',r.id,i,r);assert(!svg.includes('?')&&!svg.includes('□'),'unexplained placeholder in chapter graphic');chapterPictures++;}
+ for(const s of r.learnSteps||[]){const svg=context.window.MerkheftPictures.learning('gleichwertig',r.id,s,r);assert(!svg.includes('?')&&!svg.includes('□'));chapterPictures++;}
+}
+assert(data.gleichwertig.cases[2].learnSteps[0].decisionHtml.includes('16 : 3 = 5 Rest 1'));
+assert(data.gleichwertig.cases[7].steps.every(s=>s.decisionHtml));
+console.log('PASS:',chapterPictures,'Kapitelbilder ohne Fragezeichen oder leere Ergebnisbalken; acht Aufgabentypen mit örtlicher Begründung.');
+
+for(const r of Object.values(data.gleichwertig.cases))for(const s of [...r.steps,...(r.learnSteps||[])]){
+ assert(!s.choice,'no long choice paragraphs in rewritten chapter');assert(s.explain.every(line=>line.split(/\s+/).length<=14),'short explanation points');
+}
+console.log('PASS: Kurze Erklärpunkte und strukturierte Entscheidungsrechnungen im gesamten Kapitel.');
