@@ -51,7 +51,7 @@ function render(){
  const pos=ordered.indexOf(state.examples);$('#case-position').textContent=(pos+1)+' / '+ordered.length;$('#case-prev').disabled=pos===0;$('#case-next').disabled=pos===ordered.length-1;
  $('#phase-count').textContent='Schritt '+(p+1)+' von '+(last+1);
  $('#phase-label').textContent=p===0?'1 · Das ist gegeben':p===last?'Fertig · Rechnung und Antwort':'So rechnest du · '+p;
- if(state.mode==='learn'&&p>0&&p<last)$('#phase-label').textContent=steps[p-1].title;
+ if((state.mode==='learn'||topic==='gleichwertig')&&p>0&&p<last)$('#phase-label').textContent=steps[p-1].title;
  const picture=$('.stage-picture',reader),calculation=$('.stage-calculation',reader),note=$('.stage-note',reader);
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
  if(p===0){
@@ -59,11 +59,11 @@ function render(){
   if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b>'+ (topic==='gleichwertig'?list([r.recognize,...r.intro]):'<p>'+r.recognize+'</p>'+list(r.intro))+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
  }else if(p<last){
   picture.innerHTML=state.mode==='learn'?window.MerkheftPictures.learning(topic,id(),steps[p-1],r):window.MerkheftPictures.render(topic,id(),p-1,r);
-  calculation.innerHTML='<div class="notebook"><h3>Rechenweg wie im Heft</h3>'+steps.slice(0,p).map((s,i)=>'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+(i===p-1&&s.decisionHtml?'<div class="decision-work">'+s.decisionHtml+'</div>':'')+s.html+(i===p-1&&s.afterHtml?'<div class="decision-work after-work">'+s.afterHtml+'</div>':'')+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>').join('')+'</div>';
+  calculation.innerHTML='<div class="notebook"><h3>'+(steps[p-1].segment||'Rechenweg wie im Heft')+'</h3>'+steps.slice(0,p).map((s,i)=>(steps[p-1].segment&&s.segment!==steps[p-1].segment?'':'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+(i===p-1&&s.decisionHtml?'<div class="decision-work">'+s.decisionHtml+'</div>':'')+s.html+(i===p-1&&s.afterHtml?'<div class="decision-work after-work">'+s.afterHtml+'</div>':'')+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>')).join('')+'</div>';
 
  }else{
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
-  note.innerHTML='<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
+  note.innerHTML=topic==='gleichwertig'?'<div class="memory-note"><b>Daran denken</b>'+list(r.trap)+'</div>':'<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
  }
  if(topic==='brueche'&&id()===8){
   picture.innerHTML=paintBoard(p);updatePaint();
@@ -106,7 +106,7 @@ function closingHint(t,n,r){
 }
 function caseMove(delta){const at=ordered.indexOf(state.examples),next=ordered[at+delta];if(next!==undefined){state.examples=next;state.steps["examples:"+next]=0;render();route();reader.scrollIntoView({block:'start'});}}
 $('#case-prev').addEventListener('click',()=>caseMove(-1));$('#case-next').addEventListener('click',()=>caseMove(1));
-const reference=$('#reference-pane');reference.innerHTML='<div class="reference-card"><h2>Kurz merken</h2>'+list(c.rules)+'</div><div class="reference-card"><h2>Wörter verstehen</h2><dl>'+c.words.map(w=>'<dt>'+w.word+'</dt><dd>'+list(w.lines)+'</dd>').join('')+'</dl></div>';
+const reference=$('#reference-pane');reference.innerHTML=c.referenceCards?c.referenceCards.map(card=>'<article class="reference-card"><h2>'+card.title+'</h2>'+card.html+list(card.lines)+(card.visual?'<div class="stage-picture">'+window.MerkheftPictures.learning(topic,1,{chapterVisual:card.visual},c.cases[1])+'</div>':'')+'</article>').join(''):'<div class="reference-card"><h2>Kurz merken</h2>'+list(c.rules)+'</div><div class="reference-card"><h2>Wörter verstehen</h2><dl>'+c.words.map(w=>'<dt>'+w.word+'</dt><dd>'+list(w.lines)+'</dd>').join('')+'</dl></div>';
 function parseRoute(){const h=location.hash.slice(1);let m;if((m=/^lernen-type-(\d+)$/.exec(h))&&c.lessons.some(l=>l.id===Number(m[1]))){state.mode='learn';state.learn=Number(m[1]);}else if((m=/^type-(\d+)$/.exec(h))&&c.cases[m[1]]){state.mode='examples';state.examples=Number(m[1]);}else if(h==='werkzeug')state.mode='tool';else if(h==='nachschlagen')state.mode='reference';render();}
 window.addEventListener('hashchange',parseRoute);window.addEventListener('popstate',parseRoute);parseRoute();
 })();

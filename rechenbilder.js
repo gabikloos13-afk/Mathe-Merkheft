@@ -160,6 +160,10 @@ function chapterKnown(p){
 function chapterFigure(v){
  const p=v.from,q=v.to,phase=v.phase;
  if(phase==='known'||!q)return chapterKnown(p);
+ if(p.n<0&&(phase==='color'||phase==='all')){
+  const k=q.d>p.d?q.d/p.d:p.d/q.d,sign=q.d>p.d?' · ':' : ',top=phase==='color',num=v=>fmt(v).replace('-', '−');
+  return SVG(T(180,30,top?'Oben rechnen':'Unten rechnen',19)+T(180,95,num(top?p.n:p.d)+sign+k+' = '+num(top?q.n:q.d),30)+T(180,162,top?'Das Minus bleibt stehen.':'Dieselbe Rechenzahl wie oben.',17),'Ein Rechenschritt: '+num(top?p.n:p.d)+sign+k+' = '+num(top?q.n:q.d));
+ }
  if(p.n<0){
   const lo=Math.floor(p.n/p.d),hi=Math.ceil(p.n/p.d),span=hi-lo||1,x=25+(p.n/p.d-lo)/span*310;
   return SVG(schoolFraction(90,27,p,18)+T(180,45,'=',23)+schoolFraction(270,27,q,18)+`<path d="M25 110H335M25 104v12M335 104v12" stroke="${C.blue}" stroke-width="3"/><circle cx="${x}" cy="110" r="7" fill="${C.berry}"/>`+T(25,143,fmt(lo),16)+T(335,143,fmt(lo+span),16)+T(180,172,'Beide Brüche: derselbe Punkt.',16),'Vorher '+fractionText(p)+'. Nachher '+fractionText(q)+'. Beide Brüche liegen am selben Punkt.');

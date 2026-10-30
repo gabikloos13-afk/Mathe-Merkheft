@@ -1,3 +1,7 @@
+## Einheitlicher Bereich Kürzen und Erweitern (30.10.2026)
+
+Alle acht Aufgabentypen haben einen vollständigen Lernweg mit eigener Rechenzahl-Suche, getrennten Rechnungen oben/unten und passendem Hinweis pro Schritt. Lange Aufgaben zeigen während des Lernens nur die aktuelle Rechenrunde. Der negative Bruch −4/6 wird direkt mit 5 auf Nenner 30 erweitert. Nachschlagen enthält sieben kurze Karten mit Rechenbeispielen und zwei Flächenbildern. Das freie Bildwerkzeug kennzeichnet die selbst gewählte Rechenzahl und die vorbereiteten Kürzungsbeispiele.
+
 ## Gesamtes Kapitel Kürzen und Erweitern · 30.10.2026
 
 Alle vier Lernwege und alle acht Beispieltypen wurden erneut als zusammenhängendes Kapitel überarbeitet. Die Wahl der Zahl wird an der jeweiligen Stelle durch strukturierte Proberechnungen oder kurze Zahlenzeilen gezeigt. Beispiele: Probe mit 2/3/4 bei 12/16; Zielzahl geteilt durch alte Zahl bei Lücken; Teilerlisten und Prüfung der 18er-Reihe beim Zielnenner 30. Die bisherigen langen `choice`-Texte im Kapitel wurden entfernt. Erläuterungen bestehen aus kurzen Punkten, Rechnungen stehen in `decisionHtml` und gegebenenfalls `afterHtml`.

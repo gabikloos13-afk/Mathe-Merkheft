@@ -30,7 +30,7 @@ for(const [topic,c] of Object.entries(data))for(const [id,r] of Object.entries(c
   explanations++;
  }
 }
-assert.equal(explanations,294);
+assert.equal(explanations,316);
 assert(!data.brueche.cases[8].notebookHtml,'complete school solution is preserved');
 assert(data.brueche.cases[8].steps[2].html.includes('3 · 5 = 15'));
 console.log('PASS:',explanations,'individuelle Schritterklärungen, 98 kurze Einführungen, vollständiger Weg über einen Teil.');
@@ -59,7 +59,7 @@ for(const c of Object.values(data))for(const r of Object.values(c.cases)){
  assert(r.startHint.length>10);assert(r.check.length);
  for(const s of [...r.steps,...(r.learnSteps||[])]){assert(s.hint.length===1);assert(s.hint[0].length>10);hintCount++;}
 }
-assert.equal(hintCount,436);
+assert.equal(hintCount,484);
 const negativeHints=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Oben rechnen'&&s.pairs[0].n<0);assert(negativeHints.every(s=>s.hint[0].includes('Minus')));
 console.log('PASS:',hintCount,'schrittspezifische Hinweise, 98 Einstiegstipps und 98 aufgabenbezogene Kontrollen.');
 
@@ -69,10 +69,23 @@ for(const r of Object.values(data.gleichwertig.cases)){
  for(const s of r.learnSteps||[]){const svg=context.window.MerkheftPictures.learning('gleichwertig',r.id,s,r);assert(!svg.includes('?')&&!svg.includes('□'));chapterPictures++;}
 }
 assert(data.gleichwertig.cases[2].learnSteps[0].decisionHtml.includes('16 : 3 = 5 Rest 1'));
-assert(data.gleichwertig.cases[7].steps.every(s=>s.decisionHtml));
+assert(data.gleichwertig.cases[7].steps.filter(s=>s.title==='Die Rechenzahl finden').every(s=>s.decisionHtml));
 console.log('PASS:',chapterPictures,'Kapitelbilder ohne Fragezeichen oder leere Ergebnisbalken; acht Aufgabentypen mit örtlicher Begründung.');
 
 for(const r of Object.values(data.gleichwertig.cases))for(const s of [...r.steps,...(r.learnSteps||[])]){
  assert(!s.choice,'no long choice paragraphs in rewritten chapter');assert(s.explain.every(line=>line.split(/\s+/).length<=14),'short explanation points');
 }
 console.log('PASS: Kurze Erklärpunkte und strukturierte Entscheidungsrechnungen im gesamten Kapitel.');
+
+assert.equal(data.gleichwertig.lessons.length,8);
+for(const r of Object.values(data.gleichwertig.cases)){
+ assert.equal(r.learnSteps.length,r.steps.length,'every task has a complete learning route');
+ for(const s of r.steps){const v=s.chapterVisual;if(v.to){assert.equal(v.from.n*v.to.d,v.to.n*v.from.d,'fraction value preserved');}}
+}
+const mixed=data.gleichwertig.cases[7];
+assert(mixed.steps[8].decisionHtml.includes('30 : 6 = 5'));
+const negativeTop=draw('gleichwertig',7,9,mixed);
+assert(negativeTop.includes('−4 · 5 = −20'));
+assert(!negativeTop.includes('−20/30'),'no future complete fraction at numerator step');
+assert.equal(data.gleichwertig.referenceCards.length,7);
+console.log('PASS: Alle acht Lernwege vollständig; jeder Bruchwert erhalten; negatives Erweitern ohne Umweg oder vorgezogenes Gesamtergebnis.');
