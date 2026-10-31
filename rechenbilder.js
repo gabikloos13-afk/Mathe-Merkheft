@@ -265,6 +265,7 @@ function negativeIntervalPicture(index){
 }
 function coursePicture(topic,id,index,r){
  const preview=index<0,step=preview?null:r.steps[index],ps=step?.pairs||[],initial=r.givenPairs||[];
+ if(topic==='groessen'&&window.MerkheftSizesPictures)return window.MerkheftSizesPictures.render(id,index,r);
  if(topic==='dezimalvergleich'&&window.MerkheftDecimalComparisonPictures)return window.MerkheftDecimalComparisonPictures.render(id,index,r);
  if(topic==='dezimal'&&window.MerkheftDecimalPictures)return window.MerkheftDecimalPictures.render(id,index,r);
  if(topic==='vergleichen'&&id===6)return orderedFractionsPicture(preview);
@@ -365,7 +366,7 @@ function decimalLine(a,b,middle){
  if(middle!==null)s+=`<path d="M${X(middle)} 72v36" stroke="${C.gold}" stroke-width="5"/>`+T(180,167,fmt(middle),20);
  return SVG(s,(middle===null?'Die beiden Zahlen auf dem Zahlenstrahl: ':'Die Mitte ist '+fmt(middle)+'. ')+fmt(a)+' und '+fmt(b));
 }
-window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>topic==='gleichwertig'?chapterFigure(step.chapterVisual):topic==='vergleichen'&&step.chapterVisual?compareLearningPicture(step,r):topic==='dezimalvergleich'&&step.chapterVisual&&window.MerkheftDecimalComparisonPictures?window.MerkheftDecimalComparisonPictures.learning(step,r):topic==='dezimal'&&step.chapterVisual&&window.MerkheftDecimalPictures?window.MerkheftDecimalPictures.learning(step,r):step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
+window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>topic==='gleichwertig'?chapterFigure(step.chapterVisual):topic==='vergleichen'&&step.chapterVisual?compareLearningPicture(step,r):topic==='groessen'&&step.chapterVisual&&window.MerkheftSizesPictures?window.MerkheftSizesPictures.learning(step,r):topic==='dezimalvergleich'&&step.chapterVisual&&window.MerkheftDecimalComparisonPictures?window.MerkheftDecimalComparisonPictures.learning(step,r):topic==='dezimal'&&step.chapterVisual&&window.MerkheftDecimalPictures?window.MerkheftDecimalPictures.learning(step,r):step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
 const topic=document.body.dataset.topic;
 document.querySelectorAll('.case').forEach(card=>{
  const id=Number(card.id.slice(5)),draw=specs[topic+':'+id];if(!draw)return;
