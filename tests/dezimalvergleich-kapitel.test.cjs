@@ -118,7 +118,7 @@ for(let d=0;d<=5;d++)assert(values('0,'+d+'9')<0.65);
 assert(!(values('0,69')<0.65));
 
 const html=fs.readFileSync(root+'dezimalvergleich.html','utf8');
-assert(html.includes('dezimalvergleich-bilder.js?v=20261031r27'));
+assert(html.includes('dezimalvergleich-bilder.js?v=20261031r28'));
 assert(html.indexOf('dezimalvergleich-bilder.js')<html.indexOf('rechenbilder.js'));
 const js=fs.readFileSync(root+'course.js','utf8');
 assert(js.includes("['dezimal','dezimalvergleich'].includes(topic)&&state.mode==='learn'"),'Denkimpulse müssen angezeigt werden');
