@@ -121,6 +121,6 @@ const html=fs.readFileSync(root+'dezimalvergleich.html','utf8');
 assert(html.includes('dezimalvergleich-bilder.js?v=20261031r28'));
 assert(html.indexOf('dezimalvergleich-bilder.js')<html.indexOf('rechenbilder.js'));
 const js=fs.readFileSync(root+'course.js','utf8');
-assert(js.includes("['dezimal','dezimalvergleich','groessen'].includes(topic)&&state.mode==='learn'"),'Denkimpulse müssen angezeigt werden');
+assert(js.includes("['dezimal','dezimalvergleich','groessen','zahlenstrahl'].includes(topic)&&state.mode==='learn'"),'Denkimpulse müssen angezeigt werden');
 assert(js.includes("'dezimal','dezimalvergleich','groessen'].includes(topic)?ordered[0]"),'Beispielweg beginnt bei Fall 2');
 console.log('PASS: 4 eigenständige Lernaufgaben, 13 Beispiele, '+exampleImages+' Beispielbilder, '+learningImages+' Lernbilder, 6 Nachschlagekarten, fachliche Rechenprüfungen, Navigation und Asset-Version.');
