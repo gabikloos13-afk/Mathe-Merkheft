@@ -10,7 +10,7 @@
   const num=s=>Number(String(s).replace("−","-").replace(",",".")),fmt=n=>Number(n).toLocaleString("de-DE",{maximumFractionDigits:5});
   const pct=(n,d)=>Math.max(0,Math.min(1,n/d));
   const row=(a,label,options={})=>{
-    const digits=String(a).replace("−","").split("."),v=(digits[1]||"").split(""),whole=digits[0],n=Math.max(3,options.width||3);
+    const digits=String(a).replace("−","").split(","),v=(digits[1]||"").split(""),whole=digits[0],n=Math.max(3,options.width||3);
     return [whole,...Array.from({length:n},(_,i)=>v[i]??"0")];
   };
   function cards(values,caption="Das ist gegeben"){
@@ -97,8 +97,12 @@
   function between(stage,a="0,4",b="0,5",candidate="0,45"){
     const marked=stage>0;
     const markers=marked?[{value:candidate,label:candidate,middle:true}]:[];
-    if(stage===2)return decision(a,candidate,"<","Zwischen beiden Grenzen") // second comparison displayed in caption below
-      .replace("Gleiche Stellenwerte vergleichen",candidate+" ist kleiner als "+b);
+    if(stage===2){
+      const s=T(180,22,"Beide Grenzen überprüfen",17)+P("M30 97H330m-8 -6 8 6-8 6",colors.blue,2.8)
+      +C(175,97,7,colors.rose)+T(38,135,a,16)+T(320,135,b,16)
+      +T(175,72,candidate,19,colors.rose)+T(180,171,a+" < "+candidate+" < "+b,19);
+      return svg(s,a+" ist kleiner als "+candidate+", und "+candidate+" ist kleiner als "+b+".");
+    }
     return line({left:a,right:b,markers,label:marked?"Eine mögliche Zahl dazwischen":"Zwischen den Grenzen ist noch Platz"});
   }
   function gapDigits(stage){
