@@ -78,7 +78,7 @@ function render(){
   if(state.mode==='examples'){if(pos<ordered.length-1)caseMove(1);else{state.steps[phaseKey()]=0;render();}return;}
   const at=c.lessons.findIndex(l=>l.id===state.learn);
   if(state.mode==='learn'&&at<c.lessons.length-1){state.learn=c.lessons[at+1].id;state.steps["learn:"+state.learn]=0;render();route();reader.scrollIntoView({block:'start'});}
-  else{state.examples=ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0];state.steps["examples:"+state.examples]=0;setMode('examples');}
+  else{state.examples=topic==='gleichwertig'?ordered[0]:(ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0]);state.steps["examples:"+state.examples]=0;setMode('examples');}
  };
  $('#hint-toggle').onclick=()=>{hint.hidden=!hint.hidden;$('#hint-toggle').setAttribute('aria-expanded',String(!hint.hidden));};
 }
@@ -107,6 +107,13 @@ function closingHint(t,n,r){
 function caseMove(delta){const at=ordered.indexOf(state.examples),next=ordered[at+delta];if(next!==undefined){state.examples=next;state.steps["examples:"+next]=0;render();route();reader.scrollIntoView({block:'start'});}}
 $('#case-prev').addEventListener('click',()=>caseMove(-1));$('#case-next').addEventListener('click',()=>caseMove(1));
 const reference=$('#reference-pane');reference.innerHTML=c.referenceCards?c.referenceCards.map(card=>'<article class="reference-card"><h2>'+card.title+'</h2>'+card.html+list(card.lines)+(card.visual?'<div class="stage-picture">'+window.MerkheftPictures.learning(topic,1,{chapterVisual:card.visual},c.cases[1])+'</div>':'')+'</article>').join(''):'<div class="reference-card"><h2>Kurz merken</h2>'+list(c.rules)+'</div><div class="reference-card"><h2>Wörter verstehen</h2><dl>'+c.words.map(w=>'<dt>'+w.word+'</dt><dd>'+list(w.lines)+'</dd>').join('')+'</dl></div>';
-function parseRoute(){const h=location.hash.slice(1);let m;if((m=/^lernen-type-(\d+)$/.exec(h))&&c.lessons.some(l=>l.id===Number(m[1]))){state.mode='learn';state.learn=Number(m[1]);}else if((m=/^type-(\d+)$/.exec(h))&&c.cases[m[1]]){state.mode='examples';state.examples=Number(m[1]);}else if(h==='werkzeug')state.mode='tool';else if(h==='nachschlagen')state.mode='reference';render();}
+function parseRoute(){
+ const h=location.hash.slice(1);let m;
+ if((m=/^lernen-type-(\d+)$/.exec(h))&&c.cases[m[1]]){
+  const n=Number(m[1]);if(c.lessons.some(l=>l.id===n)){state.mode='learn';state.learn=n;}else if(ordered.includes(n)){state.mode='examples';state.examples=n;route();}
+ }else if((m=/^type-(\d+)$/.exec(h))&&c.cases[m[1]]){
+  const n=Number(m[1]);if(ordered.includes(n)){state.mode='examples';state.examples=n;}else if(c.lessons.some(l=>l.id===n)){state.mode='learn';state.learn=n;route();}
+ }else if(h==='werkzeug')state.mode='tool';else if(h==='nachschlagen')state.mode='reference';render();
+}
 window.addEventListener('hashchange',parseRoute);window.addEventListener('popstate',parseRoute);parseRoute();
 })();

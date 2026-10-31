@@ -36,3 +36,9 @@ for(let angle=-50;angle<=50;angle+=5)for(const x of [0,10])for(const y of [0,10]
 }
 assert.equal(Core.compare(8,12,9,12),'&lt;');assert.equal(Core.compare(2,3,4,6),'=');
 console.log('PASS: fraction conservation, complete/partial bundles, 199 decimal exchanges, snapped points and cube projection bounds');
+
+for(const k of [2,3,4,5]){
+ const reduced=Core.join(12,16,k);
+ if([2,4].includes(k)){assert(reduced);assert.equal(reduced.n/reduced.d,12/16);}else assert.equal(reduced,null);
+}
+console.log('PASS: Fester Kürzungsbruch 12/16: nur 2 und 4 zulässig, 3 und 5 werden abgewiesen.');

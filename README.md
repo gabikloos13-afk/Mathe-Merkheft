@@ -1,3 +1,9 @@
+## Doppelungs- und Werkzeugprüfung (31.10.2026)
+
+Lernen enthält zwei Grundwege; Beispiele enthält sieben weitere Aufgabenarten. Das reine Kürzen ist nur im Lernen erreichbar. Die Musterrechnung mit vorgegebener Malzahl verwendet eigene Zahlen (3/5 mit 2), getrennt vom Lernweg (2/3 auf Nenner 12). Redundante Lernschritt-Kopien wurden entfernt, alte Links werden passend weitergeleitet. Das Hauptwerkzeug behält beim Kürzen 12/16 und weist die Faktoren 3 und 5 mit Rest zurück. Das alternative geführte Bild behält Richtung und Faktor.
+
+Prüfumfang und offene Browserprüfung: [Prüfprotokoll](docs/pruefung-kuerzen-erweitern-2026-10-31.md).
+
 ## Erweitern: Malzahl wirklich herleiten (31.10.2026)
 
 Der erste Lernweg startet jetzt mit dem Zielnenner 12 bei 2/3. Die Malzahl ist gesucht: 3 · □ = 12 → 12 : 3 = 4, mit Probe und Vorher/Ziel-Bild. Der Renderer kann eine eigene Lernaufgabe anzeigen; das Musterbeispiel zur ausdrücklich vorgegebenen Malzahl bleibt separat erhalten.

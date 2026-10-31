@@ -101,19 +101,26 @@ function fractionBuilder(){
  shell(['Tippe direkt auf ein Stück. So färbst du es.','Tippe noch einmal auf dasselbe Stück. So wird es wieder frei.'],option('pieces','Teile pro Ganzem',[[2,'2 Hälften'],[3,'3 Drittel'],[4,'4 Viertel'],[6,'6 Sechstel'],[8,'8 Achtel'],[10,'10 Zehntel'],[12,'12 Zwölftel']],d)+option('shape','Bild wechseln',[['circle','Pizza'],['bar','Streifen'],['grid','Schokolade']],S.view),image,`${F(n,d)} = ${n} von ${d} Teilen`,[`<b>Nenner ${d}:</b> So viele gleich große Teile bilden das Ganze.`,`<b>Zähler ${n}:</b> So viele Teile hast du gefärbt.`,n?`Anderes Bild, gleicher Anteil: ${F(n,d)} = ${b===1?fmt(a):F(a,b)}.`:'Noch kein Teil ist gefärbt.'],button('all','Alle färben')+button('none','Alle freigeben'));
 }
 function workshop(){
- const reduce=S.workmode==='reduce',k=S.k;
- const from=reduce?Core.split(2,3,k):{n:2,d:3},to=reduce?{n:2,d:3}:Core.split(2,3,k),sign=reduce?':':'·';
+ const reduce=S.workmode==='reduce',k=S.k,from=reduce?{n:12,d:16}:{n:2,d:3},to=reduce?Core.join(from.n,from.d,k):Core.split(from.n,from.d,k),sign=reduce?':':'·',shown=S.workShown&&to;
  const strip=(n,d,label)=>{
-  let body=rect(20,10,560,80,'#eee7df')+rect(20,10,560*n/d,80,'#865342');
+  let body=rect(20,10,560,80,'#eee7df')+rect(20,10,560*n/d,80,purple);
   for(let i=0;i<=d;i++)body+=`<path d="M${20+i*560/d} 10v80" class="work-cut"/>`;
   return svg(body,105,label);
  };
- const calc=`<div class="workshop-calculation"><div><b>Oben rechnen</b><span>${from.n} ${sign} ${k} = <strong>${to.n}</strong></span></div><div><b>Unten genauso rechnen</b><span>${from.d} ${sign} ${k} = <strong>${to.d}</strong></span></div></div>`;
- const factorNote='<div class="reason-rows"><div><b>Die passende Zahl finden</b><span>'+k+' → von dir gewählt</span></div><div><b>'+(reduce?'Warum passt sie?':'Warum erlaubt?')+'</b><span>'+(reduce?'Dieses Beispiel ist passend vorbereitet. Beide Zahlen sind durch '+k+' teilbar.':'Kein Ziel vorgegeben. Du darfst 2, 3, 4 oder 5 nehmen.')+'</span></div></div>';
- const picture=factorNote+`<div class="workshop-pair"><div><h4>Vorher: ${F(from.n,from.d)}</h4>${strip(from.n,from.d,'Vorher: '+from.n+' von '+from.d+' gleichen Teilen')}</div><div class="${S.workShown?'':'workshop-awaiting'}"><h4>${S.workShown?'Nachher: '+F(to.n,to.d):'Nachher'}</h4>${S.workShown?strip(to.n,to.d,'Nachher: '+to.n+' von '+to.d+' gleichen Teilen'):'<div class="workshop-placeholder">'+(reduce?'Kürzen':'Erweitern')+' unten anklicken ↓</div>'}</div></div>${S.workShown?calc:''}`;
- shell([reduce?'Wähle die Zahl, durch die du oben und unten teilen möchtest.':'Wähle die Zahl, mit der du oben und unten malnehmen möchtest.',reduce?'Klicke auf „Mit '+k+' kürzen“.':'Klicke auf „Mit '+k+' erweitern“.'],option('workmode','Was möchtest du ansehen?',[['extend','Erweitern'],['reduce','Kürzen']],S.workmode)+option('workfactor','Mit welcher Zahl?',[[2,'2'],[3,'3'],[4,'4'],[5,'5']],k),picture,S.workShown?`${F(from.n,from.d)} <span class="school-equals" aria-label="oben und unten ${sign} ${k}"><span>${sign} ${k}</span><span>=</span><span>${sign} ${k}</span></span> ${F(to.n,to.d)}`:`Start: ${F(from.n,from.d)}`,[reduce?'Je '+k+' Stücke zusammenfassen.':'Jedes Stück in '+k+' Teile teilen.','Die gefärbte Fläche bleibt gleich groß.','Darum oben und unten '+(reduce?'durch '+k+' teilen.':'mal '+k+' rechnen.') ],button('work-show','Mit '+k+(reduce?' kürzen':' erweitern'),S.workShown?'disabled':'')+(S.workShown?button('reset','Noch einmal ansehen'):''));
- root.querySelector('.play-banner h3').textContent=reduce?'Oben und unten teilen.':'Oben und unten malnehmen.';
- root.querySelector('.touch-tip span:last-child').textContent=reduce?'Weniger Stücke. Gleich viel Schokolade.':'Mehr Stücke. Gleich viel Schokolade.';
+ const divide=n=>n+' : '+k+' = '+Math.floor(n/k)+(n%k?' Rest '+n%k:'');
+ const choice='<div class="reason-rows"><div><b>Deine Rechenzahl</b><span>'+k+'</span></div><div><b>'+(reduce?'Was prüfen wir?':'Warum ist sie erlaubt?')+'</b><span>'+(reduce?'Geht das Teilen oben und unten ohne Rest?':'Kein Ziel vorgegeben. Du darfst diese Malzahl wählen.')+'</span></div></div>';
+ let calculation='';
+ if(S.workShown){
+  calculation='<div class="workshop-calculation"><div><b>Oben rechnen</b><span>'+(reduce?divide(from.n):from.n+' · '+k+' = '+to.n)+'</span></div><div><b>Unten genauso rechnen</b><span>'+(reduce?divide(from.d):from.d+' · '+k+' = '+to.d)+'</span></div></div>';
+  if(!to)calculation+='<div class="workshop-feedback" role="status"><b>Mit '+k+' geht es nicht.</b><ul><li>Beim Teilen bleibt ein Rest.</li><li>Probiere eine andere Zahl.</li></ul></div>';
+  else if(reduce&&to.n===6)calculation+='<div class="workshop-feedback" role="status">Noch nicht fertig: 6 und 8 sind beide durch 2 teilbar.</div>';
+  else if(reduce)calculation+='<div class="workshop-feedback" role="status">Vollständig gekürzt: 3 und 4 haben nur den Teiler 1 gemeinsam.</div>';
+ }
+ const picture=choice+`<div class="workshop-pair"><div><h4>Vorher: ${F(from.n,from.d)}</h4>${strip(from.n,from.d,'Vorher: '+from.n+' von '+from.d+' gleichen Teilen')}</div><div class="${shown?'':'workshop-awaiting'}"><h4>${shown?'Nachher: '+F(to.n,to.d):'Nachher'}</h4>${shown?strip(to.n,to.d,'Nachher: '+to.n+' von '+to.d+' gleichen Teilen'):'<div class="workshop-placeholder">'+(S.workShown?'Diese Zahl passt nicht.':'Rechne zuerst oben und unten.')+'</div>'}</div></div>`+calculation;
+ const equation=shown?`${F(from.n,from.d)} <span class="school-equals" aria-label="oben und unten ${sign} ${k}"><span>${sign} ${k}</span><span>=</span><span>${sign} ${k}</span></span> ${F(to.n,to.d)}`:`Start: ${F(from.n,from.d)}`;
+ shell(['Wähle eine Rechenzahl.','Tippe auf „Rechnung zeigen“.'],option('workmode','Was möchtest du ansehen?',[['extend','Erweitern'],['reduce','Kürzen']],S.workmode)+option('workfactor','Mit welcher Zahl?',[[2,'2'],[3,'3'],[4,'4'],[5,'5']],k),picture,equation,[reduce?'Kürzen geht nur ohne Rest bei beiden Zahlen.':'Jedes Stück wird in '+k+' kleine Teile geteilt.','Die gefärbte Fläche bleibt gleich groß.'],button('work-show','Rechnung zeigen',S.workShown?'disabled':'')+(S.workShown?button('reset','Noch einmal ansehen'):''));
+ root.querySelector('.play-banner h3').textContent=reduce?'Welche Kürzungszahl passt?':'Erweitern: oben und unten malnehmen.';
+ root.querySelector('.touch-tip span:last-child').textContent=reduce?'Der Startbruch bleibt 12/16. Prüfe verschiedene Zahlen.':'Mehr Stücke. Gleich viel Schokolade.';
 }
 function tile(i,group){const a=-Math.PI/2+Math.PI*2/S.den,x=22+18*Math.cos(a),y=22+18*Math.sin(a),icon=`<svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19" fill="#e9e4f4"/><path d="M22 22L22 4A18 18 0 0 1 ${x} ${y}Z" fill="#9860ac" stroke="white"/></svg>`;return `<button type="button" draggable="true" data-token="${i}" class="bundle-token ${S.selected===i?'chosen':''}" aria-label="Bruchstück ${i+1} auswählen: 1 von ${S.den} gleich großen Teilen" data-sourcegroup="${group}">${icon}<span>${F(1,S.den)}</span></button>`}
 function bundler(){

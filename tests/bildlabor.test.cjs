@@ -56,3 +56,18 @@ for(const [opts,up,down] of [[{n:2,d:3,k:4},'2 · 4 = 8','3 · 4 = 12'],[{n:12,d
  assert(numerator.includes('Nur die bunten Stücke'));assert(denominator.includes('Jetzt alle Stücke'));
 }
 console.log('PASS: Geführtes Bild zeigt erst die obere Rechnung und erst danach die untere; beide Richtungen nach demselben Schema.');
+
+const alternate=vm.runInNewContext(prefix+'return alternateTransform;})();');
+for(const k of [2,3,4,5])for(const reverse of [false,true]){
+ const other=alternate({n:reverse?2*k:2,d:reverse?3*k:3,k,reverse});
+ assert.equal(other.reverse,reverse);assert.equal(other.k,k);assert.equal(other.n/other.d,3/4);
+ const widths=[];
+ for(let step=0;step<4;step++){
+  const html=scenes.transform(other,step);good(html);
+  widths.push(Number(html.match(/width="([\d.]+)" height="80" rx="4" fill="#783d53"/)[1]));
+  if(step===1)assert(html.includes(reverse?`${3*k} : ${k} = 3`:`3 · ${k} = ${3*k}`));
+  if(step===2)assert(html.includes(reverse?`${4*k} : ${k} = 4`:`4 · ${k} = ${4*k}`));
+ }
+ assert(widths.every(w=>w===widths[0]));
+}
+console.log('PASS: Anderes Beispiel behält Richtung und Faktor; alle 32 Varianten erhalten die gefärbte Fläche und rechnen oben/unten richtig.');

@@ -16,6 +16,7 @@ const note=s=>`<div class="scene-note">${miniList(s)}</div>`;
 function fractionStrip(n,d,x,y,w=520,h=55,cuts=true,ink=colors.part){
  return box(x,y,w,h)+box(x,y,w*n/d,h,ink)+(cuts?Array.from({length:d+1},(_,i)=>`<path class="cut-line" d="M${x+i*w/d} ${y}v${h}"/>`).join(''):'');
 }
+function alternateTransform(v){const k=v.k,reverse=!!v.reverse;return {n:reverse?3*k:3,d:reverse?4*k:4,k,reverse};}
 function transformScene(o,stage){
  const {n,d,k=2,reverse=false}=o,goalD=reverse?d/k:d*k,goalN=reverse?n/k:n*k,units=Math.max(1,Math.ceil(n/d)),unitWidth=520/units,sign=reverse?':':'·';
  let lines='';
@@ -30,7 +31,7 @@ function transformScene(o,stage){
  const label=['Die passende Zahl finden','Oben rechnen','Unten genauso rechnen','Den neuen Bruch schreiben'][stage];
  const b=box(40,75,520,80)+box(40,75,unitWidth*n/d,80,colors.part)+lines+txt(40,45,stage===1?'Nur die bunten Stücke':stage===2?'Jetzt alle Stücke':'Gleich viel gefärbte Fläche')+Array.from({length:units+1},(_,i)=>`<path d="M${40+i*unitWidth} 70v90" class="unit-line"/><text x="${40+i*unitWidth}" y="184" text-anchor="middle">${i}</text>`).join('');
  const calculation=stage===0?`${F(n,d)} <span class="operation">Gewählt: ${sign} ${k}</span>`:stage===1?`${n} ${sign} ${k} = ${goalN}`:stage===2?`${d} ${sign} ${k} = ${goalD}`:`${F(n,d)} <span class="school-equals" aria-label="oben und unten ${sign} ${k}"><span>${sign} ${k}</span><span>=</span><span>${sign} ${k}</span></span> ${F(goalN,goalD)}`;
- const explanation=stage===0?(reverse?'Die Zahl ist von dir gewählt. Dieses Beispiel passt dazu.':'Kein Ziel vorgegeben. Du darfst diese Malzahl wählen.'):stage===1?(reverse?'Je '+k+' bunte Stücke werden eine Gruppe.':'Jedes bunte Stück wird in '+k+' kleine Stücke geteilt.'):stage===2?'Unten dieselbe Rechenzahl verwenden.':'Ergebnis oben bleibt oben. Ergebnis unten bleibt unten.';
+ const explanation=stage===0?(reverse?'Beide Zahlen sind durch '+k+' teilbar. Dieses Beispiel ist passend vorbereitet.':'Kein Ziel vorgegeben. Du darfst diese Malzahl wählen.'):stage===1?(reverse?'Je '+k+' bunte Stücke werden eine Gruppe.':'Jedes bunte Stück wird in '+k+' kleine Stücke geteilt.'):stage===2?'Unten dieselbe Rechenzahl verwenden.':'Ergebnis oben bleibt oben. Ergebnis unten bleibt unten.';
  return svg(b,200,label)+eq(calculation)+note(explanation);
 }
 function portionScene(o,stage){
@@ -192,8 +193,8 @@ $('#scene-transfer').addEventListener('click',()=>{
  alternate=!alternate;$('.controls',lab).hidden=alternate;$$('.controls input,.controls select',lab).forEach(el=>el.disabled=alternate);$('#scene-transfer').textContent=alternate?'Zur Ausgangsaufgabe zurück':'Anderes Beispiel zeigen';
  const alternatives={brueche:{n:3,d:4,known:12,back:true,unit:'Kästchen'},gleichwertig:{n:3,d:4,k:2},gemischt:{n:17,d:5},zahlenstrahl:{a:.32,b:.33},quotienten:{n:2,d:5},vergleichen:{a:4,b:5,c:5,d:6},dezimal:{hundredths:75},dezimalvergleich:{a:.52,b:.7},groessen:{dim:3,value:.5}};
  const messages={brueche:'Vorher Kinder, jetzt Kästchen: Ein bekannter Anteil führt über EINEN Teil zum Ganzen.',gleichwertig:'Auch bei anderen Zahlen gilt: oben und unten mal dieselbe Zahl.',gemischt:'Andere Stückgröße: Jetzt bilden fünf Fünftel jeweils ein Ganzes.',zahlenstrahl:'Andere Grenzen: Überblick und Lupe beschreiben weiterhin denselben Zahlenstrahl.',quotienten:'Andere Pizzenzahl und Kinderzahl: Von jedem Ganzen bekommt jedes Kind denselben Anteil.',vergleichen:'Andere Nenner: Die passenden Schnittlinien müssen wieder zu beiden Einteilungen passen.',dezimal:'Andere Menge: Zehn Hundertstel werden weiterhin zu einem Zehntel gebündelt.',dezimalvergleich:'Andere Ziffern: Wieder entscheidet die erste unterschiedliche Stelle.',groessen:'Vom Quadrat zum Würfel: Es kommt eine dritte Richtung dazu.'};
- if(alternate)cfg.v={...alternatives[topic]};else{readControls();return}
- $('#scene-transfer-note').hidden=false;$('#scene-transfer-note').innerHTML=miniList(messages[topic]);state=0;paint();
+ if(alternate){cfg.v=topic==='gleichwertig'?alternateTransform(cfg.v):{...alternatives[topic]};}else{readControls();return}
+ $('#scene-transfer-note').hidden=false;$('#scene-transfer-note').innerHTML=miniList(topic==='gleichwertig'?(cfg.v.reverse?'Auch hier: oben und unten durch '+cfg.v.k+' teilen.':'Auch hier: oben und unten mal '+cfg.v.k+' rechnen.'):messages[topic]);state=0;paint();
 });
 if(topic==='groessen'){$('#lab-body-mode').closest('.control-box').hidden=true;$('#lab-dimension').value='2';}if(topic==='gemischt')$('#lab-den').value='4';
 paint();
@@ -202,7 +203,7 @@ paint();
 const cases={};
 function register(t,id,kind,v){cases[t+':type-'+id]={kind,v};}
 [[1,4,9,9,false,'Felder'],[2,2,3,60,false,'Birnen'],[3,3,4,21,true,'Kinder'],[6,5,6,60,false,'Minuten'],[8,5,6,18,false,'Kästchen'],[9,3,4,12,true,'Kästchen'],[10,4,5,320,true,'g'],[13,3,4,80,false,'Liter'],[14,7,10,10,false,'Würfel']].forEach(([id,n,d,known,back,unit])=>register('brueche',id,'portion',{n,d,known,back,unit}));
-[[1,2,3,4,false],[2,12,16,4,true],[3,18,24,6,true],[4,2,5,4,false],[5,3,4,5,false],[6,3,4,2,false],[8,18,30,6,true]].forEach(([id,n,d,k,reverse])=>register('gleichwertig',id,'transform',{n,d,k,reverse}));
+[[1,3,5,2,false],[2,12,16,4,true],[3,18,24,6,true],[4,2,5,4,false],[5,3,4,5,false],[6,3,4,2,false],[8,18,30,6,true]].forEach(([id,n,d,k,reverse])=>register('gleichwertig',id,'transform',{n,d,k,reverse}));
 [[1,11,4],[2,17,5],[3,12,4],[4,11,4],[5,17,5]].forEach(([id,n,d])=>register('gemischt',id,'bundle',{n,d,negative:id===4}));
 [[1,3,7,5,7],[2,3,4,3,8],[3,2,3,3,4],[4,2,3,4,6],[5,2,3,1,3],[11,4,3,5,4]].forEach(([id,a,b,c,d])=>register('vergleichen',id,'compare',{a,b,c,d,negative:id===5||id===11}));
 register('quotienten',2,'share',{n:8,d:12});register('quotienten',1,'transform',{n:18,d:12,k:6,reverse:true});
