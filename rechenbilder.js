@@ -214,7 +214,7 @@ function fractionLine(a,b,mark){
  const av=fractionValue(a),bv=fractionValue(b),lo=Math.floor(Math.min(av,bv)),hi=Math.ceil(Math.max(av,bv)),span=hi-lo||1,X=v=>25+(v-lo)/span*310;
  let bdy=`<path d="M25 92H337m-8 -6 8 6-8 6" fill="none" stroke="${C.blue}" stroke-width="3"/>`+T(25,127,fmt(lo),15)+T(335,127,fmt(lo+span),15);
  for(const [p,y,col] of [[a,43,C.blue],[b,158,C.berry]])bdy+=`<circle cx="${X(fractionValue(p))}" cy="92" r="7" fill="${col}"/>`+T(Math.max(30,Math.min(330,X(fractionValue(p)))),y,fractionText(p),18,col);
- if(mark)bdy+=`<path d="M${X(fractionValue(mark))} 75v33" stroke="${C.gold}" stroke-width="5"/>`+T(X(fractionValue(mark)),72,'Grenze: '+fractionText(mark),14,C.gold);
+ if(mark)bdy+=`<path d="M${X(fractionValue(mark))} 75v33" stroke="${C.gold}" stroke-width="5"/>`+T(X(fractionValue(mark)),72,'Grenze: '+(mark.d===1?fmt(mark.n):fractionText(mark)),14,C.gold);
  return SVG(bdy,'Zahlenstrahl mit '+fractionText(a)+' und '+fractionText(b)+(mark?'. Markierung bei '+fractionText(mark):''));
 }
 function areaPicture(stage){
