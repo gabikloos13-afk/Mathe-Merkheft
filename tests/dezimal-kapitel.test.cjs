@@ -98,8 +98,9 @@ assert(c.cases[3].trap.join(' ').includes('durch 200'));
 assert(c.cases[11].check.every(x=>x.includes('10 · 0,05')));
 
 const page=fs.readFileSync(root+'dezimal.html','utf8');
-assert(page.includes('dezimal-bilder.js?v=20261031r25'));
+assert(page.includes('dezimal-bilder.js?v=20261031r26'));
 assert(page.indexOf('dezimal-bilder.js')<page.indexOf('rechenbilder.js'));
 const courseJs=fs.readFileSync(root+'course.js','utf8');
 assert(courseJs.includes("topic==='dezimal'&&state.mode==='learn'&&p<last"));
+assert(courseJs.includes("'quotienten','dezimal'].includes(topic)?ordered[0]"),'Nach den vier Grundlagen beginnt der vollständige Beispielweg beim ersten Beispiel.');
 console.log('PASS: 4 getrennte Lernaufgaben, 11 Musterbeispiele, '+frames+' Beispielbilder, '+lessonImages+' Lernbilder; Wertdarstellung, Perioden, Minus, Ganze, Zahlenstrahl, Direktanzeige und Cache-Version.');
