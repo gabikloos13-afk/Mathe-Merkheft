@@ -19,3 +19,9 @@ Das dokumentierte Kapitel Kürzen und Erweitern trennt Grundlagenwege und zusät
 
 ## Abgrenzung
 Diese Datei dokumentiert den tatsächlich geprüften Ausgangsstand und die verbindlichen nächsten Schritte. Sie behauptet **keinen** bereits abgeschlossenen Kapitelumbau oder bestandenen Browsertest. Die bestehenden Lerninhalte wurden nicht stillschweigend verändert.
+
+## Umsetzungsschritt · 31.10.2026
+
+Commit `aed02170dbff594269c53e5324d154ed60eb98e6`: Für alle vier Grundlagenwege wurden eigene Lernaufträge, Titel, Einstiegsfragen und passende Einstiegstipps in `learning` ergänzt. Die zwölf Musterbeispiele, ihre Rechnungen und die gemeinsamen Bildwerkzeuge blieben unverändert.
+
+**Noch offen:** Die Lernwege verwenden weiterhin dieselben Rechenzahlen und teils dieselben Rechenschritte wie die Beispielkarten 1–4. Die vollständige Entflechtung, fachliche Detailkontrolle sämtlicher Vergleichsfälle, Bildprüfung und echte Browserprüfung sind noch nicht abgeschlossen. Deshalb ist der neue Standard **nur teilweise** umgesetzt; es liegt keine Gesamtfreigabe vor.
