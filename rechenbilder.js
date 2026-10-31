@@ -265,6 +265,7 @@ function negativeIntervalPicture(index){
 }
 function coursePicture(topic,id,index,r){
  const preview=index<0,step=preview?null:r.steps[index],ps=step?.pairs||[],initial=r.givenPairs||[];
+ if(topic==='dezimal'&&window.MerkheftDecimalPictures)return window.MerkheftDecimalPictures.render(id,index,r);
  if(topic==='vergleichen'&&id===6)return orderedFractionsPicture(preview);
  if(topic==='vergleichen'&&id===12)return negativeIntervalPicture(index);
  if(topic==='vergleichen'&&id===8&&!preview&&index===3){
@@ -363,7 +364,7 @@ function decimalLine(a,b,middle){
  if(middle!==null)s+=`<path d="M${X(middle)} 72v36" stroke="${C.gold}" stroke-width="5"/>`+T(180,167,fmt(middle),20);
  return SVG(s,(middle===null?'Die beiden Zahlen auf dem Zahlenstrahl: ':'Die Mitte ist '+fmt(middle)+'. ')+fmt(a)+' und '+fmt(b));
 }
-window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>topic==='gleichwertig'?chapterFigure(step.chapterVisual):topic==='vergleichen'&&step.chapterVisual?compareLearningPicture(step,r):step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
+window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>topic==='gleichwertig'?chapterFigure(step.chapterVisual):topic==='vergleichen'&&step.chapterVisual?compareLearningPicture(step,r):topic==='dezimal'&&step.chapterVisual&&window.MerkheftDecimalPictures?window.MerkheftDecimalPictures.learning(step,r):step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
 const topic=document.body.dataset.topic;
 document.querySelectorAll('.case').forEach(card=>{
  const id=Number(card.id.slice(5)),draw=specs[topic+':'+id];if(!draw)return;
