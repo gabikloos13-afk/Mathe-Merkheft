@@ -65,7 +65,7 @@ function render(){
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
   note.innerHTML=['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic)?'<div class="memory-note"><b>Daran denken</b>'+list(r.trap)+'</div>':'<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
  }
- if(['dezimal','dezimalvergleich'].includes(topic)&&state.mode==='learn'&&p<last&&steps[p]?.ask){
+ if(['dezimal','dezimalvergleich','groessen'].includes(topic)&&state.mode==='learn'&&p<last&&steps[p]?.ask){
   const prompt=document.createElement('div');prompt.className='next-thinking';
   prompt.innerHTML='<span class="next-thinking-label">Überlege vor dem Weiterklicken</span><p>'+steps[p].ask+'</p>';
   note.append(prompt);
@@ -83,7 +83,7 @@ function render(){
   if(state.mode==='examples'){if(pos<ordered.length-1)caseMove(1);else{state.steps[phaseKey()]=0;render();}return;}
   const at=c.lessons.findIndex(l=>l.id===state.learn);
   if(state.mode==='learn'&&at<c.lessons.length-1){state.learn=c.lessons[at+1].id;state.steps["learn:"+state.learn]=0;render();route();reader.scrollIntoView({block:'start'});}
-  else{state.examples=['gleichwertig','gemischt','zahlenstrahl','quotienten','dezimal','dezimalvergleich'].includes(topic)?ordered[0]:(ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0]);state.steps["examples:"+state.examples]=0;setMode('examples');}
+  else{state.examples=['gleichwertig','gemischt','zahlenstrahl','quotienten','dezimal','dezimalvergleich','groessen'].includes(topic)?ordered[0]:(ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0]);state.steps["examples:"+state.examples]=0;setMode('examples');}
  };
  $('#hint-toggle').onclick=()=>{hint.hidden=!hint.hidden;$('#hint-toggle').setAttribute('aria-expanded',String(!hint.hidden));};
 }
