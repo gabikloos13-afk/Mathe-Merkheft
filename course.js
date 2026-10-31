@@ -44,7 +44,7 @@ function render(){
  const base=c.cases[id()],r=state.mode==='learn'&&base.learning?{...base,...base.learning}:base,steps=state.mode==='learn'?(r.learnSteps||r.steps):r.steps,p=phase(),last=steps.length+1;
  reader.dataset.case=id();reader.dataset.phase=p;
  $('.example-tag',reader).textContent=state.mode==='learn'?'Gemeinsam verstehen':'Ein Beispiel zum Nachsehen';
- const principle=$('.principle-box',reader);principle.hidden=state.mode!=="learn"||p!==0||!r.principle;principle.innerHTML=r.principle?'<b>Grundregel</b>'+list(r.principle):'';
+ const principle=$('.principle-box',reader);principle.hidden=state.mode!=="learn"||p!==0||!r.principle||topic==='zahlenstrahl';principle.innerHTML=r.principle?'<b>Grundregel</b>'+list(r.principle):'';
  $('#example-title').textContent=r.title;$('.task-copy',reader).innerHTML=list(r.question);
  $$('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.lesson)===state.learn)));
  $('#example-select').value=state.examples;
@@ -56,7 +56,13 @@ function render(){
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
  if(p===0){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),-1,r);
-  if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b>'+ (['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic)?list([r.recognize,...r.intro]):'<p>'+r.recognize+'</p>'+list(r.intro))+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
+  if(topic==='zahlenstrahl'&&Array.isArray(r.approach)){
+   note.innerHTML='<div class="zs-route">'+
+    '<section><h3>Kurz erklärt</h3><p>'+r.intro.join(' ')+'</p></section>'+
+    '<section><h3>So erkennst du die Aufgabe</h3><p>'+r.recognize+'</p></section>'+
+    '<section><h3>So gehe ich vor</h3><ol>'+r.approach.map(s=>'<li>'+s+'</li>').join('')+'</ol></section>'+
+    '</div>';
+  }else if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b>'+ (['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic)?list([r.recognize,...r.intro]):'<p>'+r.recognize+'</p>'+list(r.intro))+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
  }else if(p<last){
   picture.innerHTML=state.mode==='learn'?window.MerkheftPictures.learning(topic,id(),steps[p-1],r):window.MerkheftPictures.render(topic,id(),p-1,r);
   calculation.innerHTML='<div class="notebook"><h3>'+(steps[p-1].segment||'Rechenweg wie im Heft')+'</h3>'+steps.slice(0,p).map((s,i)=>(steps[p-1].segment&&s.segment!==steps[p-1].segment?'':'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+(i===p-1&&s.decisionHtml?'<div class="decision-work">'+s.decisionHtml+'</div>':'')+s.html+(i===p-1&&s.afterHtml?'<div class="decision-work after-work">'+s.afterHtml+'</div>':'')+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>')).join('')+'</div>';
@@ -65,7 +71,7 @@ function render(){
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
   note.innerHTML=['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic)?'<div class="memory-note"><b>Daran denken</b>'+list(r.trap)+'</div>':'<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
  }
- if(['dezimal','dezimalvergleich','groessen'].includes(topic)&&state.mode==='learn'&&p<last&&steps[p]?.ask){
+ if(['dezimal','dezimalvergleich','groessen','zahlenstrahl'].includes(topic)&&state.mode==='learn'&&p<last&&steps[p]?.ask){
   const prompt=document.createElement('div');prompt.className='next-thinking';
   prompt.innerHTML='<span class="next-thinking-label">Überlege vor dem Weiterklicken</span><p>'+steps[p].ask+'</p>';
   note.append(prompt);
