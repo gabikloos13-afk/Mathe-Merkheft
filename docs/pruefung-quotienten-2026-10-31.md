@@ -46,3 +46,7 @@ Das neue Hauptwerkzeug erhält die vier bisherigen Bildphasen und erweitert den 
 - Sichtprüfung der Tafeln, Teilstücke, Empfängerkarten und Brüche in schmaler Ansicht; kompaktere Anordnung nach Sichtprüfung umgesetzt. Navigation, Nachschlagen und breite Darstellung wurden ergänzend geprüft.
 
 Die mobile Prüfung ist eine Browserprüfung mit schmalem Dokument, keine Erprobung auf einem physischen Android-Gerät. Ein garantierter selbstständiger Lernerfolg für Hanna und ein vollständiger neuer Abgleich mit Originalbuchfotos sind damit nicht belegt.
+
+## Vertiefte Herkunft der Kürzungszahlen
+
+Die Rechenwege zu 18/12, 8/12, 6/8 und 15/12 zeigen zusätzlich die vollständigen Teilerlisten und die gemeinsamen Teiler. Die größte passende Kürzungszahl wird daraus ausgewählt, bevor oben und unten gerechnet wird. Dieselbe nachvollziehbare Suche ist im aufklappbaren Kürzungsbereich des freien Werkzeugs enthalten. Damit wird die Wahl der Zahl nicht nur durch eine nachträgliche Teilbarkeitsprobe begründet.

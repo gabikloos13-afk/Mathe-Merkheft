@@ -110,6 +110,13 @@ cases[6]=entry(6,'Bruchwerte den Zahlenmengen zuordnen',[`Ordne −5, ${F(1,8)},
  st('6 · Die natürliche Zahl zuordnen',`6 = ${F(6,1)} → ℕ, ℤ und ℚ`,['6 ist eine natürliche Zahl.','Damit ist sie auch ganz und rational.'],'Jede natürliche Zahl gehört auch zu den beiden größeren Mengen.',P('sets',0,1,{phase:6})),
  st('7 · Den Wert des scheinbaren Bruchs bestimmen',`${F(10,5)} = 10 : 5 = 2 → ℕ, ℤ und ℚ`,['Zehn Fünftel haben den Wert 2.','Die 2 gehört zu allen drei Mengen.'],'Rechne den Bruch zuerst aus. Entscheide erst danach über die Mengen.',P('sets',0,1,{phase:7}))
 ],[`−5: ℤ und ℚ. ${F(1,8)}: nur ℚ.`,`6 und ${F(10,5)} = 2: ℕ, ℤ und ℚ.`],['Jede natürliche Zahl ist auch eine ganze Zahl.','Jede ganze Zahl ist auch rational: Schreibe sie mit Nenner 1.'],['<b>Denkfalle:</b> Eine als Bruch geschriebene Zahl kann trotzdem natürlich sein.',`${F(10,5)} hat den natürlichen Wert 2.`],P('calc',0,1,{lines:[`−5 · ${F(1,8)} · 6 · ${F(10,5)}`]}));
+function divisorSearch(n,d){
+ const divisors=x=>Array.from({length:x},(_,i)=>i+1).filter(k=>x%k===0);
+ const a=divisors(n),b=divisors(d),common=a.filter(k=>b.includes(k)),largest=common.at(-1);
+ return `<div class="q-divisor-search"><b>So findest du die Kürzungszahl</b><ul><li>Teiler von ${n}: ${a.join(', ')}.</li><li>Teiler von ${d}: ${b.join(', ')}.</li><li>Gemeinsam: ${common.join(', ')}.</li><li>${largest>1?'Größte passende Kürzungszahl: '+largest+'.':'Nur 1 ist gemeinsam. Der Bruch ist vollständig gekürzt.'}</li></ul></div>`;
+}
+for(const [id,index,n,d] of [[1,1,18,12],[2,3,8,12],[104,2,6,8],[3,2,15,12]])cases[id].steps[index].decisionHtml=divisorSearch(n,d);
+
 // Bilder: gleiche Einheiten und unveränderte Gesamtmenge.
 const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
 const simplify=(n,d)=>{if(!d)throw Error('Nenner 0');const g=gcd(n,d);return[n/g,d/g];};
@@ -192,7 +199,7 @@ function installTool(){
   root.querySelector('#q-back').disabled=phase===0;root.querySelector('#q-next').textContent=phase===3?'Von vorn ansehen':'Weiter →';root.querySelector('#q-stage-status').textContent='Bildschritt '+(phase+1)+' von 4';
   root.querySelector('#q-reduce').hidden=phase!==3;const reduction=root.querySelector('.q-reduction');reduction.hidden=!reduced||phase!==3;
   const g=gcd(n,d),[a,b]=simplify(n,d),q=Math.floor(n/d),r=n%d;
-  reduction.innerHTML=n===0?`${F(0,d)} = 0`:g===1?`${F(n,d)}${b===1?' = '+a:q>0?' = '+M(q,r,d):''} ist bereits vollständig gekürzt.`:`<ul><li>Kürzungszahl ${g}: ${n} : ${g} = ${a}; ${d} : ${g} = ${b}.</li><li>${F(n,d)} = ${F(a,b)}${b===1?' = '+a:q>0?' = '+M(q,r/g,d/g):''}.</li><li>Die Menge pro Kind bleibt gleich.</li></ul>`;
+  reduction.innerHTML=(n?divisorSearch(n,d):'')+(n===0?`${F(0,d)} = 0`:g===1?`${F(n,d)}${b===1?' = '+a:q>0?' = '+M(q,r,d):''} ist bereits vollständig gekürzt.`:`<ul><li>Kürzungszahl ${g}: ${n} : ${g} = ${a}; ${d} : ${g} = ${b}.</li><li>${F(n,d)} = ${F(a,b)}${b===1?' = '+a:q>0?' = '+M(q,r/g,d/g):''}.</li><li>Die Menge pro Kind bleibt gleich.</li></ul>`);
  }
  root.addEventListener('input',e=>{if(e.target!==wholeInput&&e.target!==peopleInput)return;n=+wholeInput.value;d=+peopleInput.value;phase=0;reduced=false;render();});
  root.addEventListener('click',e=>{if(e.target.id==='q-next'){phase=(phase+1)%4;reduced=false;}else if(e.target.id==='q-back'){phase=Math.max(0,phase-1);reduced=false;}else if(e.target.id==='q-reduce')reduced=!reduced;else if(e.target.id==='q-reset'){n=3;d=4;phase=0;reduced=false;}else return;render();});render();
