@@ -12,7 +12,7 @@ Jetzt:
 | Beispiele | Sieben Aufgabenarten: vorgegebene Malzahl, mehrmals kürzen, alle Kürzungszahlen, Lücke oben, Lücke unten, gleichwertige Brüche, Zielnenner. |
 | Nachschlagen | Kurze Regeln und Begriffe. Die Wiederholung der Regeln dient hier dem Nachsehen. |
 
-Lernen: 2/3 auf Nenner 12. Musterbeispiel: 3/5 mit 2 erweitern. Beide haben eigene Aufgaben, Ausgangsbilder und Heftrechnungen. Der Kürzen-Grundweg 12/16 erscheint nur im Lernen. Alte Links führen zum entsprechenden Lernweg oder Musterbeispiel.
+Lernen: 2/3 ohne vorgegebene Malzahl oder Ziel; als ein möglicher Weg wird 2 gewählt. Musterbeispiel: 3/5 mit der vorgegebenen Zahl 2 erweitern. Beide haben eigene Aufgaben, Ausgangsbilder und Heftrechnungen. Der Kürzen-Grundweg 12/16 erscheint nur im Lernen. Alte Links führen zum entsprechenden Lernweg oder Musterbeispiel.
 
 ## Gefundene und korrigierte Werkzeugprobleme
 
@@ -35,8 +35,8 @@ Es gibt keine pauschale Aussage, dass ein Kind jede Erklärung ohne Hilfe verste
 - Automatisiert: alle 32 Kombinationen des alternativen geführten Bildes (zwei Richtungen × vier Faktoren × vier Bildschritte); Richtung, Faktor, obere/untere Rechnung und gleichbleibende gefärbte Breite.
 - Automatisiert: alte Links, Weiterleitung zu den neuen Bereichen und gültige Beispielpositionen.
 
-## Noch offen
+## Browserprüfung nachgeholt
 
-Die Browserverbindung brach beim anschließenden Test des geführten Bildwegs ab. Daher sind der vollständige Klicktest des geänderten geführten Bildwegs und der abschließende Klicktest der neuen Navigation nicht bestätigt. Die zugehörigen Rechen- und Routingtests sind bestanden. Diese Einschränkung wird auch bei der Übergabe genannt.
+Nach Wiederherstellung der Browserverbindung wurden der Übergang von Lernen zu den sieben Beispielen sowie die Weiterleitung älterer Links im Browser geprüft. Im geführten Bild wurden die vier Schritte für Erweitern mit 4 und Kürzen mit 5 sowie jeweils „Anderes Beispiel“ und „Zur Ausgangsaufgabe zurück“ durchgegangen. Die gefärbte Breite blieb gleich und die jeweils angezeigten Rechnungen stimmten. Diese Browserfälle ergänzen die automatisierten Tests aller Faktoren.
 
-Die inhaltliche Detailprüfung bezieht sich auf das Kapitel Kürzen und Erweitern; die automatisierten gemeinsamen Bild- und Rechentests umfassen darüber hinaus alle neun Kapitel.
+Der aktuelle Erweitern-Lernweg und der Kürzen-Lernweg wurden in einer 375 Pixel breiten Ansicht Schritt für Schritt mit ihren Hinweisen geprüft. Die inhaltliche Detailprüfung bezieht sich auf das Kapitel Kürzen und Erweitern; die automatisierten gemeinsamen Bild- und Rechentests umfassen darüber hinaus alle neun Kapitel.

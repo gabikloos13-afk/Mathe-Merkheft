@@ -1,8 +1,12 @@
+## Erweitern ohne vorgegebenen Nenner (31.10.2026)
+
+Der Lernweg unterscheidet freie Wahl, vorgegebene Malzahl und Zielnenner. Ohne Vorgabe wird beispielhaft die 2 gewählt und Schritt für Schritt erklärt: 2/3 = 4/6. Der Ausgangsbruch, das neue Ergebnis, die Probe und die Bilder gehören zu derselben Aufgabe. Im Kürzen-Lernweg wird erklärt, dass beide Zahlen ohne Rest teilbar sein müssen.
+
 ## Doppelungs- und Werkzeugprüfung (31.10.2026)
 
 Lernen enthält zwei Grundwege; Beispiele enthält sieben weitere Aufgabenarten. Das reine Kürzen ist nur im Lernen erreichbar. Die Musterrechnung mit vorgegebener Malzahl verwendet eigene Zahlen (3/5 mit 2), getrennt vom Lernweg (2/3 auf Nenner 12). Redundante Lernschritt-Kopien wurden entfernt, alte Links werden passend weitergeleitet. Das Hauptwerkzeug behält beim Kürzen 12/16 und weist die Faktoren 3 und 5 mit Rest zurück. Das alternative geführte Bild behält Richtung und Faktor.
 
-Prüfumfang und offene Browserprüfung: [Prüfprotokoll](docs/pruefung-kuerzen-erweitern-2026-10-31.md).
+Prüfumfang und nachgeholte Browserprüfung: [Prüfprotokoll](docs/pruefung-kuerzen-erweitern-2026-10-31.md).
 
 ## Erweitern: Malzahl wirklich herleiten (31.10.2026)
 

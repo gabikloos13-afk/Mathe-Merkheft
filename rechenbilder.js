@@ -159,6 +159,12 @@ function chapterKnown(p){
 }
 function chapterFigure(v){
  const p=v.from,q=v.to,phase=v.phase;
+ if(phase==='choose'){
+  const k=v.factor,onePiece=R(80,102,200,37,C.berry);
+  let cuts='';for(let j=1;j<k;j++)cuts+=`<path d="M${80+j*200/k} 102v37" stroke="#fffcf7" stroke-width="3"/>`;
+  const body=T(180,22,'Wir wählen: mal '+k,17)+strip(p.n,p.d,30,31,300,35)+T(180,89,'Ein Stück vergrößert:',17)+onePiece+cuts+T(180,164,'Jedes Stück wird so geteilt.',16);
+  return SVG(body,'Wir wählen die Malzahl '+k+'. Jedes der '+p.d+' Stücke wird in '+k+' gleich große Stücke geteilt.');
+ }
  if(phase==='factor'){
   const target=v.targetDenominator,k=target/p.d;
   let body=T(180,22,'Vorher: '+p.d+' große Stücke',17)+strip(p.n,p.d,30,34,300,36)+T(180,96,'Ziel: '+target+' kleine Stücke',17)+strip(p.n*k,target,30,108,300,36);

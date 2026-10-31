@@ -49,7 +49,7 @@ for(const [topic,c]of Object.entries(data)){
   for(const s of learning){assert(s.source>=0&&s.source<r.steps.length);assert(s.explain.length>=2);const svg=context.window.MerkheftPictures.learning(topic,r.id,s,r);assert(svg.includes('<svg'));assert(!/NaN|undefined|Infinity/.test(svg));learnFrames++;}
  }
 }
-const expand=data.gleichwertig.cases[1];assert.equal(expand.learnSteps.length,4);assert(expand.learnSteps[1].html.includes('2 · 4 = 8'));assert(!expand.learnSteps[1].html.includes('3 · 4 = 12'));assert(context.window.MerkheftPictures.learning('gleichwertig',1,expand.learnSteps[1],expand).includes('2 mal 4 ergibt 8')); assert.equal(expand.steps.length,4);
+const expand=data.gleichwertig.cases[1];assert.equal(expand.learnSteps.length,4);assert(expand.learnSteps[1].html.includes('2 · 2 = 4'));assert(!expand.learnSteps[1].html.includes('3 · 2 = 6'));assert(context.window.MerkheftPictures.learning('gleichwertig',1,expand.learnSteps[1],expand).includes('2 mal 2 ergibt 4')); assert.equal(expand.steps.length,4);
 console.log('PASS:',learnFrames,'eigene Lernschritte mit passenden Bildern; 98 Vorgehenshinweise bei Beispiele.');
 
 const signs=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Das Vorzeichen bestimmen');assert.equal(signs.length,2);assert(signs[0].html.includes('15 : (−12)'));assert(signs[1].html.includes('(−15) : (−12)'));console.log('PASS: Vorzeichen vor dem Kürzen ausdrücklich bestimmt.');
@@ -105,14 +105,19 @@ assert(data.gleichwertig.cases[8].steps[0].decisionHtml.includes('30 : 9 = 3 Res
 console.log('PASS: Jeder Aufgabentyp folgt exakt den vier Schritten des Kürzen-Vorbilds; passende und unpassende Rechenzahlen nachvollziehbar.');
 
 const derive=data.gleichwertig.cases[1];
-assert(derive.learning.question[0].includes('unten 12'));
-assert(!derive.learning.question[0].includes('mit 4'));
-assert(derive.learnSteps[0].html.includes('12 : 3 = 4'));
+assert.equal(derive.learning.questionPlain,'Erweitere 2/3.');
+assert(derive.learnSteps[0].decisionHtml.includes('Keine Zahl für den neuen Bruch'));
+assert(derive.learnSteps[0].decisionHtml.includes('2, 3 oder 4'));
+assert(derive.learnSteps[0].html.includes('mal 2'));
 assert(derive.question[0].includes('mit 2'),'given-factor example is retained separately');
 const factorImage=context.window.MerkheftPictures.learning('gleichwertig',1,derive.learnSteps[0],derive);
-assert(factorImage.includes('12 : 3 = 4'));
-assert(!factorImage.includes('8/12'),'the numerator result is not shown before calculating it');
-console.log('PASS: Erweitern-Lernweg leitet die 4 aus Zielnenner 12 und altem Nenner 3 her; gegebenes-Faktor-Beispiel bleibt erhalten.');
+assert(factorImage.includes('Malzahl 2'));
+assert(!factorImage.includes('4/6'),'complete answer is not shown before calculating');
+assert(data.gleichwertig.cases[4].steps[0].decisionHtml.includes('20 : 5 = 4'),'a target-denominator example is retained');
+assert(data.gleichwertig.cases[2].steps[0].afterHtml.includes('6 und 8'));
+assert(data.gleichwertig.cases[2].steps[0].afterHtml.includes('3 und 4'));
+for(const r of Object.values(data.gleichwertig.cases))for(const step of [...r.steps,...(r.learnSteps||[])])for(const hint of step.hint)assert(!/\b\d+\.0\b/.test(hint),'no floating-point notation in child-facing hints');
+console.log('PASS: Freie Wahl bei fehlender Vorgabe, richtiger Zielnenner-Weg als Beispiel und Begründung der Kürzungswahl.');
 
 const eqChapter=data.gleichwertig;
 assert.deepEqual(Array.from(eqChapter.lessons,l=>l.id),[1,2]);
@@ -124,8 +129,8 @@ console.log('PASS: Zwei Grundwege im Lernen, sieben Aufgabenarten bei Beispiele,
 assert.equal(derive.givenPairs[0].n,3);assert.equal(derive.givenPairs[0].d,5);
 assert.equal(derive.learning.givenPairs[0].n,2);assert.equal(derive.learning.givenPairs[0].d,3);
 assert(derive.notebookHtml.includes('6 durch 10'));
-assert(derive.learning.notebookHtml.includes('8 durch 12'));
-console.log('PASS: Lernaufgabe 2/3 → Nenner 12 und Musterbeispiel 3/5 mit 2 haben eigene Aufgaben, Bilder und Ergebnisrechnungen.');
+assert(derive.learning.notebookHtml.includes('4 durch 6'));
+console.log('PASS: Lernaufgabe 2/3 frei erweitern und Musterbeispiel 3/5 mit 2 haben eigene Aufgaben, Bilder und Ergebnisrechnungen.');
 
 const learningCase={...derive,...derive.learning};
 assert(draw('gleichwertig',1,-1,learningCase).includes('Gegeben: 2/3'));
