@@ -40,3 +40,9 @@ Es gibt keine pauschale Aussage, dass ein Kind jede Erklärung ohne Hilfe verste
 Nach Wiederherstellung der Browserverbindung wurden der Übergang von Lernen zu den sieben Beispielen sowie die Weiterleitung älterer Links im Browser geprüft. Im geführten Bild wurden die vier Schritte für Erweitern mit 4 und Kürzen mit 5 sowie jeweils „Anderes Beispiel“ und „Zur Ausgangsaufgabe zurück“ durchgegangen. Die gefärbte Breite blieb gleich und die jeweils angezeigten Rechnungen stimmten. Diese Browserfälle ergänzen die automatisierten Tests aller Faktoren.
 
 Der aktuelle Erweitern-Lernweg und der Kürzen-Lernweg wurden in einer 375 Pixel breiten Ansicht Schritt für Schritt mit ihren Hinweisen geprüft. Die inhaltliche Detailprüfung bezieht sich auf das Kapitel Kürzen und Erweitern; die automatisierten gemeinsamen Bild- und Rechentests umfassen darüber hinaus alle neun Kapitel.
+
+## Erneuter Abgleich: vollständiger Kapitelaufbau
+
+Abgleich mit Heftblatt 05-74779 und den Aufgabenblättern 03-74781 und 01-74783: gleiche Zahl oben und unten; angegebene Rechenzahl; gesuchte Malzahl; vollständig und mehrstufig kürzen; gemeinsame Teiler; Lücken links und rechts; gleiche Anteile und gemeinsamer Nenner. Drei bislang fehlende Denkwege ergänzt: Malzahl aus zwei fertigen Brüchen ermitteln, Lücke im ersten Bruch vom vollständigen Bruch aus lösen und gemeinsamen Nenner aus beiden Malreihen finden. Das anspruchsvolle Beispiel mit anschließendem Erweitern bleibt als gesonderter Fall erhalten.
+
+Die freie Wahl einer Malzahl ist kurz mathematisch dargestellt; unpassende Metasätze über nicht genannte Zahlen sind entfernt. Der Hinweis im Schritt zur Kürzungszahl führt zur Suche, ohne die gesamte spätere Lösung zu verraten. Die Erklärung beim negativen Bruch verwendet keine gefärbten Stücke. Lernen und Beispiele behandeln verschiedene Aufgabenstellungen; sie sind zum Nachschlagen, nicht als Übungsblatt gestaltet.

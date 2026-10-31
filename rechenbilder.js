@@ -234,7 +234,7 @@ function fieldPicture(stage){
 function coursePicture(topic,id,index,r){
  const preview=index<0,step=preview?null:r.steps[index],ps=step?.pairs||[],initial=r.givenPairs||[];
  if(topic==='gleichwertig'){
-  if(preview&&initial.length===2)return SVG(T(90,25,'Erster Bruch',16)+T(270,25,'Zweiter Bruch',16)+schoolFraction(90,76,initial[0],25)+schoolFraction(270,76,initial[1],25)+T(180,165,id===7?'Ziel bei beiden: Nenner 30.':'Vergleiche diese beiden Brüche.',16),'Gegeben: '+fractionText(initial[0])+' und '+fractionText(initial[1]));
+  if(preview&&initial.length===2)return SVG(T(90,25,'Erster Bruch',16)+T(270,25,'Zweiter Bruch',16)+schoolFraction(90,76,initial[0],25)+schoolFraction(270,76,initial[1],25)+T(180,165,id===7?'Ziel bei beiden: Nenner 30.':id===11?'Suche einen gemeinsamen Nenner.':'Vergleiche diese beiden Brüche.',16),'Gegeben: '+fractionText(initial[0])+' und '+fractionText(initial[1]));
   return preview?chapterKnown(initial[0]):chapterFigure(step.chapterVisual);
  }
  if(topic==='brueche'&&id===8){
