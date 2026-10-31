@@ -64,6 +64,12 @@ for(const [rawId,r] of Object.entries(c.cases)){
 assert.equal(frames,34);
 const lessonImages=c.lessons.reduce((sum,l)=>sum+c.cases[l.id].learnSteps.length,0);
 assert.equal(lessonImages,11);
+const equal=(a,b)=>Math.abs(a-b)<1e-10;
+assert(equal(9/100,0.09)&&equal(2/5,0.4)&&equal(6/10,3/5)&&equal(14/10,7/5));
+assert(equal(3/4,0.75)&&equal(800/2000,0.4)&&equal(45/100,9/20)&&equal(-15/100,-3/20));
+assert(equal(12/10,6/5)&&equal(35/100,7/20)&&equal(6/8,0.750)&&!equal(3/8,0.750));
+assert(equal(3/12,0.25)&&equal(7/40,0.175)&&equal(-1.5-10*0.05,-2)&&equal(-1.5+10*0.05,-1));
+
 
 const img=(id,step)=>render('dezimal',id,step,c.cases[id]);
 assert(!img(1,-1).includes('0,07'),'Einstiegsbild verrät die Umwandlung');
@@ -74,7 +80,9 @@ assert(img(4,0).includes('0,45'));
 assert(img(5,1).includes('−3/20'));
 assert.equal((img(6,0).match(/fill="#98536e"/g)||[]).length,12,'1,2 braucht zwölf echte Zehntel');
 assert(img(6,1).includes('12/10 = 6/5 = 1,2'),'Zweite Beispielphase zeigt Kürzung');
+assert.notEqual(img(6,0).match(/aria-label="([^"]+)"/)[1],img(6,1).match(/aria-label="([^"]+)"/)[1],'unterschiedliche Rechnungen brauchen unterschiedliche Bildbeschreibungen');
 assert(img(7,0).includes('0,333')&&img(7,0).includes('Rest 1'));
+assert.notEqual(img(7,0),img(7,1),'Periodische Zahl: zweiter Erklärschritt muss sich sichtbar unterscheiden');
 assert(img(8,-1).includes('□/20')&&!img(8,-1).includes('Kästchen = 7'));
 assert(img(8,2).includes('Kästchen = 7'));
 assert(!img(9,-1).includes('0,375'),'Vorschau darf die Aussortierung nicht verraten');
@@ -89,7 +97,7 @@ assert(c.cases[3].trap.join(' ').includes('durch 200'));
 assert(c.cases[11].check.every(x=>x.includes('10 · 0,05')));
 
 const page=fs.readFileSync(root+'dezimal.html','utf8');
-assert(page.includes('dezimal-bilder.js?v=20261031r23'));
+assert(page.includes('dezimal-bilder.js?v=20261031r24'));
 assert(page.indexOf('dezimal-bilder.js')<page.indexOf('rechenbilder.js'));
 const courseJs=fs.readFileSync(root+'course.js','utf8');
 assert(courseJs.includes("topic==='dezimal'&&state.mode==='learn'&&p<last"));
