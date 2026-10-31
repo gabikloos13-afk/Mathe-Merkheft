@@ -56,7 +56,7 @@ assert.equal(learnImages,12);
 const pic=(id,i)=>draw.render('vergleichen',id,i,c.cases[id]);
 assert(pic(6,-1).includes('1 1/4'),'gemischte Zahl muss in der Aufgabe vorkommen');
 assert(!pic(6,-1).includes('−1/2 < 2/3'),'Reihenfolge nicht vorwegnehmen');
-assert(pic(6,0).includes('−1/2 < 2/3 < 1 1/4'),'vollständiger geordneter Zahlenstrahl');
+assert(pic(6,0).includes('−1/2 &lt; 2/3 &lt; 1 1/4'),'vollständiger geordneter Zahlenstrahl');
 
 assert(pic(8,3).includes('5/20')&&pic(8,3).includes('6/20'));
 assert(!pic(8,3).includes('Das zeigt die Rechnung.'),'Abschlussbild darf nicht leer sein');
