@@ -48,6 +48,7 @@ assert(!render('dezimal',1,-1,{...c.cases[1],...c.cases[1].learning}).includes('
 assert(!render('dezimal',2,-1,{...c.cases[2],...c.cases[2].learning}).includes('0,4'));
 assert(!render('dezimal',4,-1,{...c.cases[4],...c.cases[4].learning}).includes('3/5'));
 assert(!render('dezimal',6,-1,{...c.cases[6],...c.cases[6].learning}).includes('14/10'));
+assert(learning('dezimal',6,c.cases[6].learnSteps[2],c.cases[6]).includes('demselben Punkt am Zahlenstrahl'),'Unechte, gleichwertige Brüche brauchen einen echten Zahlenstrahl');
 
 let frames=0;
 for(const [rawId,r] of Object.entries(c.cases)){
@@ -97,7 +98,7 @@ assert(c.cases[3].trap.join(' ').includes('durch 200'));
 assert(c.cases[11].check.every(x=>x.includes('10 · 0,05')));
 
 const page=fs.readFileSync(root+'dezimal.html','utf8');
-assert(page.includes('dezimal-bilder.js?v=20261031r24'));
+assert(page.includes('dezimal-bilder.js?v=20261031r25'));
 assert(page.indexOf('dezimal-bilder.js')<page.indexOf('rechenbilder.js'));
 const courseJs=fs.readFileSync(root+'course.js','utf8');
 assert(courseJs.includes("topic==='dezimal'&&state.mode==='learn'&&p<last"));
