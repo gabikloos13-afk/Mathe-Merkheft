@@ -51,13 +51,13 @@ function portionScene(o,stage){
 function bundleScene(o,stage){
  const {n,d,negative=false}=o,whole=Math.floor(n/d),rest=n%d,groups=Math.max(1,Math.ceil(n/d)),cols=3,rows=Math.ceil(groups/cols),height=stage?rows*100+70:Math.ceil(n/10)*45+75;
  let b='';
- if(stage)for(let g=0;g<groups;g++){const x=20+g%cols*195,y=30+Math.floor(g/cols)*100;b+=box(x,y,180,70,'#fff',`class="group-outline"`)+txt(x,y+92,'Ganzes '+(g+1));}
+ if(stage)for(let g=0;g<groups;g++){const x=20+g%cols*195,y=30+Math.floor(g/cols)*100;b+=box(x,y,180,70,'#fff',`class="group-outline"`)+txt(x,y+92,g<whole?'Ganzes '+(g+1):'Unvollständige Gruppe');}
  for(let i=0;i<n;i++){
   const x0=20+i%10*55,y0=25+Math.floor(i/10)*45,g=Math.floor(i/d),j=i%d,x1=28+g%cols*195+j*(164/d),y1=42+Math.floor(g/cols)*100;
   b+=`<rect class="moving-piece" x="0" y="0" width="${stage?Math.max(5,155/d):43}" height="30" rx="3" fill="${stage>=2&&g===whole?colors.unit:colors.part}" style="--sx:${x0}px;--sy:${y0}px;--tx:${stage?x1:x0}px;--ty:${stage?y1:y0}px"/>`;
  }
  const sign=negative?'−':'';
- return svg(b,height,'Bruchstücke bewegen sich in vollständige Gruppen')+eq(stage<2?`${sign}${F(n,d)} · ${d} Stücke bilden ein Ganzes`:stage===2?`${whole} volle Gruppen · ${rest} Stücke bleiben`:`${sign}${F(n,d)} = ${sign}${rest?`(${whole} + ${F(rest,d)})`:whole}`)+note(stage===0?'Die einzelnen Stücke sind noch nicht gebündelt.':stage===1?'Jedes Stück gehört zu genau einer Gruppe.':stage===2?'Nur die letzte unvollständige Gruppe ist der Rest.':negative?'Das Bild zeigt den Betrag. Das Minus gilt für den gesamten Wert.':'Die Menge bleibt bei der Umordnung erhalten.');
+ return svg(b,height,'Bruchstücke bewegen sich in vollständige Gruppen')+eq(stage<2?`${sign}${F(n,d)} · ${d} Stücke bilden ein Ganzes`:stage===2?`${whole} volle Gruppen · ${rest} Stücke bleiben`:`${sign}${F(n,d)} = ${sign}${rest?`(${whole} + ${F(rest,d)})`:whole}`)+note(stage===0?'Die einzelnen Stücke sind noch nicht gebündelt.':stage===1?'Jedes Stück gehört zu genau einer Gruppe.':stage===2?(rest?'Die Stücke der unvollständigen Gruppe bilden den Rest.':'Alle Gruppen sind vollständig. Es bleibt kein Rest.'):negative?'Das Bild zeigt den Betrag. Das Minus gilt für den gesamten Wert.':'Die Menge bleibt bei der Umordnung erhalten.');
 }
 function compareScene(o,stage){
  const {a,b,c,d,negative=false}=o,l=b*d/gcd(b,d),denA=stage>=2?l:b,denB=stage>=2?l:d,units=Math.max(1,Math.ceil(Math.max(a/b,c/d))),width=530/units;
@@ -241,3 +241,4 @@ $$('.case .transfer').forEach(details=>{
  details.append(block);
 });
 })();
+

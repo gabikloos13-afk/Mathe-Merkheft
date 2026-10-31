@@ -51,19 +51,19 @@ function render(){
  const pos=ordered.indexOf(state.examples);$('#case-position').textContent=(pos+1)+' / '+ordered.length;$('#case-prev').disabled=pos===0;$('#case-next').disabled=pos===ordered.length-1;
  $('#phase-count').textContent='Schritt '+(p+1)+' von '+(last+1);
  $('#phase-label').textContent=p===0?'1 · Das ist gegeben':p===last?'Fertig · Rechnung und Antwort':'So rechnest du · '+p;
- if((state.mode==='learn'||topic==='gleichwertig')&&p>0&&p<last)$('#phase-label').textContent=steps[p-1].title;
+ if((state.mode==='learn'||['gleichwertig','gemischt'].includes(topic))&&p>0&&p<last)$('#phase-label').textContent=steps[p-1].title;
  const picture=$('.stage-picture',reader),calculation=$('.stage-calculation',reader),note=$('.stage-note',reader);
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
  if(p===0){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),-1,r);
-  if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b>'+ (topic==='gleichwertig'?list([r.recognize,...r.intro]):'<p>'+r.recognize+'</p>'+list(r.intro))+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
+  if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b>'+ (['gleichwertig','gemischt'].includes(topic)?list([r.recognize,...r.intro]):'<p>'+r.recognize+'</p>'+list(r.intro))+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
  }else if(p<last){
   picture.innerHTML=state.mode==='learn'?window.MerkheftPictures.learning(topic,id(),steps[p-1],r):window.MerkheftPictures.render(topic,id(),p-1,r);
   calculation.innerHTML='<div class="notebook"><h3>'+(steps[p-1].segment||'Rechenweg wie im Heft')+'</h3>'+steps.slice(0,p).map((s,i)=>(steps[p-1].segment&&s.segment!==steps[p-1].segment?'':'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+(i===p-1&&s.decisionHtml?'<div class="decision-work">'+s.decisionHtml+'</div>':'')+s.html+(i===p-1&&s.afterHtml?'<div class="decision-work after-work">'+s.afterHtml+'</div>':'')+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>')).join('')+'</div>';
 
  }else{
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
-  note.innerHTML=topic==='gleichwertig'?'<div class="memory-note"><b>Daran denken</b>'+list(r.trap)+'</div>':'<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
+  note.innerHTML=['gleichwertig','gemischt'].includes(topic)?'<div class="memory-note"><b>Daran denken</b>'+list(r.trap)+'</div>':'<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
  }
  if(topic==='brueche'&&id()===8){
   picture.innerHTML=paintBoard(p);updatePaint();
@@ -78,7 +78,7 @@ function render(){
   if(state.mode==='examples'){if(pos<ordered.length-1)caseMove(1);else{state.steps[phaseKey()]=0;render();}return;}
   const at=c.lessons.findIndex(l=>l.id===state.learn);
   if(state.mode==='learn'&&at<c.lessons.length-1){state.learn=c.lessons[at+1].id;state.steps["learn:"+state.learn]=0;render();route();reader.scrollIntoView({block:'start'});}
-  else{state.examples=topic==='gleichwertig'?ordered[0]:(ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0]);state.steps["examples:"+state.examples]=0;setMode('examples');}
+  else{state.examples=['gleichwertig','gemischt'].includes(topic)?ordered[0]:(ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0]);state.steps["examples:"+state.examples]=0;setMode('examples');}
  };
  $('#hint-toggle').onclick=()=>{hint.hidden=!hint.hidden;$('#hint-toggle').setAttribute('aria-expanded',String(!hint.hidden));};
 }
@@ -117,3 +117,4 @@ function parseRoute(){
 }
 window.addEventListener('hashchange',parseRoute);window.addEventListener('popstate',parseRoute);parseRoute();
 })();
+

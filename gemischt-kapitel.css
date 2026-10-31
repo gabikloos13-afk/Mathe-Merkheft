@@ -1,0 +1,15 @@
+/* Nur Gemischte Zahlen: gleiche ganze Einheiten, klar lesbare Einzelteile. */
+.mixed-picture{margin:22px 0 6px;padding:18px 12px;border:1px solid #e1d5d8;border-radius:16px;background:#fffcf7;font-size:1rem;color:#483744}
+.mixed-picture p{line-height:1.8;margin:16px 0 0;text-align:center}
+.mixed-strips{display:flex;gap:20px 16px;flex-wrap:wrap;align-items:start;justify-content:center}
+.mixed-strip-item{width:144px;max-width:100%;display:grid;gap:10px;text-align:center}
+.mixed-strip{display:grid;grid-template-columns:repeat(var(--parts),1fr);height:56px;width:100%;border:2px solid #69515b;background:#fff;overflow:hidden;border-radius:3px}
+.mixed-strip>span{border-right:1px solid #69515b}.mixed-strip>span:last-child{border:0}.mixed-strip .filled{background:#97506b}
+.mixed-caption{font-size:.92rem;line-height:1.7;color:#4a3a43}
+.mixed-loose{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.mixed-loose>span,.mixed-piece{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:58px;background:#f1dce4;border:1px solid #97506b;border-radius:8px;padding:7px;color:#522c3d}
+.mixed-known{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px;border:2px solid #326b82;border-radius:10px}.mixed-known>b{flex-basis:100%;color:#326b82}
+.mixed-negative{display:grid;gap:20px;border-left:4px solid #783d53;padding-left:12px}.mixed-negative>b{color:#783d53;text-align:center}
+.mixed-reduce{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}.mixed-reduce>div{display:grid;gap:14px;width:185px;justify-items:center;text-align:center}
+.reference-math{font-size:1.12rem;line-height:2.8;overflow-wrap:anywhere}.course-page[data-topic=gemischt] #phase-label{max-width:70%}
+@media(max-width:400px){.mixed-picture{padding:16px 8px}.mixed-strip-item{width:124px}.mixed-strips{gap:18px 12px}.mixed-caption{font-size:.9rem}.course-page[data-topic=gemischt] .lesson-status{align-items:start;gap:8px}.course-page[data-topic=gemischt] #phase-count{white-space:normal;text-align:right}.course-page[data-topic=gemischt] .reference-math{font-size:1rem}}
