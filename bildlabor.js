@@ -171,7 +171,7 @@ function paint(){
  $('.stage-dots',lab).innerHTML=cfg.steps.map((x,i)=>`<span class="${i<=state?'done':''}" aria-label="${i+1}: ${E(x)}">${i+1}</span>`).join('');
  $('#scene-status').textContent=`Bildschritt ${state+1} von 4`;$('#scene-prev').disabled=state===0;$('#scene-next').textContent=state===3?'Von vorn ansehen ↺':'Weiter im Bild →';
  $('#invariant-body').innerHTML='<ul class="explain">'+invariant().flatMap(points).map(x=>'<li>'+E(x)+'</li>').join('')+'</ul>';
- $$('input[type=range]',lab).forEach(el=>$('#'+el.id+'-out').textContent=fmt(el.value));
+ $$('.controls input[type=range]',lab).forEach(el=>$('#'+el.id+'-out').textContent=fmt(el.value));
 }
 $('#scene-prev').addEventListener('click',()=>{state=Math.max(0,state-1);paint()});$('#scene-next').addEventListener('click',()=>{state=(state+1)%4;paint()});
 $('.controls',lab).addEventListener('input',readControls);$('.controls',lab).addEventListener('change',readControls);

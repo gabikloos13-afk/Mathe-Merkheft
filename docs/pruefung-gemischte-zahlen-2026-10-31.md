@@ -26,3 +26,7 @@ Technisch liegen die neuen Kapiteldaten und Bilder in `gemischt-kapitel.js`, mit
 - Bestehende Tests `anfasslabor.test.cjs`, `bildlabor.test.cjs`, `rechenbilder.test.cjs`, `course.test.cjs`, `routes.test.cjs` bestehen. Der Bündelmodelltest umfasst alle 96 Kombinationen aus 1–24 Stücken und Nennern 3–6 einschließlich Zwischenständen. Die bisherigen allgemeinen Kurstests laden die Basisdaten; der neue Kapiteltest prüft ausdrücklich zusätzlich das auf der Seite geladene neue Kapitelmodul.
 
 Eine Freigabe als mathematisch und technisch geprüfte Überarbeitung ist damit begründet. Ob Hanna jeden Abschnitt selbstständig versteht, muss ihre Nutzung zeigen. Ein vollständiger neuer Originalmaterial-Abgleich bleibt offen.
+
+## Nachprüfung der veränderbaren Bildfolge
+
+Beim Ändern des geführten Reglers von 11 auf 24 wurde ein gemeinsamer DOM-Scope-Fehler sichtbar: Die Aktualisierung der Zahlenbeschriftung erfasste auch den separaten Regler der Bündelmaschine, für den kein zugehöriges Output-Feld existiert. Die Aktualisierung wird nun auf die eigenen geführten Steuerelemente begrenzt. Nachprüfung: Anzeige 24, sechs volle Vierergruppen, Rest 0 und Rücksetzen auf die Ausgangsaufgabe.
