@@ -236,6 +236,7 @@ function compareLearningPicture(step,r){
  const ps=step.pairs||r.givenPairs;
  if(ps.length<2)return givenPicture(r);
  const a=ps[0],b=ps[1],kind=step.chapterVisual.kind;
+ if(kind==='piece-size')return compare(1,a.d,1,b.d).replace('Gleich lange Ganze vergleichen','Ein Drittel ist größer als ein Sechstel');
  const captions={numerators:'Zähler vergleichen: gleich große Stücke',result:'Jetzt das passende Vergleichszeichen setzen', 'piece-size':'Gleiche Anzahl: Welche Stücke sind größer?',target:'Suche eine gemeinsame Stückgröße',first:'Der erste Bruch ist zu Sechsteln erweitert',both:'Beide Brüche sind jetzt Sechstel',comparison:'Jetzt die neuen Zähler vergleichen',factor:'Finde die Malzahl für Zähler und Nenner',equal:'Beide Flächen sind gleich groß'};
  const caption=captions[kind]||'Gleich lange Ganze vergleichen';
  return compare(a.n,a.d,b.n,b.d).replace('Gleich lange Ganze vergleichen',caption);
