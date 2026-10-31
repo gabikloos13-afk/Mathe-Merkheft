@@ -27,8 +27,15 @@
  function pair(a,b,heading='Gleich viel, anders eingeteilt'){
   const proper=[a,b].every(p=>p.n>=0&&p.n<=p.d);
   let out=T(180,23,heading,15);
-  if(proper)out+=strip(a.n,a.d,17,46)+strip(b.n,b.d,203,46);
-  else out+=R(17,46,138,39,C.pale)+R(203,46,138,39,C.pale);
+  if(!proper){
+   const value=a.n/a.d,lo=Math.floor(value),hi=Math.max(lo+1,Math.ceil(value)),x=35+(value-lo)/(hi-lo)*290;
+   out+=`<path d="M30 104H330m-9 -6 9 6-9 6" stroke="${C.blue}" stroke-width="3" fill="none"/>`;
+   out+=T(35,138,fmt(lo),16)+T(325,138,fmt(hi),16);
+   out+=`<circle cx="${x}" cy="104" r="7" fill="${C.berry}"/>`;
+   out+=T(x,75,fraction(a),20,C.berry)+T(x,158,fraction(b),20,C.blue);
+   return SVG(out,'Die Brüche '+fraction(a)+' und '+fraction(b)+' liegen auf demselben Punkt am Zahlenstrahl.');
+  }
+  out+=strip(a.n,a.d,17,46)+strip(b.n,b.d,203,46);
   out+=T(85,111,fraction(a),21)+T(273,111,fraction(b),21)+T(180,150,'Gleicher Wert',19,C.blue);
   return SVG(out,'Brüche '+fraction(a)+' und '+fraction(b)+' sind gleich viel.');
  }
