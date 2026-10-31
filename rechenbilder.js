@@ -214,7 +214,7 @@ function fractionLine(a,b,mark){
  const av=fractionValue(a),bv=fractionValue(b),lo=Math.floor(Math.min(av,bv)),hi=Math.ceil(Math.max(av,bv)),span=hi-lo||1,X=v=>25+(v-lo)/span*310;
  let bdy=`<path d="M25 92H337m-8 -6 8 6-8 6" fill="none" stroke="${C.blue}" stroke-width="3"/>`+T(25,127,fmt(lo),15)+T(335,127,fmt(lo+span),15);
  for(const [p,y,col] of [[a,43,C.blue],[b,158,C.berry]])bdy+=`<circle cx="${X(fractionValue(p))}" cy="92" r="7" fill="${col}"/>`+T(Math.max(30,Math.min(330,X(fractionValue(p)))),y,fractionText(p),18,col);
- if(mark)bdy+=`<path d="M${X(fractionValue(mark))} 75v33" stroke="${C.gold}" stroke-width="5"/>`;
+ if(mark)bdy+=`<path d="M${X(fractionValue(mark))} 75v33" stroke="${C.gold}" stroke-width="5"/>`+T(X(fractionValue(mark)),72,'Grenze: '+fractionText(mark),14,C.gold);
  return SVG(bdy,'Zahlenstrahl mit '+fractionText(a)+' und '+fractionText(b)+(mark?'. Markierung bei '+fractionText(mark):''));
 }
 function areaPicture(stage){
@@ -231,8 +231,48 @@ function fieldPicture(stage){
  const caption=stage<0?'9 Felder · 4 sind gefärbt':stage===0?'Alle Felder zählen: 9':stage===1?'Gefärbte Felder zählen: 4':'4 von 9: vier Neuntel';
  return SVG(s+T(180,166,caption,17),caption);
 }
+
+function compareLearningPicture(step,r){
+ const ps=step.pairs||r.givenPairs;
+ if(ps.length<2)return givenPicture(r);
+ const a=ps[0],b=ps[1],kind=step.chapterVisual.kind;
+ const captions={numerators:'Zähler vergleichen: gleich große Stücke',result:'Jetzt das passende Vergleichszeichen setzen', 'piece-size':'Gleiche Anzahl: Welche Stücke sind größer?',target:'Suche eine gemeinsame Stückgröße',first:'Der erste Bruch ist zu Sechsteln erweitert',both:'Beide Brüche sind jetzt Sechstel',comparison:'Jetzt die neuen Zähler vergleichen',factor:'Finde die Malzahl für Zähler und Nenner',equal:'Beide Flächen sind gleich groß'};
+ const caption=captions[kind]||'Gleich lange Ganze vergleichen';
+ return compare(a.n,a.d,b.n,b.d).replace('Gleich lange Ganze vergleichen',caption);
+}
+function orderedFractionsPicture(preview){
+ if(preview){
+  return SVG(T(180,26,'Diese drei Zahlen sollst du ordnen',18)+R(10,50,103,76,C.pale)+R(128,50,103,76,C.pale)+R(246,50,103,76,C.pale)+T(61,96,'2/3',24)+T(180,96,'−1/2',24)+T(297,96,'1 1/4',24)+T(180,163,'Noch nicht sortiert',16),'Ungeordnete Zahlen: zwei Drittel, minus ein Halb, eins und ein Viertel.');
+ }
+ const X=v=>32+(v+1)*288/3;
+ let body=T(180,24,'Von klein nach groß auf dem Zahlenstrahl',16)+`<path d="M28 101H334m-8 -6 8 6-8 6" fill="none" stroke="${C.blue}" stroke-width="3"/>`;
+ for(const n of [-1,0,1,2])body+=`<path d="M${X(n)} 94v14" stroke="${C.blue}" stroke-width="2"/>`+T(X(n),130,String(n),14);
+ for(const [v,label,color,y] of [[-.5,'−1/2',C.berry,70],[2/3,'2/3',C.blue,70],[1.25,'1 1/4',C.mint,70]])body+=`<circle cx="${X(v)}" cy="101" r="7" fill="${color}"/>`+T(X(v),y,label,18,color);
+ return SVG(body+T(180,167,'−1/2 < 2/3 < 1 1/4',18),'Zahlenstrahl von minus eins bis zwei. Reihenfolge: minus ein Halb, zwei Drittel, eins und ein Viertel.');
+}
+function negativeIntervalPicture(index){
+ const X=k=>30+(k+10)*30;let b=T(180,22,'Zähler zwischen −10 und 0',17)+`<path d="M25 98H337m-8 -6 8 6-8 6" fill="none" stroke="${C.blue}" stroke-width="3"/>`;
+ if(index>=2)b+=`<rect x="${X(-10)+5}" y="88" width="260" height="20" rx="10" fill="${C.pale}"/>`;
+ for(let k=-10;k<=0;k++){const x=X(k);b+=`<path d="M${x} 92v12" stroke="${C.blue}" stroke-width="1.4"/>`;if(index>=3&&k>-10&&k<0)b+=`<circle cx="${x}" cy="98" r="4.5" fill="${C.berry}"/>`+T(x,124,String(k),12);}
+ b+=`<circle cx="${X(-10)}" cy="98" r="6" fill="${C.blue}"/><circle cx="${X(0)}" cy="98" r="6" fill="${C.blue}"/>`;
+ b+=T(30,149,index===0?'−10/10':'−1',16)+T(330,149,index>=1?'0/10':'0',16);
+ if(index===0)b+=T(180,172,'−1 = −10/10',17);
+ if(index===1)b+=T(180,172,'0 = 0/10',17);
+ if(index===2)b+=T(180,172,'Die Grenzen zählen nicht mit.',16);
+ if(index>=3)b+=T(180,172,'Oben passen −9 bis −1.',17);
+ return SVG(b,'Zahlenstrahl: Zähler von minus zehn bis null. '+(index>=3?'Neun erlaubte Zähler von minus neun bis minus eins.':'Die Grenzen zählen nicht mit.'));
+}
 function coursePicture(topic,id,index,r){
  const preview=index<0,step=preview?null:r.steps[index],ps=step?.pairs||[],initial=r.givenPairs||[];
+ if(topic==='vergleichen'&&id===6)return orderedFractionsPicture(preview);
+ if(topic==='vergleichen'&&id===12)return negativeIntervalPicture(index);
+ if(topic==='vergleichen'&&id===8&&!preview&&index===3){
+  return compare(5,20,6,20).replace('Gleich lange Ganze vergleichen','Rechts: 6/20 > links: 5/20');
+ }
+ if(topic==='vergleichen'&&id===10&&!preview&&index<2){
+  return index===0?fractionLine({n:30,d:50},{n:4,d:5}):fractionLine({n:30,d:50},{n:40,d:50});
+ }
+
  if(topic==='gleichwertig'){
   if(preview&&initial.length===2)return SVG(T(90,25,'Erster Bruch',16)+T(270,25,'Zweiter Bruch',16)+schoolFraction(90,76,initial[0],25)+schoolFraction(270,76,initial[1],25)+T(180,165,id===7?'Ziel bei beiden: Nenner 30.':id===11?'Suche einen gemeinsamen Nenner.':'Vergleiche diese beiden Brüche.',16),'Gegeben: '+fractionText(initial[0])+' und '+fractionText(initial[1]));
   return preview?chapterKnown(initial[0]):chapterFigure(step.chapterVisual);
@@ -267,8 +307,9 @@ function coursePicture(topic,id,index,r){
  }
  if(topic==='vergleichen'&&initial.length>=2&&id!==8){
   let a=initial[0],b=initial[1];
-  if(a.n<0||b.n<0)return fractionLine(a,b);
   if(!preview)for(let i=0;i<=index;i++){let row=r.steps[i].pairs;if(row.length>=2){let from=row[0],to=row[row.length-1];if(Math.abs(fractionValue(from)-fractionValue(to))<1e-8){if(Math.abs(fractionValue(from)-fractionValue(a))<1e-8)a=to;else if(Math.abs(fractionValue(from)-fractionValue(b))<1e-8)b=to;}}}
+  if(a.n<0||b.n<0)return fractionLine(a,b,id===9?{n:2,d:1}:null);
+  if(id===9)return fractionLine(a,b,{n:2,d:1});
   if(id===7&&!preview){let middle;for(let i=0;i<=index;i++)if(r.steps[i].pairs.length>=3)middle=r.steps[i].pairs[1];return fractionLine(a,b,middle);}
   if(id===10&&!preview&&ps.length>=3)return betweenPicture(ps);
   if(a.n<=a.d&&b.n<=b.d)return compare(a.n,a.d,b.n,b.d);
@@ -321,7 +362,7 @@ function decimalLine(a,b,middle){
  if(middle!==null)s+=`<path d="M${X(middle)} 72v36" stroke="${C.gold}" stroke-width="5"/>`+T(180,167,fmt(middle),20);
  return SVG(s,(middle===null?'Die beiden Zahlen auf dem Zahlenstrahl: ':'Die Mitte ist '+fmt(middle)+'. ')+fmt(a)+' und '+fmt(b));
 }
-window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>topic==='gleichwertig'?chapterFigure(step.chapterVisual):step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
+window.MerkheftPictures={render:coursePicture,learning:(topic,id,step,r)=>topic==='gleichwertig'?chapterFigure(step.chapterVisual):topic==='vergleichen'&&step.chapterVisual?compareLearningPicture(step,r):step.visual?beforeAfter(step.visual.from,step.visual.to):coursePicture(topic,id,step.source,r)};
 const topic=document.body.dataset.topic;
 document.querySelectorAll('.case').forEach(card=>{
  const id=Number(card.id.slice(5)),draw=specs[topic+':'+id];if(!draw)return;
