@@ -103,3 +103,13 @@ assert(data.gleichwertig.cases[4].steps[0].decisionHtml.includes('5 · 3 = 15'))
 assert(data.gleichwertig.cases[4].steps[0].decisionHtml.includes('5 · 4 = 20'));
 assert(data.gleichwertig.cases[8].steps[0].decisionHtml.includes('30 : 9 = 3 Rest 3'));
 console.log('PASS: Jeder Aufgabentyp folgt exakt den vier Schritten des Kürzen-Vorbilds; passende und unpassende Rechenzahlen nachvollziehbar.');
+
+const derive=data.gleichwertig.cases[1];
+assert(derive.learning.question[0].includes('unten 12'));
+assert(!derive.learning.question[0].includes('mit 4'));
+assert(derive.learnSteps[0].html.includes('12 : 3 = 4'));
+assert(derive.question[0].includes('mit 4'),'given-factor example is retained separately');
+const factorImage=context.window.MerkheftPictures.learning('gleichwertig',1,derive.learnSteps[0],derive);
+assert(factorImage.includes('12 : 3 = 4'));
+assert(!factorImage.includes('8/12'),'the numerator result is not shown before calculating it');
+console.log('PASS: Erweitern-Lernweg leitet die 4 aus Zielnenner 12 und altem Nenner 3 her; gegebenes-Faktor-Beispiel bleibt erhalten.');

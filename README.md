@@ -1,3 +1,7 @@
+## Erweitern: Malzahl wirklich herleiten (31.10.2026)
+
+Der erste Lernweg startet jetzt mit dem Zielnenner 12 bei 2/3. Die Malzahl ist gesucht: 3 · □ = 12 → 12 : 3 = 4, mit Probe und Vorher/Ziel-Bild. Der Renderer kann eine eigene Lernaufgabe anzeigen; das Musterbeispiel zur ausdrücklich vorgegebenen Malzahl bleibt separat erhalten.
+
 ## Kürzen als verbindliches Vorbild (30.10.2026)
 
 Der bestätigte Kürzen-Lernweg (Aufgabe 2) bleibt inhaltlich unverändert. Jeder andere Aufgabentyp folgt nun denselben vier Schritten mit denselben Überschriften. Zahlensuche bei Zielwerten zeigt passende und unpassende Malzahlen in Tabellen sowie die direkte Rechnung Zielzahl : alte Zahl. Alle Kürzungszahlen werden mit einer vollständigen Kandidatenliste geprüft. Der geführte Bildweg rechnet jetzt oben und unten getrennt; Bilder teilen beziehungsweise gruppieren zuerst nur die bunten und dann alle Stücke.

@@ -41,7 +41,7 @@ function render(){
  $$('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
  if(state.mode!=='learn'&&state.mode!=='examples')return;
  $('#'+(state.mode==='learn'?'learn-reader':'example-reader')).append(reader);
- const r=c.cases[id()],steps=state.mode==='learn'?(r.learnSteps||r.steps):r.steps,p=phase(),last=steps.length+1;
+ const base=c.cases[id()],r=state.mode==='learn'&&base.learning?{...base,...base.learning}:base,steps=state.mode==='learn'?(r.learnSteps||r.steps):r.steps,p=phase(),last=steps.length+1;
  reader.dataset.case=id();reader.dataset.phase=p;
  $('.example-tag',reader).textContent=state.mode==='learn'?'Gemeinsam verstehen':'Ein Beispiel zum Nachsehen';
  const principle=$('.principle-box',reader);principle.hidden=state.mode!=="learn"||p!==0||!r.principle;principle.innerHTML=r.principle?'<b>Grundregel</b>'+list(r.principle):'';

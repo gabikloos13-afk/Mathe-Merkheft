@@ -159,6 +159,13 @@ function chapterKnown(p){
 }
 function chapterFigure(v){
  const p=v.from,q=v.to,phase=v.phase;
+ if(phase==='factor'){
+  const target=v.targetDenominator,k=target/p.d;
+  let body=T(180,22,'Vorher: '+p.d+' große Stücke',17)+strip(p.n,p.d,30,34,300,36)+T(180,96,'Ziel: '+target+' kleine Stücke',17)+strip(p.n*k,target,30,108,300,36);
+  for(let j=0;j<=p.d;j++){const x=30+j*300/p.d;body+=`<path d="M${x} 108v36" stroke="${C.blue}" stroke-width="2.5"/>`;}
+  body+=T(180,172,target+' : '+p.d+' = '+k+' → jedes Stück in '+k+' Teile',16);
+  return SVG(body,'Malzahl finden: '+target+' : '+p.d+' = '+k+'. Jedes alte Stück wird in '+k+' kleine Stücke geteilt.');
+ }
  if(phase==='known'||!q)return chapterKnown(p);
  if(p.n<0&&(phase==='color'||phase==='all')){
   const k=q.d>p.d?q.d/p.d:p.d/q.d,sign=q.d>p.d?' · ':' : ',top=phase==='color',num=v=>fmt(v).replace('-', '−');
