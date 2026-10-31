@@ -53,6 +53,7 @@ function render(){
  $('#phase-label').textContent=p===0?'1 · Das ist gegeben':p===last?'Fertig · Rechnung und Antwort':'So rechnest du · '+p;
  if((state.mode==='learn'||['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic))&&p>0&&p<last)$('#phase-label').textContent=steps[p-1].title;
  const picture=$('.stage-picture',reader),calculation=$('.stage-calculation',reader),note=$('.stage-note',reader);
+ if(topic==='zahlenstrahl'&&picture.parentElement.firstElementChild!==picture)picture.parentElement.insertBefore(picture,picture.parentElement.firstElementChild);
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
  if(p===0){
   picture.innerHTML=window.MerkheftPictures.render(topic,id(),-1,r);
