@@ -50,3 +50,6 @@ Die neuen Kapiteltests erfassen **34 Beispielbilder** (elf Vorschauen und 23 Rec
 Im Anschluss wurden alle **zehn** vorhandenen beziehungsweise neuen Testskripte in einer JavaScript-Kompatibilitätsumgebung ausgeführt; alle bestanden, auch die Tests anderer Themen. Dies war **kein nativer Node.js-Lauf**.
 
 **Offen für die Endfreigabe:** tatsächlicher Browserdurchlauf in Desktop- und Mobilbreite (insbesondere 375 px), Bedienung der vier Reiter, Tastatur, Lauf des Bildwerkzeugs und visuelle Prüfung der SVGs im gerenderten Zustand. Eine Browserfreigabe wird hier ausdrücklich nicht behauptet.
+
+## Letzter Integrationsabgleich
+Nach der vierteiligen Lernstrecke führt „Weitere Beispiele“ jetzt zum **ersten** der elf eigenständigen Musterbeispiele. Der zuvor mögliche Einstieg mitten in der Beispielreihe wurde korrigiert. Das Bild für gleichwertige Brüche über 1 zeigt die Werte am gleichen Zahlenstrahlpunkt statt zwei leeren Flächen. Die veröffentlichte Seite verwendet den Asset-Stand `20261031r26`. Diese nachträglichen Anpassungen sind in der Kapitelsuite mitgeprüft.
