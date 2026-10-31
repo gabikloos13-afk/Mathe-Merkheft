@@ -157,7 +157,7 @@
     }
     if(stage===0)return cards(["Zeile 1: 2","Zeile 2: 4","Zeile 3: 8","Zeile 4: 16","Zeile 5: 32"],"Die Zahlen vor dem Komma");
     if(stage===1)return cards(["Spalte 1: 3","Spalte 2: 9","Spalte 3: 27","Spalte 4: 81","Spalte 5: 243"],"Die Ziffernfolge nach dem Komma");
-    return decision("Zeile 5","32,243","=","Gesuchte Tabellenzahl");
+    return svg(T(180,23,"Zeile 5 · Spalte 5",17)+R(24,47,312,96,colors.pale)+T(180,91,"32,243",31,colors.rose)+T(180,123,"32 | 243",18,colors.blue)+T(180,167,"Beide Muster zusammenführen",14),"Zeile fünf, Spalte fünf enthält 32,243.");
   }
   function lesson(step){
     const v=step.chapterVisual;if(!v)return cards([],"Lernbild");
