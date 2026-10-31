@@ -83,7 +83,7 @@ function render(){
   if(state.mode==='examples'){if(pos<ordered.length-1)caseMove(1);else{state.steps[phaseKey()]=0;render();}return;}
   const at=c.lessons.findIndex(l=>l.id===state.learn);
   if(state.mode==='learn'&&at<c.lessons.length-1){state.learn=c.lessons[at+1].id;state.steps["learn:"+state.learn]=0;render();route();reader.scrollIntoView({block:'start'});}
-  else{state.examples=['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic)?ordered[0]:(ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0]);state.steps["examples:"+state.examples]=0;setMode('examples');}
+  else{state.examples=['gleichwertig','gemischt','zahlenstrahl','quotienten','dezimal'].includes(topic)?ordered[0]:(ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0]);state.steps["examples:"+state.examples]=0;setMode('examples');}
  };
  $('#hint-toggle').onclick=()=>{hint.hidden=!hint.hidden;$('#hint-toggle').setAttribute('aria-expanded',String(!hint.hidden));};
 }
