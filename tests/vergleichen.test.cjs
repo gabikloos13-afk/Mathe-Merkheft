@@ -52,6 +52,7 @@ for(const [id,r] of Object.entries(c.cases)){
 }
 assert.equal(examples,43);
 assert.equal(learnImages,12);
+assert(draw.learning('vergleichen',2,c.cases[2].learnSteps[0],c.cases[2]).includes('1/3 und 1/6'),'Der Stückgrößenschritt vergleicht einzelne Teilstücke.');
 
 const pic=(id,i)=>draw.render('vergleichen',id,i,c.cases[id]);
 assert(pic(6,-1).includes('1 1/4'),'gemischte Zahl muss in der Aufgabe vorkommen');
