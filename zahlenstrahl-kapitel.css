@@ -4,3 +4,13 @@
 
 .zs-cell-label{display:none}@media(max-width:650px){.zs-cell-label{display:block;font-size:.85rem;color:#6b5c68;font-weight:bold;margin-bottom:5px}}
 .zs-tool-board{max-width:720px;margin-inline:auto}.zs-tool-board svg{max-height:none!important;height:auto}
+
+/* Sachlicher Entscheidungsweg vor der Rechnung – nur im Zahlenstrahl-Kapitel. */
+.zs-route{margin:10px 0 0;color:#405865;font-size:.96rem;line-height:1.65}
+.zs-route section+section{margin-top:15px;padding-top:14px;border-top:1px solid #e8dfe4}
+.zs-route h3{margin:0 0 6px;font-size:1rem;font-weight:400;color:#783d53;line-height:1.45}
+.zs-route p{margin:0;max-width:68ch}
+.zs-route ol{margin:6px 0 2px;padding-left:25px}
+.zs-route li{padding-left:4px;margin:7px 0}
+.zs-route li::marker{color:#783d53}
+@media(max-width:650px){.zs-route{font-size:.96rem}.zs-route section+section{margin-top:13px;padding-top:12px}.zs-route li{margin:9px 0}}
