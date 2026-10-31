@@ -52,7 +52,7 @@
    b+=T(xx+w/2,138,filled+'/10',17);
   }
   b+=T(180,170,reveal?(label||n+'/10 = '+fmt(n/10)):'Zehntel zählen',18,C.blue);
-  return SVG(b,n+' von '+(twice?20:10)+' Zehnteln markiert.'+(reveal?' Dezimalwert '+fmt(n/10)+'.':''));
+  return SVG(b,n+' von '+(twice?20:10)+' Zehnteln markiert.'+(reveal?' Rechnung '+(label||n+'/10 = '+fmt(n/10))+'.':''));
  }
  function position(decimal){
   const parts=decimal.replace('−','').split(','),digits=parts[1]||'',names=['Zehntel','Hundertstel','Tausendstel'],w=300/(digits.length+1);
@@ -76,7 +76,7 @@
   b+=T(180,77,d===3?'10 : 3 = 3 Rest 1':'10 : 6 = 1 Rest 4',18);
   b+=T(180,113,d===3?'Nochmals 10 : 3 = 3 Rest 1':'40 : 6 = 6 Rest 4',17);
   b+=T(180,162,phase===0?'Der Rest verschwindet nicht.':'Die '+repeating+' wiederholt sich.',16,C.blue);
-  return SVG(b,n+'/'+d+' ergibt '+number+'; die '+repeating+' wiederholt sich ohne Ende.');
+  return SVG(b,n+'/'+d+' ergibt '+number+'; '+(phase===0?'der Rest bleibt bestehen.':'die '+repeating+' wiederholt sich ohne Ende.'));
  }
  function negative(phase){
   const X=v=>31+(v+1)*295,before=phase===0?'−0,15 = −15/100':'−15/100 = −3/20';
