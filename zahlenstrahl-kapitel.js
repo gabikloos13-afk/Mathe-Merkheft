@@ -159,8 +159,115 @@ const cards=[
  {title:'Die genaue Mitte',html:`<div class="zs-rule-math">${F(1,3)} = ${F(2,6)}; ${F(2,3)} = ${F(4,6)}<br>Mitte: ${F(3,6)} = ${F(1,2)}</div>`,lines:['Die Mitte hat zu beiden Randzahlen denselben Abstand.','Halbiere bei Bedarf die vorhandenen Lücken.','Erweitere dazu beide Brüche mit 2.','Prüfe die beiden Abstände.']},
  {title:'Punkte zählen und Zahlen dazwischen',html:'<div class="zs-rule-math">5 Punkte → 4 Lücken</div>',lines:['Bei gleichem Abstand: Teile den Gesamtabstand durch die Lückenzahl.','Bei festem Nenner suchst du passende ganze Zähler.','Ohne festen Nenner liegen zwischen zwei verschiedenen Brüchen unendlich viele weitere Brüche.','Eine ganze Zahl kann ebenfalls als Bruch geschrieben werden.']}
 ];
+
+/* Didaktischer Aufbau: Die Aufgabe erkennen, einen Weg wählen, jeden
+   Rechenschritt begründen. Bilder und mathematische Ausgangsdaten bleiben erhalten. */
+const didaktik={
+  101:{
+    recognize:'Die Aufgabe verlangt eine Einteilung. Es ist noch kein Punkt gesucht.',
+    intro:'Zwischen 0 und 1 liegt eine ganze Einheit. Wir teilen genau diese Strecke.',
+    approach:['Welche zwei Zahlen begrenzen eine ganze Einheit?','In wie viele gleich lange Lücken soll diese Strecke geteilt werden?','Welchen Wert hat danach eine einzelne Lücke?'],
+    questions:['Welche Strecke ist eine ganze Einheit?','Wie viele zusätzliche Striche brauchst du für vier Lücken?','Wie viel von der ganzen Einheit ist eine Lücke?','Wie viele Striche begrenzen vier Lücken?'],
+    explanations:[
+      ['Die Zahlen 0 und 1 sind benachbarte ganze Zahlen. Ihr Abstand beträgt genau 1.','Nur diese Strecke wird für die Aufgabe aufgeteilt.'],
+      ['Vier gleich lange Lücken entstehen durch drei zusätzliche Striche zwischen 0 und 1.','Die beiden Randstriche bei 0 und 1 bleiben stehen.'],
+      ['Die ganze Strecke hat den Wert 1. Teilt man sie in vier gleiche Lücken, hat jede Lücke den Wert ein Viertel.','Vier solcher Viertel ergeben wieder 1.'],
+      ['Zwischen den beiden Randstrichen und den drei neuen Strichen liegen vier Lücken.','Für die Einteilung zählt die Anzahl der Lücken, nicht die Anzahl der Striche.']
+    ],
+    hints:['Suche die benachbarten ganzen Zahlen 0 und 1.','Zähle die freien Zwischenräume. Die Randstriche gehören schon dazu.','Was ist 1 geteilt durch 4?','Fahre von 0 nach 1 und zähle die Strecken dazwischen.']
+  },
+  1:{
+    recognize:'Ein Punkt P ist bereits eingezeichnet. Gesucht ist sein Bruchwert.',
+    intro:'Zuerst bestimmst du die Größe einer Lücke. Danach zählst du vom Nullpunkt bis P.',
+    approach:['Wie viele gleich lange Lücken liegen zwischen 0 und 1?','Wie viele dieser Lücken sind es von 0 bis P?','Kannst du den gefundenen Bruch noch kürzen?'],
+    questions:['Wie viele Lücken liegen zwischen 0 und 1?','Was ist der Wert einer von sechs gleich großen Lücken?','Wie viele dieser Sechstel liegen zwischen 0 und P?','Durch welche Zahl sind Zähler und Nenner teilbar?','Bleibt der Punkt beim Kürzen an derselben Stelle?'],
+    explanations:[
+      ['Die Strecke von 0 bis 1 ist in sechs gleich lange Lücken geteilt.','Der Nenner ist 6, weil jedes Teilstück ein Sechstel der Einheit ist.'],
+      ['Die gesamte Strecke hat den Wert 1. Ein einzelner Schritt ist daher 1 : 6 = ein Sechstel.','Dieser Schrittwert gilt auf dem ganzen Zahlenstrahl.'],
+      ['Vom Nullpunkt bis P sind es vier solcher Lücken.','Viermal ein Sechstel ergibt vier Sechstel: Der Zähler ist 4.'],
+      ['Die Zahlen 4 und 6 sind beide durch 2 teilbar.','Du kannst den Bruch kürzen, ohne den Punkt zu verschieben.'],
+      ['Teile Zähler und Nenner durch 2: Aus 4/6 wird 2/3.','Beide Brüche haben denselben Wert und liegen deshalb am selben Punkt.']
+    ],
+    hints:['Zähle nur die Lücken von 0 bis 1.','Rechne 1 geteilt durch die sechs Lücken.','Beginne bei 0; zähle bis zum Punkt P.','Welche Zahl teilt 4 und 6 ohne Rest?','Beim Kürzen teilst du oben und unten durch dieselbe Zahl.']
+  },
+  2:{
+    recognize:'Ein Bruch ist vorgegeben. Du musst seinen Punkt erst einzeichnen.',
+    intro:'Der Nenner bestimmt die Teilung einer ganzen Einheit. Der Zähler gibt die Anzahl der Schritte an.',
+    approach:['Liegt der Bruch zwischen 0 und 1 oder außerhalb dieses Bereichs?','In wie viele gleich lange Lücken teilst du eine ganze Einheit?','Wie viele Lücken gehst du vom Nullpunkt aus?'],
+    questions:['Liegt drei Viertel zwischen 0 und 1?','In wie viele Lücken teilst du die Strecke?','Wie viele Viertelschritte brauchst du bis zum Punkt?','Liegt dein Punkt noch vor der 1?'],
+    explanations:[
+      ['Der Zähler 3 ist kleiner als der Nenner 4. Deshalb ist der Bruch kleiner als 1.','Der Punkt liegt zwischen 0 und 1.'],
+      ['Der Nenner 4 gibt die Teilung vor: Die Strecke von 0 bis 1 erhält vier gleich lange Lücken.','Jede Lücke steht für ein Viertel.'],
+      ['Der Zähler 3 bedeutet drei Viertelschritte ab 0.','Zähle drei Lücken nach rechts; jede hat denselben Wert.'],
+      ['Setze den Punkt am Ende des dritten Schritts und beschrifte ihn mit 3/4.','Bis zur 1 bleibt genau eine Viertellücke frei.']
+    ],
+    hints:['Vergleiche 3 mit 4.','Drei innere Striche ergeben vier gleich lange Lücken.','Zähle Strecken von 0 aus, nicht die Striche.','Prüfe, ob noch ein Viertel bis 1 fehlt.']
+  },
+  104:{
+    recognize:'Der vorgegebene Bruch hat ein Minuszeichen. Gesucht ist der Punkt links von 0.',
+    intro:'Die Viertellücken bleiben links und rechts gleich groß. Das Minus gibt die Richtung an.',
+    approach:['Zwischen welchen ganzen Zahlen liegt der Bruch?','Wie groß muss eine Lücke sein?','Wie viele Lücken gehst du von 0 aus nach links?'],
+    questions:['Welche Strecke liegt direkt links von 0?','Was ändert das Minuszeichen: den Wert einer Lücke oder die Richtung?','Wie weit gehst du von 0 nach links?','Woran erkennst du, dass dein Punkt richtig liegt?'],
+    explanations:[
+      ['Von −1 bis 0 liegt eine ganze Einheit. Sie wird wie rechts von 0 in vier gleich lange Lücken geteilt.','Eine einzelne Lücke hat den Abstand ein Viertel.'],
+      ['Das Minus bedeutet, dass die Zahl links von 0 liegt.','Die Schrittweite bleibt ein Viertel; nur die Richtung wechselt.'],
+      ['Beginne bei 0 und zähle drei Viertellücken nach links.','Der zurückgelegte Abstand beträgt drei Viertel.'],
+      ['Setze P am Ende der dritten Lücke. Der Wert ist −3/4.','P muss links von 0 und rechts von −1 liegen.']
+    ],
+    hints:['Suche −1 und 0. Dazwischen liegt eine Einheit.','Das Minus legt die Richtung fest.','Zähle drei Viertellücken von der 0 aus nach links.','Prüfe: Liegt P zwischen −1 und 0?']
+  },
+  3:{recognize:'Der Zähler ist größer als der Nenner. Der Bruch enthält mehr als ein Ganzes.',intro:'Zuerst suchst du die ganzen Einheiten. Danach trägst du den Rest ein.',approach:['Wie oft passt der Nenner vollständig in den Zähler?','Zwischen welchen ganzen Zahlen liegt damit der Punkt?','Wie viele Bruchteile bleiben nach den Ganzen übrig?']},
+  4:{recognize:'Der Bruch ist negativ und hat einen größeren Zähler als Nenner.',intro:'Zerlege den Betrag erst in Ganze und Rest. Trage anschließend das Minus auf dem Zahlenstrahl ein.',approach:['Wie viele Ganze und welcher Rest stecken in sieben Dritteln?','Zwischen welchen negativen ganzen Zahlen liegt der Punkt?','Wie weit musst du von −2 nach links gehen?']},
+  5:{recognize:'Ein Zahlenabstand ist in Zentimetern vorgegeben. Die Linie zeigt mehr als eine ganze Einheit.',intro:'Die gezeichnete Länge muss zuerst auf eine ganze Zahleneinheit umgerechnet werden.',approach:['Wie viele ganze Einheiten liegen zwischen 2 und 4?','Wie viele Zentimeter entspricht eine ganze Einheit und dann ein Sechstel?','Wie weit liegt jeder gesuchte Bruch rechts von A?']},
+  6:{recognize:'Gesucht ist nicht irgendein Zwischenwert, sondern die genaue Mitte zweier Brüche.',intro:'Die Mitte muss zu beiden Randzahlen denselben Abstand haben.',approach:['Welchen Abstand haben die beiden Brüche?','Wie kannst du diese Lücke in zwei gleiche Teile teilen?','Welche Zahl liegt nach dem Halbieren genau in der Mitte?']},
+  7:{recognize:'Der Zahlenstrahl zeigt zwei beschriftete Randwerte, aber keine 0. Ein innerer Punkt ist gesucht.',intro:'Die Schrittweite ergibt sich aus dem Abstand der Randwerte und der Anzahl der Lücken.',approach:['Wie groß ist der Zahlenunterschied zwischen den Randwerten?','In wie viele Lücken ist dieser Unterschied geteilt?','Welchen Schritt addierst du zur linken Randzahl?']},
+  8:{recognize:'Die Aufgabe fragt nach zwei Begriffen: Betrag und Gegenzahl.',intro:'Der Betrag ist ein Abstand zur 0. Die Gegenzahl liegt mit gleichem Abstand auf der anderen Seite.',approach:['Wie weit ist der gegebene Punkt von 0 entfernt?','Wo liegt der Punkt auf der anderen Seite der 0?','Was gilt entsprechend für die positive Zahl?']},
+  9:{recognize:'Gesucht sind alle Brüche mit einem festgelegten Nenner zwischen zwei Grenzen.',intro:'Schreibe beide Grenzen mit diesem Nenner. Dann kannst du die Zähler dazwischen abzählen.',approach:['Welche Zähler gehören zu den beiden Grenzwerten?','Welche ganzen Zähler liegen streng dazwischen?','Wie viele sind es, wenn die Grenzen nicht mitzählen?']},
+  10:{recognize:'Fünf Punkte sind gegeben, aber die drei inneren Werte fehlen.',intro:'Fünf Punkte erzeugen vier gleiche Lücken. Teile den gesamten Zahlenabstand durch vier.',approach:['Wie groß ist der Abstand vom linken bis zum rechten Punkt?','Wie viele Lücken liegen zwischen fünf Punkten?','Welche Werte erhältst du bei gleich großen Schritten nach rechts?']},
+  11:{recognize:'Mehrere Punkte liegen auf derselben eingeteilten Linie.',intro:'Die gemeinsame Schrittweite musst du nur einmal bestimmen.',approach:['Wie groß ist eine Lücke zwischen den ganzen Zahlen?','Wie viele Lücken liegen von 0 aus bis A, B und C?','Welche Brüche kannst du anschließend kürzen?']},
+  12:{recognize:'Zwei Brüche haben denselben Nenner und aufeinanderfolgende Zähler. Die genaue Mitte ist gesucht.',intro:'Zwischen den beiden Zählern liegt noch kein ganzer Zähler. Halbiere deshalb die Einteilung.',approach:['Wie groß ist die Lücke zwischen den beiden Brüchen?','Wie erhältst du durch Erweitern kleinere gleich große Teilstücke?','Welcher neue Zähler liegt genau dazwischen?']},
+  13:{recognize:'Die gezeichnete Strecke liegt im Negativen und hat eine Länge in Zentimetern.',intro:'Auch bei negativen Zahlen wird nach rechts größer gezählt. Nutze den linken Rand als Start.',approach:['Wie groß ist die Einheit von −2 bis −1 auf dem Papier?','Wie lang ist dann eine Achtellücke?','Welche Achtelwerte liegen wie weit rechts von A?']},
+  14:{recognize:'Eine Strecke ist in Zentimetern gegeben. Der Bruch hat einen anderen Nenner als die Zeicheneinteilung.',intro:'Passe den Bruch zuerst an die vorhandenen Zehntellücken an.',approach:['Wie lang ist eine ganze Einheit und wie lang eine Zehntellücke?','Wie schreibst du zwei Fünftel als Zehntel?','Wie viele Zentimeter liegt der Punkt rechts von der 0?']}
+};
+for(const [key,meta]of Object.entries(didaktik)){
+ const r=cases[key];
+ if(!r)throw Error('Fehlender Zahlenstrahl-Fall: '+key);
+ r.recognize=meta.recognize;
+ r.intro=[meta.intro];
+ r.approach=meta.approach;
+ r.steps.forEach((step,i)=>{
+  step.title=step.title.replace(/^\d+\s*·\s*/,'');
+  if(meta.questions)step.ask=meta.questions[i]||'';
+  if(meta.explanations)step.explain=meta.explanations[i];
+  if(meta.hints)step.hint=[meta.hints[i]];
+ });
+}
+// Vertiefende Musterbeispiele: Jede Rechnung bekommt eine nachvollziehbare Herkunft.
+const vertiefung={
+  3:{0:['Ein Ganzes besteht aus vier Vierteln. Zwei Ganze benötigen daher 8 Viertel.','Drei Ganze wären 12 Viertel und damit mehr als die vorhandenen 11.'],1:['Von den 11 Vierteln gehören 8 zu den zwei ganzen Einheiten.','11 − 8 = 3 Viertel bleiben für den letzten Abschnitt übrig.']},
+  4:{0:['Ein Ganzes besteht aus drei Dritteln. Zwei Ganze enthalten 6 Drittel.','Von 7 Dritteln bleibt nach den zwei Ganzen noch ein Drittel übrig.'],2:['Der Bruch ist kleiner als −2, aber größer als −3.','Teile deshalb die Strecke zwischen −3 und −2 in drei gleich lange Lücken.']},
+  5:{1:['Die Strecke von 2 bis 4 enthält zwei ganze Einheiten.','12 cm : 2 = 6 cm gelten auf dem Papier für eine Einheit.'],2:['Sechs Zentimeter gehören zu einer ganzen Einheit.','6 cm : 6 = 1 cm ist deshalb die Zeichenlänge eines Sechstels.'],4:['Wandle die Drittel in Sechstel um, damit die Einteilung für alle Punkte gleich bleibt.','Ziehe für jeden Bruch den Startwert 2 = 12/6 ab und zähle die zusätzlichen Sechstel.','Da ein Sechstel 1 cm lang ist, entspricht die Anzahl der Sechstel auch dem Abstand von A in Zentimetern.']},
+  6:{0:['Die Grenzen sind 1/3 und 2/3. Ihr Abstand beträgt 1/3.','Für die Mitte brauchst du genau die Hälfte dieser Lücke.'],1:['Erweitere beide Brüche mit 2: Aus 1/3 wird 2/6, aus 2/3 wird 4/6.','So wird die Lücke halbiert, ohne die Randwerte zu verändern.']},
+  7:{0:['Links steht 1/2, rechts 3/2. Ziehe den linken Wert vom rechten ab.','3/2 − 1/2 = 1 ist der gesamte Zahlenabstand.'],1:['Zwischen den beiden Randwerten liegen vier gleich lange Lücken.','1 : 4 = 1/4 ist deshalb der Wert einer einzelnen Lücke.'],3:['Starte bei 1/2 = 2/4 am linken Rand.','Eine Lücke nach rechts bedeutet plus 1/4. So erreichst du 3/4.']},
+  9:{1:['134 Ganze enthalten jeweils drei Drittel.','134 · 3 = 402. Die obere Grenze entspricht also 402/3.'],3:['Die Zähler 396 und 402 gehören zu den Randwerten und zählen nicht mit.','Dazwischen liegen die fünf ganzen Zähler 397, 398, 399, 400 und 401.']},
+  10:{0:['Von −3/4 bis 0 sind es 3/4. Von 0 bis +3/4 kommen weitere 3/4 dazu.','Zusammen beträgt der Abstand 6/4 = 3/2.'],1:['Zwischen fünf markierten Punkten liegen genau vier Lücken.','Deshalb wird der Abstand 3/2 durch 4 geteilt, nicht durch 5.'],2:['3/2 : 4 = 3/8. Jede Lücke ist also drei Achtel lang.','Alle vier Schritte müssen dieselbe Größe haben.'],3:['Schreibe den linken Punkt als −6/8.','Addiere jeweils 3/8. Dadurch erhältst du −3/8, 0 und +3/8.']},
+  11:{0:['Eine ganze Einheit ist in vier gleich lange Lücken geteilt.','Jede Lücke zählt daher 1/4, auch links von 0 und rechts von 1.'],3:['Der Punkt C liegt eine Viertellücke rechts von 1.','Ein Ganzes sind 4/4. Mit einem weiteren Viertel ergibt das 5/4.']},
+  12:{1:['Erweitere beide Brüche oben und unten mit 2.','So entstehen 36/34 und 38/34. Dazwischen bleibt Platz für genau ein Vierunddreißigstel.'],2:['Zwischen den neuen Zählern 36 und 38 liegt 37.','37/34 hat zu beiden Randwerten den Abstand 1/34.']},
+  13:{0:['Die beiden Randzahlen −2 und −1 sind benachbart. Ihr Zahlenabstand ist genau 1.','Diese eine Einheit ist auf dem Papier 8 cm lang.'],3:['Schreibe den linken Rand als −16/8.','Ein Schritt nach rechts addiert 1/8, also erhältst du −15/8. Der Punkt liegt 1 cm rechts von A.']},
+  14:{1:['Von 0 bis 1 ist die Strecke 5 cm lang.','Bei zehn gleich großen Lücken ist eine Lücke deshalb 5 cm : 10 = 0,5 cm.'],3:['2/5 sind 4/10. Das entspricht vier der vorgegebenen Lücken.','Vier Lücken zu je 0,5 cm ergeben 2 cm auf dem Papier.']}
+};
+for(const [id,parts]of Object.entries(vertiefung))
+ for(const [i,why]of Object.entries(parts))cases[id].steps[Number(i)].explain=why;
+
 const c=window.MERKHEFT_COURSES.zahlenstrahl;
-Object.assign(c,{goal:'Die Einteilung erkennen. Punkte ablesen und Brüche sicher eintragen.',lessons:[{id:101,label:'Einheit und Lücken'},{id:1,label:'Einen Punkt ablesen'},{id:2,label:'Einen Bruch eintragen'},{id:104,label:'Links von 0'}],groups:[[3,11,7],[5,14,13,6],[4,8,12,9,10]],cases,referenceCards:cards,rules:['Bestimme zuerst den Wert einer Lücke.','Nach rechts werden Zahlen größer.','Die Mitte hat zu beiden Randzahlen denselben Abstand.']});
+Object.assign(c,{goal:'Bestimme die Schrittweite, lies Punkte ab und trage Brüche mit einer passenden Einteilung ein.',lessons:[{id:101,label:'Einheit und Lücken'},{id:1,label:'Einen Punkt ablesen'},{id:2,label:'Einen Bruch eintragen'},{id:104,label:'Links von 0'}],groups:[[3,11,7],[5,14,13,6],[4,8,12,9,10]],cases,referenceCards:cards,rules:['Bestimme zuerst den Wert einer Lücke.','Nach rechts werden Zahlen größer.','Die Mitte hat zu beiden Randzahlen denselben Abstand.']});
+cards[0].title='Den Zahlenstrahl zuerst verstehen';
+cards[0].lines=[
+ 'Suche zuerst die beschrifteten Zahlen. Welche Strecke ist eine ganze Einheit?',
+ 'Prüfe den Zahlenabstand und zähle die gleich langen Lücken dazwischen.',
+ 'Schrittweite = Zahlenabstand : Anzahl der Lücken.',
+ 'Sind 0 und 1 die Randwerte, beträgt der Zahlenabstand genau 1.'
+];
 const previous=window.MerkheftPictures;
 window.MerkheftPictures={render:(topic,id,index,r)=>topic==='zahlenstrahl'?figure(index<0?r.preview:r.steps[index]?.picture):previous.render(topic,id,index,r),learning:(topic,id,s,r)=>topic==='zahlenstrahl'?figure(s.picture):previous.learning(topic,id,s,r)};
 const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
