@@ -41,7 +41,7 @@
    b+=T(x+54,157,twice&&g===0?'1 Ganzes':twice?filled/10+' Zehntel':filled+' Hundertstel',13);
   }
   b+=T(180,175,reveal?(label||count+'/100 = '+fmt(count/100)):'Welche Kommazahl passt?',14,C.blue);
-  return SVG(b,count+' Hundertstel im '+(twice?'zwei':'einem')+' Hunderterraster.'+(reveal?' Dezimalwert '+fmt(count/100)+'.':''));
+  return SVG(b,count+' Hundertstel '+(twice?'in zwei':'in einem')+' Hunderterraster.'+(reveal?' Dezimalwert '+fmt(count/100)+'.':''));
  }
  function tenths(n,reveal=false,label=''){
   const twice=n>10,x=twice?28:65,w=twice?130:230;
@@ -76,7 +76,7 @@
   b+=T(180,77,d===3?'10 : 3 = 3 Rest 1':'10 : 6 = 1 Rest 4',18);
   b+=T(180,113,d===3?'Nochmals 10 : 3 = 3 Rest 1':'40 : 6 = 6 Rest 4',17);
   b+=T(180,162,phase===0?'Der Rest verschwindet nicht.':'Die '+repeating+' wiederholt sich.',16,C.blue);
-  return SVG(b,n+'/'+d+' ergibt '+number+'. Die '+repeating+' wiederholt sich ohne Ende.');
+  return SVG(b,n+'/'+d+' ergibt '+number+'; die '+repeating+' wiederholt sich ohne Ende.');
  }
  function negative(phase){
   const X=v=>31+(v+1)*295,before=phase===0?'−0,15 = −15/100':'−15/100 = −3/20';
@@ -126,9 +126,9 @@
   if(id===5)return isPreview?given(['−0,15'],'Diese Kommazahl ist gegeben'):negative(index);
   if(id===6)return isPreview?given(['1,2'],'Diese Kommazahl ist gegeben'):tenths(12,true,index===0?'1,2 = 12/10':'12/10 = 6/5 = 1,2');
   if(id===7)return isPreview?fractionPicture({n:1,d:3},'Dieser Bruch ist gegeben'):recurring(1,3,index);
-  if(id===8)return isPreview?given(['□/20 = 0,35'],'Welche Zahl fehlt?'):index===0?hundred(35,true,'0,35 = 35/100'):index===1?pair({n:35,d:100},{n:7,d:20}):given(['7/20 = 0,35','Kästchen = 7'],'Gesuchter Zähler');
+  if(id===8)return isPreview?given(['□/20 = 0,35'],'Gesuchter Zähler'):index===0?hundred(35,true,'0,35 = 35/100'):index===1?pair({n:35,d:100},{n:7,d:20}):given(['7/20 = 0,35','Kästchen = 7'],'Gesuchter Zähler');
   if(id===9)return equality(index);
-  if(id===10)return isPreview?given(['3/12','1/6','7/40'],'Welche Kommazahlen enden?'):index===0?hundred(25,true,'3/12 = 1/4 = 0,25'):index===1?recurring(1,6,0):given(['7/40 = 175/1000','= 0,175'],'Drei Stellen nach dem Komma');
+  if(id===10)return isPreview?given(['3/12','1/6','7/40'],'Welche Kommazahlen enden?'):index===0?hundred(25,true,'3/12 = 1/4 = 0,25'):index===1?recurring(1,6,0):given(['7/40 = 175/1000','175/1000 = 0,175'],'Drei Stellen nach dem Komma');
   if(id===11)return jumps(index);
   return given(r.givenTokens||[],'Daten der Aufgabe');
  }
