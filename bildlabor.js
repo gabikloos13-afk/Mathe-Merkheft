@@ -59,13 +59,22 @@ function bundleScene(o,stage){
  const sign=negative?'−':'';
  return svg(b,height,'Bruchstücke bewegen sich in vollständige Gruppen')+eq(stage<2?`${sign}${F(n,d)} · ${d} Stücke bilden ein Ganzes`:stage===2?`${whole} volle Gruppen · ${rest} Stücke bleiben`:`${sign}${F(n,d)} = ${sign}${rest?`(${whole} + ${F(rest,d)})`:whole}`)+note(stage===0?'Die einzelnen Stücke sind noch nicht gebündelt.':stage===1?'Jedes Stück gehört zu genau einer Gruppe.':stage===2?(rest?'Die Stücke der unvollständigen Gruppe bilden den Rest.':'Alle Gruppen sind vollständig. Es bleibt kein Rest.'):negative?'Das Bild zeigt den Betrag. Das Minus gilt für den gesamten Wert.':'Die Menge bleibt bei der Umordnung erhalten.');
 }
+
 function compareScene(o,stage){
  const {a,b,c,d,negative=false}=o,l=b*d/gcd(b,d),denA=stage>=2?l:b,denB=stage>=2?l:d,units=Math.max(1,Math.ceil(Math.max(a/b,c/d))),width=530/units;
- let body=txt(35,30,'A: '+a+'/'+b)+box(35,50,530,55)+box(35,50,width*a/b,55,colors.part)+txt(35,155,'B: '+c+'/'+d)+box(35,175,530,55)+box(35,175,width*c/d,55,colors.whole);
+ const signPrefix=negative?'−':'';
+ let body=txt(35,30,'A: '+signPrefix+a+'/'+b)+box(35,50,530,55)+box(35,50,width*a/b,55,colors.part)+txt(35,155,'B: '+signPrefix+c+'/'+d)+box(35,175,530,55)+box(35,175,width*c/d,55,colors.whole);
  [denA,denB].forEach((den,row)=>{for(let i=0;i<=den*units;i++)body+=`<path class="cut-line ${stage>=2?'new-cut':''}" d="M${35+i*width/den} ${50+row*125}v55"/>`});
- if(stage>=1&&stage<2){for(let i=0;i<=l*units;i++)body+=`<path class="guide-cut" d="M${35+i*width/l} 40v200"/>`}
- const cmp=(a*d-c*b)*(negative?-1:1),sign=cmp===0?'=':cmp<0?'&lt;':'&gt;',sgn=negative?'−':'';
- return svg(body,260,units+' ganze Einheiten je Zeile mit zusammenpassender Einteilung')+eq(stage===0?`${sgn}${F(a,b)} &nbsp; ? &nbsp; ${sgn}${F(c,d)}`:stage<3?`${F(a,b)} = ${F(a*l/b,l)} &nbsp; ${F(c,d)} = ${F(c*l/d,l)}`:`${sgn}${F(a,b)} ${sign} ${sgn}${F(c,d)}`)+note(stage===0?(units>1?`Jede volle Zeile umfasst ${units} Ganze. Die Stückgrößen sind noch verschieden.`:'Gleiche Gesamtlänge – aber noch verschieden große Stücke.'):stage===1?'Die gestrichelten Hilfslinien passen zu beiden Einteilungen.':stage===2?'Jetzt sind alle Teilstücke gleich groß. Die gefärbten Längen bleiben gleich.':negative?'Beide Werte sind negativ: Der größere Betrag liegt weiter links.':'Jetzt darfst du die Zähler vergleichen.');
+ if(stage===1)for(let i=0;i<=l*units;i++)body+=`<path class="guide-cut" d="M${35+i*width/l} 40v200"/>`;
+ const cmp=(a*d-c*b)*(negative?-1:1),sign=cmp===0?'=':cmp<0?'&lt;':'&gt;';
+ const fromA=signPrefix+F(a,b),fromB=signPrefix+F(c,d);
+ const resultA=signPrefix+F(a*l/b,l),resultB=signPrefix+F(c*l/d,l);
+ const math=stage===0?`${fromA} &nbsp; ? &nbsp; ${fromB}`:stage===1?`Ein gemeinsamer Nenner ist ${l}.`:stage===2?`${fromA} = ${resultA} &nbsp; ${fromB} = ${resultB}`:`${fromA} ${sign} ${fromB}`;
+ const information=stage===0?(negative?'Die Streifen zeigen die Beträge. Das Minus gehört zu beiden Brüchen.':b===d?'Beide Stückgrößen sind bereits gleich.':units>1?`Jede ganze Einheit hat dieselbe Länge; zusammen siehst du ${units} Ganze.`:'Die beiden Streifen stellen gleich große Ganze dar.'):
+ stage===1?'Die gestrichelten Hilfslinien helfen, einen gemeinsamen Nenner zu erkennen.':
+ stage===2?'Jetzt sind beide Brüche in gleich große Stücke eingeteilt. Die gefärbten Längen haben sich nicht verändert.':
+ negative?'Beide Zahlen sind negativ: Weiter links auf dem Zahlenstrahl ist kleiner.':'Jetzt kannst du die Zähler vergleichen.';
+ return svg(body,260,units+' ganze Einheiten je Zeile mit zusammenpassender Einteilung')+eq(math)+note(information);
 }
 function shareScene(o,stage){
  const {n,d}=o,topRows=Math.ceil(n/4),plateRows=Math.ceil(d/3),plateY=topRows*100+50,height=plateY+plateRows*115+25;let b='';
