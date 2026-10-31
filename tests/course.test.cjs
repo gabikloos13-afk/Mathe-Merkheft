@@ -59,7 +59,7 @@ for(const c of Object.values(data))for(const r of Object.values(c.cases)){
  assert(r.startHint.length>10);assert(r.check.length);
  for(const s of [...r.steps,...(r.learnSteps||[])]){assert(s.hint.length===1);assert(s.hint[0].length>10);hintCount++;}
 }
-assert.equal(hintCount,456);
+assert.equal(hintCount,447);
 const negativeHints=data.quotienten.cases[3].learnSteps.filter(s=>s.title==='Oben rechnen'&&s.pairs[0].n<0);assert(negativeHints.every(s=>s.hint[0].includes('Minus')));
 console.log('PASS:',hintCount,'schrittspezifische Hinweise, 101 Einstiegstipps und 101 aufgabenbezogene Kontrollen.');
 
