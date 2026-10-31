@@ -65,6 +65,11 @@ function render(){
   calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
   note.innerHTML=['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic)?'<div class="memory-note"><b>Daran denken</b>'+list(r.trap)+'</div>':'<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
  }
+ if(topic==='dezimal'&&state.mode==='learn'&&p<last&&steps[p]?.ask){
+  const prompt=document.createElement('div');prompt.className='next-thinking';
+  prompt.innerHTML='<span class="next-thinking-label">Überlege vor dem Weiterklicken</span><p>'+steps[p].ask+'</p>';
+  note.append(prompt);
+ }
  if(topic==='brueche'&&id()===8){
   picture.innerHTML=paintBoard(p);updatePaint();
   $('#phase-label').textContent=['Selbst färben','Das ganze Rechteck','Eine von sechs Gruppen','Fünf von sechs Gruppen','Rechnung und Antwort'][p];
