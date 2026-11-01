@@ -242,6 +242,8 @@ for(const [key,meta]of Object.entries(didaktik)){
   if(meta.hints)step.hint=[meta.hints[i]];
  });
 }
+// Die abschließende Heftübersicht muss dieselbe überarbeitete Zeile zeigen.
+cases[101].notebookHtml=cases[101].steps.map(step=>'<div class="school-calculation">'+step.html+'</div>').join('');
 // Vertiefende Musterbeispiele: Jede Rechnung bekommt eine nachvollziehbare Herkunft.
 const vertiefung={
   3:{0:['Ein Ganzes besteht aus vier Vierteln. Zwei Ganze benötigen daher 8 Viertel.','Drei Ganze wären 12 Viertel und damit mehr als die vorhandenen 11.'],1:['Von den 11 Vierteln gehören 8 zu den zwei ganzen Einheiten.','11 − 8 = 3 Viertel bleiben für den letzten Abschnitt übrig.']},
