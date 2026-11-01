@@ -12,7 +12,7 @@ const st=(title,html,explain,hint,picture)=>({title,html,explain,hint:[hint],pic
 const entry=(id,title,question,recognize,startHint,steps,answer,check,trap,preview,principle)=>({id,title,question,recognize,intro:[startHint],startHint,steps,learnSteps:steps,answer,check,trap,preview,principle,givenPairs:[],givenTokens:[],questionPlain:question.join(' ').replace(/<[^>]*>/g,' '),notebookHtml:steps.map(s=>`<div class="school-calculation">${s.html}</div>`).join('')});
 const cases={};
 cases[101]=entry(101,'Ein Ganzes und seine Bruchlücken',['Teile die Strecke von 0 bis 1 in vier gleich lange Lücken.'],'Eine Einheit wird in gleich große Teile geteilt.','Suche zuerst die Strecke von 0 bis 1.',[
- st('1 · Eine ganze Einheit finden','1 − 0 = 1',['Die Strecke von 0 bis 1 ist eine ganze Einheit.','Auch von 1 bis 2 ist es eine ganze Einheit.'],'Suche zwei benachbarte ganze Zahlen.',pic(0,2,1,[],{segment:[0,1]})),
+ st('1 · Die ganze Einheit erkennen','Von 0 bis 1: eine ganze Einheit',['Die 0 ist der Anfang, die 1 das Ende unserer ganzen Einheit.','Diese ganze Strecke teilen wir gleich in vier gleich lange Lücken.'],'Suche die Strecke zwischen 0 und 1.',pic(0,1,1,[],{segment:[0,1],compact:true})),
  st('2 · Die Einheit gleichmäßig teilen','4 gleich lange Lücken',['Teile nur die Strecke von 0 bis 1 in vier gleiche Lücken.','Die Randstriche gehören zur Strecke.'],'Zeichne zwischen 0 und 1 drei zusätzliche Striche.',pic(0,1,4,[],{countTo:1})),
  st('3 · Den Wert einer Lücke bestimmen',`1 : 4 = ${F(1,4)}`,['Vier Viertel ergeben eine ganze Einheit.','Jede Lücke ist ein Viertel der Einheit.'],'Teile die ganze Einheit durch die Anzahl ihrer Lücken.',pic(0,1,4,[],{segment:[0,[1,4]],caption:`Eine Lücke: ${F(1,4)}`})),
  st('4 · Lücken und Striche unterscheiden','4 Lücken · 5 Striche',['Zwischen fünf Strichen liegen vier Lücken.','Der Nenner richtet sich nach den Lücken einer Einheit.'],'Fahre von Strich zu Strich. Zähle jede Strecke einmal.',pic(0,1,4,[],{countTo:1}))
@@ -147,7 +147,7 @@ function figure(s){
   if(p.value){content+=fractionSvg(x,y,p.v,color);if(p.name)content+=`<text x="${x+25}" y="${y+5}" font-size="16" fill="${color}">${E(p.name)}</text>`;}else content+=`<text x="${x}" y="${y+6}" text-anchor="middle" font-size="23" fill="${color}">${E(p.name)}</text>`;
   values.push(p.name+(p.value?' = '+(Array.isArray(p.v)?p.v.join('/'):p.v):''));
  }
- return `<figure class="zs-picture" data-zs-min="${min}" data-zs-max="${max}" data-zs-den="${s.den}"><svg viewBox="0 0 400 218" role="img" aria-label="Zahlenstrahl von ${E(Array.isArray(s.min)?s.min.join('/'):s.min)} bis ${E(Array.isArray(s.max)?s.max.join('/'):s.max)}${values.length?'; '+E(values.join('; ')):''}">${content}</svg>${s.caption?`<figcaption>${s.caption}</figcaption>`:''}</figure>`;
+ return `<figure class="zs-picture" data-zs-min="${min}" data-zs-max="${max}" data-zs-den="${s.den}"><svg viewBox="${s.compact?'0 55 400 112':'0 0 400 218'}" role="img" aria-label="Zahlenstrahl von ${E(Array.isArray(s.min)?s.min.join('/'):s.min)} bis ${E(Array.isArray(s.max)?s.max.join('/'):s.max)}${values.length?'; '+E(values.join('; ')):''}">${content}</svg>${s.caption?`<figcaption>${s.caption}</figcaption>`:''}</figure>`;
 }
 const cards=[
  {title:'Eine Einheit und ihre Einteilung',html:`${figure(pic(0,1,4,[],{countTo:1}))}<div class="zs-rule-math">1 : 4 = ${F(1,4)}</div>`,lines:['Eine Einheit liegt zwischen zwei benachbarten ganzen Zahlen.','Vier gleich große Lücken in einer Einheit bedeuten Viertel.','Zähle Lücken, nicht Striche.']},
@@ -169,12 +169,12 @@ const didaktik={
     approach:['Welche zwei Zahlen begrenzen eine ganze Einheit?','In wie viele gleich lange Lücken soll diese Strecke geteilt werden?','Welchen Wert hat danach eine einzelne Lücke?'],
     questions:['Welche Strecke ist eine ganze Einheit?','Wie viele zusätzliche Striche brauchst du für vier Lücken?','Wie viel von der ganzen Einheit ist eine Lücke?','Wie viele Striche begrenzen vier Lücken?'],
     explanations:[
-      ['Die Zahlen 0 und 1 sind benachbarte ganze Zahlen. Ihr Abstand beträgt genau 1.','Nur diese Strecke wird für die Aufgabe aufgeteilt.'],
+      ['Die 0 markiert den Anfang, die 1 das Ende einer ganzen Einheit.','Nur die goldene Strecke von 0 bis 1 teilen wir in vier gleich lange Lücken.'],
       ['Vier gleich lange Lücken entstehen durch drei zusätzliche Striche zwischen 0 und 1.','Die beiden Randstriche bei 0 und 1 bleiben stehen.'],
       ['Die ganze Strecke hat den Wert 1. Teilt man sie in vier gleiche Lücken, hat jede Lücke den Wert ein Viertel.','Vier solcher Viertel ergeben wieder 1.'],
       ['Zwischen den beiden Randstrichen und den drei neuen Strichen liegen vier Lücken.','Für die Einteilung zählt die Anzahl der Lücken, nicht die Anzahl der Striche.']
     ],
-    hints:['Suche die benachbarten ganzen Zahlen 0 und 1.','Zähle die freien Zwischenräume. Die Randstriche gehören schon dazu.','Was ist 1 geteilt durch 4?','Fahre von 0 nach 1 und zähle die Strecken dazwischen.']
+    hints:['Suche die Strecke von 0 bis 1.','Zähle die freien Zwischenräume. Die Randstriche gehören schon dazu.','Was ist 1 geteilt durch 4?','Fahre von 0 nach 1 und zähle die Strecken dazwischen.']
   },
   1:{
     recognize:'Ein Punkt P ist bereits eingezeichnet. Gesucht ist sein Bruchwert.',
