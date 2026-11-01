@@ -38,6 +38,15 @@ for(const id of learningIds){
  assert(r.steps.every(s=>s.explain.length===2),'Ein Gedanke pro kurzer Erklärung: '+id);
 }
 assert(c.cases[101].recognize.includes('Einteilung'));
+const first=c.cases[101].steps[0];
+assert.equal(first.html,'Von 0 bis 1: eine ganze Einheit','Keine Scheinrechnung für das Erkennen eines Ganzen');
+assert.equal(first.picture.min,0);
+assert.equal(first.picture.max,1,'Zum Aufgabenausschnitt von 0 bis 1 darf nicht unnötig die 2 erscheinen');
+assert.equal(first.picture.compact,true,'Mobile Grafik braucht keinen großen Leerraum');
+assert(!c.cases[101].notebookHtml.includes('1 − 0 = 1'),'Abschluss darf den alten Rechenschritt nicht wiederholen');
+const firstPicture=ctx.window.MerkheftPictures.learning('zahlenstrahl',101,first,c.cases[101]);
+assert(firstPicture.includes('viewBox="0 55 400 112"'));
+assert(!/<text[^>]*>2<\/text>/.test(firstPicture),'Erstes Lernbild soll nur 0 und 1 zeigen');
 assert(c.cases[1].approach[0].includes('0 und 1'));
 assert(c.cases[2].approach[1].includes('gleich lange'));
 assert(c.cases[104].recognize.includes('links von 0'));
@@ -59,11 +68,13 @@ assert(course.includes('<h3>So gehe ich vor</h3>'),'Strukturierte Strategie fehl
 assert(course.includes("'groessen','zahlenstrahl'].includes(topic)&&state.mode==='learn'"),'Denkanstöße vor den Lösungen fehlen');
 assert(course.includes("p!==0||!r.principle||topic==='zahlenstrahl'"),'Keine doppelte Grundregelbox im Zahlenstrahl-Einstieg');
 assert(course.includes("picture.parentElement.insertBefore(picture,picture.parentElement.firstElementChild)"),'Das Zahlenstrahlbild steht vor Leitfrage und Rechenweg, auch in der Lesereihenfolge');
+assert(course.includes("p===0?'Start · '+steps.length+' Schritte'"),'Aufgabenstart zählt nicht als Rechenschritt');
+assert(course.includes("topic==='zahlenstrahl'?'':'<h3>'"),'Keine falsche Rechenweg-Überschrift beim Bilderkennen');
 const css=fs.readFileSync(root+'zahlenstrahl-kapitel.css','utf8');
 assert(css.includes('.zs-route section+section')&&css.includes('.zs-route ol'),'Zurückhaltende Abstände für die Strategie fehlen');
 const page=fs.readFileSync(root+'zahlenstrahl.html','utf8');
-assert(page.includes('zahlenstrahl-kapitel.js?v=20261031z3'));
-assert(page.includes('course.js?v=20261031z3'));
-assert(page.includes('zahlenstrahl-kapitel.css?v=20261031z3'));
+assert(page.includes('zahlenstrahl-kapitel.js?v=20261101z4'));
+assert(page.includes('course.js?v=20261101z4'));
+assert(page.includes('zahlenstrahl-kapitel.css?v=20261101z4'));
 assert(page.indexOf('zahlenstrahl-kapitel.js')<page.indexOf('course.js'));
 console.log('PASS: 16 individuelle Aufgabenstrategien, vier Lernwege mit 17 Denkfragen, vollständige knappe Erklärsätze, sichtbare Lernstruktur, Nachschlagen und Dateiintegration.');
