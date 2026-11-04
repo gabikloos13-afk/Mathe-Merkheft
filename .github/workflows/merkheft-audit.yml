@@ -1,0 +1,50 @@
+name: Merkheft Entwicklungszweig – Erklär- und Browserprüfung
+
+on:
+  push:
+    branches:
+      - gesamtumbau-erklaerstandard-2026-11-04
+    paths:
+      - '*.js'
+      - '*.html'
+      - '*.css'
+      - 'tests/**'
+      - '.github/workflows/merkheft-audit.yml'
+  pull_request:
+    paths:
+      - '*.js'
+      - '*.html'
+      - '*.css'
+      - 'tests/**'
+      - '.github/workflows/merkheft-audit.yml'
+  workflow_dispatch:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Statische Lernweg- und Mathematikprüfung
+        run: node tests/erklaerstandard-audit.cjs
+      - name: Playwright bereitstellen
+        run: |
+          npm install --no-save @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Alle neun Kapitel in Chromium prüfen
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/merkheft-http.log 2>&1 &
+          npx playwright test tests/merkheft-browser.spec.cjs --workers=2 --reporter=line
+      - name: Screenshots und Fehlertests speichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: merkheft-browser-audit
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14
