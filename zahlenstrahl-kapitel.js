@@ -314,6 +314,8 @@ cases[2].steps[0].explain=['Drei Viertel sind weniger als vier Viertel.','Der Pu
 cases[2].steps[0].hint=['Vergleiche die drei oben mit den vier unten. Für ein Ganzes wären vier Viertel nötig.'];
 cases[2].steps[0].picture=pic(0,1,1);
 
+// Ein Tipp darf die neue Malzahl nicht vor der Entscheidung verraten.
+cases[14].steps[2].hint=['Suche die Malzahl von 5 bis 10. Dieselbe Zahl wird auch für den Zähler gebraucht.'];
 const zsQuestions={
  101:['Wo liegt die eine ganze Einheit?','Wie viele zusätzliche Striche ergeben vier gleich lange Lücken?','Wie groß ist eine Viertellücke?','Wie viele Viertellücken ergeben ein Ganzes?','Warum bedeuten fünf Striche nicht fünf Fünftel?'],
  1:['Zwischen welchen ganzen Zahlen liegt P?','Wie viele Lücken hat die Einheit?','Was ist ein Sechstel der Einheit?','Wie viele Sechstel liegen zwischen 0 und P?','Welcher Teiler passt für Zähler und Nenner?','Warum verändert Kürzen nicht die Lage des Punktes?'],
