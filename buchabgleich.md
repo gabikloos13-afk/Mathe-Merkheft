@@ -1,4 +1,6 @@
-# Buchabgleich – 29.10.2026
+# Buchabgleich – 29.10.2026 (historischer Stand)
+
+**Aktualisierung 04.11.2026:** Der frühere Hinweis auf fehlende Buchseiten 11–13 ist **überholt**. Alle Originalbuchseiten **6–33** wurden in Google Drive gefunden und visuell geprüft. Der verbindliche aktuelle Quellenabgleich steht in [`docs/SCHULGRUNDLAGE-MATHE-KLASSE6-2026-11-04.md`](docs/SCHULGRUNDLAGE-MATHE-KLASSE6-2026-11-04.md). Nachstehende frühere Angaben werden zur historischen Nachvollziehbarkeit beibehalten.
 
 Grundlage: die 25 im Gespräch vorliegenden Buchfotos, darunter Seiten 6–10 und 14–33. Die Seiten 11–13 sind in dieser Bildserie nicht enthalten. Keine Aussage über nicht vorgelegte Buchseiten oder zusätzliche Anforderungen der Lehrkraft.
 
@@ -69,3 +71,9 @@ Die nun vorgelegten handschriftlichen Unterrichtsnotizen und ausgefüllten Arbei
 | Fischarten und Anteil des Restbestands | Musterweg 4 beantwortet beide Teilfragen vollständig |
 
 Aktueller Stand: 98 Musterwege; die Rechenweise wurde an den tatsächlich vorliegenden Vorlagen ausgerichtet. Handschriftliche Ergebnisse wurden nicht ungeprüft übernommen.
+
+## Aktueller Schulquellen-Nachtrag – 04.11.2026
+
+Die im ursprünglichen 25-Foto-Satz fehlenden **Buchseiten 11, 12 und 13** liegen nun in Google Drive unter `Hanna / Schule / 6. Klasse / Mathe / Heftaufschriebe` vor: `20261023_065455.jpg` (Buchseite 11, Kürzen/Erweitern), `20261023_065459.jpg` (Buchseite 12, vollständig kürzen/Teilbarkeit) und `20261023_065502.jpg` (Buchseite 13, Brüche auf der Zahlengeraden). Insgesamt liegt der **lückenlose Buchabschnitt 6–33** als 28 Fotos vor; ergänzend wurden 25 Heft-/Arbeitsblattfotos erfasst. Die vollständige Seiten- und Themenmatrix steht in `docs/SCHULGRUNDLAGE-MATHE-KLASSE6-2026-11-04.md`. Die älteren Aussagen über nicht vorliegende Seiten bleiben oben ausdrücklich **historisch**, nicht aktuell.
+
+Die aktuelle Datenbasis umfasst **9 Merkheft-Themen, 34 Lernwege und 111 Musterbeispiele**. Die weitere Implementierung hat diese Fälle anhand der nun zugänglichen Primärquellen **einzeln** zuzuordnen; der heutige Überblick ist noch kein Fall-für-Fall-Lösungstest.
