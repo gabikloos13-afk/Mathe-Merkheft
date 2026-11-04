@@ -34,6 +34,11 @@
 - **Zahlenstrahl B14 und Quotienten B5:** Tipps, die Zwischenergebnisse bereits vollständig preisgaben, entschärft.
 - **Kommazahlen vergleichen B13:** Originalaufgabe S.27 Nr.15 (tabellarische Ziffernfolgen 2,3 / 2,9 / 2,27) am Bild bestätigt.
 
+
+## Zusätzliche unabhängige Rechenstichprobe
+
+**67 von 67 geprüften Zahlen-/Ergebnisbehauptungen stimmten.** Die Werte wurden unabhängig aus den Aufgabenangaben berechnet und mit den tatsächlich hinterlegten Antworten verglichen. Die Stichprobe umfasst alle neun Themen einschließlich Anteils- und Rückwärtsrechnungen, negativer Brüche, Vergleichsgrenzen, Dezimalzahlen, Längen, Zeit, Flächen, Rauminhalten und kleinen Einheiten. Eine erste Prüfannahme bei Dezimalvergleich B12 betraf fälschlich den Zwischenwert 0,65 statt der gefragten erlaubten Ziffern; die Prüfannahme wurde korrigiert und die Ziffern 0–5 unabhängig bestätigt. **Dies ist eine Zahlenergebnis-Stichprobe, kein Beweis sämtlicher 522 Schrittübergänge.**
+
 ## Ergebnisstatistik
 
 - **9 Kapitel · 34 Lernwege · 111 Musterbeispiele · 522 dargestellte Phasen (Lernen und Beispiele zusammen).**
