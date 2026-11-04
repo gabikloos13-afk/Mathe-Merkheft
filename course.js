@@ -94,6 +94,25 @@ function render(){
    (r.intro&&r.intro.length?'<h3>Das weißt du schon</h3>'+safeList(r.intro):'')+
    (r.approach&&r.approach.length?'<h3>Fragen für deinen Weg</h3><ol>'+r.approach.map(s=>'<li>'+s+'</li>').join('')+'</ol>':'')+
    '<p class="think-origin-tip">Das Bild und die Rechnung entstehen erst beim Erklären der einzelnen Schritte.</p></div>';
+  // Nur ausdrücklich geprüfte Ausgangsbilder: keine fertigen Zahlen oder Punkte.
+  if(state.mode==='learn'&&topic==='zahlenstrahl'&&window.MerkheftNumberline){
+   const num=id();
+   if([101,1,2,104].includes(num)){
+    const neg=num===104,initial={min:neg?-1:0,max:neg?0:1,den:1,points:[]};
+    if(num===1)initial.points=[{v:[4,6],name:'P',value:false}];
+    picture.innerHTML=window.MerkheftNumberline.figure(initial);
+   }
+  }
+  if(state.mode==='learn'&&topic==='brueche'&&id()===3){
+   picture.innerHTML='<figure class="think-start-figure" role="img" aria-label="Vier gleich große Felder. Drei Felder gehören zusammen zu 21 Kindern. Das vierte Feld und die Gesamtzahl sind unbekannt.">'+
+    '<div class="think-start-quarters"><span class="known"></span><span class="known"></span><span class="known"></span><span class="unknown">?</span></div>'+
+    '<figcaption>Drei von vier gleichen Teilen sind zusammen 21 Kinder.</figcaption></figure>';
+  }
+  if(state.mode==='learn'&&topic==='groessen'&&id()===1){
+   picture.innerHTML='<figure class="think-start-figure" role="img" aria-label="Die gleiche Strecke ist mit 2,4 Metern gegeben. Die zugehörige Zahl in Zentimetern ist noch gesucht.">'+
+    '<div class="think-start-length"><span>2,4 m</span><div class="think-length-bar"></div><span>? cm</span></div>'+
+    '<figcaption>Die Strecke bleibt gleich lang. Nur die Einheit soll sich ändern.</figcaption></figure>';
+  }
   if(paintCase){picture.innerHTML=paintBoard(0);updatePaint();}
  }else if(p<last&&!shown){
   // Reuse only the image of an already explained step, never the future result.
