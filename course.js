@@ -60,7 +60,7 @@ $$('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mo
 function render(){
  const panes={learn:'learn-pane',examples:'examples-pane',tool:'tool-pane',reference:'reference-pane'};
  for(const [mode,pane] of Object.entries(panes))$('#'+pane).hidden=state.mode!==mode;
- $('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
+ $$('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
  if(state.mode!=='learn'&&state.mode!=='examples')return;
  $('#'+(state.mode==='learn'?'learn-reader':'example-reader')).append(reader);
  const base=c.cases[id()],r=state.mode==='learn'&&base.learning?{...base,...base.learning}:base;
@@ -73,7 +73,7 @@ function render(){
  principle.hidden=state.mode!=='learn'||p!==0||!r.principle||topic==='zahlenstrahl';
  principle.innerHTML=r.principle?'<b>Grundregel</b>'+safeList(r.principle):'';
  $('#example-title').textContent=r.title;$('.task-copy',reader).innerHTML=safeList(r.question);
- $('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.lesson)===state.learn)));
+ $$('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.lesson)===state.learn)));
  $('#example-select').value=state.examples;
  const pos=ordered.indexOf(state.examples);
  $('#case-position').textContent=(pos+1)+' / '+ordered.length;$('#case-prev').disabled=pos===0;$('#case-next').disabled=pos===ordered.length-1;
