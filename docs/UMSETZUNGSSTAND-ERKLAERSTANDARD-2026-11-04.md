@@ -46,3 +46,13 @@
 5. erst danach den Entwicklungszweig nach `main` übernehmen.
 
 **Referenzen:** `GESAMTBAUVORLAGE-MATHE-MERKHEFT.md`, `SCHULGRUNDLAGE-MATHE-KLASSE6-2026-11-04.md`, `EINZELABGLEICH-ZAHLENSTRAHL-2026-11-04.md`, `EINZELABGLEICH-ACHT-THEMEN-2026-11-04.md` und `ERKLAERSTANDARD-DREI-REFERENZMUSTER-2026-11-04.md`.
+
+
+## Fachliche Nachprüfung vom 04.11.2026
+
+- Neue fallweise Einzelmatrix: [FACHLICHE-EINZELPRUEFUNG-NEUN-THEMEN-2026-11-04.md](FACHLICHE-EINZELPRUEFUNG-NEUN-THEMEN-2026-11-04.md): **34 Lernwege + 111 Musterbeispiele** nach fachlichem Denkpunkt, Fehlerfall, Quelle und Freigabegrenze durchgesehen.
+- **67 von 67 unabhängigen Ergebnis-Stichproben** rechnerisch korrekt. Vollständige fachliche Abnahme aller 522 Einzelbilder folgt weiterhin gesondert.
+- Fachliche Korrekturen auf dem Entwicklungszweig: ungefähres Teiggewicht aus Original S.9; klare Verteilregel für Nina/Mutter; echte Rückproben für Zucker/Eier und Sprung; zwei vorzeitige Ergebnis-Tipps im Kapitel Kürzen/Erweitern; zusätzliche Lösungshinweise bei Zahlenstrahl/Quotienten entschärft; Zahlenstrahl-Pfeillänge und erste Bereichsentscheidung korrigiert.
+- Erneute Daten-/SVG-Regression: **9 Kapitel, 34 Lernwege, 111 Beispiele, 522 Phasen, 36 kuratierte Entscheidungen, 75 Zahlenstrahlbilder; keine statischen Fehler gefunden.**
+- Offene Quelle weiterhin ausdrücklich: Zahlenstrahl Buch S.15 Nr.11 verlangt auch den Fall mit Nenner 100 (199 Zwischenbrüche), der im aktuellen Beispiel noch nicht als eigener Lernschritt enthalten ist. Dies wird **nicht** als vollständig schulbuchabgedeckt freigegeben.
+- **Status:** weiterhin Draft-PR, keine Freigabe; Quellen-, Browser-/Tool- und Verständlichkeitsabnahme offen.
