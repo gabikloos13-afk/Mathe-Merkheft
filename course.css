@@ -77,3 +77,39 @@
 .next-thinking{border-top:1px solid #cbdde3;padding:12px 2px 2px;margin-top:18px;color:#385f70}
 .next-thinking-label{font-size:.82rem;color:#506777}
 .next-thinking p{margin:5px 0 0;font-size:1rem;line-height:1.6}
+
+
+/* Gemeinsamer Erklärstandard: erst eine Denkhandlung, dann Bild und Rechnung. */
+.think-origin,.think-gate,.think-check{font-size:.98rem;line-height:1.7;color:#314b59}
+.think-origin h3,.think-gate h3,.think-check h3{font-size:1.08rem;line-height:1.35;margin:0 0 9px;color:#375a6c}
+.think-origin h3:not(:first-child),.think-check h3:not(:first-child){margin-top:21px}
+.think-origin p,.think-gate p,.think-check p{margin:7px 0 13px}
+.think-origin ul,.think-origin ol,.think-check ul{padding-left:21px;margin:8px 0 19px}
+.think-origin li,.think-check li{margin:5px 0}
+.think-origin-tip{font-size:.89rem;color:#526b76;border-top:1px solid #d3dfe4;padding-top:14px}
+.think-kicker{font-size:.75rem;color:#5d6c81;letter-spacing:.07em;font-weight:bold}
+.think-question{font-size:1.07rem;font-weight:600;color:#2c4554;margin:12px 0 17px!important}
+.think-choices{display:grid;gap:11px;margin:16px 0}
+.course-page .think-choices button{display:block;width:100%;min-height:52px;text-align:left;line-height:1.5;padding:12px 15px;border-radius:12px;background:#fff;color:#344c5b;border:1px solid #bfcfd6;white-space:normal;font-weight:500}
+.course-page .think-choices button:hover{border-color:#618b9e}
+.course-page .think-choices button[aria-pressed=true]{background:#eaf2f6;color:#203f50;border:2px solid #527e95;padding:11px 14px}
+.think-feedback{padding:14px 16px;border:1px solid #cadbe3;border-left-width:4px;border-radius:12px;background:white;margin:14px 0}
+.think-feedback b{font-size:.93rem}
+.think-feedback p{margin:6px 0 0}
+.think-feedback-ok{border-left-color:#39765b}.think-feedback-try{border-left-color:#ab7840}
+.think-small{font-size:.85rem;color:#526979;margin:9px 0}
+.think-label{display:block;font-weight:600;margin:12px 0 5px}
+.course-page #think-note{display:block;width:100%;min-height:76px;padding:11px 13px;font:inherit;line-height:1.5;border:1px solid #b6cbd6;border-radius:10px;background:#fff;color:#263d4b;resize:vertical}
+.course-page #think-note:focus-visible{outline:3px solid #b684a1;outline-offset:3px}
+.course-page .think-reveal,.course-page .think-restart{display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:46px;padding:10px 17px;border:1px solid #326b82;border-radius:11px;color:white;background:#326b82;font-weight:600;font-size:.91rem;line-height:1.5;margin-top:12px;white-space:normal}
+.course-page .think-restart{background:#fff;color:#326b82}
+.think-trap,.think-my-thought{margin-top:18px;padding:13px 16px;border:1px solid #cbdce3;border-radius:12px;background:#fff;color:#425c6d;font-size:.93rem}
+.think-trap summary,.think-my-thought summary{font-weight:600;cursor:pointer;min-height:35px}
+.think-trap ul{margin:10px 0 2px;padding-left:22px}
+.think-trap li{margin:7px 0}
+.think-my-thought p{white-space:pre-wrap;overflow-wrap:anywhere}
+.think-check{margin-top:10px;padding:16px 18px;border:1px solid #d4e0e5;border-radius:14px;background:#fff}
+.think-check h3{margin-top:0}
+.course-page .stage-calculation .current-line{border-left-color:#557e95}
+@media(max-width:650px){.think-origin,.think-gate,.think-check{font-size:.93rem}.think-question{font-size:1rem}.think-check{padding:12px}.course-page .think-reveal,.course-page .think-restart{width:100%}}
+@media print{.think-gate .think-choices,.think-gate textarea,.think-gate button,.think-restart,.think-trap,.think-my-thought{display:none!important}.think-check{border:0;padding:0}}
