@@ -22,4 +22,7 @@ assert.throws(()=>c.parse('<script>'));
 assert.throws(()=>c.fractionPath('1/3','decimal'),/keine endliche/);
 assert.equal(c.fmt(c.convert('0,00073','m³','dm³')),'0,73');
 assert.equal(c.fmt(c.convert('250','cm','m')),'2,5');
+assert.equal(c.conversionPath('0','m','cm').result,'0 cm');
+assert(c.conversionPath('0','m','cm').phases.some(p=>p.why.some(x=>x.includes('null bleibt'))));
+assert.throws(()=>c.conversionPath('−1','m','cm'),/nicht negative/);
 console.log('PASS: exakte Ergebnisse aller 27 Aufgaben S.19/1–3, Vergleichs-/Lückenfälle S.18, beide Bruchrichtungen, Nullen, Vorzeichen und ungültige Eingaben.');
