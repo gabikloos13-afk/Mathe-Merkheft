@@ -5,6 +5,8 @@
 **Status:** verbindliche Arbeits- und Abnahmegrundlage für den geplanten Gesamtumbau. **Keine** Änderung der Lernseiten durch dieses Dokument.  
 **Quellenstand:** der am 04.11.2026 gelesene Hauptzweig des Repositories gabikloos13-afk/Mathe-Merkheft. Frühere Prüfprotokolle wurden als historische Angaben behandelt; maßgeblich sind die aktuell geladenen Quelldateien.
 
+**Verbindlicher Schulquellenanhang:** [`SCHULGRUNDLAGE-MATHE-KLASSE6-2026-11-04.md`](SCHULGRUNDLAGE-MATHE-KLASSE6-2026-11-04.md). Dort sind die 28 Originalbuchseiten 6–33 (inklusive 11–13), 25 Heft-/Arbeitsblattfotos, die acht Schulbuchabschnitte und alle neun Merkheft-Themen mit fachlichen Belegstellen erfasst. Für schulische Fakten ist dieser Quellenanhang nach der alten Voranalyse maßgeblich.
+
 ## 0. Das Ziel in einem Satz
 
 Das Mathe-Merkheft soll einer etwa zwölfjährigen Schülerin ermöglichen, **die Aufgabenart zu erkennen, eine passende Vorgehensweise selbst zu wählen, den mathematischen Zusammenhang im Bild wirklich zu verstehen, den Rechenweg nachzuvollziehen und das Ergebnis eigenständig zu prüfen**. Es ist ein strukturiertes Lern- und Nachschlagewerk, **kein Quiz-, Punkte- oder Übungsportal**.
@@ -68,7 +70,7 @@ Hinweis: Die 53 Nachschlagekarten zählen die vorhandenen kapiteleigenen Karten.
 
 **P1.6: Ausgabebilder haben unterschiedliche technische Formen.** Gemischte Zahlen und Quotienten verwenden auch HTML/CSS-Figuren; Zahlenstrahl und andere Module SVG. Eine gemeinsame Prüfung darf deshalb nicht fälschlich „enthält kein SVG“ als Fehler werten. Maßgeblich sind **gültige sichtbare Figur, mathematische Aussage, korrekte Alternativbeschreibung und passende Bildphase**.
 
-**P1.7: Schulmaterial ist nicht vollständig im Repository hinterlegt.** buchabgleich.md dokumentiert 25 frühere Buchfotos, jedoch fehlen in dieser Fotoserie Buchseiten 11–13; später wurden einzelne Heftnotizen ergänzt. Der Abgleich ist eine brauchbare Vorarbeit, ersetzt aber keine erneute Freigabe des genauen Schulstoffs. Alte Dokumente mit 96 oder 98 Musterwegen sind als Umfangszahlen inzwischen überholt.
+**P1.7: Schulquellen sind extern verfügbar, aber nicht im Repository hinterlegt.** Der vollständige Originalbuchabschnitt **Seiten 6–33** wurde am 04.11.2026 in Google Drive geprüft: **28 fortlaufende Buchseiten, einschließlich der früher fehlenden Seiten 11–13**. Dazu kommen 25 Heft-/Arbeitsblattfotos. Sie sind in `docs/SCHULGRUNDLAGE-MATHE-KLASSE6-2026-11-04.md` nach Dateiname und Thema dokumentiert. Die nächste offene Aufgabe ist die **fallweise Zuordnung aller 34 Lernwege und 111 Musterbeispiele**, nicht das Wiederbeschaffen fehlender Buchseiten. Alte Dokumente mit 96 oder 98 Musterwegen sind als Umfangszahlen inzwischen überholt.
 
 ### P2 – Prüfung und Veröffentlichung
 
@@ -407,7 +409,7 @@ CSS verwendet nach Möglichkeit gemeinsame Klassen/Designvariablen; kapiteleigen
 
 **Schritt A: Bestandsstand sichern.** Aktuellen main-Stand als Ausgangsversion markieren, die neun Kapitel, Bildwerkzeuge und vorhandenen Testfälle als unveränderliche Referenz festhalten. Entwicklungszweig für den Gesamtumbau verwenden; nicht ungetestete Zwischenversionen einzeln auf main veröffentlichen.
 
-**Schritt B: Schulstoff-Matrix verifizieren.** Buchabgleich, vorhandene Heftnotizen und Originalfotos je Aufgabenfamilie gegen die 34 Lernwege und 111 Beispiele prüfen. Fehlende Seiten 11–13 und eventuelle spätere Lehrkraftvorgaben als **offene Quellen**, nicht als bestätigte Inhalte behandeln. Keine stillen Zusatzthemen.
+**Schritt B: Fallweisen Schulstoff-Abgleich durchführen.** Die **nun vollständig vorliegenden Buchseiten 6–33** und ergänzenden Heft-/Arbeitsblattfotos anhand des Schulquellenanhangs mit den **34 Lernwegen und 111 Musterbeispielen** verknüpfen. Für jede Aufgabe die Primärquelle und gegebenenfalls eine begründete didaktische Ergänzung angeben. Spätere Lehrkraftvorgaben bleiben nur dann offen, wenn sie nicht durch die vorhandenen Quellen belegt sind. Keine stillen Zusatzthemen.
 
 **Schritt C: Eine kleine repräsentative Musterfamilie vollständig abnehmen.** Nicht nur −3/4, sondern je ein Muster aus drei unterschiedlichen Denk- und Bildfamilien: (1) Anteile / gleich große Flächen, (2) Bruchzahlen auf dem Zahlenstrahl einschließlich Minus, (3) Größen mit Einheit und Umrechnungsrichtung. Diese Muster definieren **den gemeinsamen Qualitätsstandard**, nicht neun verschiedene Designs.
 
@@ -487,7 +489,7 @@ Eine kurze reale Verständlichkeitsprobe mit Hanna an den drei Referenzmustern i
 - **Ein Qualitätsmaßstab** für Text, Bild, Navigation, Fachlichkeit und Mobilansicht.
 - **Keine Veröffentlichung neuer halbfertiger Einzelstände.**
 
-**Noch tatsächlich offen:** Originalquellen der früheren Buchfotoreihe vollständig wieder verfügbar machen (insbesondere nicht belegte Seiten), eventuell neuere Unterrichtsvorgaben und die echte visuelle Abnahme des späteren Gesamtreleases. Diese Punkte verhindern nicht die Vorplanung, müssen aber vor einer fachlich endgültigen Gesamtabnahme geklärt sein.
+**Noch tatsächlich offen:** die **einzelfallbezogene Zuordnung** sämtlicher 34 Lernwege und 111 Musterbeispiele zu den inzwischen gesicherten Schulquellen, mögliche Unterrichtsänderungen **nach dem 23.10.2026** und die echte visuelle Abnahme des späteren Gesamtreleases. **Nicht mehr offen** ist die Verfügbarkeit der Buchseiten 11–13. Diese Punkte verhindern nicht die Vorplanung, müssen aber vor einer fachlich endgültigen Gesamtabnahme geklärt sein.
 
 ---
 
