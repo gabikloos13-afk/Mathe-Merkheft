@@ -6,8 +6,8 @@ const courses=w.MERKHEFT_COURSES,ids=new Set();let lessons=0,examples=0,phases=0
 for(const [topic,c]of Object.entries(courses)){
  const html=fs.readFileSync(topic+'.html','utf8');
  assert(html.includes('course-data.js?v=20261104gesamt1'));
- assert(html.includes('course.js?v=20261104gesamt1'));
- assert(html.includes('startbilder.js?v=20261104gesamt1'));
+ assert(html.includes('course.js?v=20261104gesamt2'));
+ assert(html.includes('startbilder.js?v=20261104gesamt2'));
  assert(!/src="(?:erklaer-entscheidungen|beispiel-entscheidungen)\.js/.test(html),'Keine Schatten-Datensätze laden');
  const exampleIds=c.groups.flat();assert.equal(new Set(exampleIds).size,exampleIds.length);
  lessons+=c.lessons.length;examples+=exampleIds.length;

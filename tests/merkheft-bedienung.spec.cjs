@@ -5,7 +5,7 @@ for(const width of [320,1280])for(const topic of ['brueche','gleichwertig','gemi
   await page.setViewportSize({width,height:900});
   await page.goto('http://127.0.0.1:8000/'+topic+'.html');
   const title=await page.locator('#example-title').textContent();
-  await expect(page.locator('.stage-picture')).not.toBeEmpty();
+  await expect(page.locator('.stage-picture').first()).not.toBeEmpty();
   await page.locator('[data-mode="reference"]').click();
   for(const name of ['Kurz merken','So entscheide ich','Rechenmuster finden','Typische Fehler'])await expect(page.getByRole('heading',{name,exact:true})).toBeVisible();
   await page.locator('.reference-patterns a').first().click();

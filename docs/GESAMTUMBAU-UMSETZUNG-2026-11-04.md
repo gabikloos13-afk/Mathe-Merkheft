@@ -10,7 +10,7 @@ Stand: 04.11.2026. Entwicklungszweig `gesamtumbau-erklaerstandard-2026-11-04`. *
 - Vier eigene Grundlagenaufgaben im Anteilskapitel mit anderen Zahlen und eigenen Bildern: sechs Felder/zwei gefärbt; drei Viertel von 32 Birnen; zwei Drittel entsprechen 18 Kindern; drei Viertel von zwölf Kästchen.
 - Gemeinsame Lesereihenfolge Bild → Denkfrage/Entscheidung → Erklärung → Rechenzeile. Vorherige Rechnung bei Bedarf über „Bisheriger Weg“, vollständige Rechnung erst am Schluss.
 - Aufgabenstart und Abschluss werden nicht als Rechenschritte gezählt. Neue stabile Phasenkennungen und neuer Speicherbereich verhindern die Übernahme veralteter Lösungssichten.
-- Einstieg mit Fachbildern in allen Fällen; eigene Modelle für die vier geänderten Anteilslernwege. Zurücksetzen der Färbeaufgabe entfernt die Musterfärbung.
+- Einstieg mit Fachbildern in allen Fällen; eigene Modelle für die vier geänderten Anteilslernwege. Zurücksetzen der Färbeaufgabe entfernt die Musterfärbung. Alle gemeinsamen Bildwerkzeuge besitzen außerdem einen vollständigen Neustart zum Ausgangsbild; die zwei eigenen Werkzeuge behalten ihre vorhandenen Reset-Funktionen.
 - Alle Kapitel mit denselben Nachschlagebereichen: Kurz merken, So entscheide ich, Rechenmuster finden, Typische Fehler, vertiefende Regeln. Kompakter Druckkern.
 - Browser-Zurück berücksichtigt Register- und Aufgabenwechsel; alte themeninterne Fallnummern bleiben erhalten.
 - Zahlenstrahl: fünf Punkte der Linealaufgabe S. 14 Nr. 4a; zusätzlich 199 Hundertstelbrüche zu S. 15 Nr. 11.
@@ -28,13 +28,13 @@ Jeder Lern-/Beispielfall hat jetzt einen Quellenverweis direkt im Fachdatensatz:
 
 - Alle 13 vorhandenen Fach-/Modell-Testdateien bestanden lokal. Die früheren Prüfungen auf bestimmte veraltete Reader-Codezeichenfolgen sind durch den aktuellen Phasenvertrag und Browser-Verhaltenstests ersetzt; mathematische Prüfungen bleiben erhalten.
 - 145 Lern-/Beispielansichten und 668 Ausgangs-/Phasenbilder mit allen neun Fachrenderern erzeugt; keine fehlenden Bilder, NaN-/Infinity-/undefined-Werte oder negativen SVG-Breiten/-Höhen. Dies ist keine visuelle Freigabe.
-- Der erste Lernschritt aller neun Kapitel wurde in der tatsächlichen Browser-Vorschau aufgedeckt und sichtbar kontrolliert.
+- Der erste Lernschritt aller neun Kapitel wurde in der tatsächlichen Browser-Vorschau aufgedeckt und sichtbar kontrolliert. Alle neun Werkzeuge wurden außerdem geöffnet und zurückgesetzt. Die neue vollständige Reset-Funktion wird im Browser zusätzlich gegen den ursprünglichen Rechnungstext geprüft.
 - Neuer vollständiger Browserlauf: alle Lernwege, Beispiele und Phasen bei 320, 375, 768 und 1280 px. Zusätzliche Navigation-/Verlaufstests und Eingabegrenzen-/Varianten-/Tastaturtests aller neun Werkzeuge. Ergebnis wird erst nach abgeschlossenem GitHub-Lauf ergänzt.
 
 ## Offene Freigabegrenzen
 
 - Die vollständige visuelle Einzelabnahme aller 668 Bilder ist noch nicht erbracht. Ein technisch gültiges SVG allein beweist weder verständliche Bildstaffelung noch inhaltlich maßhaltige Darstellung.
-- B5 im Anteilskapitel (verschieden große Pizzen) ist eine eigene Ergänzung. Das Flächenverhältnis vier bei doppeltem Durchmesser braucht eine eigenständige verständliche Bildbegründung; kein exakter Schulquellenbeleg behauptet.
+- B5 im Anteilskapitel (verschieden große Pizzen) ist eine eigene Ergänzung. Das Flächenverhältnis vier bei doppeltem Durchmesser hat jetzt eine eigene Darstellung mit maßgleichen Kreisen, zwei Skalierungsrichtungen und explizit benannten Flächeneinheiten. Die visuelle und kindliche Verständlichkeitsabnahme dieses Zusatzfalls bleibt offen; kein exakter Schulquellenbeleg behauptet.
 - Einige Aufgabentypen enthalten mehrere berechtigte Darstellungen. Die Familienzuordnung ersetzt nicht die individuelle Prüfung, ob wirklich jede Variante didaktisch nötig ist. Es wurden keine neuen Übungsserien hinzugefügt.
 - Vollständiges Drag-/Touch-Verhalten jedes Werkzeugs, jede Screenreader-Sicht, echte Smartphone-Hardware und Hannas Verständlichkeitsprobe sind nicht durch automatisierte Bildschirmgrößen belegt.
 - Freigabe bleibt gesperrt, solange diese Punkte offen sind. Der Arbeitsauftrag wird nicht allein aufgrund grüner Browserläufe als vollständig abgenommen bezeichnet.

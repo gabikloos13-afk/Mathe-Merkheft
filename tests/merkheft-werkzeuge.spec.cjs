@@ -7,6 +7,7 @@ for(const width of [375,1280])for(const topic of topics){
   await page.goto('http://127.0.0.1:8000/'+topic+'.html#werkzeug');
   const root=page.locator(topic==='zahlenstrahl'?'#zs-tool':topic==='quotienten'?'#q-tool':'#anfasslabor');
   await expect(root).toBeVisible();
+  const initialAnswer=topic==='zahlenstrahl'||topic==='quotienten'?null:await root.locator('.hands-answer').innerText();
   async function valid(){
    expect(await root.innerText()).not.toMatch(/NaN|undefined|Infinity/);
    expect(await root.locator('svg').evaluateAll(xs=>xs.some(x=>/NaN|undefined|Infinity/.test(x.outerHTML)))).toBe(false);
@@ -32,11 +33,13 @@ for(const width of [375,1280])for(const topic of topics){
   }else if(topic==='quotienten'){
    await root.locator('#q-reset').click();await expect(root.locator('#q-total')).toHaveValue('3');await expect(root.locator('#q-people')).toHaveValue('4');
    for(let i=0;i<3;i++)await root.locator('#q-next').click();
-   await expect(root.locator('#q-tool-equation')).toContainText('3');await expect(root.locator('#q-tool-equation')).toContainText('4');
+   await expect(root.locator('.q-tool-equation')).toContainText('3');await expect(root.locator('.q-tool-equation')).toContainText('4');
    await root.locator('#q-reduce').click();await expect(root.locator('.q-reduction')).toBeVisible();
    await root.locator('#q-reset').click();await expect(root.locator('.q-reduction')).toBeHidden();
-  }else if(await root.locator('[data-do="reset"]').count()){
-   await root.locator('[data-do="reset"]').click();await valid();
+  }else{
+   await root.locator('[data-do="start-over"]').click();
+   await expect(root.locator('.hands-answer')).toHaveText(initialAnswer);
+   await valid();
   }
   await valid();expect(errors).toEqual([]);
  });

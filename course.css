@@ -143,3 +143,5 @@
 .reference-card a{color:#783d53;text-underline-offset:3px}
 @media(max-width:650px){.reference-patterns ul{columns:1}}
 @media print{.print-pattern{display:block}.reference-decide,.reference-patterns,.reference-mistakes,.reference-details{display:none}.reference-core h2{font-size:16pt}.reference-core{break-inside:auto}.reference-core li{margin:4pt 0}}
+
+.pizza-model{margin:0}.pizza-model figcaption{font-size:.95rem;line-height:1.6;text-align:center;margin:12px 0 20px}.pizza-model svg text{font-size:26px}

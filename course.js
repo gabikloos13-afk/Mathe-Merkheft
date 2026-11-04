@@ -12,17 +12,6 @@ const state={mode:'learn',learn:c.lessons[0].id,examples:c.groups[0][0],
  thoughts:stored.thoughts&&typeof stored.thoughts==='object'?stored.thoughts:{},
  paint:new Set(),paintGroups:false,paintChecked:false};
 function saveState(){try{localStorage.setItem(storageKey,JSON.stringify({steps:state.steps,revealed:state.revealed,choices:state.choices,thoughts:state.thoughts}));}catch(_){}}
-const reflectQuestions={
- brueche:'Was ist das Ganze, welcher Anteil ist bekannt und welcher Teil wird gesucht?',
- gleichwertig:'Wie bleiben Zähler und Nenner im gleichen Verhältnis, sodass der Bruchwert gleich bleibt?',
- gemischt:'Wie viele vollständige Ganze stecken darin und welche gleich großen Teile bleiben übrig?',
- zahlenstrahl:'Wo liegt die ganze Einheit, wie groß ist eine Lücke und in welche Richtung zählst du?',
- quotienten:'Was wird geteilt, durch welche Zahl und was bedeutet das Ergebnis?',
- vergleichen:'Welche Vergleichsregel passt zu diesen Brüchen und warum?',
- dezimal:'Welche Stellenwerte oder gleichwertigen Bruchteile brauchst du?',
- dezimalvergleich:'Welche gleichwertigen Stellenwerte vergleichst du von links nach rechts?',
- groessen:'Welche Ausgangseinheit und Zieleinheit stehen hier, und warum passt dieser Faktor?'
-};
 function simpleText(s){return String(s||'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').trim();}
 function safeList(xs){return list(Array.isArray(xs)?xs:xs?[xs]:[]);}
 function resetCurrentCase(){state.paint.clear();state.paintGroups=false;state.paintChecked=false;const prefix=phaseKey()+':';for(const key of Object.keys(state.revealed))if(key.startsWith(prefix))delete state.revealed[key];for(const key of Object.keys(state.choices))if(key.startsWith(prefix))delete state.choices[key];for(const key of Object.keys(state.thoughts))if(key.startsWith(prefix))delete state.thoughts[key];state.steps[phaseKey()]=0;saveState();render();}
@@ -70,7 +59,7 @@ function render(){
  reader.dataset.case=id();reader.dataset.phase=p;reader.dataset.revealed=String(shown);
  $('.example-tag',reader).textContent=state.mode==='learn'?'Gemeinsam verstehen':'Ein Beispiel zum Nachsehen';
  const principle=$('.principle-box',reader);
- principle.hidden=state.mode!=='learn'||p!==0||!r.principle||topic==='zahlenstrahl';
+ principle.hidden=true;
  principle.innerHTML=r.principle?'<b>Grundregel</b>'+safeList(r.principle):'';
  $('#example-title').textContent=r.title;$('.task-copy',reader).innerHTML=safeList(r.question);
  $$('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.lesson)===state.learn)));
@@ -91,8 +80,8 @@ function render(){
  if(p===0){
   // Existing preview images sometimes already contain the target point or answer.
   // Do not show an unchecked preview before the learner has made a decision.
-  note.innerHTML='<div class="think-origin"><h3>So erkennst du die Aufgabe</h3><p>'+(r.recognize||'Lies zuerst die gegebenen Zahlen und die Frage.')+'</p>'+
-   (r.intro&&r.intro.length?'<h3>Das weißt du schon</h3>'+safeList(r.intro):'')+
+  note.innerHTML='<div class="think-origin"><h3>So erkennst du die Aufgabe</h3><p>'+(r.recognize||'Lies zuerst die gegebenen Zahlen und die Frage.').split(/(?<=[.!?])\s+/)[0]+'</p>'+
+
    (r.approach&&r.approach.length?'<h3>Fragen für deinen Weg</h3><ol>'+r.approach.map(s=>'<li>'+s+'</li>').join('')+'</ol>':'')+
    '</div>';
   picture.innerHTML=window.MerkheftPictures.initial(topic,id(),r,state.mode);
@@ -230,13 +219,6 @@ function updatePaint(){
  const groups=$('[data-paint-action="groups"]',reader);groups.setAttribute('aria-pressed',String(state.paintGroups));groups.textContent=state.paintGroups?'Gruppen ausblenden':m.d+' Gruppen zeigen';
  const count=state.paint.size;$('.paint-count',reader).textContent=count+' von '+m.known+' Kästchen gefärbt.';
  $('.paint-feedback',reader).textContent=!state.paintChecked?'':count===m.target?'Das passt: '+count+' von '+m.known+' Kästchen sind '+m.n+'/'+m.d+' des Rechtecks.':'Prüfe deine Färbung: Teile die '+m.known+' Kästchen in '+m.d+' gleich große Gruppen. Nimm davon '+m.n+' Gruppen.';
-}
-function closingHint(t,n,r){
- if(t==='brueche'&&n===8)return 'Unten steht, in wie viele gleiche Gruppen du teilst: 6. Oben steht, wie viele Gruppen du nimmst: 5. Erst teilen, dann die gewünschten Gruppen nehmen.';
- if(t==='brueche'&&[3,9,10].includes(n))return 'Ist nur ein Anteil bekannt? Finde zuerst einen Teil, dann das Ganze.';
- if(t==='gleichwertig')return 'Oben und unten dieselbe Rechnung. Die Menge bleibt gleich.';
- const correct=r.trap.find(s=>s.includes('Richtig:'));if(correct)return correct.replace(/<b>Richtig:<\/b>\s*/,'');
- return c.rules[0]||c.goal;
 }
 function caseMove(delta){const at=ordered.indexOf(state.examples),next=ordered[at+delta];if(next!==undefined){state.examples=next;state.steps["examples:"+next]=0;render();route();reader.scrollIntoView({block:'start'});}}
 $('#case-prev').addEventListener('click',()=>caseMove(-1));$('#case-next').addEventListener('click',()=>caseMove(1));

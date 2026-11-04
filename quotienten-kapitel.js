@@ -5,6 +5,11 @@ const E=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('
 const F=(n,d)=>`<span class="fraction" aria-label="${E(n)} durch ${E(d)}"><span>${E(String(n).replaceAll('-','−'))}</span><span>${E(String(d).replaceAll('-','−'))}</span></span>`;
 const M=(w,n,d)=>`${w} ${F(n,d)}`;
 const P=(kind,n=0,d=1,extra={})=>({kind,n,d,...extra});
+function divisorSearch(n,d){
+ const divisors=x=>Array.from({length:x},(_,i)=>i+1).filter(k=>x%k===0);
+ const a=divisors(n),b=divisors(d),common=a.filter(k=>b.includes(k)),largest=common.at(-1);
+ return `<div class="q-divisor-search"><b>So findest du die Kürzungszahl</b><ul><li>Teiler von ${n}: ${a.join(', ')}.</li><li>Teiler von ${d}: ${b.join(', ')}.</li><li>Gemeinsam: ${common.join(', ')}.</li><li>${largest>1?'Größte passende Kürzungszahl: '+largest+'.':'Nur 1 ist gemeinsam. Der Bruch ist vollständig gekürzt.'}</li></ul></div>`;
+}
 // Bilder: gleiche Einheiten und unveränderte Gesamtmenge.
 const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
 const simplify=(n,d)=>{if(!d)throw Error('Nenner 0');const g=gcd(n,d);return[n/g,d/g];};
