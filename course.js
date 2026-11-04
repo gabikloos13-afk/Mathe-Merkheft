@@ -118,7 +118,7 @@ function render(){
   // Reuse only the image of an already explained step, never the future result.
   if(p>1)picture.innerHTML=renderPicture(p-2);
   if(paintCase){picture.innerHTML=paintBoard(p-1);updatePaint();}
-  const spec=state.mode==='learn'?window.MerkheftEntscheidungen?.[topic]?.[id()]?.[p]:null;
+  const spec=state.mode==='learn'?window.MerkheftEntscheidungen?.[topic]?.[id()]?.[p]:window.MerkheftBeispielEntscheidungen?.[topic]?.[id()]?.[p];
   const question=spec?.question||active.ask||('Überlege: '+(stepTitle||reflectQuestions[topic])+' – warum passt dieser nächste Schritt?');
   let html='<section class="think-gate"><p class="think-kicker">ERST ÜBERLEGEN · DANN AUFDECKEN</p><h3>Welche Entscheidung passt?</h3><p class="think-question">'+question+'</p>';
   if(spec&&Array.isArray(spec.choices)&&spec.choices.length>=2){
