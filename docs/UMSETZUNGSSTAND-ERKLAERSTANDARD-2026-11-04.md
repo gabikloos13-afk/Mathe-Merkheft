@@ -23,6 +23,7 @@
 - **36 kuratierte Entscheidungen** auf passende Phasenzuordnung und genau eine korrekte Alternative kontrolliert.
 - JavaScript-Syntax von `course.js`, `zahlenstrahl-kapitel.js` und `erklaer-entscheidungen.js` geprüft.
 - Start bis Ziel des negativen Bruchs statisch kontrolliert: Vor Schritt 7 kein Zielpunkt in den zugehörigen Bilddaten.
+- Zusätzlich **75 SVG-Bildzustände** der 16 Zahlenstrahl-Fälle tatsächlich mit dem Kapitelrenderer erzeugt und auf gültige Zahlen, Punktanzahl, sortierte Teilstriche und den Minuspfeil geprüft. Keine Auffälligkeit; die Korrektur an der Scheinrechnung in Schritt 5 ist enthalten. Diese Prüfung sagt nichts über die tatsächliche Bildschirm-Lesbarkeit oder Mobilansicht aus.
 - Alle neun HTML-Dateien laden die neuen Dateien mit einheitlichen Versionskennungen; `zahlenstrahl-kapitel.js` nutzt ebenfalls die neue Kennung.
 - Reproduzierbarer Kontrolltest: `tests/erklaerstandard-audit.cjs` (Node.js). Der Test ist geschrieben, aber im verbundenen GitHub-Arbeitslauf nicht über einen regulären Node-Testjob ausgeführt. Zusätzlich wurde der wesentliche Testumfang direkt auf den geladenen Quelldaten geprüft.
 
