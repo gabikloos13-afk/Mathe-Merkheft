@@ -3,7 +3,29 @@
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const topic=document.body.dataset.topic,c=window.MERKHEFT_COURSES[topic];if(!c)return;
 const list=xs=>'<ul>'+xs.map(s=>'<li>'+s+'</li>').join('')+'</ul>';
-const state={mode:'learn',learn:c.lessons[0].id,examples:c.groups[0][0],steps:{},paint:new Set(),paintGroups:false,paintChecked:false};
+const storageKey='merkheft:erklaerstandard:v1:'+topic;
+let stored={};try{stored=JSON.parse(localStorage.getItem(storageKey)||'{}')||{};}catch(_){stored={};}
+const state={mode:'learn',learn:c.lessons[0].id,examples:c.groups[0][0],
+ steps:stored.steps&&typeof stored.steps==='object'?stored.steps:{},
+ revealed:stored.revealed&&typeof stored.revealed==='object'?stored.revealed:{},
+ choices:stored.choices&&typeof stored.choices==='object'?stored.choices:{},
+ thoughts:stored.thoughts&&typeof stored.thoughts==='object'?stored.thoughts:{},
+ paint:new Set(),paintGroups:false,paintChecked:false};
+function saveState(){try{localStorage.setItem(storageKey,JSON.stringify({steps:state.steps,revealed:state.revealed,choices:state.choices,thoughts:state.thoughts}));}catch(_){}}
+const reflectQuestions={
+ brueche:'Was ist das Ganze, welcher Anteil ist bekannt und welcher Teil wird gesucht?',
+ gleichwertig:'Wie bleiben Zähler und Nenner im gleichen Verhältnis, sodass der Bruchwert gleich bleibt?',
+ gemischt:'Wie viele vollständige Ganze stecken darin und welche gleich großen Teile bleiben übrig?',
+ zahlenstrahl:'Wo liegt die ganze Einheit, wie groß ist eine Lücke und in welche Richtung zählst du?',
+ quotienten:'Was wird geteilt, durch welche Zahl und was bedeutet das Ergebnis?',
+ vergleichen:'Welche Vergleichsregel passt zu diesen Brüchen und warum?',
+ dezimal:'Welche Stellenwerte oder gleichwertigen Bruchteile brauchst du?',
+ dezimalvergleich:'Welche gleichwertigen Stellenwerte vergleichst du von links nach rechts?',
+ groessen:'Welche Ausgangseinheit und Zieleinheit stehen hier, und warum passt dieser Faktor?'
+};
+function simpleText(s){return String(s||'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').trim();}
+function safeList(xs){return list(Array.isArray(xs)?xs:xs?[xs]:[]);}
+function resetCurrentCase(){const prefix=phaseKey()+':';for(const key of Object.keys(state.revealed))if(key.startsWith(prefix))delete state.revealed[key];for(const key of Object.keys(state.choices))if(key.startsWith(prefix))delete state.choices[key];for(const key of Object.keys(state.thoughts))if(key.startsWith(prefix))delete state.thoughts[key];state.steps[phaseKey()]=0;saveState();render();}
 const reader=document.createElement('article');reader.className='lesson-card';reader.id='active-example';
 reader.innerHTML='<div class="example-heading"><span class="example-tag"></span><h2 id="example-title"></h2></div><div class="principle-box" hidden></div><div class="task-box"><b>Aufgabe</b><div class="task-copy"></div></div><div class="lesson-status"><span id="phase-label"></span><span id="phase-count"></span></div><div class="learning-stage" aria-live="polite" aria-atomic="true"><div class="stage-calculation"></div><div class="stage-note"></div><div class="stage-picture"></div></div><div class="lesson-actions"><button type="button" id="step-back">← Zurück</button><button type="button" id="step-next">Weiter →</button></div><div class="stage-hint" hidden></div><button type="button" id="hint-toggle">Ein kurzer Tipp</button>';
 reader.addEventListener('click',event=>{
@@ -38,61 +60,132 @@ $$('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mo
 function render(){
  const panes={learn:'learn-pane',examples:'examples-pane',tool:'tool-pane',reference:'reference-pane'};
  for(const [mode,pane] of Object.entries(panes))$('#'+pane).hidden=state.mode!==mode;
- $$('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
+ $('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));
  if(state.mode!=='learn'&&state.mode!=='examples')return;
  $('#'+(state.mode==='learn'?'learn-reader':'example-reader')).append(reader);
- const base=c.cases[id()],r=state.mode==='learn'&&base.learning?{...base,...base.learning}:base,steps=state.mode==='learn'?(r.learnSteps||r.steps):r.steps,p=phase(),last=steps.length+1;
- reader.dataset.case=id();reader.dataset.phase=p;
+ const base=c.cases[id()],r=state.mode==='learn'&&base.learning?{...base,...base.learning}:base;
+ const steps=state.mode==='learn'?(r.learnSteps||r.steps):r.steps;
+ const last=steps.length+1,p=Math.max(0,Math.min(phase(),last)),active=p>0&&p<last?steps[p-1]:null;
+ const key=phaseKey()+':'+p,shown=!!state.revealed[key];
+ reader.dataset.case=id();reader.dataset.phase=p;reader.dataset.revealed=String(shown);
  $('.example-tag',reader).textContent=state.mode==='learn'?'Gemeinsam verstehen':'Ein Beispiel zum Nachsehen';
- const principle=$('.principle-box',reader);principle.hidden=state.mode!=="learn"||p!==0||!r.principle||topic==='zahlenstrahl';principle.innerHTML=r.principle?'<b>Grundregel</b>'+list(r.principle):'';
- $('#example-title').textContent=r.title;$('.task-copy',reader).innerHTML=list(r.question);
- $$('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.lesson)===state.learn)));
+ const principle=$('.principle-box',reader);
+ principle.hidden=state.mode!=='learn'||p!==0||!r.principle||topic==='zahlenstrahl';
+ principle.innerHTML=r.principle?'<b>Grundregel</b>'+safeList(r.principle):'';
+ $('#example-title').textContent=r.title;$('.task-copy',reader).innerHTML=safeList(r.question);
+ $('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.lesson)===state.learn)));
  $('#example-select').value=state.examples;
- const pos=ordered.indexOf(state.examples);$('#case-position').textContent=(pos+1)+' / '+ordered.length;$('#case-prev').disabled=pos===0;$('#case-next').disabled=pos===ordered.length-1;
- $('#phase-count').textContent=topic==='zahlenstrahl'?(p===0?'Start · '+steps.length+' Schritte':p===last?'Abschluss':'Schritt '+p+' von '+steps.length):'Schritt '+(p+1)+' von '+(last+1);
- $('#phase-label').textContent=p===0?(topic==='zahlenstrahl'?'Das ist gegeben':'1 · Das ist gegeben'):p===last?'Fertig · Rechnung und Antwort':'So rechnest du · '+p;
- if((state.mode==='learn'||['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic))&&p>0&&p<last)$('#phase-label').textContent=steps[p-1].title;
+ const pos=ordered.indexOf(state.examples);
+ $('#case-position').textContent=(pos+1)+' / '+ordered.length;$('#case-prev').disabled=pos===0;$('#case-next').disabled=pos===ordered.length-1;
+ const stepTitle=active?simpleText(active.title||active.label||''):'';
+ $('#phase-count').textContent=p===0?'Start · '+steps.length+' Lernschritte':p===last?'Abschluss':'Schritt '+p+' von '+steps.length;
+ $('#phase-label').textContent=p===0?'Die Aufgabe erkennen':p===last?'Ergebnis verstehen und prüfen':stepTitle||'Denkschritt '+p;
  const picture=$('.stage-picture',reader),calculation=$('.stage-calculation',reader),note=$('.stage-note',reader);
- if(topic==='zahlenstrahl'&&picture.parentElement.firstElementChild!==picture)picture.parentElement.insertBefore(picture,picture.parentElement.firstElementChild);
+ if(picture.parentElement.firstElementChild!==picture)picture.parentElement.insertBefore(picture,picture.parentElement.firstElementChild);
  picture.replaceChildren();calculation.replaceChildren();note.replaceChildren();
+ const paintCase=topic==='brueche'&&id()===8;
+ const renderPicture=index=>state.mode==='learn'
+  ?window.MerkheftPictures.learning(topic,id(),steps[index],r)
+  :window.MerkheftPictures.render(topic,id(),index,r);
  if(p===0){
-  picture.innerHTML=window.MerkheftPictures.render(topic,id(),-1,r);
-  if(topic==='zahlenstrahl'&&Array.isArray(r.approach)){
-   note.innerHTML='<div class="zs-route">'+
-    '<section><h3>Kurz erklärt</h3><p>'+r.intro.join(' ')+'</p></section>'+
-    '<section><h3>So erkennst du die Aufgabe</h3><p>'+r.recognize+'</p></section>'+
-    '<section><h3>So gehe ich vor</h3><ol>'+r.approach.map(s=>'<li>'+s+'</li>').join('')+'</ol></section>'+
-    '</div>';
-  }else if(state.mode==='examples')note.innerHTML='<div class="approach-note"><b>So findest du den Weg</b>'+ (['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic)?list([r.recognize,...r.intro]):'<p>'+r.recognize+'</p>'+list(r.intro))+'</div>';else if(!r.principle)note.innerHTML='<div class="focus-note">'+list(r.intro)+'</div>';
+  // Existing preview images sometimes already contain the target point or answer.
+  // Do not show an unchecked preview before the learner has made a decision.
+  note.innerHTML='<div class="think-origin"><h3>So erkennst du die Aufgabe</h3><p>'+(r.recognize||'Lies zuerst die gegebenen Zahlen und die Frage.')+'</p>'+
+   (r.intro&&r.intro.length?'<h3>Das weißt du schon</h3>'+safeList(r.intro):'')+
+   (r.approach&&r.approach.length?'<h3>Fragen für deinen Weg</h3><ol>'+r.approach.map(s=>'<li>'+s+'</li>').join('')+'</ol>':'')+
+   '<p class="think-origin-tip">Das Bild und die Rechnung entstehen erst beim Erklären der einzelnen Schritte.</p></div>';
+  if(paintCase){picture.innerHTML=paintBoard(0);updatePaint();}
+ }else if(p<last&&!shown){
+  // Reuse only the image of an already explained step, never the future result.
+  if(p>1)picture.innerHTML=renderPicture(p-2);
+  if(paintCase){picture.innerHTML=paintBoard(p-1);updatePaint();}
+  const spec=window.MerkheftEntscheidungen?.[topic]?.[id()]?.[p];
+  const question=spec?.question||active.ask||('Überlege: '+(stepTitle||reflectQuestions[topic])+' – warum passt dieser nächste Schritt?');
+  let html='<section class="think-gate"><p class="think-kicker">ERST ÜBERLEGEN · DANN AUFDECKEN</p><h3>Welche Entscheidung passt?</h3><p class="think-question">'+question+'</p>';
+  if(spec&&Array.isArray(spec.choices)&&spec.choices.length>=2){
+   html+='<div class="think-choices" role="group" aria-label="Weg auswählen">'+spec.choices.map((opt,i)=>
+    '<button type="button" data-think-choice="'+i+'" aria-pressed="'+(state.choices[key]===i)+'">'+opt.label+'</button>').join('')+'</div>';
+   if(Number.isInteger(state.choices[key])){
+    const choice=spec.choices[state.choices[key]];
+    if(choice){
+     html+='<div class="think-feedback '+(choice.correct?'think-feedback-ok':'think-feedback-try')+'" role="status"><b>'+(choice.correct?'Das passt, weil …':'Das passt hier nicht, weil …')+'</b><p>'+choice.why+'</p></div>';
+     html+='<button type="button" class="think-reveal" data-think-reveal>Jetzt Bild und Rechenschritt erklären</button>';
+    }
+   }
+  }else{
+   html+='<label class="think-label" for="think-note">Deine Überlegung (freiwillig)</label><textarea id="think-note" data-think-text rows="2" placeholder="Was würdest du tun und warum?"></textarea>';
+   html+='<p class="think-small">Deine Antwort wird nicht automatisch benotet. Vergleiche sie anschließend mit der Erklärung.</p>';
+   html+='<button type="button" class="think-reveal" data-think-reveal>Ich habe überlegt – Schritt erklären</button>';
+  }
+  note.innerHTML=html+'</section>';
+  const input=note.querySelector('[data-think-text]');
+  if(input){input.value=state.thoughts[key]||'';input.addEventListener('input',()=>{state.thoughts[key]=input.value;saveState();});}
+  note.querySelectorAll('[data-think-choice]').forEach(button=>button.addEventListener('click',()=>{
+   state.choices[key]=Number(button.dataset.thinkChoice);saveState();render();
+  }));
+  const reveal=note.querySelector('[data-think-reveal]');
+  if(reveal)reveal.addEventListener('click',()=>{state.revealed[key]=true;saveState();render();});
  }else if(p<last){
-  picture.innerHTML=state.mode==='learn'?window.MerkheftPictures.learning(topic,id(),steps[p-1],r):window.MerkheftPictures.render(topic,id(),p-1,r);
-  calculation.innerHTML='<div class="notebook">'+(topic==='zahlenstrahl'?'':'<h3>'+(steps[p-1].segment||'Rechenweg wie im Heft')+'</h3>')+steps.slice(0,p).map((s,i)=>(steps[p-1].segment&&s.segment!==steps[p-1].segment?'':'<div class="school-calculation'+(i===p-1?' current-line':' previous-line')+'"'+(i===p-1?' aria-current="step"':'')+'>'+(i===p-1&&s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+list(s.choice)+'</div>':'')+(i===p-1&&s.decisionHtml?'<div class="decision-work">'+s.decisionHtml+'</div>':'')+s.html+(i===p-1&&s.afterHtml?'<div class="decision-work after-work">'+s.afterHtml+'</div>':'')+(i===p-1?'<div class="step-explanation"><b>Kurz erklärt</b>'+list(s.explain)+'</div>':'')+'</div>')).join('')+'</div>';
-
+  picture.innerHTML=renderPicture(p-1);
+  if(paintCase){picture.innerHTML=paintBoard(p);updatePaint();}
+  const s=active;
+  const calculationHtml=(s.choice?'<div class="choice-note"><b>So findest du die Zahl</b>'+safeList(s.choice)+'</div>':'')+
+   (s.decisionHtml?'<div class="decision-work">'+s.decisionHtml+'</div>':'')+
+   s.html+(s.afterHtml?'<div class="decision-work after-work">'+s.afterHtml+'</div>':'');
+  calculation.innerHTML='<div class="notebook"><div class="school-calculation current-line" aria-current="step">'+
+   calculationHtml+'<div class="step-explanation"><b>Warum dieser Schritt passt</b>'+safeList(s.explain)+'</div></div></div>';
+  const thought=state.thoughts[key]||'';
+  if(thought){
+   const d=document.createElement('details');d.className='think-my-thought';
+   d.innerHTML='<summary>Meine frühere Überlegung ansehen</summary><p></p>';
+   d.querySelector('p').textContent=thought;note.append(d);
+  }
+  if(r.trap?.length){
+   const d=document.createElement('details');d.className='think-trap';
+   d.innerHTML='<summary>Warum ein typischer anderer Weg nicht passt</summary>'+safeList(r.trap);
+   note.append(d);
+  }
  }else{
-  calculation.innerHTML='<div class="notebook"><h3>So steht die Rechnung im Heft</h3>'+(r.notebookHtml||r.steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''))+'</div><div class="final-answer"><b>Antwort</b>'+list(r.answer)+'</div>';
-  note.innerHTML=['gleichwertig','gemischt','zahlenstrahl','quotienten'].includes(topic)?'<div class="memory-note"><b>Daran denken</b>'+list(r.trap)+'</div>':'<div class="memory-note"><b>Merke</b><span>'+closingHint(topic,id(),r)+'</span></div>';
+  if(paintCase){picture.innerHTML=paintBoard(p);updatePaint();}
+  else if(steps.length)picture.innerHTML=renderPicture(steps.length-1);
+  // Learning overrides may use different numbers than the example. Never reuse a
+  // stale notebook from the example variant as the conclusion of the learning variant.
+  const notebook=state.mode==='learn'
+   ?steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join('')
+   :(r.notebookHtml||steps.map(s=>'<div class="school-calculation">'+s.html+'</div>').join(''));
+  calculation.innerHTML='<div class="notebook"><h3>Der vollständige Rechenweg</h3>'+notebook+
+   '</div><div class="final-answer"><b>Antwort</b>'+safeList(r.answer)+'</div>';
+  note.innerHTML='<section class="think-check"><h3>So prüfst du dein Ergebnis</h3>'+safeList(r.check)+
+   '<h3>Woran ein anderer Weg scheitert</h3>'+safeList(r.trap)+
+   '<button type="button" class="think-restart" id="think-restart">Ohne Lösung neu beginnen</button></section>';
+  $('#think-restart').onclick=resetCurrentCase;
  }
- if(['dezimal','dezimalvergleich','groessen','zahlenstrahl'].includes(topic)&&state.mode==='learn'&&p<last&&steps[p]?.ask){
-  const prompt=document.createElement('div');prompt.className='next-thinking';
-  prompt.innerHTML='<span class="next-thinking-label">Überlege vor dem Weiterklicken</span><p>'+steps[p].ask+'</p>';
-  note.append(prompt);
- }
- if(topic==='brueche'&&id()===8){
-  picture.innerHTML=paintBoard(p);updatePaint();
-  $('#phase-label').textContent=['Selbst färben','Das ganze Rechteck','Eine von sechs Gruppen','Fünf von sechs Gruppen','Rechnung und Antwort'][p];
- }
- $('#step-back').disabled=p===0;
- $('#step-next').textContent=p===0?'Ersten Schritt zeigen →':p<last?'Weiter →':state.mode==='examples'?(pos<ordered.length-1?'Nächstes Beispiel →':'Noch einmal ansehen'):c.lessons.findIndex(l=>l.id===state.learn)<c.lessons.length-1?'Nächster Lernschritt →':'Weitere Beispiele →';
- const hint=$('.stage-hint',reader);hint.hidden=true;hint.innerHTML=list(p===0?[r.startHint]:p===last?r.check:steps[p-1].hint);hint.dataset.forStep=state.mode+':'+id()+':'+p;$('#hint-toggle').hidden=false;$('#hint-toggle').textContent=p===last?'Ergebnis prüfen':'Tipp zu diesem Schritt';$('#hint-toggle').setAttribute('aria-expanded','false');
- $('#step-back').onclick=()=>{state.steps[phaseKey()]=Math.max(0,phase()-1);render();};
- $('#step-next').onclick=()=>{
-  if(phase()<last){state.steps[phaseKey()]=phase()+1;render();return;}
-  if(state.mode==='examples'){if(pos<ordered.length-1)caseMove(1);else{state.steps[phaseKey()]=0;render();}return;}
+ const next=$('#step-next'),back=$('#step-back');
+ back.disabled=p===0;
+ next.disabled=p>0&&p<last&&!shown;
+ next.textContent=p===0?'Ersten Schritt überlegen →':p<last?'Weiter zum nächsten Gedanken →':
+   state.mode==='examples'?(pos<ordered.length-1?'Nächstes Beispiel →':'Noch einmal ansehen'):
+   c.lessons.findIndex(l=>l.id===state.learn)<c.lessons.length-1?'Nächster Lernweg →':'Weitere Beispiele →';
+ const hint=$('.stage-hint',reader);
+ hint.hidden=true;hint.innerHTML=safeList(p===0?[r.startHint]:p===last?r.check:active.hint);
+ hint.dataset.forStep=state.mode+':'+id()+':'+p;$('#hint-toggle').hidden=false;
+ $('#hint-toggle').textContent=p===last?'Probe als Tipp':'Ein Tipp ohne vollständige Lösung';
+ $('#hint-toggle').setAttribute('aria-expanded','false');
+ back.onclick=()=>{state.steps[phaseKey()]=Math.max(0,phase()-1);saveState();render();};
+ next.onclick=()=>{
+  if(next.disabled)return;
+  if(phase()<last){state.steps[phaseKey()]=phase()+1;saveState();render();return;}
+  if(state.mode==='examples'){if(pos<ordered.length-1)caseMove(1);else resetCurrentCase();return;}
   const at=c.lessons.findIndex(l=>l.id===state.learn);
-  if(state.mode==='learn'&&at<c.lessons.length-1){state.learn=c.lessons[at+1].id;state.steps["learn:"+state.learn]=0;render();route();reader.scrollIntoView({block:'start'});}
-  else{state.examples=['gleichwertig','gemischt','zahlenstrahl','quotienten','dezimal','dezimalvergleich','groessen'].includes(topic)?ordered[0]:(ordered.find(x=>!c.lessons.some(l=>l.id===x))||ordered[0]);state.steps["examples:"+state.examples]=0;setMode('examples');}
+  if(at<c.lessons.length-1){
+   state.learn=c.lessons[at+1].id;state.steps['learn:'+state.learn]=0;saveState();render();route();reader.scrollIntoView({block:'start'});
+  }else{
+   state.examples=ordered[0];state.steps['examples:'+state.examples]=0;
+   saveState();setMode('examples');
+  }
  };
  $('#hint-toggle').onclick=()=>{hint.hidden=!hint.hidden;$('#hint-toggle').setAttribute('aria-expanded',String(!hint.hidden));};
+ saveState();
 }
 function paintBoard(p){
  let columns='';for(let g=0;g<6;g++){
@@ -103,9 +196,9 @@ function paintBoard(p){
 }
 function updatePaint(){
  const board=$('.paint-board',reader);if(!board)return;
- board.classList.toggle('groups-visible',state.paintGroups||phase()>=2);
+ board.classList.toggle('groups-visible',state.paintGroups||(phase()>=2&&(phase()>=4||!!state.revealed[phaseKey()+':'+phase()])));
  $$('[data-paint-cell]',reader).forEach(b=>{const on=state.paint.has(Number(b.dataset.paintCell));b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label','Kästchen '+(Number(b.dataset.paintCell)+1)+(on?' entfärben':' färben'));b.textContent=on?'✓':'';});
- const groups=$('[data-paint-action="groups"]',reader);groups.hidden=phase()>=2;groups.setAttribute('aria-pressed',String(state.paintGroups));groups.textContent=state.paintGroups?'Gruppen ausblenden':'6 Gruppen zeigen';
+ const groups=$('[data-paint-action="groups"]',reader);groups.hidden=phase()>=2&&(phase()>=4||!!state.revealed[phaseKey()+':'+phase()]);groups.setAttribute('aria-pressed',String(state.paintGroups));groups.textContent=state.paintGroups?'Gruppen ausblenden':'6 Gruppen zeigen';
  const count=state.paint.size;$('.paint-count',reader).textContent=count+' von 18 Kästchen gefärbt.';
  $('.paint-feedback',reader).textContent=!state.paintChecked?'':count===15?'Das passt: 15 Kästchen sind 5/6 des Rechtecks. Jedes Kästchen zählt gleich viel.':count===0?'Noch ist nichts gefärbt. Die 6 unten heißt: Teile die 18 Kästchen in sechs gleich große Gruppen.':count<15?'Es fehlt noch Farbe. Jede der sechs Gruppen hat drei Kästchen. Du brauchst fünf solcher Gruppen.':'Es ist zu viel gefärbt. Eine der sechs gleich großen Gruppen soll frei bleiben.';
 }
