@@ -1,5 +1,5 @@
 'use strict';
-/* Handgeschriebene Erklärentscheidungen; korrekte Wege + nachvollziehbare Gegenbeispiele. */
+/* Handgeschriebene Erklärentscheidungen pro fachlichem Lernschritt. */
 window.MerkheftEntscheidungen = {
   "brueche": {
     "3": {
@@ -181,62 +181,107 @@ window.MerkheftEntscheidungen = {
   "zahlenstrahl": {
     "104": {
       "1": {
-        "question": "In welcher Richtung liegt minus drei Viertel von 0 aus?",
+        "question": "Zwischen welchen ganzen Zahlen liegt minus drei Viertel?",
         "choices": [
           {
-            "label": "Nach links",
+            "label": "Zwischen minus eins und null",
             "correct": true,
-            "why": "Das passt: Negative Zahlen liegen links von 0."
+            "why": "Das passt: Ein Betrag kleiner als eins mit Minus liegt links von null, aber rechts von minus eins."
           },
           {
-            "label": "Nach rechts",
+            "label": "Zwischen null und eins",
             "correct": false,
-            "why": "Nach rechts läge plus drei Viertel, also eine andere Zahl."
+            "why": "Dort liegen positive Brüche. Das Minus zeigt die andere Seite der null."
           }
         ]
       },
       "2": {
-        "question": "In wie viele gleiche Lücken wird eine ganze Einheit geteilt?",
+        "question": "Wie viele Lücken bilden eine ganze Einheit?",
         "choices": [
           {
-            "label": "In vier Lücken",
+            "label": "Vier gleich große Lücken",
             "correct": true,
-            "why": "Das passt, denn der Nenner ist vier. Entscheidend sind die Lücken, nicht die Striche."
+            "why": "Der Nenner vier beschreibt vier gleiche Teilstrecken der Einheit."
           },
           {
-            "label": "In drei Lücken",
+            "label": "Drei gleich große Lücken",
             "correct": false,
-            "why": "Das passt nicht: Drei beschreibt die Zahl der Viertelschritte, nicht die Einteilung des Ganzen."
+            "why": "Die drei gehören zum Zähler: Sie sagen, wie viele Viertelschritte wir später gehen."
           }
         ]
       },
       "3": {
-        "question": "Wo beginnst du beim Abzählen eines negativen Bruchs?",
+        "question": "Was beschreibt eine einzelne Lücke?",
         "choices": [
           {
-            "label": "Bei 0, dann nach links",
+            "label": "Ein Viertel der ganzen Einheit",
             "correct": true,
-            "why": "Das passt: Der Abstand wird von 0 aus in negativer Richtung abgetragen."
+            "why": "Eine von vier gleich langen Lücken ist ein Viertel. Der Abstand selbst ist positiv."
           },
           {
-            "label": "Bei minus 1, dann nach rechts",
+            "label": "Minus ein Viertel als Lückenlänge",
             "correct": false,
-            "why": "Das ergibt nicht dieselbe Zahl: Von minus 1 drei Viertel nach rechts lägst du bei minus ein Viertel."
+            "why": "Eine Strecke hat keinen negativen Abstand. Erst die Richtung macht den späteren Punkt negativ."
           }
         ]
       },
       "4": {
-        "question": "Wann wird der fertige Punkt beschriftet?",
+        "question": "Wo beginnst du bei einem negativen Bruch und wohin gehst du?",
         "choices": [
           {
-            "label": "Nach dem dritten Viertelschritt",
+            "label": "Bei null nach links",
             "correct": true,
-            "why": "Das passt: Erst die drei gleich langen Schritte bestimmen die genaue Punktlage."
+            "why": "Das passt: Minus bestimmt die Richtung, nicht den Startwert minus eins."
           },
           {
-            "label": "Schon vor dem Zählen der Lücken",
+            "label": "Bei minus eins nach rechts",
             "correct": false,
-            "why": "Das passt nicht als Denkweg: Dann wäre die gesuchte Lage bereits vorgegeben und nicht hergeleitet."
+            "why": "Das passt nicht: Von minus eins nach rechts würdest du eine andere Punktlage erhalten."
+          }
+        ]
+      },
+      "5": {
+        "question": "Was zeigt der erste Viertelschritt?",
+        "choices": [
+          {
+            "label": "Eine Lücke links von null",
+            "correct": true,
+            "why": "Das passt: Der erste Schritt beginnt bei null und endet am ersten Teilstrich links."
+          },
+          {
+            "label": "Schon den endgültigen Punkt minus drei Viertel",
+            "correct": false,
+            "why": "Das wäre zu früh: Es fehlen noch zwei weitere Viertelschritte."
+          }
+        ]
+      },
+      "6": {
+        "question": "Wie weit musst du insgesamt von null nach links gehen?",
+        "choices": [
+          {
+            "label": "Drei Viertellücken",
+            "correct": true,
+            "why": "Das passt: Die drei im Zähler gibt die Anzahl der gleich langen Viertelschritte an."
+          },
+          {
+            "label": "Vier Viertellücken",
+            "correct": false,
+            "why": "Dann wärst du bei minus eins. Gesucht sind nur drei Viertel."
+          }
+        ]
+      },
+      "7": {
+        "question": "Wo liegt der Punkt nach dem dritten Schritt?",
+        "choices": [
+          {
+            "label": "Bei minus drei Vierteln",
+            "correct": true,
+            "why": "Das passt: Drei Viertellücken links von null sind minus drei Viertel."
+          },
+          {
+            "label": "Bei plus drei Vierteln",
+            "correct": false,
+            "why": "Die Entfernung wäre zwar gleich groß, aber die Richtung falsch."
           }
         ]
       }
