@@ -100,3 +100,6 @@ for (const width of viewports) {
     });
   }
 }
+
+// Auch sämtliche 522 Denkphasen (34 Lernwege, 111 Beispiele) auf Desktop und Smartphone prüfen.
+require('./merkheft-vollstaendig.spec.cjs');
