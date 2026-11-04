@@ -41,7 +41,12 @@ for (const width of viewports) {
       await expect(page.locator('#step-next')).toBeVisible();
       await page.locator('#step-next').click();
       await expect(page.locator('.think-gate')).toBeVisible();
-      await expect(page.locator('[data-think-choice]')).toHaveCount(0);
+      if(await page.locator('[data-think-choice]').count()){
+        await page.locator('[data-think-choice="1"]').click();
+        await expect(page.locator('.think-feedback-try')).toBeVisible();
+        await page.locator('[data-think-choice="0"]').click();
+        await expect(page.locator('.think-feedback-ok')).toBeVisible();
+      }
       await page.locator('[data-think-reveal]').click();
       await expect(page.locator('.current-line')).toBeVisible();
 
