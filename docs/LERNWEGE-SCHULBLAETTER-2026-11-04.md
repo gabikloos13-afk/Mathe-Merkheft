@@ -37,3 +37,7 @@ Alle 14 lokalen Fach-/Modell-Testdateien bestanden. Ein eigener Browser-Test pr�
 Die 14 bisherigen Rücksetzfehler des Browserlaufs 41910548668 entstanden durch den Vergleich von `innerText` (mit CSS-Großschreibung) mit dem standardmäßig verwendeten `textContent`. Die Prüfung verwendet jetzt auf beiden Seiten die tatsächlich sichtbare Textansicht. Das ist eine Korrektur des Testvergleichs; der vollständige Reset wird weiterhin geprüft.
 
 Keine Garantie für ein bestimmtes Lernergebnis: Hannas selbstständige Anwendung muss praktisch erprobt werden. Multiplikation und Division mit größeren Zahlen, die schriftliche Division periodischer Brüche sowie das Lesen der Aufgaben bleiben eigene Lernvoraussetzungen. Nicht endliche Dezimaldarstellungen werden in der Bruch-Umwandlung benannt und auf den vorhandenen Perioden-Lernweg verwiesen; es wird kein Näherungswert als exakte Lösung ausgegeben.
+
+## Abschlussergebnis
+
+Codestand `a1c17ddf43161b2321a0a020837824f04293800c`: **675 von 675 Browsertests sowie alle 14 Fach-/Modell-Testdateien bestanden**. Das umfasst 22 neue Grundlagen-Browsertests und die zuvor fehlgeschlagenen Rücksetzprüfungen. [Prüflauf](https://github.com/gabikloos13-afk/Mathe-Merkheft/actions/runs/41919011731). Die Veröffentlichung über GitHub Pages war erfolgreich; die neuen Grundlagenbereiche wurden auf allen drei öffentlichen Kapitelseiten bestätigt.

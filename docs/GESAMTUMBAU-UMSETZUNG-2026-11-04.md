@@ -1,6 +1,6 @@
 # Gesamtumbau aller neun Themen – umgesetzter Stand
 
-Stand: 04.11.2026. Entwicklungszweig `gesamtumbau-erklaerstandard-2026-11-04`. **Keine fachliche Gesamtfreigabe und kein Merge nach main.**
+Stand: 04.11.2026. Entwicklungszweig `gesamtumbau-erklaerstandard-2026-11-04`. **Auf ausdrücklichen Wunsch in main übernommen und veröffentlicht. Die fachliche Gesamtfreigabe bleibt offen.**
 
 ## Tatsächlich umgesetzt
 
@@ -18,6 +18,8 @@ Stand: 04.11.2026. Entwicklungszweig `gesamtumbau-erklaerstandard-2026-11-04`. *
 - Größen: Aufgabenfamilie „passende kleinere Einheit ohne Komma wählen“ anhand des neuen Arbeitsheftblatts in B2. Die gesonderte Grundlagenaufgabe zur Masse bleibt erhalten. Auch andere mathematisch korrekte Einheiten werden anerkannt.
 - Ein automatischer Prüfablauf pro Code-Push statt drei parallel ausgelöster Abläufe. Die älteren Namen sind nur noch manuelle Aufrufe desselben Prüfprogramms.
 
+Zusätzlich stehen sieben kleinschrittige, visuell erklärte Grundlagenwege zu Größen, Dezimalvergleichen und Bruch-/Dezimalumwandlung bereit. Siehe [Vertiefungsprotokoll](LERNWEGE-SCHULBLAETTER-2026-11-04.md).
+
 ## Schulquellen – tatsächlich erneuter Abgleich
 
 Alle 28 Buchfotos S. 6–33 wurden erneut geöffnet. S. 23 ist links durch einen grauen Bereich verdeckt; dort werden ausschließlich sichtbare Angaben als Originalbeleg verwendet. Die fünf neuen Fotos vom 04.11. wurden im vorherigen Arbeitsgang gelesen. Heftfotos werden, sofern nicht erneut geöffnet, ausdrücklich als historische Methodenbelege geführt. Originalfotos und private Datei-IDs werden nicht veröffentlicht.
@@ -26,10 +28,10 @@ Jeder Lern-/Beispielfall hat jetzt einen Quellenverweis direkt im Fachdatensatz:
 
 ## Bisher tatsächlich ausgeführte Prüfungen
 
-- Alle 13 vorhandenen Fach-/Modell-Testdateien bestanden lokal. Die früheren Prüfungen auf bestimmte veraltete Reader-Codezeichenfolgen sind durch den aktuellen Phasenvertrag und Browser-Verhaltenstests ersetzt; mathematische Prüfungen bleiben erhalten.
+- Alle 14 Fach-/Modell-Testdateien bestanden lokal und im GitHub-Lauf. Die früheren Prüfungen auf bestimmte veraltete Reader-Codezeichenfolgen sind durch den aktuellen Phasenvertrag und Browser-Verhaltenstests ersetzt; mathematische Prüfungen bleiben erhalten.
 - 145 Lern-/Beispielansichten und 668 Ausgangs-/Phasenbilder mit allen neun Fachrenderern erzeugt; keine fehlenden Bilder, NaN-/Infinity-/undefined-Werte oder negativen SVG-Breiten/-Höhen. Dies ist keine visuelle Freigabe.
 - Der erste Lernschritt aller neun Kapitel wurde in der tatsächlichen Browser-Vorschau aufgedeckt und sichtbar kontrolliert. Alle neun Werkzeuge wurden außerdem geöffnet und zurückgesetzt. Die neue vollständige Reset-Funktion wird im Browser zusätzlich gegen den ursprünglichen Rechnungstext geprüft.
-- Neuer vollständiger Browserlauf: alle Lernwege, Beispiele und Phasen bei 320, 375, 768 und 1280 px. Zusätzliche Navigation-/Verlaufstests und Eingabegrenzen-/Varianten-/Tastaturtests aller neun Werkzeuge. Ergebnis wird erst nach abgeschlossenem GitHub-Lauf ergänzt.
+- Neuer vollständiger Browserlauf: alle Lernwege, Beispiele und Phasen bei 320, 375, 768 und 1280 px. Zusätzliche Navigation-/Verlaufstests und Eingabegrenzen-/Varianten-/Tastaturtests aller neun Werkzeuge. Ergebnis: **675/675 bestanden**, einschließlich 22 zusätzlicher Tests der sieben Grundlagenfamilien. [Erfolgreicher Lauf](https://github.com/gabikloos13-afk/Mathe-Merkheft/actions/runs/41919011731).
 
 ## Offene Freigabegrenzen
 
@@ -37,7 +39,7 @@ Jeder Lern-/Beispielfall hat jetzt einen Quellenverweis direkt im Fachdatensatz:
 - B5 im Anteilskapitel (verschieden große Pizzen) ist eine eigene Ergänzung. Das Flächenverhältnis vier bei doppeltem Durchmesser hat jetzt eine eigene Darstellung mit maßgleichen Kreisen, zwei Skalierungsrichtungen und explizit benannten Flächeneinheiten. Die visuelle und kindliche Verständlichkeitsabnahme dieses Zusatzfalls bleibt offen; kein exakter Schulquellenbeleg behauptet.
 - Einige Aufgabentypen enthalten mehrere berechtigte Darstellungen. Die Familienzuordnung ersetzt nicht die individuelle Prüfung, ob wirklich jede Variante didaktisch nötig ist. Es wurden keine neuen Übungsserien hinzugefügt.
 - Vollständiges Drag-/Touch-Verhalten jedes Werkzeugs, jede Screenreader-Sicht, echte Smartphone-Hardware und Hannas Verständlichkeitsprobe sind nicht durch automatisierte Bildschirmgrößen belegt.
-- Freigabe bleibt gesperrt, solange diese Punkte offen sind. Der Arbeitsauftrag wird nicht allein aufgrund grüner Browserläufe als vollständig abgenommen bezeichnet.
+- Die fachliche Gesamtfreigabe bleibt offen, solange diese Punkte offen sind. Der Arbeitsauftrag wird nicht allein aufgrund grüner Browserläufe als vollständig abgenommen bezeichnet.
 
 ## Fallweiser Quellen- und Phasenindex
 
