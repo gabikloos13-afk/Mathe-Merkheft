@@ -21,6 +21,8 @@ Direkt im Mathe-Ordner liegen darüber hinaus **neun PDF-Merkblätter und drei P
 4. **Sekundär:** die neun selbst gestalteten PDF-Merkblätter, drei PNG-Grafiken, frühere Merkheft-Versionen und alte Testausgaben. Sie dürfen eine Primärquelle **nicht überstimmen**.
 5. **Vorsicht:** handschriftlich eingetragene Ergebnisse können Fehler enthalten. Die *Vorgehensweise* ist eine schulnahe Quelle, nicht automatisch der mathematisch geprüfte Musterlösungswert.
 
+**Schärfere Quellenprüfung:** Bei Textaufgaben werden **Formulierung, bekannter Anteil und gesuchtes Ganzes direkt am Originalfoto** nachgelesen. Vor der Übernahme in die Bauvorlage werden **alle Beispielzahlen neu gerechnet**; insbesondere darf ein gegebener Restanteil nicht als ausgegebener oder leerer Anteil umgedeutet werden.
+
 ## 2. Vollständiger Seitenindex des Schulbuchs
 
 Die Fotos sind nach Dateinamen sortiert und entsprechen fortlaufend den abgedruckten Buchseiten 6 bis 33. Titel/Aufgabentypen sind sinngemäß zusammengefasst, nicht vollständig abgeschrieben.
@@ -103,8 +105,8 @@ Die Art ist anhand des sichtbaren Fotos eingeordnet. Ein Heftfotosatz kann Ergeb
 Die Lösungen zeigen einen gut nachvollziehbaren Rechenweg, der im HTML nicht durch einen abstrakten Dreisatz ersetzt werden soll.
 
 - Wenn **3/4 einer Klasse 21 Kinder** sind: erst **1/4 = 21 : 3 = 7**, dann **4/4 = 7 · 4 = 28 Kinder** (Heft/Arbeitsblatt `20261022_232137.jpg`).
-- Wenn **5/8 eines Tanks leer** sind und **3/8 noch 50 Liter** bedeuten, wird zuerst der tatsächlich gegebene Restanteil korrekt bestimmt. Bei Restangaben muss sichtbar sein, ob der genannte Anteil leer oder gefüllt ist; erst **ein Achtel**, dann der ganze Tank.
-- Wenn **2/3 des Taschengelds ausgegeben** sind und **1/3 = 24 € übrig** ist: erst **1/3 = 24 €**, danach **3/3 = 72 €**; nicht automatisch 24 durch 2 teilen.
+- Wenn **5/8 des gesamten Tanks genau 50 Liter** entsprechen: erst **1/8 = 50 l : 5 = 10 l**, danach **8/8 = 10 l · 8 = 80 l**. Die 50 Liter sind der **noch vorhandene Inhalt** und werden im Original nicht als leerer Teil bezeichnet.
+- Wenn **1/3 des Taschengelds ausgegeben** wurde und **2/3 = 24 € übrig** sind: erst **1/3 = 24 € : 2 = 12 €**, danach **3/3 = 12 € · 3 = 36 €**. Der Restanteil wird zuerst korrekt aus der Geschichte abgeleitet.
 
 **Kürzen/Erweitern – sichtbare Rechenzahl an beiden Bruchzahlen:**
 
