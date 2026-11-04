@@ -1,7 +1,54 @@
 'use strict';
-/* Handgeschriebene Erklärentscheidungen pro fachlichem Lernschritt. */
+/* Individuell geprüfte Entscheidungsfragen je Lernschritt. */
 window.MerkheftEntscheidungen = {
   "brueche": {
+    "2": {
+      "1": {
+        "question": "Welche Menge ist das Ganze?",
+        "choices": [
+          {
+            "label": "Alle 60 Birnen",
+            "correct": true,
+            "why": "Die 60 Birnen sind der Ausgangsbestand, von dem zwei Drittel gesucht sind."
+          },
+          {
+            "label": "Die zwei Drittel sind das Ganze",
+            "correct": false,
+            "why": "Zwei Drittel sind nur der gesuchte Anteil; das Ganze sind alle Birnen."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie groß ist ein Drittel von 60 Birnen?",
+        "choices": [
+          {
+            "label": "60 : 3",
+            "correct": true,
+            "why": "Der Nenner 3 teilt das Ganze in drei gleich große Gruppen."
+          },
+          {
+            "label": "60 : 2",
+            "correct": false,
+            "why": "Die 2 ist der Zähler und zählt erst danach die benötigten Gruppen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie kommst du vom Drittel zu zwei Dritteln?",
+        "choices": [
+          {
+            "label": "Ein Drittel mal 2",
+            "correct": true,
+            "why": "Der Zähler 2 sagt, dass zwei gleich große Drittelgruppen gebraucht werden."
+          },
+          {
+            "label": "Ein Drittel mal 3",
+            "correct": false,
+            "why": "Drei Drittel wären das ganze Obst, nicht der gesuchte Anteil."
+          }
+        ]
+      }
+    },
     "3": {
       "1": {
         "question": "Wofür stehen die 21 Kinder?",
@@ -112,6 +159,68 @@ window.MerkheftEntscheidungen = {
           }
         ]
       }
+    },
+    "2": {
+      "1": {
+        "question": "Welcher Teiler kürzt 12/16 in einem Schritt vollständig?",
+        "choices": [
+          {
+            "label": "4",
+            "correct": true,
+            "why": "12 und 16 sind durch 4 teilbar; 3/4 kann nicht weiter gekürzt werden."
+          },
+          {
+            "label": "3",
+            "correct": false,
+            "why": "16 ist nicht durch 3 teilbar. Kürzen erfordert denselben ganzzahligen Teiler oben und unten."
+          }
+        ]
+      },
+      "2": {
+        "question": "Was geschieht beim Kürzen mit dem Zähler?",
+        "choices": [
+          {
+            "label": "12 : 4",
+            "correct": true,
+            "why": "Zähler und Nenner müssen mit derselben Kürzungszahl geteilt werden."
+          },
+          {
+            "label": "12 − 4",
+            "correct": false,
+            "why": "Subtrahieren verändert den Bruchwert und ist kein Kürzen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie wird der Nenner gekürzt?",
+        "choices": [
+          {
+            "label": "16 : 4",
+            "correct": true,
+            "why": "Die 4 ist dieselbe Kürzungszahl wie oben; nur so bleibt der Wert gleich."
+          },
+          {
+            "label": "16 : 2",
+            "correct": false,
+            "why": "Das wäre ein anderer Faktor als beim Zähler und verändert den Wert."
+          }
+        ]
+      },
+      "4": {
+        "question": "Woran erkennst du vollständig gekürzt?",
+        "choices": [
+          {
+            "label": "3 und 4 haben keinen gemeinsamen Teiler größer als 1",
+            "correct": true,
+            "why": "Darum kann der neue Bruch nicht weiter mit ganzen Zahlen gekürzt werden."
+          },
+          {
+            "label": "Der Zähler ist kleiner als der Nenner",
+            "correct": false,
+            "why": "Auch echte Brüche können noch kürzbar sein, etwa 2/4."
+          }
+        ]
+      }
     }
   },
   "gemischt": {
@@ -176,9 +285,148 @@ window.MerkheftEntscheidungen = {
           }
         ]
       }
+    },
+    "2": {
+      "1": {
+        "question": "Wie viele Fünftel bilden ein Ganzes?",
+        "choices": [
+          {
+            "label": "5/5",
+            "correct": true,
+            "why": "Bei Nenner fünf enthält jedes Ganze genau fünf Fünftel."
+          },
+          {
+            "label": "1/5",
+            "correct": false,
+            "why": "Ein Fünftel ist nur ein Teil eines Ganzen."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie viele Fünftel stecken in drei Ganzen?",
+        "choices": [
+          {
+            "label": "3 · 5",
+            "correct": true,
+            "why": "Jedes der drei Ganzen besteht aus fünf Fünfteln."
+          },
+          {
+            "label": "3 + 5",
+            "correct": false,
+            "why": "Die Addition zählt nicht fünf Teile für jedes der drei Ganzen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Was kommt zu den Fünfteln der Ganzen hinzu?",
+        "choices": [
+          {
+            "label": "Die zwei zusätzlichen Fünftel",
+            "correct": true,
+            "why": "Sie stehen als Bruchteil in der ursprünglichen gemischten Zahl."
+          },
+          {
+            "label": "Noch zwei Ganze",
+            "correct": false,
+            "why": "Die 2 ist Zähler des Restbruchs und zählt Fünftel, keine Ganzen."
+          }
+        ]
+      },
+      "4": {
+        "question": "Was bleibt beim unechten Bruch unverändert?",
+        "choices": [
+          {
+            "label": "Der Nenner 5",
+            "correct": true,
+            "why": "Die Stückgröße bleibt Fünftel, nur die Gesamtzahl der Fünftel steht oben."
+          },
+          {
+            "label": "Der Zähler 2",
+            "correct": false,
+            "why": "Der Zähler muss jetzt alle Fünftel aus den Ganzen und dem Rest zählen."
+          }
+        ]
+      }
     }
   },
   "zahlenstrahl": {
+    "101": {
+      "1": {
+        "question": "Welche Strecke ist genau eine ganze Einheit?",
+        "choices": [
+          {
+            "label": "Von 0 bis 1",
+            "correct": true,
+            "why": "Die benachbarten ganzen Zahlen begrenzen eine Einheit."
+          },
+          {
+            "label": "Der gesamte sichtbare Zahlenstrahl",
+            "correct": false,
+            "why": "Die gezeichnete Linie kann über eine Einheit hinausreichen."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie teilst du die Einheit in vier gleiche Lücken?",
+        "choices": [
+          {
+            "label": "Drei innere Striche zwischen den Randpunkten",
+            "correct": true,
+            "why": "Zusammen mit den Randstrichen entstehen vier gleich lange Zwischenräume."
+          },
+          {
+            "label": "Vier neue Striche zwischen den Randpunkten",
+            "correct": false,
+            "why": "Dann entstehen fünf Lücken, nicht vier."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie groß ist eine der vier Lücken?",
+        "choices": [
+          {
+            "label": "1 : 4",
+            "correct": true,
+            "why": "Eine Einheit wird in vier gleich große Strecken geteilt."
+          },
+          {
+            "label": "4 : 1",
+            "correct": false,
+            "why": "Das ergäbe vier Ganze, nicht eine Viertelstrecke."
+          }
+        ]
+      },
+      "4": {
+        "question": "Warum ergeben vier Viertel genau eins?",
+        "choices": [
+          {
+            "label": "Viermal ein Viertel füllt die Einheit",
+            "correct": true,
+            "why": "Jeder Viertelschritt hat dieselbe Länge; zusammen sind es vier Viertel."
+          },
+          {
+            "label": "Weil fünf Striche zu sehen sind",
+            "correct": false,
+            "why": "Die Anzahl der Striche ist nicht die Anzahl der Teilstrecken."
+          }
+        ]
+      },
+      "5": {
+        "question": "Was zählt beim Nenner der Einteilung?",
+        "choices": [
+          {
+            "label": "Die vier Lücken",
+            "correct": true,
+            "why": "Der Nenner beschreibt die gleich langen Teilstrecken einer Einheit."
+          },
+          {
+            "label": "Die fünf Striche",
+            "correct": false,
+            "why": "Zwei Randstriche und drei innere Striche begrenzen nur vier Lücken."
+          }
+        ]
+      }
+    },
     "104": {
       "1": {
         "question": "Zwischen welchen ganzen Zahlen liegt minus drei Viertel?",
@@ -288,6 +536,83 @@ window.MerkheftEntscheidungen = {
     }
   },
   "quotienten": {
+    "1": {
+      "1": {
+        "question": "Wie wird 18 : 12 als Bruch geschrieben?",
+        "choices": [
+          {
+            "label": "18/12",
+            "correct": true,
+            "why": "Der Dividend steht oben und der Divisor unten."
+          },
+          {
+            "label": "12/18",
+            "correct": false,
+            "why": "Die Reihenfolge zu vertauschen verändert den Wert."
+          }
+        ]
+      },
+      "2": {
+        "question": "Welcher gemeinsame Teiler führt sofort zum vollständig gekürzten Bruch?",
+        "choices": [
+          {
+            "label": "6",
+            "correct": true,
+            "why": "18 : 6 = 3 und 12 : 6 = 2. Beide Zahlen sind ohne Rest teilbar."
+          },
+          {
+            "label": "12",
+            "correct": false,
+            "why": "18 ist nicht durch 12 ohne Rest teilbar."
+          }
+        ]
+      },
+      "3": {
+        "question": "Was muss beim Kürzen gleich sein?",
+        "choices": [
+          {
+            "label": "Der Teiler oben und unten",
+            "correct": true,
+            "why": "Nur so bleibt der Wert des Bruchs erhalten."
+          },
+          {
+            "label": "Das Ergebnis oben und unten",
+            "correct": false,
+            "why": "Zähler und Nenner dürfen unterschiedliche Ergebnisse haben."
+          }
+        ]
+      },
+      "4": {
+        "question": "Wie viele ganze Zweiergruppen stecken in drei Halben?",
+        "choices": [
+          {
+            "label": "Eine ganze Zweiergruppe mit einem Halb Rest",
+            "correct": true,
+            "why": "Zwei Halbe ergeben ein Ganzes; ein Halb bleibt."
+          },
+          {
+            "label": "Zwei Ganze",
+            "correct": false,
+            "why": "Für zwei Ganze bräuchtest du vier Halbe."
+          }
+        ]
+      },
+      "5": {
+        "question": "Wie werden die drei Halben als gemischte Zahl geschrieben?",
+        "choices": [
+          {
+            "label": "Ein Ganzes und ein Halb",
+            "correct": true,
+            "why": "Zwei Halbe sind ein Ganzes; das dritte Halb bleibt."
+          },
+          {
+            "label": "Drei Ganze und zwei Halbe",
+            "correct": false,
+            "why": "Das wäre viel mehr als die ursprünglichen drei Halbe."
+          }
+        ]
+      }
+    },
     "101": {
       "1": {
         "question": "Welche beiden Angaben gehören zur Geteilt-Aufgabe?",
@@ -352,6 +677,38 @@ window.MerkheftEntscheidungen = {
     }
   },
   "vergleichen": {
+    "1": {
+      "1": {
+        "question": "Was entscheidet bei 2/9 und 7/9?",
+        "choices": [
+          {
+            "label": "Die Zähler 2 und 7",
+            "correct": true,
+            "why": "Beide Brüche zählen gleich große Neuntel; sieben davon sind mehr als zwei."
+          },
+          {
+            "label": "Der Nenner 9",
+            "correct": false,
+            "why": "Der Nenner ist gleich und kann deshalb den Größenunterschied nicht erklären."
+          }
+        ]
+      },
+      "2": {
+        "question": "Welches Zeichen passt zwischen 2/9 und 7/9?",
+        "choices": [
+          {
+            "label": "<",
+            "correct": true,
+            "why": "Zwei Neuntel sind weniger als sieben Neuntel."
+          },
+          {
+            "label": " >",
+            "correct": false,
+            "why": "Die linke Zahl hat weniger gleich große Stücke, sie ist nicht größer."
+          }
+        ]
+      }
+    },
     "3": {
       "1": {
         "question": "Wie vergleichst du zunächst Halbe und Drittel?",
@@ -431,6 +788,38 @@ window.MerkheftEntscheidungen = {
     }
   },
   "dezimal": {
+    "1": {
+      "1": {
+        "question": "An welcher Stelle stehen neun Hundertstel?",
+        "choices": [
+          {
+            "label": "An der zweiten Stelle nach dem Komma",
+            "correct": true,
+            "why": "Die erste Nachkommastelle zählt Zehntel, die zweite Hundertstel."
+          },
+          {
+            "label": "An der ersten Stelle nach dem Komma",
+            "correct": false,
+            "why": "Das wären neun Zehntel und damit zehnmal so viel."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie schreibst du 9/100 als Kommazahl?",
+        "choices": [
+          {
+            "label": "0,09",
+            "correct": true,
+            "why": "Es gibt null Zehntel und neun Hundertstel."
+          },
+          {
+            "label": "0,9",
+            "correct": false,
+            "why": "Das sind neun Zehntel, also neunzig Hundertstel."
+          }
+        ]
+      }
+    },
     "2": {
       "1": {
         "question": "Welche Stückgröße kann bei Fünfteln helfen?",
@@ -526,6 +915,68 @@ window.MerkheftEntscheidungen = {
           }
         ]
       }
+    },
+    "7": {
+      "1": {
+        "question": "Warum darfst du 0,74 als 0,740 schreiben?",
+        "choices": [
+          {
+            "label": "Die zusätzliche Endnull ändert den Wert nicht",
+            "correct": true,
+            "why": "Sie ergänzt nur eine weitere Nachkommastelle mit Wert null."
+          },
+          {
+            "label": "Weil 0,740 größer als 0,74 ist",
+            "correct": false,
+            "why": "Eine Endnull verändert keine Zahl."
+          }
+        ]
+      },
+      "2": {
+        "question": "Welche Zahl ist kleiner: 0,700 oder 0,704?",
+        "choices": [
+          {
+            "label": "0,700",
+            "correct": true,
+            "why": "Zehntel und Hundertstel sind gleich; null Tausendstel sind weniger als vier."
+          },
+          {
+            "label": "0,704",
+            "correct": false,
+            "why": "Vier Tausendstel sind mehr als null Tausendstel."
+          }
+        ]
+      },
+      "3": {
+        "question": "Welche der drei Zahlen ist am größten?",
+        "choices": [
+          {
+            "label": "0,740",
+            "correct": true,
+            "why": "Vier Hundertstel sind mehr als null Hundertstel der beiden anderen Zahlen."
+          },
+          {
+            "label": "0,704",
+            "correct": false,
+            "why": "Vier Tausendstel sind kleiner als vier Hundertstel."
+          }
+        ]
+      },
+      "4": {
+        "question": "Was passiert, wenn du die ergänzten Endnullen wieder weglässt?",
+        "choices": [
+          {
+            "label": "Die Reihenfolge bleibt gleich",
+            "correct": true,
+            "why": "Endnullen verändern keinen Stellenwert und damit auch keinen Vergleich."
+          },
+          {
+            "label": "Die Reihenfolge kehrt sich um",
+            "correct": false,
+            "why": "Durch Weglassen von Endnullen ändern sich die Zahlenwerte nicht."
+          }
+        ]
+      }
     }
   },
   "groessen": {
@@ -572,6 +1023,83 @@ window.MerkheftEntscheidungen = {
             "label": "m",
             "correct": false,
             "why": "Das passt nicht: Die Aufgabe verlangt eine Angabe in Zentimetern, nicht erneut in Metern."
+          }
+        ]
+      }
+    },
+    "12": {
+      "1": {
+        "question": "Wie viele Minuten enthält eine Stunde?",
+        "choices": [
+          {
+            "label": "60 Minuten",
+            "correct": true,
+            "why": "Die Zeitumrechnung beginnt mit der festen Beziehung 1 h = 60 min."
+          },
+          {
+            "label": "100 Minuten",
+            "correct": false,
+            "why": "Stunden werden in 60 Minuten geteilt, nicht in 100."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie berechnest du 0,25 Stunden in Minuten?",
+        "choices": [
+          {
+            "label": "60 : 4",
+            "correct": true,
+            "why": "0,25 bedeutet ein Viertel einer Stunde; ein Viertel von 60 Minuten ergibt die Minutenanzahl."
+          },
+          {
+            "label": "25 Minuten",
+            "correct": false,
+            "why": "0,25 ist ein Viertel, nicht die Anzahl der Minuten."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie berechnest du die gesamte Zeit in Minuten?",
+        "choices": [
+          {
+            "label": "60 Minuten plus das berechnete Viertel",
+            "correct": true,
+            "why": "1,25 h besteht aus einer ganzen Stunde und einem Viertel."
+          },
+          {
+            "label": "Nur das Viertel",
+            "correct": false,
+            "why": "Dann fehlt die ganze Stunde."
+          }
+        ]
+      },
+      "4": {
+        "question": "Wie viele Sekunden sind ein Viertel einer Minute?",
+        "choices": [
+          {
+            "label": "60 : 4",
+            "correct": true,
+            "why": "Eine Minute hat 60 Sekunden; durch vier erhältst du ein Viertel."
+          },
+          {
+            "label": "60 : 3",
+            "correct": false,
+            "why": "Das wäre ein Drittel, nicht ein Viertel."
+          }
+        ]
+      },
+      "5": {
+        "question": "Wie berechnest du drei Viertel einer Minute?",
+        "choices": [
+          {
+            "label": "Ein Viertel mal 3",
+            "correct": true,
+            "why": "Der Zähler drei zählt drei gleich große Viertel."
+          },
+          {
+            "label": "Ein Viertel mal 4",
+            "correct": false,
+            "why": "Vier Viertel wären die ganze Minute."
           }
         ]
       }
