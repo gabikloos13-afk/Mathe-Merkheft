@@ -94,3 +94,5 @@ assert.ok(readerSource.includes('if(choice.correct)'), 'Falsche Antwort darf kei
 new Function(read('erklaer-entscheidungen.js'));
 console.log(JSON.stringify({status:'STATIC_OK',topics:topics.length,lessons,examples,phases,authoredDecisions:authored},null,2));
 console.log('Offen: Browser, Tastatur, Touch, Smartphone, vollständiger Schulquellen-Einzelbeweis und genaue didaktische Prüfung aller Antworten.');
+
+require('./beispiel-entscheidungen-audit.cjs');
