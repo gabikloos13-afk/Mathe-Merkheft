@@ -122,13 +122,22 @@ function render(){
   const question=spec?.question||active.ask||('Überlege: '+(stepTitle||reflectQuestions[topic])+' – warum passt dieser nächste Schritt?');
   let html='<section class="think-gate"><p class="think-kicker">ERST ÜBERLEGEN · DANN AUFDECKEN</p><h3>Welche Entscheidung passt?</h3><p class="think-question">'+question+'</p>';
   if(spec&&Array.isArray(spec.choices)&&spec.choices.length>=2){
-   html+='<div class="think-choices" role="group" aria-label="Weg auswählen">'+spec.choices.map((opt,i)=>
+   // Die richtige Antwort darf nicht zuverlässig an derselben Position stehen.
+   // Originalindices bleiben für die Speicherung stabil, auch wenn die Anzeige umsortiert wird.
+   const order=spec.choices.map((opt,i)=>({opt,i}));
+   const reverse=[...String(topic+':'+id()+':'+p)].reduce((sum,ch)=>sum+ch.charCodeAt(0),0)%2===1;
+   if(reverse)order.reverse();
+   html+='<div class="think-choices" role="group" aria-label="Weg auswählen">'+order.map(({opt,i})=>
     '<button type="button" data-think-choice="'+i+'" aria-pressed="'+(state.choices[key]===i)+'">'+opt.label+'</button>').join('')+'</div>';
    if(Number.isInteger(state.choices[key])){
     const choice=spec.choices[state.choices[key]];
     if(choice){
      html+='<div class="think-feedback '+(choice.correct?'think-feedback-ok':'think-feedback-try')+'" role="status"><b>'+(choice.correct?'Das passt, weil …':'Das passt hier nicht, weil …')+'</b><p>'+choice.why+'</p></div>';
-     html+='<button type="button" class="think-reveal" data-think-reveal>Jetzt Bild und Rechenschritt erklären</button>';
+     if(choice.correct){
+      html+='<button type="button" class="think-reveal" data-think-reveal>Jetzt Bild und Rechenschritt erklären</button>';
+     }else{
+      html+='<p class="think-small">Überlege anhand der Begründung noch einmal und wähle den passenden Weg.</p>';
+     }
     }
    }
   }else{
