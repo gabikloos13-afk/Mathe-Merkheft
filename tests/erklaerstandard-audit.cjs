@@ -85,6 +85,12 @@ assert.ok(base.brueche.cases[15].check.join(' ').includes('5,25 m −'),'Sprung 
 assert.ok(!base.gleichwertig.cases[5].steps[3].hint.join(' ').includes('20 unten'),'Tipp darf die Nennerlücke nicht verraten');
 
 new Function(read('course.js'));
+const readerSource=read('course.js');
+assert.ok(readerSource.includes("$('[data-mode]').forEach"),'Tabnavigation muss mehrere Buttons ansprechen');
+assert.ok(readerSource.includes("$('[data-lesson]').forEach"),'Lernweg-Navigation muss mehrere Buttons ansprechen');
+assert.ok(!/^\s*\$\('[^']+'\)\.forEach/m.test(readerSource),'querySelector darf nicht wie eine NodeList behandelt werden');
+assert.ok(readerSource.includes('if(choice.correct)'), 'Falsche Antwort darf keine sofortige Freigabe erhalten');
+
 new Function(read('erklaer-entscheidungen.js'));
 console.log(JSON.stringify({status:'STATIC_OK',topics:topics.length,lessons,examples,phases,authoredDecisions:authored},null,2));
 console.log('Offen: Browser, Tastatur, Touch, Smartphone, vollständiger Schulquellen-Einzelbeweis und genaue didaktische Prüfung aller Antworten.');
