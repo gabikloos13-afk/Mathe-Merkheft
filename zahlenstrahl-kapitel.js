@@ -138,6 +138,11 @@ function figure(s){
  ticks.forEach(v=>{const whole=Math.abs(v-Math.round(v))<1e-8;content+=`<path data-zs-tick="${v}" d="M${X(v)} ${whole?80:85}v${whole?24:14}" stroke="#326b82" stroke-width="1.5"/>`;if(whole&&!s.ends)content+=fractionSvg(X(v),135,Math.round(v));});
  if(s.ends){content+=fractionSvg(40,135,s.min)+fractionSvg(360,135,s.max);}
  if(s.segment){const a=X(s.segment[0]),b=X(s.segment[1]);content+=`<path d="M${a} 72H${b}" stroke="#a17624" stroke-width="6"/><path d="M${a} 66v12M${b} 66v12" stroke="#a17624" stroke-width="2"/>`;}
+  if(s.direction==='left'&&min<=0&&max>=0){
+   const a=X(0),b=X(Math.max(min,-0.65));
+   content+='<path d="M'+a+' 63 H'+b+' m8 -6 l-8 6 8 6" stroke="#8b4268" stroke-width="2.6" fill="none" stroke-linejoin="round"/>';
+  }
+
  if(s.countTo!==undefined){const from=V(s.countFrom??0),to=V(s.countTo),count=Math.round(Math.abs(to-from)*s.den),dir=to>=from?1:-1;for(let i=0;i<count;i++){const a=from+dir*i/s.den,b=a+dir/s.den;content+=`<path d="M${X(a)} 108Q${X((a+b)/2)} 124 ${X(b)} 108" fill="none" stroke="#97506b" stroke-width="2"/>`;if(count<=8)content+=`<text x="${X((a+b)/2)}" y="129" text-anchor="middle" font-size="17" fill="#783d53">${i+1}</text>`;}}
  const values=[];
  for(const [i,p] of (s.points||[]).entries()){
@@ -260,6 +265,59 @@ const vertiefung={
 };
 for(const [id,parts]of Object.entries(vertiefung))
  for(const [i,why]of Object.entries(parts))cases[id].steps[Number(i)].explain=why;
+
+
+// Schulnahe Bildstaffelung der vier Lernwege. Bestehende Beispiele bleiben unberührt.
+cases[101].steps.splice(3,0,st('Vier Viertel ergeben eine ganze Einheit',
+ '4 · '+F(1,4)+' = 1',
+ ['Vier gleich große Viertellücken füllen zusammen genau die Strecke von 0 bis 1.','Die ursprüngliche Einheit bleibt gleich lang.'],
+ 'Gehe alle vier Viertelschritte von 0 bis 1.',pic(0,1,4,[],{countTo:1})));
+cases[1].steps.unshift(st('Den Bereich des gegebenen Punktes finden',
+ 'P liegt zwischen 0 und 1.',
+ ['Der Punkt P ist bereits gegeben.','Er liegt zwischen den ganzen Zahlen 0 und 1. Seinen Wert müssen wir noch ablesen.'],
+ 'Suche die beiden benachbarten ganzen Zahlen.',pic(0,1,1,[point([4,6],'P')],{segment:[0,1]})));
+cases[2].steps.splice(1,0,st('Die ganze Strecke hervorheben',
+ 'Die Strecke von 0 bis 1 ist eine ganze Einheit.',
+ ['Diese Strecke wird in Viertel geteilt.','Nicht die gesamte sichtbare Linie ist ein einziges Ganzes.'],
+ 'Markiere nur null bis eins.',pic(0,1,1,[],{segment:[0,1]})));
+cases[2].steps.splice(3,0,st('Eine Viertellücke erkennen',
+ 'Eine Lücke = '+F(1,4),
+ ['Vier gleiche Lücken füllen zusammen die Einheit.','Eine davon ist ein Viertel.'],
+ 'Hebe nur den ersten Viertelabschnitt hervor.',pic(0,1,4,[],{segment:[0,[1,4]]})));
+cases[104].steps=[
+ st('Die Einheit links von 0 erkennen','Von −1 bis 0: eine ganze Einheit.',
+  ['Auch links von null liegen ganze Einheiten.','Minus drei Viertel liegt zwischen minus eins und null.'],
+  'Suche minus eins und null.',pic(-1,0,1,[],{segment:[-1,0]})),
+ st('Die Einheit in vier Lücken teilen','Vier gleich große Viertellücken',
+  ['Die Strecke von minus eins bis null wird in vier gleich lange Lücken eingeteilt.','Der Nenner vier zählt die Lücken und nicht die Striche.'],
+  'Zähle Lücken, nicht die fünf Striche.',pic(-1,0,4,[],{segment:[-1,0]})),
+ st('Eine einzelne Viertellücke zeigen','Eine Lücke = '+F(1,4),
+  ['Eine Viertellücke hat den Abstand ein Viertel.','Links von null sind Viertellücken genauso lang wie rechts.'],
+  'Markiere genau die erste Lücke links von null.',pic(-1,0,4,[],{segment:[[-1,4],0]})),
+ st('Die Richtung ab 0 bestimmen','Minus bedeutet: von 0 nach links.',
+  ['Wir starten bei null und gehen nach links.','Das Minus verändert die Richtung, nicht die Größe einer Viertellücke.'],
+  'Beginne bei null, nicht bei minus eins.',pic(-1,0,4,[],{direction:'left'})),
+ st('Den ersten Schritt nach links gehen','1 · '+F(1,4)+' = '+F(1,4)+' Abstand',
+  ['Der erste Viertelschritt führt von null eine Viertellücke nach links.','Der gesuchte Punkt wird noch nicht beschriftet.'],
+  'Gehe erst eine von drei Viertellücken.',pic(-1,0,4,[],{direction:'left',countFrom:0,countTo:[-1,4]})),
+ st('Alle drei Viertelschritte gehen','3 · '+F(1,4)+' = '+F(3,4)+' Abstand',
+  ['Vom Nullpunkt aus folgen der zweite und dritte gleich lange Schritt.','Der Abstand zur null beträgt jetzt drei Viertel.'],
+  'Zähle insgesamt drei Schritte nach links.',pic(-1,0,4,[],{direction:'left',countFrom:0,countTo:[-3,4]})),
+ st('Erst jetzt den Punkt beschriften','P = −'+F(3,4),
+  ['Der Punkt liegt drei Viertel links von null.','Das Minus gehört zur ganzen Zahl; die Lage ist zwischen minus eins und null.'],
+  'Kontrolliere Richtung, Anzahl der Viertelschritte und Bereich.',pic(-1,0,4,[point([-3,4],'P',true)],{direction:'left',countFrom:0,countTo:[-3,4]}))
+];
+const zsQuestions={
+ 101:['Wo liegt die eine ganze Einheit?','Wie viele zusätzliche Striche ergeben vier gleich lange Lücken?','Wie groß ist eine Viertellücke?','Wie viele Viertellücken ergeben ein Ganzes?','Warum bedeuten fünf Striche nicht fünf Fünftel?'],
+ 1:['Zwischen welchen ganzen Zahlen liegt P?','Wie viele Lücken hat die Einheit?','Was ist ein Sechstel der Einheit?','Wie viele Sechstel liegen zwischen 0 und P?','Welcher Teiler passt für Zähler und Nenner?','Warum verändert Kürzen nicht die Lage des Punktes?'],
+ 2:['Liegt drei Viertel zwischen null und eins?','Was ist hier die ganze Einheit?','Wie viele gleiche Lücken sind nötig?','Was ist eine Lücke wert?','Wie viele Viertelschritte gehst du von null aus?','Wo muss der Punkt gesetzt werden?'],
+ 104:['Zwischen welchen ganzen Zahlen liegt minus drei Viertel?','In wie viele Lücken teilst du die Einheit?','Wie groß ist eine Viertellücke?','Wo startest du und in welche Richtung gehst du?','Wo endet der erste Viertelschritt?','Wie viele Viertelschritte sind es insgesamt?','Wo liegt der Punkt nach dem dritten Schritt?']
+};
+for(const id of [101,1,2,104]){
+ cases[id].steps.forEach((step,i)=>{step.ask=zsQuestions[id][i];});
+ cases[id].learnSteps=cases[id].steps;
+ cases[id].notebookHtml=cases[id].steps.map(step=>'<div class="school-calculation">'+step.html+'</div>').join('');
+}
 
 const c=window.MERKHEFT_COURSES.zahlenstrahl;
 Object.assign(c,{goal:'Bestimme die Schrittweite, lies Punkte ab und trage Brüche mit einer passenden Einteilung ein.',lessons:[{id:101,label:'Einheit und Lücken'},{id:1,label:'Einen Punkt ablesen'},{id:2,label:'Einen Bruch eintragen'},{id:104,label:'Links von 0'}],groups:[[3,11,7],[5,14,13,6],[4,8,12,9,10]],cases,referenceCards:cards,rules:['Bestimme zuerst den Wert einer Lücke.','Nach rechts werden Zahlen größer.','Die Mitte hat zu beiden Randzahlen denselben Abstand.']});
