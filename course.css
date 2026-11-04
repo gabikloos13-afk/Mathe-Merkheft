@@ -113,3 +113,15 @@
 .course-page .stage-calculation .current-line{border-left-color:#557e95}
 @media(max-width:650px){.think-origin,.think-gate,.think-check{font-size:.93rem}.think-question{font-size:1rem}.think-check{padding:12px}.course-page .think-reveal,.course-page .think-restart{width:100%}}
 @media print{.think-gate .think-choices,.think-gate textarea,.think-gate button,.think-restart,.think-trap,.think-my-thought{display:none!important}.think-check{border:0;padding:0}}
+
+
+/* Geprüfte Ausgangsbilder ohne vorweggenommenes Ergebnis. */
+.think-start-figure{margin:0 auto 20px;max-width:650px;text-align:center}
+.think-start-figure figcaption{font-size:.88rem;color:#496979;margin-top:11px;line-height:1.55}
+.think-start-quarters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;max-width:520px;margin:auto}
+.think-start-quarters span{height:86px;border:2px solid #6e8b97;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.think-start-quarters span.known{background:#cee7ea}
+.think-start-quarters span.unknown{border-style:dashed;color:#467085;background:#fff}
+.think-start-length{display:grid;grid-template-columns:70px minmax(0,1fr) 70px;align-items:center;gap:11px;font-size:.98rem;font-weight:bold;color:#426d7d}
+.think-length-bar{height:21px;border:2px solid #578599;border-radius:7px;background:repeating-linear-gradient(to right,#cfe4ed 0,#cfe4ed 9%,#e8f2f6 9%,#e8f2f6 10%)}
+@media(max-width:500px){.think-start-quarters span{height:52px}.think-start-length{grid-template-columns:50px minmax(0,1fr) 50px;font-size:.83rem;gap:5px}}
