@@ -47,8 +47,46 @@ for (const width of viewports) {
 
       await page.locator('[data-mode="tool"]').click();
       await expect(page.locator('#werkzeug')).toBeVisible();
-      if(topic==='quotienten')await expect(page.locator('#q-tool')).toBeVisible();
-      else await expect(page.locator('#anfasslabor')).toBeVisible();
+      if(topic==='quotienten'){
+        const tool=page.locator('#q-tool');
+        await expect(tool).toBeVisible();
+        const before=await tool.locator('#q-tool-title').textContent();
+        await tool.locator('#q-next').click();
+        await expect(tool.locator('#q-tool-title')).not.toHaveText(before);
+      }else if(topic==='zahlenstrahl'){
+        // This chapter intentionally uses the dedicated #zs-tool rather than #anfasslabor.
+        const tool=page.locator('#zs-tool');
+        await expect(tool).toBeVisible();
+        await expect(tool).toHaveAttribute('data-zs-n','3');
+        await tool.locator('[data-zs-action="left"]').click();
+        await expect(tool).toHaveAttribute('data-zs-n','2');
+      }else{
+        const tool=page.locator('#anfasslabor');
+        await expect(tool).toBeVisible();
+        if(topic==='brueche'){
+          const answer=await tool.locator('.hands-answer').textContent();
+          await tool.locator('[data-piece="0"]').click();
+          await expect(tool.locator('.hands-answer')).not.toHaveText(answer);
+        }else if(topic==='gleichwertig'){
+          await tool.locator('[data-do="work-show"]').click();
+          await expect(tool.locator('.workshop-calculation')).toBeVisible();
+        }else if(topic==='gemischt'){
+          await tool.locator('[data-do="auto-piece"]').click();
+          await expect(tool.locator('.loose-pieces')).toBeVisible();
+        }else if(topic==='vergleichen'){
+          await tool.locator('[data-do="common"]').click();
+          await expect(tool.locator('.hands-board')).toBeVisible();
+        }else if(topic==='dezimal'){
+          await tool.locator('[data-do="ten-h"]').click();
+          await expect(tool.locator('.place-machine-row')).toHaveCount(2);
+        }else if(topic==='dezimalvergleich'){
+          await tool.locator('[data-loupe="2"]').first().click();
+          await expect(tool.locator('[data-loupe="2"]').first()).toHaveAttribute('aria-pressed','true');
+        }else if(topic==='groessen'){
+          await tool.locator('[data-choice="unitdimension"][data-value="2"]').click();
+          await expect(tool.locator('.area-unit-grid')).toBeVisible();
+        }
+      }
 
       const overflow=await page.evaluate(()=>({
         document:document.documentElement.scrollWidth,
