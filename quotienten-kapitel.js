@@ -169,6 +169,8 @@ function figure(s){
  else body='<div class="q-facts">'+(s.lines||[]).map(l=>'<div>'+l+'</div>').join('')+'</div>';
  return `<figure class="q-picture" data-q-kind="${s.kind}">${body}${s.caption?'<figcaption>'+s.caption+'</figcaption>':''}</figure>`;
 }
+// Lösung zuerst erdenken lassen, erst dann aufdecken.
+cases[5].steps[3].hint=['300 und 1000 haben einen gemeinsamen Teiler. Welche Kürzungszahl ergibt Zehntel statt Tausendstel?'];
 const c=window.MERKHEFT_COURSES.quotienten;
 Object.assign(c,{goal:'Gerecht verteilen. Division und Bruch verbinden. Jeden Schritt begründen.',lessons:[{id:101,label:'Gerecht verteilen'},{id:1,label:'Geteilt → Bruch'},{id:103,label:'Bruch → Geteilt'},{id:104,label:'Mit Minus rechnen'}],groups:[[2,7,8,13],[5,10,11,12],[3,4,9,6]],cases,rules:['Der Bruchstrich bedeutet geteilt.','Erste Zahl oben, zweite Zahl unten.','Durch 0 wird nicht geteilt.'],referenceCards:[
  {title:'Was bedeutet der Bruchstrich?',html:`<div class="q-reference-math">3 : 4 = ${F(3,4)}<br>${F(7,5)} = 7 : 5</div>`,lines:['Dividend: Die erste Zahl. Sie wird geteilt.','Divisor: Die zweite Zahl. Durch sie wird geteilt.','Quotient: Das Ergebnis der Division.','Die Reihenfolge bleibt erhalten.']},
