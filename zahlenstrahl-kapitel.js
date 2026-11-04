@@ -297,7 +297,7 @@ cases[104].steps=[
  st('Die Richtung ab 0 bestimmen','Minus bedeutet: von 0 nach links.',
   ['Wir starten bei null und gehen nach links.','Das Minus verändert die Richtung, nicht die Größe einer Viertellücke.'],
   'Beginne bei null, nicht bei minus eins.',pic(-1,0,4,[],{direction:'left'})),
- st('Den ersten Schritt nach links gehen','1 · '+F(1,4)+' = '+F(1,4)+' Abstand',
+ st('Den ersten Schritt nach links gehen','Ein Viertelschritt nach links',
   ['Der erste Viertelschritt führt von null eine Viertellücke nach links.','Der gesuchte Punkt wird noch nicht beschriftet.'],
   'Gehe erst eine von drei Viertellücken.',pic(-1,0,4,[],{direction:'left',countFrom:0,countTo:[-1,4]})),
  st('Alle drei Viertelschritte gehen','3 · '+F(1,4)+' = '+F(3,4)+' Abstand',
