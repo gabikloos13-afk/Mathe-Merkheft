@@ -70,9 +70,9 @@ for(const topic of topics){
   assert.ok(steps.at(-1).picture.points[0].value,'Negativer Zielpunkt am Ende nicht beschriftet');
  }
  const html=read(topic+'.html');
- assert.ok(html.includes('course-data.js?v=20261104fach1'),'Aktueller Schulabgleich nicht im Browser-Cache bei '+topic);
+ assert.ok(html.includes('course-data.js?v=20261104fach2'),'Aktueller Schulabgleich nicht im Browser-Cache bei '+topic);
  assert.ok(html.includes('erklaer-entscheidungen.js?v=20261104e2'),'Entscheidungsskript fehlt bei '+topic);
- assert.ok(html.includes('course.js?v=20261104e2'),'Aktueller Reader fehlt bei '+topic);
+ assert.ok(html.includes('course.js?v=20261104e3'),'Aktueller Reader fehlt bei '+topic);
  assert.ok(html.includes('course.css?v=20261104e2'),'Aktuelles Stylesheet fehlt bei '+topic);
  assert.ok(html.indexOf('erklaer-entscheidungen.js')<html.indexOf('course.js?v='),'Falsche Script-Reihenfolge '+topic);
 }
