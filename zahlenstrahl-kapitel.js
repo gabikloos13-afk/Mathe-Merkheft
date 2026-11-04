@@ -139,7 +139,7 @@ function figure(s){
  if(s.ends){content+=fractionSvg(40,135,s.min)+fractionSvg(360,135,s.max);}
  if(s.segment){const a=X(s.segment[0]),b=X(s.segment[1]);content+=`<path d="M${a} 72H${b}" stroke="#a17624" stroke-width="6"/><path d="M${a} 66v12M${b} 66v12" stroke="#a17624" stroke-width="2"/>`;}
   if(s.direction==='left'&&min<=0&&max>=0){
-   const a=X(0),b=X(Math.max(min,-0.65));
+   const a=X(0),distanceTarget=s.countTo!==undefined?V(s.countTo):-1/s.den,b=X(Math.max(min,Math.min(0,distanceTarget)));
    content+='<path d="M'+a+' 63 H'+b+' m8 -6 l-8 6 8 6" stroke="#8b4268" stroke-width="2.6" fill="none" stroke-linejoin="round"/>';
   }
 
@@ -307,6 +307,13 @@ cases[104].steps=[
   ['Der Punkt liegt drei Viertel links von null.','Das Minus gehört zur ganzen Zahl; die Lage ist zwischen minus eins und null.'],
   'Kontrolliere Richtung, Anzahl der Viertelschritte und Bereich.',pic(-1,0,4,[point([-3,4],'P',true)],{direction:'left',countFrom:0,countTo:[-3,4]}))
 ];
+// Der erste Gedanke ist eine Bereichsentscheidung, keine Wiederholung der markierten Strecke.
+cases[2].steps[0].title='Prüfen: Liegt der Bruch zwischen null und eins?';
+cases[2].steps[0].html=F(3,4)+' < 1';
+cases[2].steps[0].explain=['Drei Viertel sind weniger als vier Viertel.','Der Punkt liegt daher zwischen null und eins, nicht rechts von eins.'];
+cases[2].steps[0].hint=['Vergleiche die drei oben mit den vier unten. Für ein Ganzes wären vier Viertel nötig.'];
+cases[2].steps[0].picture=pic(0,1,1);
+
 const zsQuestions={
  101:['Wo liegt die eine ganze Einheit?','Wie viele zusätzliche Striche ergeben vier gleich lange Lücken?','Wie groß ist eine Viertellücke?','Wie viele Viertellücken ergeben ein Ganzes?','Warum bedeuten fünf Striche nicht fünf Fünftel?'],
  1:['Zwischen welchen ganzen Zahlen liegt P?','Wie viele Lücken hat die Einheit?','Was ist ein Sechstel der Einheit?','Wie viele Sechstel liegen zwischen 0 und P?','Welcher Teiler passt für Zähler und Nenner?','Warum verändert Kürzen nicht die Lage des Punktes?'],
