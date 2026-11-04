@@ -1,6 +1,6 @@
 # Verbindlicher Schulquellenabgleich – Mathematik, Klasse 6
 
-**Stand: 04.11.2026 · Ausgangsbasis: Google Drive → Hanna → Schule → 6. Klasse → Mathe.**
+**Stand: 04.11.2026 · Fotoindex-Korrektur 04.11.2026 · Ausgangsbasis: Google Drive → Hanna → Schule → 6. Klasse → Mathe.**
 
 **Zweck:** Fachlich belastbare Quellenbasis für die bereits angelegte Gesamtbauvorlage des HTML-Mathe-Merkhefts. In diesem Arbeitsgang wurden **keine Lernseiten geändert**. Die Originale bleiben auf Google Drive; hier werden nur die zur Wiederauffindbarkeit erforderlichen **Dateinamen**, Seiten und paraphrasierten Themen geführt. Keine Originalfotos oder privaten Google-Drive-Datei-IDs werden in das GitHub-Repository kopiert.
 
@@ -25,7 +25,7 @@ Direkt im Mathe-Ordner liegen darüber hinaus **neun PDF-Merkblätter und drei P
 
 ## 2. Vollständiger Seitenindex des Schulbuchs
 
-Die Fotos sind nach Dateinamen sortiert und entsprechen fortlaufend den abgedruckten Buchseiten 6 bis 33. Titel/Aufgabentypen sind sinngemäß zusammengefasst, nicht vollständig abgeschrieben.
+Die Bilder enthalten alle Buchseiten 6–33. **Wichtig:** Die Dateinamen sind am Ende des Foto-Satzes nicht in Buchseitenfolge; die unten angegebenen Seitenzahlen wurden an den jeweils aufgedruckten Seitennummern geprüft. Insbesondere p. 28–32 dürfen nicht über die Uhrzeit im Dateinamen erschlossen werden. Titel/Aufgabentypen sind sinngemäß zusammengefasst, nicht vollständig abgeschrieben.
 
 | Buchseite | Quelldatei im Ordner „Heftaufschriebe“ | Kapitel | Nachgewiesener Stoff / Aufgabentyp |
 |---:|---|---|---|
@@ -51,11 +51,11 @@ Die Fotos sind nach Dateinamen sortiert und entsprechen fortlaufend den abgedruc
 | 25 | `20261023_065558.jpg` | 7 · Größenvergleich von Dezimalzahlen | Von links nach rechts Stellenwert für Stellenwert vergleichen; positive und negative Beispiele |
 | 26 | `20261023_065602.jpg` | 7 · Größenvergleich von Dezimalzahlen | Lückenziffern, Vergleiche, Bruch gegen Dezimalzahl, Ordnen und Zwischenzahlen |
 | 27 | `20261023_065604.jpg` | 7 · Größenvergleich von Dezimalzahlen | Mitte, feste Nachkommastellen, Ziffernkarten, Tabellenmuster und Zahlenintervalle |
-| 28 | `20261023_065621.jpg` | 8 · Dezimalschreibweise bei Größen | Umrechnung Länge/Masse/Fläche/Rauminhalt, Faktoren 10/100/1000 je Einheitenschritt |
-| 29 | `20261023_065626.jpg` | 8 · Dezimalschreibweise bei Größen | Maßeinheiten umrechnen, fehlende Einheiten, Zahlen und Messwerte, Maßbezug |
-| 30 | `20261023_065632.jpg` | 8 · Dezimalschreibweise bei Größen | Flächen aus Gittern, Quaderoberfläche/Rauminhalt, Grund-/Aufriss, Zeitumrechnungen |
-| 31 | `20261023_065634.jpg` | Training | Gesamtwiederholung zu Brüchen, Dezimalzahlen, Vergleich, Flächen und Größen; kein neues Fachkapitel |
-| 32 | `20261023_065638.jpg` | Rückblick · Rationale Zahlen | Zusammenfassung der Kernregeln und Standardbeispiele; geeignet als Prüfmaßstab für Nachschlagen |
+| 28 | `20261023_065632.jpg` | 8 · Dezimalschreibweise bei Größen | Umrechnung Länge/Masse/Fläche/Rauminhalt, Faktoren 10/100/1000 je Einheitenschritt |
+| 29 | `20261023_065634.jpg` | 8 · Dezimalschreibweise bei Größen | Maßeinheiten umrechnen, fehlende Einheiten, Zahlen und Messwerte, Maßbezug |
+| 30 | `20261023_065638.jpg` | 8 · Dezimalschreibweise bei Größen | Flächen aus Gittern, Quaderoberfläche/Rauminhalt, Grund-/Aufriss, Zeitumrechnungen |
+| 31 | `20261023_065621.jpg` | Training | Gesamtwiederholung zu Brüchen, Dezimalzahlen, Vergleich, Flächen und Größen; kein neues Fachkapitel |
+| 32 | `20261023_065626.jpg` | Rückblick · Rationale Zahlen | Zusammenfassung der Kernregeln und Standardbeispiele; geeignet als Prüfmaßstab für Nachschlagen |
 | 33 | `20261023_065642.jpg` | Test | Zwei Aufgabenrunden mit gemischten Anforderungen; geeignet als Transfer- und Abschlussprüfung, keine neue Themenquelle |
 
 ### 2.1 Die drei zuvor als fehlend markierten Seiten – jetzt ausdrücklich geprüft
@@ -197,3 +197,20 @@ Die drei PNG-Infografiken heißen `Dezimalzahl zum Bruch.png`, `Brüche und Dezi
 5. Erst die **fallweise Quellenzuordnung** und die abschließende Math-/Bild-/Browserprüfung erlauben eine Freigabe aller 34 Lernwege und 111 Beispiele.
 
 **Dieses Dokument ist der verbindliche Quellenanhang der Datei `docs/GESAMTBAUVORLAGE-MATHE-MERKHEFT.md`.** Es ergänzt die technische und didaktische Gesamtbauvorlage; es ersetzt sie nicht.
+
+
+## 9. Nachprüfung der Foto-Reihenfolge vom 04.11.2026
+
+Beim erneuten Öffnen der Originalbilder für die drei Referenzmuster wurde festgestellt, dass die Dateinamen **ab Seite 28 nicht mehr streng der Buchseitenfolge entsprechen**. Der frühere Index hatte fünf Dateizuordnungen vertauscht. Die **gedruckten Seitennummern wurden direkt im Bild nachgeprüft**:
+
+| Gedruckte Buchseite | Korrekte Google-Drive-Datei |
+|---|---|
+| 27 | `20261023_065604.jpg` |
+| **28** | **`20261023_065632.jpg`** |
+| **29** | **`20261023_065634.jpg`** |
+| **30** | **`20261023_065638.jpg`** |
+| **31** | **`20261023_065621.jpg`** |
+| **32** | **`20261023_065626.jpg`** |
+| 33 | `20261023_065642.jpg` |
+
+Die **fachliche Reihenfolge der Schulbuchabschnitte 28–30 (Größen), 31 (Training), 32 (Rückblick), 33 (Test)** bleibt gültig; nur die irrtümlich zugewiesenen **Dateinamen** wurden berichtigt. Die Uhrzeit des Foto-Dateinamens ist **kein Beweis** für die Seitenfolge. Bei jedem späteren Detailabgleich muss die gedruckte Buchseite maßgeblich sein.
