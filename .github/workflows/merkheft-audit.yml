@@ -1,0 +1,50 @@
+name: Merkheft Entwicklungszweig – Erklär- und Browserprüfung
+
+concurrency:
+  group: merkheft-entwicklungszweig
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - gesamtumbau-erklaerstandard-2026-11-04
+    paths:
+      - '*.js'
+      - '*.html'
+      - '*.css'
+      - 'tests/**'
+      - '.github/workflows/**'
+      - 'playwright.config.cjs'
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.55.0-noble
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Statische Lernweg- und Mathematikprüfung
+        run: node tests/run-all.cjs
+      - name: Playwright bereitstellen
+        run: |
+          npm install --no-save @playwright/test@1.55.0
+      - name: Alle neun Kapitel in Chromium prüfen
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/merkheft-http.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/index.html >/dev/null && break; sleep 1; done
+          npx playwright test --workers=2
+      - name: Screenshots und Fehlertests speichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: merkheft-browser-audit
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14

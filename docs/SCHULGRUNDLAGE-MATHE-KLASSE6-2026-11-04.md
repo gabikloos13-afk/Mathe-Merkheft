@@ -214,3 +214,8 @@ Beim erneuten Öffnen der Originalbilder für die drei Referenzmuster wurde fest
 | 33 | `20261023_065642.jpg` |
 
 Die **fachliche Reihenfolge der Schulbuchabschnitte 28–30 (Größen), 31 (Training), 32 (Rückblick), 33 (Test)** bleibt gültig; nur die irrtümlich zugewiesenen **Dateinamen** wurden berichtigt. Die Uhrzeit des Foto-Dateinamens ist **kein Beweis** für die Seitenfolge. Bei jedem späteren Detailabgleich muss die gedruckte Buchseite maßgeblich sein.
+
+
+## 10. Aktualisierung des Quellenbestands am 04.11.2026
+
+Erneute Ordnerabfrage: **60 statt 55 Bilder**. Die fünf hinzugekommenen Dateien `20261104_143131.jpg`, `20261104_143147.jpg`, `20261104_143155.jpg`, `20261104_143159.jpg` und `20261104_143205.jpg` wurden visuell geöffnet. Sie ergänzen die bisherige Grundlage um Arbeitsheft S. 18/19, eine Lösungsvorlage, ein schulisches Regelblatt und einen begonnenen Heftaufschrieb zu Größen. Einzelheiten und fachliche Folgen stehen im verbindlich ergänzenden [Schulquellen-Nachtrag](SCHULQUELLEN-NACHTRAG-2026-11-04.md). Die ältere Zählung oben beschreibt den früheren Fotoindex; keine der bisherigen 53 Primärquellen entfällt.

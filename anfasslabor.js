@@ -38,6 +38,7 @@ let node=h2.nextSibling;while(node){const next=node.nextSibling;help.append(node
 const root=document.createElement('div');root.className='direct-workspace';root.id='anfasslabor';lab.append(root,help);
 let S={n:3,d:8,mask:new Set([0,1,2]),view:'circle',k:2,workmode:'extend',workShown:false,count:11,den:4,locations:Array(11).fill(0),selected:null,a:2,b:3,c:3,bd:4,fa:1,fb:1,overlay:false,lineN:3,lineD:4,start:-1,span:3,total:35,h:35,hb:0,t:0,tb:0,e:0,pair:0,loupe:0,dim:3,angle:25,layers:5,slice:5,surface:false,lengthMask:new Set([0,1,2,3,4]),areaMask:new Set(Array.from({length:50},(_,i)=>i))};
 if(topic==='gleichwertig')S.k=4;
+const initialState=structuredClone(S);
 let message='',activeDrag=null;
 const playbook={
  brueche:['Brüche sehen','Wie viele Stücke nimmst du?','Tippe auf ein Stück. Tippe noch einmal, um es wegzunehmen.'],
@@ -83,7 +84,7 @@ function shell(instruction,controls,board,answer,explanation,actions=''){
  }else controlBox.innerHTML=controls;
  controlBox.querySelectorAll('[data-choice]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.value===controlBox.querySelector('#'+btn.dataset.choice).value)));
  root.querySelector('.touch-tip span:last-child').textContent=topic==='brueche'?(S.view==='circle'?'Tippe auf ein Pizzastück. Markiere so deinen Anteil.':S.view==='grid'?'Tippe auf ein Schokoladenstück. Markiere so deinen Anteil.':'Tippe auf einen Teil des Streifens.'):topic==='groessen'?(S.dim===3?(S.surface?'Sechs Flächen bilden die Hülle. Stelle den Würfel wieder auf.':'Ziehe den Würfel seitlich. So drehst du ihn.'):'Tippe im Bild auf die Teile.'):playbook[topic][2];
- root.querySelector('.hands-board').innerHTML=board;root.querySelector('.hands-actions').innerHTML=actions;root.querySelector('.hands-answer').innerHTML='<span class="answer-label">Bild → Rechnung</span><div>'+answer+'</div>';root.querySelector('.hands-explain').innerHTML=list(explanation);root.querySelector('.hands-message').textContent=message;
+ root.querySelector('.hands-board').innerHTML=board;root.querySelector('.hands-actions').innerHTML=actions+button('start-over','Zum Ausgangsbild');root.querySelector('.hands-answer').innerHTML='<span class="answer-label">Bild → Rechnung</span><div>'+answer+'</div>';root.querySelector('.hands-explain').innerHTML=list(explanation);root.querySelector('.hands-message').textContent=message;
  if(focusQuery){const next=root.querySelector(focusQuery);if(next&&!next.disabled)next.focus({preventScroll:true});}
 }
 function fractionBuilder(){
@@ -189,6 +190,7 @@ function action(name,el){message='';
  if(name==='auto-piece'){from=root.querySelector('.loose-pieces [data-token]')?.getBoundingClientRect();const target=Core.bundleCount(S.locations,S.den).groups.findIndex(n=>n<S.den)+1;destination='[data-drop="'+target+'"]'}
  if(name==='drop-here'&&S.selected!==null){from=root.querySelector('[data-token="'+S.selected+'"]')?.getBoundingClientRect();destination='[data-drop="'+el.dataset.group+'"]'}
  if(name==='ten-h'||name==='ten-t'){kind=name==='ten-h'?'h':'t';from=root.querySelector('[data-place="'+kind+'"]')?.getBoundingClientRect();movingCount=Math.min(kind==='h'?S.h:S.t,10-(kind==='h'?S.hb:S.tb));destination=(kind==='h'?S.hb:S.tb)+movingCount===10?(kind==='h'?'.place-machine-row:nth-child(2) .place-stock':'.whole-stock'):'[data-exchange="'+kind+'"]'}
+ if(name==='start-over'){S=structuredClone(initialState);message='';activeDrag=null;render();return;}
  if(name==='reset')return reset();
  if(name==='work-show')S.workShown=true;
  if(name==='all'||name==='none')S.mask=name==='all'?new Set(Array.from({length:S.d},(_,i)=>i)):new Set();

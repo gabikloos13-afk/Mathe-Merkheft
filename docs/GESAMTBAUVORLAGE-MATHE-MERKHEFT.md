@@ -509,3 +509,15 @@ Eine kurze reale Verständlichkeitsprobe mit Hanna an den drei Referenzmustern i
 | Freigabe | aktueller gespeicherter Stand geprüft und dokumentiert, keine offenen P0/P1-Abnahmefehler |
 
 **Diese Datei ist die einzige maßgebliche Gesamtbauvorlage.** Frühere kapitelbezogene Prüfprotokolle dienen als Quellen und Fehlerhistorie. Bei widersprüchlichen älteren Festlegungen gilt dieser fachliche und technische Qualitätsstandard; schulische Originalanforderungen und explizite neue Nutzerentscheidungen haben Vorrang.
+
+
+## Verbindliche Präzisierung: Aufgabenfamilien und aktueller Ausgangsstand
+
+**Ergänzung vom 04.11.2026; hat bei widersprechenden Mengenvorgaben Vorrang.**
+
+- **Pro fachlich eigenständigem Aufgabentyp genau ein Musterbeispiel. Keine Übungen.** Andere Zahlen oder ein anderer Gegenstand allein begründen keinen zusätzlichen Typ. Schulisch erforderliche Unterschiede in Denkweg, Darstellung oder Schwierigkeitsanforderung müssen ausdrücklich erklärt werden.
+- Die 34 Lernwege und 111 Musterbeispiele sind der erfasste Ausgangsbestand, keine unabänderliche Zielmenge. Bei der Bereinigung darf keine schulische Anforderung verloren gehen; Doppelungen sind jedoch aufzulösen. Lernen erklärt das Prinzip, Beispiele zeigen eine eigenständige Anwendung. Vier identische Lern-/Beispielaufgaben im Anteilskapitel sind als offener Befund erfasst.
+- Ausgangscommit, wirksamer Daten-Fingerabdruck und pro HTML geladene Dialogzahlen: [ARBEITSSTAND-2026-11-04.json](ARBEITSSTAND-2026-11-04.json). Die technische Ablösung der drei überschreibenden Kapitelmodule ist damit noch nicht erledigt.
+- Zentrale Ausgangsmatrix: [ZENTRALE-ABNAHMEMATRIX-2026-11-04.md](ZENTRALE-ABNAHMEMATRIX-2026-11-04.md). Alle sieben Prüfebenen sind bis zu konkreter Evidenz offen.
+- Fünf neue Schulmaterialfotos erweitern den Quellenstand auf 60 Bilder im Schulordner. Die frühere 55-Bilder-Zählung bleibt historisch. Der [Schulquellen-Nachtrag](SCHULQUELLEN-NACHTRAG-2026-11-04.md) dokumentiert die visuell geprüften neuen Quellen, insbesondere Arbeitsheft S. 18/19 und das Regelblatt zu Größen. Arbeitsheft- und Buchseiten nicht verwechseln.
+- 127 Lern- und 61 Beispielphasendialoge sind tatsächlich eingebunden. 334 Beispielphasen ohne Auswahldialog sind noch individuell zu beurteilen; sie brauchen nicht automatisch alle zwei Antwortknöpfe. Vier vorhandene, aber nicht geladene Dialogmodule zählen nicht als erledigte Umsetzung.

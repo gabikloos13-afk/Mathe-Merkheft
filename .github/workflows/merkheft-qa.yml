@@ -1,0 +1,6 @@
+name: Manuelle Gesamtprüfung
+on:
+  workflow_dispatch:
+jobs:
+  quality:
+    uses: ./.github/workflows/merkheft-audit.yml

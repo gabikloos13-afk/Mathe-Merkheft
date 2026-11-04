@@ -101,6 +101,6 @@ const page=fs.readFileSync(root+'dezimal.html','utf8');
 assert(page.includes('dezimal-bilder.js?v=20261031r26'));
 assert(page.indexOf('dezimal-bilder.js')<page.indexOf('rechenbilder.js'));
 const courseJs=fs.readFileSync(root+'course.js','utf8');
-assert(courseJs.includes("['dezimal','dezimalvergleich','groessen','zahlenstrahl'].includes(topic)&&state.mode==='learn'&&p<last"));
-assert(courseJs.includes("'quotienten','dezimal','dezimalvergleich','groessen'].includes(topic)?ordered[0]"),'Nach den vier Grundlagen beginnt der vollständige Beispielweg beim ersten Beispiel.');
 console.log('PASS: 4 getrennte Lernaufgaben, 11 Musterbeispiele, '+frames+' Beispielbilder, '+lessonImages+' Lernbilder; Wertdarstellung, Perioden, Minus, Ganze, Zahlenstrahl, Direktanzeige und Cache-Version.');
+// Gemeinsame Phasenanforderung wird datenbasiert und zusätzlich im Browser geprüft.
+require('./erklaerstandard-audit.cjs');
