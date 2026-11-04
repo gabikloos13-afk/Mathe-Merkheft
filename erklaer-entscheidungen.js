@@ -2,6 +2,53 @@
 /* Individuell geprüfte Entscheidungsfragen je Lernschritt. */
 window.MerkheftEntscheidungen = {
   "brueche": {
+    "1": {
+      "1": {
+        "question": "Welche Zahl wird der Nenner?",
+        "choices": [
+          {
+            "label": "Alle neun gleich großen Felder",
+            "correct": true,
+            "why": "Der Nenner zählt alle gleich großen Teile des Ganzen."
+          },
+          {
+            "label": "Nur die vier bunten Felder",
+            "correct": false,
+            "why": "Das wäre der Zähler; das Ganze enthält auch die weißen Felder."
+          }
+        ]
+      },
+      "2": {
+        "question": "Welche Zahl wird der Zähler?",
+        "choices": [
+          {
+            "label": "Die vier gefärbten Felder",
+            "correct": true,
+            "why": "Der Zähler zählt die ausgewählten gleich großen Teile."
+          },
+          {
+            "label": "Alle neun Felder",
+            "correct": false,
+            "why": "Die neun beschreiben das Ganze und gehören in den Nenner."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie liest du den gefärbten Anteil?",
+        "choices": [
+          {
+            "label": "Vier Neuntel",
+            "correct": true,
+            "why": "Vier von insgesamt neun gleich großen Feldern sind gefärbt."
+          },
+          {
+            "label": "Neun Viertel",
+            "correct": false,
+            "why": "Dann wären Zähler und Nenner vertauscht und der Wert größer als eins."
+          }
+        ]
+      }
+    },
     "2": {
       "1": {
         "question": "Welche Menge ist das Ganze?",
@@ -92,6 +139,53 @@ window.MerkheftEntscheidungen = {
             "label": "7 · 3",
             "correct": false,
             "why": "Das reicht nicht: Damit würdest du nur die drei schon bekannten Viertel zusammensetzen."
+          }
+        ]
+      }
+    },
+    "8": {
+      "1": {
+        "question": "Was ist bei dieser Aufgabe das Ganze?",
+        "choices": [
+          {
+            "label": "Alle 18 Kästchen",
+            "correct": true,
+            "why": "Die 18 Kästchen bilden die gesamte Fläche, aus der ein Anteil gefärbt werden soll."
+          },
+          {
+            "label": "Die fünf gefärbten Kästchen",
+            "correct": false,
+            "why": "Die fünf sind der Zähler und geben die Zahl der Sechstelgruppen an, nicht das Ganze."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie viele Kästchen enthält ein Sechstel?",
+        "choices": [
+          {
+            "label": "18 : 6",
+            "correct": true,
+            "why": "Sechs gleich große Gruppen bilden die gesamte Fläche."
+          },
+          {
+            "label": "18 : 5",
+            "correct": false,
+            "why": "Fünf Gruppen werden später genommen, aber die Einteilung erfolgt in sechs Teile."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie viele Kästchen gehören zu fünf Sechsteln?",
+        "choices": [
+          {
+            "label": "Ein Sechstel mal 5",
+            "correct": true,
+            "why": "Der Zähler fünf zählt fünf gleich große Sechstelgruppen."
+          },
+          {
+            "label": "Ein Sechstel mal 6",
+            "correct": false,
+            "why": "Sechs Sechstel wären das ganze Rechteck, nicht der gesuchte Anteil."
           }
         ]
       }
@@ -347,9 +441,240 @@ window.MerkheftEntscheidungen = {
           }
         ]
       }
+    },
+    "101": {
+      "1": {
+        "question": "Wie viel ist ein ganzer Streifen bei Dritteln?",
+        "choices": [
+          {
+            "label": "Drei Drittel",
+            "correct": true,
+            "why": "Ein Ganzes besteht aus drei gleich großen Drittelteilen."
+          },
+          {
+            "label": "Ein Drittel",
+            "correct": false,
+            "why": "Das ist nur ein Drittel eines Streifens."
+          }
+        ]
+      },
+      "2": {
+        "question": "Was zeigen die zwei Drittel neben dem Ganzen?",
+        "choices": [
+          {
+            "label": "Zwei von drei Teilen eines zweiten Streifens",
+            "correct": true,
+            "why": "Der Bruchteil gehört zu einem weiteren, gleich großen Streifen."
+          },
+          {
+            "label": "Zwei zusätzliche ganze Streifen",
+            "correct": false,
+            "why": "Die zwei ist der Zähler des Bruchteils und zählt keine Ganzen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie liest du die gemischte Zahl 1 2/3?",
+        "choices": [
+          {
+            "label": "Ein Ganzes plus zwei Drittel",
+            "correct": true,
+            "why": "Die ganze Zahl und der Bruchteil werden addiert."
+          },
+          {
+            "label": "Ein Ganzes mal zwei Drittel",
+            "correct": false,
+            "why": "Bei einer gemischten Zahl ist kein Malzeichen zwischen Ganzem und Bruchteil gemeint."
+          }
+        ]
+      }
     }
   },
   "zahlenstrahl": {
+    "1": {
+      "1": {
+        "question": "Zwischen welchen ganzen Zahlen liegt der gegebene Punkt P?",
+        "choices": [
+          {
+            "label": "Zwischen 0 und 1",
+            "correct": true,
+            "why": "P liegt sichtbar auf der Strecke zwischen diesen benachbarten ganzen Zahlen."
+          },
+          {
+            "label": "Zwischen 1 und 2",
+            "correct": false,
+            "why": "Der markierte Punkt liegt links von der 1."
+          }
+        ]
+      },
+      "2": {
+        "question": "Was zählt der Nenner beim Ablesen?",
+        "choices": [
+          {
+            "label": "Die sechs gleich langen Lücken von 0 bis 1",
+            "correct": true,
+            "why": "Die Anzahl der Lücken beschreibt die Teilung einer Einheit."
+          },
+          {
+            "label": "Die sieben Teilstriche",
+            "correct": false,
+            "why": "Die beiden Randstriche begrenzen zusammen mit den inneren Strichen nur sechs Lücken."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie groß ist eine einzelne Lücke?",
+        "choices": [
+          {
+            "label": "Ein Sechstel der Einheit",
+            "correct": true,
+            "why": "Die ganze Einheit wird in sechs gleiche Abschnitte geteilt."
+          },
+          {
+            "label": "Ein Siebtel",
+            "correct": false,
+            "why": "Sieben Striche bedeuten hier nicht sieben Lücken."
+          }
+        ]
+      },
+      "4": {
+        "question": "Wie bestimmst du den Zähler des Punkts?",
+        "choices": [
+          {
+            "label": "Vier Lücken von 0 bis P zählen",
+            "correct": true,
+            "why": "Der Zähler zählt die Sechstellücken bis zum gegebenen Punkt."
+          },
+          {
+            "label": "Alle sechs Lücken zählen",
+            "correct": false,
+            "why": "Sechs Lücken führen bis zur 1, nicht bis P."
+          }
+        ]
+      },
+      "5": {
+        "question": "Welche Zahl darfst du zum Kürzen verwenden?",
+        "choices": [
+          {
+            "label": "2 für Zähler und Nenner",
+            "correct": true,
+            "why": "Sowohl 4 als auch 6 sind durch 2 teilbar; der Bruchwert bleibt gleich."
+          },
+          {
+            "label": "3 für Zähler und Nenner",
+            "correct": false,
+            "why": "4 ist nicht durch 3 ohne Rest teilbar."
+          }
+        ]
+      },
+      "6": {
+        "question": "Warum bleibt der Punkt nach dem Kürzen an derselben Stelle?",
+        "choices": [
+          {
+            "label": "4/6 und 2/3 sind gleich viel wert",
+            "correct": true,
+            "why": "Oben und unten durch denselben Teiler zu teilen verändert den Wert nicht."
+          },
+          {
+            "label": "Der Punkt rückt nach links, weil der Zähler kleiner wird",
+            "correct": false,
+            "why": "Der kleinere Zähler zählt jetzt größere Drittel; die Lage bleibt unverändert."
+          }
+        ]
+      }
+    },
+    "2": {
+      "1": {
+        "question": "In welchem Bereich liegt drei Viertel?",
+        "choices": [
+          {
+            "label": "Zwischen 0 und 1",
+            "correct": true,
+            "why": "Drei Viertel sind kleiner als vier Viertel, also kleiner als ein Ganzes."
+          },
+          {
+            "label": "Rechts von 1",
+            "correct": false,
+            "why": "Dafür müsste der Bruch größer als eins sein."
+          }
+        ]
+      },
+      "2": {
+        "question": "Welche Strecke wird für den Nenner geteilt?",
+        "choices": [
+          {
+            "label": "Die Einheit von 0 bis 1",
+            "correct": true,
+            "why": "Diese beiden benachbarten ganzen Zahlen begrenzen ein Ganzes."
+          },
+          {
+            "label": "Die gesamte sichtbare Linie",
+            "correct": false,
+            "why": "Sie kann mehrere Einheiten enthalten."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie viele Lücken brauchst du bei Nenner vier?",
+        "choices": [
+          {
+            "label": "Vier gleich lange Lücken",
+            "correct": true,
+            "why": "Der Nenner vier legt die Einteilung fest."
+          },
+          {
+            "label": "Drei Lücken",
+            "correct": false,
+            "why": "Drei ist der Zähler, nicht die Anzahl der Teile einer Einheit."
+          }
+        ]
+      },
+      "4": {
+        "question": "Wie groß ist eine der vier Lücken?",
+        "choices": [
+          {
+            "label": "Ein Viertel",
+            "correct": true,
+            "why": "Vier gleich lange Viertel ergeben die ganze Einheit."
+          },
+          {
+            "label": "Ein Drittel",
+            "correct": false,
+            "why": "Ein Drittel würde die Einheit in drei statt vier Teile teilen."
+          }
+        ]
+      },
+      "5": {
+        "question": "Wie weit gehst du von null aus?",
+        "choices": [
+          {
+            "label": "Drei Viertellücken nach rechts",
+            "correct": true,
+            "why": "Der Zähler drei zählt drei der vier gleich großen Lücken."
+          },
+          {
+            "label": "Vier Viertellücken nach rechts",
+            "correct": false,
+            "why": "Das führt zur 1, nicht zu drei Vierteln."
+          }
+        ]
+      },
+      "6": {
+        "question": "Wo wird P eingetragen?",
+        "choices": [
+          {
+            "label": "Am Ende des dritten Viertelschritts",
+            "correct": true,
+            "why": "Bis zur 1 bleibt dann genau ein Viertel übrig."
+          },
+          {
+            "label": "Am dritten Strich einschließlich 0",
+            "correct": false,
+            "why": "Wer den Nullstrich mitzählt, setzt P eine Lücke zu früh."
+          }
+        ]
+      }
+    },
     "101": {
       "1": {
         "question": "Welche Strecke ist genau eine ganze Einheit?",
@@ -674,6 +999,115 @@ window.MerkheftEntscheidungen = {
           }
         ]
       }
+    },
+    "103": {
+      "1": {
+        "question": "Welche Zahl steht am Anfang der Division für 7/5?",
+        "choices": [
+          {
+            "label": "Die 7 aus dem Zähler",
+            "correct": true,
+            "why": "Der Zähler steht beim Bruchstrich als Dividend vor dem Geteiltzeichen."
+          },
+          {
+            "label": "Die 5 aus dem Nenner",
+            "correct": false,
+            "why": "Die 5 ist der Divisor und steht nach dem Geteiltzeichen."
+          }
+        ]
+      },
+      "2": {
+        "question": "Welche Zahl steht nach dem Geteiltzeichen?",
+        "choices": [
+          {
+            "label": "Die 5 aus dem Nenner",
+            "correct": true,
+            "why": "Der Nenner bezeichnet die Anzahl der gleich großen Teile bzw. Empfänger."
+          },
+          {
+            "label": "Die 7",
+            "correct": false,
+            "why": "Die 7 wird verteilt und steht vor dem Geteiltzeichen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Welche Geteilt-Aufgabe bedeutet 7/5?",
+        "choices": [
+          {
+            "label": "7 : 5",
+            "correct": true,
+            "why": "Sieben Ganze werden auf fünf Empfänger gleichmäßig verteilt."
+          },
+          {
+            "label": "5 : 7",
+            "correct": false,
+            "why": "Vertauschen verändert den Bruchwert."
+          }
+        ]
+      }
+    },
+    "104": {
+      "1": {
+        "question": "Welches Vorzeichen hat (−6) : 8?",
+        "choices": [
+          {
+            "label": "Minus",
+            "correct": true,
+            "why": "Negative Zahl durch positive Zahl ergibt eine negative Zahl."
+          },
+          {
+            "label": "Plus",
+            "correct": false,
+            "why": "Ein positives Ergebnis entsteht hier nicht, weil die Vorzeichen verschieden sind."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie schreibst du (−6) : 8 als Bruch?",
+        "choices": [
+          {
+            "label": "−6/8",
+            "correct": true,
+            "why": "Die 6 steht als Dividend oben, die 8 als Divisor unten; das Minus gilt für den Bruch."
+          },
+          {
+            "label": "6/8",
+            "correct": false,
+            "why": "Ohne das Minus wäre das Ergebnis positiv und nicht mehr dieselbe Zahl."
+          }
+        ]
+      },
+      "3": {
+        "question": "Welche Kürzungszahl passt für 6 und 8?",
+        "choices": [
+          {
+            "label": "2",
+            "correct": true,
+            "why": "Beide Zahlen lassen sich durch zwei teilen; das Minus bleibt stehen."
+          },
+          {
+            "label": "3",
+            "correct": false,
+            "why": "Acht lässt sich nicht ohne Rest durch drei teilen."
+          }
+        ]
+      },
+      "4": {
+        "question": "Wann ist das Ergebnis vollständig gekürzt?",
+        "choices": [
+          {
+            "label": "Bei −3/4",
+            "correct": true,
+            "why": "Drei und vier haben keinen gemeinsamen Teiler größer als eins."
+          },
+          {
+            "label": "Bei −6/8",
+            "correct": false,
+            "why": "Zähler und Nenner haben noch den gemeinsamen Teiler zwei."
+          }
+        ]
+      }
     }
   },
   "vergleichen": {
@@ -705,6 +1139,38 @@ window.MerkheftEntscheidungen = {
             "label": " >",
             "correct": false,
             "why": "Die linke Zahl hat weniger gleich große Stücke, sie ist nicht größer."
+          }
+        ]
+      }
+    },
+    "2": {
+      "1": {
+        "question": "Welches Teilstück ist größer, wenn das Ganze gleich groß bleibt?",
+        "choices": [
+          {
+            "label": "Ein Drittel ist größer als ein Sechstel",
+            "correct": true,
+            "why": "Weniger Teilstücke pro Ganzem bedeutet größere Einzelstücke."
+          },
+          {
+            "label": "Ein Sechstel ist größer",
+            "correct": false,
+            "why": "Sechs Teile eines Ganzen sind kleiner als drei Teile desselben Ganzen."
+          }
+        ]
+      },
+      "2": {
+        "question": "Welcher Anteil ist bei jeweils zwei Stücken größer?",
+        "choices": [
+          {
+            "label": "Zwei Drittel",
+            "correct": true,
+            "why": "Zwei größere Drittelstücke sind mehr als zwei kleinere Sechstelstücke."
+          },
+          {
+            "label": "Zwei Sechstel",
+            "correct": false,
+            "why": "Die Anzahl der Stücke ist gleich; die Größe der Stücke entscheidet."
           }
         ]
       }
@@ -782,6 +1248,53 @@ window.MerkheftEntscheidungen = {
             "label": "Erweitern vergrößert den Bruchwert",
             "correct": false,
             "why": "Das passt nicht: Ein korrekt erweiteter Bruch ist genau gleich viel wert wie zuvor."
+          }
+        ]
+      }
+    },
+    "4": {
+      "1": {
+        "question": "Wie wird aus dem Nenner fünf der Nenner zehn?",
+        "choices": [
+          {
+            "label": "Mal zwei",
+            "correct": true,
+            "why": "Fünf Teile werden jeweils in zwei kleinere Teile zerlegt."
+          },
+          {
+            "label": "Plus fünf nur im Nenner",
+            "correct": false,
+            "why": "Nur den Nenner zu verändern ändert den Bruchwert."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie bleibt drei Fünftel gleich viel wert?",
+        "choices": [
+          {
+            "label": "Zähler und Nenner mal zwei",
+            "correct": true,
+            "why": "Aus drei Fünfteln werden sechs Zehntel, die gleich viel wert sind."
+          },
+          {
+            "label": "Nur den Zähler verdoppeln",
+            "correct": false,
+            "why": "Dann wäre der Anteil größer als vorher."
+          }
+        ]
+      },
+      "3": {
+        "question": "Welches Zeichen passt zwischen 3/5 und 6/10?",
+        "choices": [
+          {
+            "label": "=",
+            "correct": true,
+            "why": "Beide Brüche beschreiben dieselbe Menge desselben Ganzen."
+          },
+          {
+            "label": "<",
+            "correct": false,
+            "why": "Drei Fünftel sind nicht kleiner als sechs Zehntel, sondern gleich groß."
           }
         ]
       }
@@ -866,6 +1379,100 @@ window.MerkheftEntscheidungen = {
           }
         ]
       }
+    },
+    "4": {
+      "1": {
+        "question": "Was bedeutet die eine Nachkommastelle bei 0,6?",
+        "choices": [
+          {
+            "label": "Sechs Zehntel",
+            "correct": true,
+            "why": "Die erste Stelle nach dem Komma zählt Zehntel."
+          },
+          {
+            "label": "Sechs Hundertstel",
+            "correct": false,
+            "why": "Hundertstel stehen an der zweiten Nachkommastelle."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie schreibst du 0,6 als Bruch?",
+        "choices": [
+          {
+            "label": "6/10",
+            "correct": true,
+            "why": "Die sechs Zehntel werden als Zähler sechs und Nenner zehn geschrieben."
+          },
+          {
+            "label": "6/100",
+            "correct": false,
+            "why": "Das wären sechs Hundertstel, also 0,06."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie kürzt du 6/10 vollständig?",
+        "choices": [
+          {
+            "label": "Zähler und Nenner durch 2",
+            "correct": true,
+            "why": "Aus 6/10 wird 3/5; drei und fünf haben keinen gemeinsamen Teiler größer als eins."
+          },
+          {
+            "label": "Nur den Nenner durch 2",
+            "correct": false,
+            "why": "Das würde den Wert verdoppeln statt ihn gleichwertig zu schreiben."
+          }
+        ]
+      }
+    },
+    "6": {
+      "1": {
+        "question": "Wie schreibst du ein Ganzes in Zehnteln?",
+        "choices": [
+          {
+            "label": "10/10",
+            "correct": true,
+            "why": "Zehn Zehntel ergeben genau eins."
+          },
+          {
+            "label": "1/10",
+            "correct": false,
+            "why": "Ein Zehntel ist kleiner als eins."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie viele Zehntel sind ein Ganzes und vier Zehntel?",
+        "choices": [
+          {
+            "label": "Zehn Zehntel plus vier Zehntel",
+            "correct": true,
+            "why": "Beide Mengen zählen gleich große Zehntelstücke."
+          },
+          {
+            "label": "Ein Ganzes plus vier Ganze",
+            "correct": false,
+            "why": "Die vier hinter dem Komma sind Zehntel, keine Ganzen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie kürzt du 14/10 vollständig?",
+        "choices": [
+          {
+            "label": "Oben und unten durch 2",
+            "correct": true,
+            "why": "Das ergibt 7/5 und erhält den Wert 1,4."
+          },
+          {
+            "label": "Nur oben durch 2",
+            "correct": false,
+            "why": "Das verändert den Wert des Bruchs."
+          }
+        ]
+      }
     }
   },
   "dezimalvergleich": {
@@ -912,6 +1519,100 @@ window.MerkheftEntscheidungen = {
             "label": "Die Zahl mit mehr Nachkommastellen ist größer",
             "correct": false,
             "why": "Das passt nicht: Die Anzahl der Nachkommastellen allein verrät den Wert nicht."
+          }
+        ]
+      }
+    },
+    "2": {
+      "1": {
+        "question": "Was ist 0,7 als Bruch?",
+        "choices": [
+          {
+            "label": "7/10",
+            "correct": true,
+            "why": "Die sieben steht an der Zehntelstelle."
+          },
+          {
+            "label": "7/100",
+            "correct": false,
+            "why": "Das wären sieben Hundertstel, also 0,07."
+          }
+        ]
+      },
+      "2": {
+        "question": "Was bedeutet 0,700?",
+        "choices": [
+          {
+            "label": "700/1000",
+            "correct": true,
+            "why": "Drei Nachkommastellen entsprechen Tausendsteln; die Endnullen ändern den Wert nicht."
+          },
+          {
+            "label": "700/100",
+            "correct": false,
+            "why": "Das wären sieben Ganze statt sieben Zehntel."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie vergleichst du 0,7 und 0,700?",
+        "choices": [
+          {
+            "label": "Mit dem Gleichheitszeichen",
+            "correct": true,
+            "why": "Beide Zahlen sind sieben Zehntel und liegen am selben Ort."
+          },
+          {
+            "label": "0,700 ist größer",
+            "correct": false,
+            "why": "Mehr geschriebene Nachkommastellen machen den Wert nicht größer."
+          }
+        ]
+      }
+    },
+    "6": {
+      "1": {
+        "question": "Wie kannst du zwischen 0,7 und 0,8 feinere Stellen nutzen?",
+        "choices": [
+          {
+            "label": "0,70 und 0,80 vergleichen",
+            "correct": true,
+            "why": "Die Endnullen verändern die Werte nicht, erlauben aber Hundertstel dazwischen."
+          },
+          {
+            "label": "0,7 und 0,8 sind benachbart ohne Zwischenzahl",
+            "correct": false,
+            "why": "Zwischen verschiedenen Dezimalzahlen gibt es weitere Werte."
+          }
+        ]
+      },
+      "2": {
+        "question": "Welche Zahl liegt streng zwischen den Grenzen?",
+        "choices": [
+          {
+            "label": "0,75",
+            "correct": true,
+            "why": "75 Hundertstel liegen über 70 und unter 80 Hundertsteln."
+          },
+          {
+            "label": "0,80",
+            "correct": false,
+            "why": "Das ist die obere Grenze und liegt nicht streng dazwischen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie kontrollierst du die gewählte Zwischenzahl?",
+        "choices": [
+          {
+            "label": "0,70 < 0,75 < 0,80",
+            "correct": true,
+            "why": "Beide strengen Ungleichungen müssen gelten."
+          },
+          {
+            "label": "0,75 = 0,80",
+            "correct": false,
+            "why": "Die gewählte Zahl ist kleiner als die obere Grenze."
           }
         ]
       }
@@ -1027,6 +1728,53 @@ window.MerkheftEntscheidungen = {
         ]
       }
     },
+    "2": {
+      "1": {
+        "question": "Wie viele Gramm sind ein Kilogramm?",
+        "choices": [
+          {
+            "label": "1000 g",
+            "correct": true,
+            "why": "Ein Kilogramm besteht aus tausend Gramm."
+          },
+          {
+            "label": "100 g",
+            "correct": false,
+            "why": "Hundert Gramm sind nur ein Zehntel Kilogramm."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie rechnest du 0,32 kg in Gramm um?",
+        "choices": [
+          {
+            "label": "0,32 · 1000",
+            "correct": true,
+            "why": "Gramm sind kleinere Einheiten; für dieselbe Masse wird die Maßzahl tausendmal so groß."
+          },
+          {
+            "label": "0,32 : 1000",
+            "correct": false,
+            "why": "Dann würde die Maßzahl kleiner, obwohl die Zieleinheit kleiner ist."
+          }
+        ]
+      },
+      "3": {
+        "question": "Welche Einheit gehört zu 320?",
+        "choices": [
+          {
+            "label": "Gramm",
+            "correct": true,
+            "why": "Die Aufgabe verlangt die Masse in Gramm."
+          },
+          {
+            "label": "Kilogramm",
+            "correct": false,
+            "why": "320 kg wären eine tausendmal größere Masse."
+          }
+        ]
+      }
+    },
     "12": {
       "1": {
         "question": "Wie viele Minuten enthält eine Stunde?",
@@ -1100,6 +1848,145 @@ window.MerkheftEntscheidungen = {
             "label": "Ein Viertel mal 4",
             "correct": false,
             "why": "Vier Viertel wären die ganze Minute."
+          }
+        ]
+      }
+    },
+    "13": {
+      "1": {
+        "question": "Was machst du mit zwei halben Kästchen?",
+        "choices": [
+          {
+            "label": "Zu einem ganzen Kästchen zusammensetzen",
+            "correct": true,
+            "why": "Zwei Hälften derselben Kästchengröße ergeben ein ganzes Kästchen."
+          },
+          {
+            "label": "Als zwei ganze Kästchen zählen",
+            "correct": false,
+            "why": "Jede Hälfte ist nur halb so groß wie ein Kästchen."
+          }
+        ]
+      },
+      "2": {
+        "question": "Wie viele ganze Kästchen ergeben vier ganze und zwei halbe?",
+        "choices": [
+          {
+            "label": "Fünf",
+            "correct": true,
+            "why": "Die zwei Hälften ergeben ein weiteres Ganzes zu den vier ganzen."
+          },
+          {
+            "label": "Sechs",
+            "correct": false,
+            "why": "Das würde die zwei Hälften als zwei Ganze mitzählen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Wie berechnest du die Fläche eines 0,5 cm mal 0,5 cm Kästchens?",
+        "choices": [
+          {
+            "label": "0,5 · 0,5 cm²",
+            "correct": true,
+            "why": "Eine Fläche ist Länge mal Breite, nicht die Summe der Seiten."
+          },
+          {
+            "label": "0,5 cm²",
+            "correct": false,
+            "why": "Das wäre die Seitenlänge als Fläche missverstanden."
+          }
+        ]
+      },
+      "4": {
+        "question": "Wie berechnest du die gesamte Figurfläche?",
+        "choices": [
+          {
+            "label": "Fünfmal die Fläche eines Kästchens",
+            "correct": true,
+            "why": "Alle fünf Kästchen sind gleich groß und werden addiert."
+          },
+          {
+            "label": "Fünfmal die Seitenlänge",
+            "correct": false,
+            "why": "Eine Länge in cm ist keine Fläche in cm²."
+          }
+        ]
+      }
+    },
+    "14": {
+      "1": {
+        "question": "Welche Rechnung gibt den Rauminhalt des Quaders?",
+        "choices": [
+          {
+            "label": "Länge · Breite · Höhe",
+            "correct": true,
+            "why": "Drei Kantenlängen bestimmen den dreidimensionalen Inhalt in cm³."
+          },
+          {
+            "label": "Nur Länge · Breite",
+            "correct": false,
+            "why": "Das berechnet eine Fläche in cm², nicht den Rauminhalt."
+          }
+        ]
+      },
+      "2": {
+        "question": "Warum rechnest du die Vorderfläche doppelt?",
+        "choices": [
+          {
+            "label": "Weil die Rückseite gleich groß ist",
+            "correct": true,
+            "why": "Ein Quader hat gegenüberliegende gleich große Flächen."
+          },
+          {
+            "label": "Weil jede Seite drei Kanten hat",
+            "correct": false,
+            "why": "Die Anzahl der Kanten bestimmt nicht die Anzahl gleich großer Flächen."
+          }
+        ]
+      },
+      "3": {
+        "question": "Welche beiden Flächen bilden das zweite Paar?",
+        "choices": [
+          {
+            "label": "Links und rechts",
+            "correct": true,
+            "why": "Sie sind gegenüberliegend und haben jeweils Breite mal Höhe."
+          },
+          {
+            "label": "Vorne und oben",
+            "correct": false,
+            "why": "Diese Flächen haben im Allgemeinen unterschiedliche Maße."
+          }
+        ]
+      },
+      "4": {
+        "question": "Wie berechnest du oben und unten zusammen?",
+        "choices": [
+          {
+            "label": "Zweimal Länge mal Breite",
+            "correct": true,
+            "why": "Die Deckfläche und die Grundfläche sind gleich groß."
+          },
+          {
+            "label": "Einmal Länge mal Breite",
+            "correct": false,
+            "why": "Dann würde die gegenüberliegende Fläche fehlen."
+          }
+        ]
+      },
+      "5": {
+        "question": "Was addierst du für die gesamte Oberfläche?",
+        "choices": [
+          {
+            "label": "Alle drei Flächenpaare in cm²",
+            "correct": true,
+            "why": "Die Oberfläche ist die Summe aller sechs Außenflächen."
+          },
+          {
+            "label": "Rauminhalt und zwei Flächen",
+            "correct": false,
+            "why": "cm³ und cm² lassen sich nicht addieren; es sind verschiedene Größenarten."
           }
         ]
       }
