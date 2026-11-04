@@ -147,11 +147,11 @@ Eine Bildphase muss dokumentieren:
 
 1. „Schritt 2 von 5“ – **nur die tatsächlichen Lernschritte zählen**.
 2. Einfache Überschrift: „Eine Lücke erkennen“, „Zwei Teile zusammenfassen“, „Die Größe umrechnen“.
-3. Großes Bild mit **nur der neuen Änderung**.
-4. Eine konkrete Denkfrage; bei einer echten Entscheidung erst überlegen / auswählen, **danach** aufdecken.
-5. Kurze Erklärung und höchstens eine neue Rechenzeile.
-6. „Tipp“ nur bei Bedarf.
-7. „Zurück“ / „Weiter“.
+3. **Bildzustand vor der Entscheidung:** groß und klar, aber nur mit bereits bekannten Angaben. **Noch keine neue Ergebnis-Markierung.**
+4. Eine konkrete Denkfrage. Wenn eine eigene Entscheidung gefordert ist: zuerst überlegen oder auswählen; bei Bedarf lösungsfreier Tipp.
+5. **Bildzustand nach der Entscheidung / bewussten Aufdeckung:** genau die neue Teilung, Markierung, Bewegung oder Zahl wird hervorgehoben.
+6. Kurze Erklärung und höchstens eine neue Rechenzeile. Ein Beobachtungsschritt ohne Entscheidung kann die Hervorhebung direkt zeigen, wenn nichts vorweggenommen wird.
+7. „Zurück“ / „Weiter“. Die Bildzustände vor und nach der Aufdeckung gehören **zum selben fachlichen Schritt**; dadurch wird die Schrittzählung nicht künstlich verlängert.
 
 **Schlussbild**
 
@@ -365,11 +365,13 @@ Jeder Eintrag erhält stabile IDs für Thema, Lernweg, Musterbeispiel und Phase.
 | pictureModel | Streifen / Gitter / Zahlenstrahl / Stellenwert / Quader / Verteilung usw. |
 | visualState | Maße, Teilungen, Markierungen, Pfeile, Beschriftungen und verborgene Ergebnisse |
 | thinkQuestion | vor der Aufdeckung sichtbare, beantwortbare Frage |
-| revealCondition | Entscheidung, bewusste Aufdeckung oder reiner Erklärschritt |
+| revealCondition | Entscheidung, bewusste Aufdeckung oder reiner Erklärschritt; Bildzustand vor/nach Aufdeckung getrennt |
 | explanation | maximal zwei kurze Sätze, bei echten Sonderfällen begründet mehr |
 | mathLine | optional genau die neu hergeleitete Rechenzeile |
 | hint | gestufter, lösungsfreier Tipp |
 | verification | automatische mathematische und bildliche Sollwerte |
+
+**Phasenzustandsregel:** Ein fachlicher Schritt kann zwei Ansichten haben: „Vor dem Denken“ (bekannt, ungelöst) und „Nach dem Aufdecken“ (neue Hervorhebung, Begründung und optional Rechnung). Nur wenn keine Entscheidung erforderlich ist, darf die Phasenansicht direkt erläutern. Die Aufdeckung zählt nicht als zusätzlicher Rechenschritt.
 
 Die Bilddarstellung wird aus **numerischen Eingabedaten** erzeugt; nicht durch willkürlich zusammengefügte Textbeschriftungen, die vom Rechenwert abweichen können.
 
