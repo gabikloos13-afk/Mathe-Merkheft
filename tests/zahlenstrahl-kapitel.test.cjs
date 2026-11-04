@@ -9,7 +9,7 @@ const c=context.window.MERKHEFT_COURSES.zahlenstrahl,model=context.window.Merkhe
 assert.equal(c.lessons.length,4);assert.equal(c.groups.flat().length,12);assert(!c.groups.flat().some(id=>c.lessons.some(l=>l.id===id)));
 assert.equal(JSON.stringify(context.window.MERKHEFT_COURSES.gleichwertig),other);
 let pictures=0,eqs=0;
-function math(html){return html.replace(/<span class="fraction"[^>]*><span>(.*?)<\/span><span>(.*?)<\/span><\/span>/g,(_,a,b)=>`FRAC[(${a})/(${b})]`).replace(/(\d+)\s+FRAC\[(.*?)\]/g,'($1+($2))').replace(/FRAC\[(.*?)\]/g,'($1)').replace(/<br>/g,';').replace(/<[^>]*>/g,'').replaceAll('&nbsp;',' ').replaceAll('·','*').replaceAll(':','/').replaceAll('−','-').replace(/(\d),(\d)/g,'$1.$2');}
+function math(html){return html.replace(/<span class="fraction"[^>]*><span>(.*?)<\/span><span>(.*?)<\/span><\/span>/g,(_,a,b)=>`FRAC[(${a})/(${b})]`).replace(/(\d+)\s+FRAC\[(.*?)\]/g,'($1+($2))').replace(/FRAC\[(.*?)\]/g,'($1)').replace(/<br>/g,';').replace(/<[^>]*>/g,'').replaceAll('&nbsp;',' ').replaceAll('·','*').replaceAll(':','/').replaceAll('−','-').replace(/(\d),(\d)/g,'$1.$2').replace(/(?<=\d)[ \u202f](?=\d{3}(?:\D|$))/g,'');}
 for(const r of Object.values(c.cases)){
  assert(r.startHint&&r.check.length&&r.trap.length);assert(!r.intro.includes(r.recognize));
  for(let i=-1;i<r.steps.length;i++){

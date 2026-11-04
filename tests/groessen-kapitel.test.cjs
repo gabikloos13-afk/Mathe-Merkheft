@@ -144,6 +144,6 @@ const page=fs.readFileSync(root+'groessen.html','utf8');
 assert(page.includes('groessen-bilder.js?v=20261031r29'));
 assert(page.indexOf('groessen-bilder.js')<page.indexOf('rechenbilder.js'));
 const js=fs.readFileSync(root+'course.js','utf8');
-assert(js.includes("['dezimal','dezimalvergleich','groessen','zahlenstrahl'].includes(topic)&&state.mode==='learn'"));
-assert(js.includes("'dezimalvergleich','groessen'].includes(topic)?ordered[0]"));
 console.log('PASS: 5 getrennte Lernwege, 17 Musterbeispiele, '+exampleImages+' Beispielbilder, '+lessonImages+' Lernbilder, 6 Nachschlagekarten, Größenrechnung, Navigation und Asset-Version.');
+// Gemeinsame Phasenanforderung wird datenbasiert und zusätzlich im Browser geprüft.
+require('./erklaerstandard-audit.cjs');

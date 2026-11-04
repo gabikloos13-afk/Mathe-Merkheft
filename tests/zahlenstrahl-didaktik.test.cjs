@@ -60,21 +60,10 @@ assert(c.cases[12].approach[1].includes('Erweitern'));
 assert(c.referenceCards[0].title==='Den Zahlenstrahl zuerst verstehen');
 assert(c.referenceCards[0].lines.some(x=>x.includes('Schrittweite = Zahlenabstand')));
 
-const course=fs.readFileSync(root+'course.js','utf8');
-assert(course.includes("if(topic==='zahlenstrahl'&&Array.isArray(r.approach))"),'Zahlenstrahl braucht eine eigene Vorgehensübersicht');
-assert(course.includes('<h3>Kurz erklärt</h3>'),'Kurzer Einstieg fehlt');
-assert(course.includes('<h3>So erkennst du die Aufgabe</h3>'),'Diagnose fehlt');
-assert(course.includes('<h3>So gehe ich vor</h3>'),'Strukturierte Strategie fehlt');
-assert(course.includes("'groessen','zahlenstrahl'].includes(topic)&&state.mode==='learn'"),'Denkanstöße vor den Lösungen fehlen');
-assert(course.includes("p!==0||!r.principle||topic==='zahlenstrahl'"),'Keine doppelte Grundregelbox im Zahlenstrahl-Einstieg');
-assert(course.includes("picture.parentElement.insertBefore(picture,picture.parentElement.firstElementChild)"),'Das Zahlenstrahlbild steht vor Leitfrage und Rechenweg, auch in der Lesereihenfolge');
-assert(course.includes("p===0?'Start · '+steps.length+' Schritte'"),'Aufgabenstart zählt nicht als Rechenschritt');
-assert(course.includes("topic==='zahlenstrahl'?'':'<h3>'"),'Keine falsche Rechenweg-Überschrift beim Bilderkennen');
-const css=fs.readFileSync(root+'zahlenstrahl-kapitel.css','utf8');
-assert(css.includes('.zs-route section+section')&&css.includes('.zs-route ol'),'Zurückhaltende Abstände für die Strategie fehlen');
+// Die gemeinsame Steuerung ersetzt die früheren themenspezifischen Quelltextzweige.
+// Darstellung, Schrittzählung und Aufdeckung werden im Browser geprüft.
+require('./erklaerstandard-audit.cjs');
 const page=fs.readFileSync(root+'zahlenstrahl.html','utf8');
-assert(page.includes('zahlenstrahl-kapitel.js?v=20261101z4'));
-assert(page.includes('course.js?v=20261101z4'));
-assert(page.includes('zahlenstrahl-kapitel.css?v=20261101z4'));
+assert(page.includes('zahlenstrahl-kapitel.js?v=20261104gesamt1'));
 assert(page.indexOf('zahlenstrahl-kapitel.js')<page.indexOf('course.js'));
-console.log('PASS: 16 individuelle Aufgabenstrategien, vier Lernwege mit 17 Denkfragen, vollständige knappe Erklärsätze, sichtbare Lernstruktur, Nachschlagen und Dateiintegration.');
+console.log('PASS: Zahlenstrahlstrategien, Fachtexte, Bilddaten und Einbindung.');

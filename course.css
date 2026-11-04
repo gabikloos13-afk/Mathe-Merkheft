@@ -125,3 +125,21 @@
 .think-start-length{display:grid;grid-template-columns:70px minmax(0,1fr) 70px;align-items:center;gap:11px;font-size:.98rem;font-weight:bold;color:#426d7d}
 .think-length-bar{height:21px;border:2px solid #578599;border-radius:7px;background:repeating-linear-gradient(to right,#cfe4ed 0,#cfe4ed 9%,#e8f2f6 9%,#e8f2f6 10%)}
 @media(max-width:500px){.think-start-quarters span{height:52px}.think-start-length{grid-template-columns:50px minmax(0,1fr) 50px;font-size:.83rem;gap:5px}}
+
+/* Gemeinsame Lesereihenfolge und Verlauf für alle neun Kapitel. */
+.paint-board{grid-template-columns:repeat(var(--paint-columns,6),minmax(0,1fr))}
+.think-history{margin-top:16px;border-top:1px solid var(--course-line);padding:12px 0}
+.think-history summary{cursor:pointer;min-height:44px;color:#783d53;font-weight:bold}
+.think-history .school-calculation{margin:8px 0}
+.answered-question{font-weight:bold;color:#783d53}
+.step-explanation{margin:0 0 16px;padding:0 0 12px;border-top:0;border-bottom:1px solid #e7d9b7}
+.course-page button,.course-page select,.course-page input{touch-action:manipulation}
+.course-page summary:focus-visible{outline:3px solid #b684a1;outline-offset:4px}
+@media(max-width:360px){.course-page main{padding-inline:10px}.course-top{padding-inline:10px}.lesson-status{align-items:flex-start;flex-direction:column;gap:4px}.course-page .brand{max-width:150px}.lesson-actions button{overflow-wrap:anywhere}.think-start-length{font-size:.8rem}}
+@media print{.think-history{display:none}.think-trap{display:block!important}.lesson-card,.reference-card{break-inside:avoid}.course-page .school-calculation{font-size:12pt}}
+
+.print-pattern{display:none}
+.reference-patterns ul{columns:2;column-gap:30px}.reference-patterns li{break-inside:avoid}
+.reference-card a{color:#783d53;text-underline-offset:3px}
+@media(max-width:650px){.reference-patterns ul{columns:1}}
+@media print{.print-pattern{display:block}.reference-decide,.reference-patterns,.reference-mistakes,.reference-details{display:none}.reference-core h2{font-size:16pt}.reference-core{break-inside:auto}.reference-core li{margin:4pt 0}}

@@ -20,8 +20,10 @@ for(const topic of topics){
  }
  for(const id of c.groups.flat())cases.push({topic,mode:'examples',id,count:c.cases[id].steps.length});
 }
-const sizes=[{name:'desktop',width:1280,height:820},{name:'mobile',width:375,height:812}];
+const sizes=[{name:'desktop',width:1280,height:820},{name:'tablet',width:768,height:1024},{name:'mobile',width:375,height:812},{name:'small-mobile',width:320,height:740}];
 for(const size of sizes){
+ test.describe(size.name,()=>{
+ test.use({viewport:{width:size.width,height:size.height},isMobile:size.width<768,hasTouch:size.width<768});
  for(const c of cases){
   test(c.topic+'/'+c.mode+'/'+c.id+' '+size.name+' all '+c.count+' steps',async({page})=>{
    await page.setViewportSize({width:size.width,height:size.height});
@@ -53,6 +55,8 @@ for(const size of sizes){
     await page.locator('[data-think-reveal]').click();
     await expect(page.locator('.current-line')).toBeVisible();
     await expect(page.locator('#step-next')).toBeEnabled();
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth),'Überlauf in Phase '+p).toBeLessThanOrEqual(2);
+    await expect(page.locator('.think-trap')).toHaveCount(1);
     const badSvg=await page.locator('.stage-picture svg').evaluateAll(nodes=>nodes.some(svg=>/NaN|Infinity|undefined/.test(svg.outerHTML)));
     expect(badSvg,'Invalid SVG at phase '+p).toBe(false);
    }
@@ -63,4 +67,5 @@ for(const size of sizes){
    expect(errors,'Page errors').toEqual([]);
   });
  }
+ });
 }
