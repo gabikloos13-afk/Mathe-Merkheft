@@ -1,5 +1,9 @@
 name: Merkheft Entwicklungszweig – Erklär- und Browserprüfung
 
+concurrency:
+  group: merkheft-entwicklungszweig
+  cancel-in-progress: true
+
 on:
   push:
     branches:
