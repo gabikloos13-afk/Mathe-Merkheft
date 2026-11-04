@@ -22,6 +22,7 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.55.0-noble
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +34,6 @@ jobs:
       - name: Playwright bereitstellen
         run: |
           npm install --no-save @playwright/test@1.55.0
-          npx playwright install --with-deps chromium
       - name: Alle neun Kapitel in Chromium prüfen
         run: |
           python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/merkheft-http.log 2>&1 &
