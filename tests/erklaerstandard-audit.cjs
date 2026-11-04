@@ -76,7 +76,7 @@ for(const topic of topics){
  assert.ok(html.includes('course.css?v=20261104e2'),'Aktuelles Stylesheet fehlt bei '+topic);
  assert.ok(html.indexOf('erklaer-entscheidungen.js')<html.indexOf('course.js?v='),'Falsche Script-Reihenfolge '+topic);
 }
-assert.equal(lessons,34);assert.equal(examples,111);
+assert.equal(lessons,34);assert.equal(examples,111);assert.equal(phases,522);assert.equal(authored,127);
 assert.ok(base.brueche.cases[10].questionPlain.includes('etwa'), 'Schulbuch S. 9: Teig verliert etwa 1/5');
 assert.ok(base.brueche.cases[10].answer.join(' ').includes('ungefähr'), '400 g ist näherungsweise');
 assert.ok(base.brueche.cases[12].intro.join(' ').includes('Bruchteil'), 'Gewinn braucht begründete Verteilungsregel');
