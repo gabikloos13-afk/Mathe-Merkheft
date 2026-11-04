@@ -59,16 +59,31 @@ for(const topic of topics){
    assert.equal(course.cases[id].steps.length,count,'Zahlenstrahl Schrittanzahl falsch: '+id);
   }
   const steps=course.cases[104].steps;
+  assert.equal(steps[4].html,'Ein Viertelschritt nach links','Einzelschritt darf keine Scheinrechnung sein');
+  for(const step of steps.filter(s=>s.picture?.direction==='left')){
+   const p=step.picture;
+   const dest=p.countTo===undefined?-1/p.den:Array.isArray(p.countTo)?p.countTo[0]/p.countTo[1]:p.countTo;
+   assert.ok(dest<=0&&dest>=p.min,'Minus-Pfeil zeigt auf dieselbe Strecke wie der Schritt');
+  }
+
   assert.ok(steps.slice(0,-1).every(s=>(s.picture?.points||[]).length===0),'Negativer Zielpunkt vorzeitig eingezeichnet');
   assert.ok(steps.at(-1).picture.points[0].value,'Negativer Zielpunkt am Ende nicht beschriftet');
  }
  const html=read(topic+'.html');
+ assert.ok(html.includes('course-data.js?v=20261104fach1'),'Aktueller Schulabgleich nicht im Browser-Cache bei '+topic);
  assert.ok(html.includes('erklaer-entscheidungen.js?v=20261104e2'),'Entscheidungsskript fehlt bei '+topic);
  assert.ok(html.includes('course.js?v=20261104e2'),'Aktueller Reader fehlt bei '+topic);
  assert.ok(html.includes('course.css?v=20261104e2'),'Aktuelles Stylesheet fehlt bei '+topic);
  assert.ok(html.indexOf('erklaer-entscheidungen.js')<html.indexOf('course.js?v='),'Falsche Script-Reihenfolge '+topic);
 }
 assert.equal(lessons,34);assert.equal(examples,111);
+assert.ok(base.brueche.cases[10].questionPlain.includes('etwa'), 'Schulbuch S. 9: Teig verliert etwa 1/5');
+assert.ok(base.brueche.cases[10].answer.join(' ').includes('ungefähr'), '400 g ist näherungsweise');
+assert.ok(base.brueche.cases[12].intro.join(' ').includes('Bruchteil'), 'Gewinn braucht begründete Verteilungsregel');
+assert.notEqual(base.brueche.cases[16].check.join(' '),base.brueche.cases[16].answer.join(' '),'Zucker/Eier brauchen echte Probe');
+assert.ok(base.brueche.cases[15].check.join(' ').includes('5,25 m −'),'Sprung braucht eigene Rückprobe');
+assert.ok(!base.gleichwertig.cases[5].steps[3].hint.join(' ').includes('20 unten'),'Tipp darf die Nennerlücke nicht verraten');
+
 new Function(read('course.js'));
 new Function(read('erklaer-entscheidungen.js'));
 console.log(JSON.stringify({status:'STATIC_OK',topics:topics.length,lessons,examples,phases,authoredDecisions:authored},null,2));
