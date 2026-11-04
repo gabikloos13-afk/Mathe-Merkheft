@@ -141,9 +141,11 @@ function render(){
   if(input){input.value=state.thoughts[key]||'';input.addEventListener('input',()=>{state.thoughts[key]=input.value;saveState();});}
   note.querySelectorAll('[data-think-choice]').forEach(button=>button.addEventListener('click',()=>{
    state.choices[key]=Number(button.dataset.thinkChoice);saveState();render();
+   const feedback=note.querySelector('.think-feedback');if(feedback){feedback.tabIndex=-1;feedback.focus();}
   }));
   const reveal=note.querySelector('[data-think-reveal]');
-  if(reveal)reveal.addEventListener('click',()=>{state.revealed[key]=true;saveState();render();});
+  if(reveal)reveal.addEventListener('click',()=>{state.revealed[key]=true;saveState();render();
+   const current=calculation.querySelector('.current-line');if(current){current.tabIndex=-1;current.focus();}});
  }else if(p<last){
   picture.innerHTML=renderPicture(p-1);
   if(paintCase){picture.innerHTML=paintBoard(p);updatePaint();}
