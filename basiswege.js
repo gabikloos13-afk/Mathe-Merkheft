@@ -1,0 +1,176 @@
+'use strict';
+// Reusable foundations: exact rational arithmetic; no automatic grading of free thoughts.
+((host)=>{
+const abs=n=>n<0n?-n:n;
+const gcd=(a,b)=>{a=abs(a);b=abs(b);while(b){[a,b]=[b,a%b];}return a||1n;};
+const rat=(n,d=1n)=>{if(!d)throw Error('Durch null darfst du nicht teilen.');if(d<0n){n=-n;d=-d;}const g=gcd(n,d);return{n:n/g,d:d/g};};
+function parse(value){
+ const s=String(value).trim().replace(/−/g,'-').replace(/\s+/g,' ');
+ let m=s.match(/^(-?)(\d+) (\d+)\/(\d+)$/);
+ if(m){const w=BigInt(m[2]),n=BigInt(m[3]),d=BigInt(m[4]);if(n>=d)throw Error('Bei einer gemischten Zahl muss der Bruchteil kleiner als 1 sein.');return rat((m[1]?-1n:1n)*(w*d+n),d);}
+ m=s.match(/^(-?\d+)\/(\d+)$/);if(m)return rat(BigInt(m[1]),BigInt(m[2]));
+ m=s.match(/^(-?)(\d{1,12})(?:[,.](\d{1,9}))?$/);
+ if(!m)throw Error('Schreibe eine Zahl, zum Beispiel 2,35, −0,7, 3/4 oder 2 3/8. Keine Tausenderpunkte.');
+ return rat((m[1]?-1n:1n)*BigInt(m[2]+(m[3]||'')),10n**BigInt((m[3]||'').length));
+}
+const mul=(a,b)=>rat(a.n*b.n,a.d*b.d);
+const divide=(a,b)=>rat(a.n*b.d,a.d*b.n);
+const cmp=(a,b)=>a.n*b.d<a.d*b.n?-1:a.n*b.d>a.d*b.n?1:0;
+const integer=a=>a.d===1n;
+const frac=a=>(a.n<0n?'−':'')+abs(a.n)+(a.d===1n?'':'/'+a.d);
+function decimals(a){let d=a.d,k=0;while(d%2n===0n){d/=2n;k++;}let f=0;while(d%5n===0n){d/=5n;f++;}if(d!==1n)throw Error('Dieser Bruch hat keine endliche Kommazahl. Nutze dafür das Beispiel zu periodischen Kommazahlen.');return Math.max(k,f);}
+function fmt(a,pad=0){const k=Math.max(decimals(a),pad),v=abs(a.n)*10n**BigInt(k)/a.d,s=v.toString().padStart(k+1,'0');return(a.n<0n?'−':'')+(k?s.slice(0,-k)+','+s.slice(-k):s);}
+const label=a=>{try{return fmt(a);}catch(_){return frac(a);}};
+const unitGroups={
+ length:[['km',1000000],['m',1000],['dm',100],['cm',10],['mm',1]],
+ mass:[['t',1000000000],['kg',1000000],['g',1000],['mg',1]],
+ money:[['€',100],['ct',1]],
+ area:[['km²',1000000000000],['ha',10000000000],['a',100000000],['m²',1000000],['dm²',10000],['cm²',100],['mm²',1]],
+ volume:[['m³',1000000000],['dm³',1000000],['cm³',1000],['mm³',1]],
+ time:[['h',3600],['min',60],['s',1]]
+};
+const units=Object.fromEntries(Object.entries(unitGroups).flatMap(([kind,rows])=>rows.map(([name,factor])=>[name,{kind,factor:BigInt(factor)}])));
+function convert(value,from,to){if(!units[from]||!units[to]||units[from].kind!==units[to].kind)throw Error('Wähle zwei Einheiten derselben Größenart.');return mul(parse(value),rat(units[from].factor,units[to].factor));}
+function choose(value,from){const a=parse(value),u=units[from];if(!u)throw Error('Unbekannte Einheit.');for(const [to,f]of unitGroups[u.kind])if(BigInt(f)<u.factor&&integer(convert(value,from,to)))return to;throw Error('Mit den angebotenen kleineren Einheiten entsteht keine ganze Maßzahl. Prüfe die Angabe.');}
+const E=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+const box=(title,body)=>'<div class="basis-picture"><b>'+E(title)+'</b>'+body+'</div>';
+const equation=(a,op,b,result)=>box('Rechenweg','<div class="basis-equation">'+E(a)+' '+E(op)+' '+E(b)+' = '+E(result)+'</div>');
+function table(values){
+ const clean=values.map(x=>({label:x.label,value:fmt(x.value,x.pad||0)}));
+ const left=Math.max(1,...clean.map(x=>x.value.replace('−','').split(',')[0].length)),right=Math.max(0,...clean.map(x=>(x.value.split(',')[1]||'').length));
+ const names={0:'Einer',1:'Zehner',2:'Hunderter',3:'Tausender','-1':'Zehntel','-2':'Hundertstel','-3':'Tausendstel'};
+ let cols=Array.from({length:left+right},(_,i)=>left-1-i);
+ let html='<div class="basis-table-wrap" tabindex="0" role="region" aria-label="Stellenwerttafel, bei Bedarf seitlich verschieben"><table><thead><tr><th>Zahl</th><th>Zeichen</th>'+cols.map(p=>'<th'+(p===0?' class="basis-comma"':'')+'>'+E(names[p]||('10 hoch '+p))+'</th>').join('')+'</tr></thead><tbody>';
+ for(const row of clean){const [l,r='']=row.value.replace('−','').split(',');html+='<tr><th>'+E(row.label)+'</th><td>'+ (row.value.startsWith('−')?'−':'+')+'</td>'+cols.map(p=>'<td'+(p===0?' class="basis-comma"':'')+'>'+E(p>=0?l[l.length-1-p]||'0':r[-p-1]||'0')+'</td>').join('')+'</tr>';}
+ return box('Jede Ziffer hat einen Platz',html+'</tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p>');
+}
+function ladder(kind,from,to){return box('Die Einheiten ordnen','<div class="basis-units">'+unitGroups[kind].map(([u,f],i,rows)=>'<span class="'+(u===from?'basis-from':u===to?'basis-to':'')+'">'+E(u)+'</span>'+(i<rows.length-1?'<small> Faktor '+(BigInt(f)/BigInt(rows[i+1][1]))+' → </small>':'')).join('')+'</div><p>Links sind die größeren Einheiten. Rechts sind die kleineren. Die Zahl am Pfeil sagt, wie viele kleinere Einheiten eine größere bilden.</p>');}
+function dimensionPicture(kind){
+ if(!['area','volume'].includes(kind))return '';
+ let cells='';for(let y=0;y<10;y++)for(let x=0;x<10;x++)cells+='<rect x="'+(18+x*15)+'" y="'+(30+y*15)+'" width="14" height="14" fill="'+(y%2?'#e8cdd8':'#d6e9e9')+'" stroke="#326b82" stroke-width=".4"/>';
+ let layers='';if(kind==='volume')for(let i=0;i<10;i++)layers+='<rect x="220" y="'+(30+i*15)+'" width="155" height="13" fill="'+(i%2?'#e8cdd8':'#d6e9e9')+'" stroke="#326b82"/><text x="297" y="'+(40+i*15)+'" text-anchor="middle" style="font-size:10px">Schicht '+(i+1)+' · 100</text>';
+ return box(kind==='area'?'Zwei Richtungen: 10 · 10':'Drei Richtungen: 10 · 10 · 10','<svg viewBox="0 0 400 220" role="img" aria-label="'+(kind==='area'?'Zehn Reihen mit je zehn Kästchen: hundert Quadrat-Einheiten.':'Eine Schicht mit hundert kleinen Würfeln. Zehn solche Schichten ergeben tausend Kubik-Einheiten.')+'">'+cells+layers+'<text x="93" y="20" text-anchor="middle">10 pro Reihe</text><text x="93" y="206" text-anchor="middle" style="font-size:14px">10 Reihen = 100</text>'+(kind==='volume'?'<text x="297" y="206" text-anchor="middle" style="font-size:14px">10 Schichten = 1000</text>':'<text x="282" y="107" text-anchor="middle">100 Kästchen</text>')+'</svg><p>'+(kind==='area'?'Wird jede Seitenlänge in zehn kleine Einheiten geteilt, entstehen 100 kleine Quadrate.':'Länge und Breite ergeben 100 Plätze in einer Schicht. Zehn Schichten übereinander ergeben 1000 Plätze.')+'</p>');
+}
+function linePicture(a,b){const x=Number(a.n)/Number(a.d),y=Number(b.n)/Number(b.d),min=Math.min(0,x,y),max=Math.max(0,x,y),span=max-min||1,px=n=>90+(n-min)/span*420;return box('Weiter rechts bedeutet größer','<svg viewBox="0 0 600 110" role="img" aria-label="'+E(label(a)+' und '+label(b)+' am Zahlenstrahl')+'"><path d="M20 65H580m-8 -5 8 5-8 5" stroke="currentColor" fill="none"/><path d="M'+px(0)+' 58v14" stroke="currentColor"/><text x="'+px(0)+'" y="97" text-anchor="middle">0</text><circle cx="'+px(x)+'" cy="65" r="6" fill="#783d53"/><text x="'+px(x)+'" y="24" text-anchor="middle">'+E(label(a))+'</text><circle cx="'+px(y)+'" cy="65" r="6" fill="#326b82"/><text x="'+px(y)+'" y="45" text-anchor="middle">'+E(label(b))+'</text></svg>');}
+const phase=(ask,why,picture,trap)=>({ask,why,picture,trap});
+function conversionPath(value,from,to,chooseUnit=false){
+ const a=parse(value),u=units[from];if(!u)throw Error('Wähle eine bekannte Einheit.');if(a.n<0n&&u.kind!=='length')throw Error('Nimm für diese Größenaufgabe eine nicht negative Zahl.');
+ if(chooseUnit)to=choose(value,from);
+ const result=convert(value,from,to),v=units[to],ratio=rat(u.factor,v.factor),down=u.factor>v.factor,same=u.factor===v.factor,op=down?'·':':',factor=down?ratio.n:ratio.d;
+ const out=[];
+ out.push(phase('Was ist gegeben, und was soll am Ende dastehen?',['Die gegebene Maßzahl ist '+fmt(a)+'. Die Einheit ist '+from+'.',chooseUnit?'Gesucht ist eine kleinere Einheit, bei der die neue Maßzahl ganz ist.':'Gesucht ist dieselbe Größe in '+to+'.','Zahl und Einheit gehören zusammen. Die Größe selbst bleibt unverändert.'],box('Start und Ziel','<div class="basis-equation">'+E(fmt(a)+' '+from)+' → ? '+(chooseUnit?'kleinere Einheit':E(to))+'</div>'),'Nur die Einheit austauschen: Dann würdest du eine andere Größe beschreiben.'));
+ if(chooseUnit){
+  const candidates=unitGroups[u.kind].filter(([,f])=>BigInt(f)<u.factor);let html='<ul>';
+  for(const [name]of candidates){const r=convert(value,from,name);html+='<li>'+E(name+': Faktor '+(u.factor/units[name].factor))+' — '+(integer(r)?'damit entsteht eine ganze Maßzahl, die Einheit passt':'danach bleiben Nachkommastellen, wähle kleiner')+'</li>';if(name===to)break;}
+  out.push(phase('Wie findest du die erste passende kleinere Einheit?',['Gehe in der Einheitenreihe nach rechts.','Rechne zur nächsten angebotenen kleineren Einheit um. Bleibt ein Komma, gehe weiter.','Hier passt '+to+'. Andere noch kleinere Einheiten können ebenfalls richtig sein.'],box('Die Einheit begründet wählen',html+'</ul>'),'Die Einheit willkürlich wählen, ohne zu prüfen, ob die Maßzahl ganz wird.'));
+ }
+ out.push(phase('Ist die Zieleinheit größer oder kleiner?',same?['Beide Einheiten sind gleich. Die Maßzahl ändert sich nicht.']:['Die Zieleinheit '+to+' ist '+(down?'kleiner':'größer')+' als '+from+'.',down?'Für dieselbe Größe brauchst du mehr kleine Einheiten. Die Maßzahl wird größer.':'Für dieselbe Größe brauchst du weniger große Einheiten. Die Maßzahl wird kleiner.'],ladder(u.kind,from,to),'Kleinere Einheit heißt nicht kleinere Maßzahl. Viele kleine Stücke können ein großes Stück ersetzen.'));
+ out.push(phase('Welche Umrechnungszahl brauchst du?',same?['Der Faktor ist 1.']:['Die Einheitenbeziehung lautet: 1 '+(down?from:to)+' = '+factor+' '+(down?to:from)+'.',u.kind==='area'?'Bei benachbarten Quadrat-Einheiten gilt 10 · 10 = 100, weil Länge und Breite zählen.':u.kind==='volume'?'Bei benachbarten Kubik-Einheiten gilt 10 · 10 · 10 = 1000, weil drei Richtungen zählen.':u.kind==='time'?'Bei Stunden und Minuten gilt 60. Hier darfst du das Komma nicht einfach verschieben.':'Lies jeden Pfeil zwischen Start und Ziel. Multipliziere die Faktoren bei mehreren Pfeilen.'],box('Eine ganze Einheit als Anker','<div class="basis-equation">1 '+E(down?from:to)+' = '+factor+' '+E(down?to:from)+'</div>')+dimensionPicture(u.kind),'Bei Flächen oder Rauminhalten den Längenfaktor 10 nehmen oder bei der Zeit mit 100 rechnen.'));
+ if(same){out.push(phase('Was ist bei gleicher Einheit zu tun?',['Du kannst die Angabe unverändert abschreiben.'],equation(fmt(a),'·','1',fmt(result)),'Ohne Einheitenwechsel die Maßzahl verändern.'));}
+ else if(u.kind==='time'){
+  out.push(phase('Musst du malnehmen oder teilen?', [down?'Du wechselst zur kleineren Einheit: mal '+factor+'.':'Du wechselst zur größeren Einheit: durch '+factor+'.',fmt(a)+' '+op+' '+factor+' ist die gesuchte Rechnung.'],box('Die Rechnung aufstellen','<div class="basis-equation">'+E(fmt(a)+' '+op+' '+factor)+' = ?</div>'),'90 Minuten als 0,90 Stunden schreiben. Eine Stunde hat 60 Minuten, nicht 100.'));
+  if(!down&&from==='min'&&to==='h'&&a.d===1n){const whole=a.n/60n,rest=a.n%60n;out.push(phase('Wie zerlegst du die Minuten in volle Stunden und einen Rest?',[whole+' volle Stunden enthalten '+whole*60n+' Minuten.','Es bleiben '+rest+' Minuten. Dieser Rest ist '+rest+'/60 einer Stunde.','Kürze den Restbruch: '+frac(rat(rest,60n))+'.'],box('Stunden und Rest','<div class="basis-equation">'+a.n+' min = '+whole+' h + '+rest+' min</div><div class="basis-strip"><span style="flex:'+Number(whole*60n||1n)+'">volle Stunden</span><span style="flex:'+Number(rest||1n)+'">Rest</span></div>'),'Den Rest als Hundertstel einer Stunde lesen. 30 Minuten sind eine halbe Stunde, nicht 0,30 Stunden.'));}
+  if(!down&&from==='min'&&to==='h'&&a.d===1n){
+   const whole=a.n/60n,rest=a.n%60n,part=rat(rest,60n),k=decimals(part),d=10n**BigInt(k),f=d/part.d;
+   out.push(phase('Wie wird aus dem Minutenrest ein Teil einer Stunde?', ['Der Rest sind '+rest+'/60 Stunden. Gekürzt: '+frac(part)+' Stunden.','Erweitere oben und unten mit '+f+': '+(part.n*f)+'/'+d+' = '+fmt(part)+'.',rest+' Minuten entsprechen also '+fmt(part)+' Stunden.'],table([{label:'Stundenrest',value:part,pad:k}]),'30 Minuten als 0,30 Stunden schreiben. 30 von 60 sind eine Hälfte.'));
+   out.push(phase('Wie setzt du ganze Stunden und Stundenrest zusammen?', ['Volle Stunden: '+whole+'.','Stundenrest: '+fmt(part)+'.','Zusammen: '+whole+' + '+fmt(part)+' = '+fmt(result)+' Stunden.'],equation(whole,'+',fmt(part),fmt(result)),'Die volle Stunde beim Umrechnen des Rests vergessen.'));
+  }
+  out.push(phase('Wie lautet das Ergebnis der Rechnung?',[fmt(a)+' '+op+' '+factor+' = '+fmt(result)+'.','Die Zieleinheit ist '+to+'.'],equation(fmt(a),op,factor,fmt(result)),'Die Einheit der Ausgangszahl hinter das neue Ergebnis schreiben.'));
+ }else{
+  const count=factor.toString().length-1;if(10n**BigInt(count)!==factor)throw Error('Für diese Einheit ist kein Zehnerfaktor hinterlegt.');
+  out.push(phase('Wie viele Stellen und welche Richtung?', ['Die Umrechnungszahl '+factor+' hat '+count+' Null'+(count===1?'':'en')+'.','Das sind '+count+' Stellen nach '+(down?'rechts':'links')+'.','Die Ziffern behalten ihre Reihenfolge. In der Stellenwerttafel wandern sie '+(down?'nach links zu größeren Stellen':'nach rechts zu kleineren Stellen')+'.'],table([{label:'Start',value:a}]),'Ziffern vertauschen oder beim Anhängen einer Null zwischen bestehende Ziffern greifen.'));
+  for(let i=1;i<=count;i++){const before=mul(a,down?rat(10n**BigInt(i-1)):rat(1n,10n**BigInt(i-1))),after=mul(a,down?rat(10n**BigInt(i)):rat(1n,10n**BigInt(i)));out.push(phase('Was geschieht bei Stelle '+i+' von '+count+'?', [fmt(before)+' '+(down?'· 10':': 10')+' = '+fmt(after)+'.',down?'Jede Ziffer zählt jetzt zehnmal so viel.':'Jede Ziffer zählt jetzt nur noch ein Zehntel so viel.','Fehlende Plätze füllst du mit Nullen. Ganze Zahlen haben ein unsichtbares Komma rechts hinter der Einerziffer.'],table([{label:'vorher',value:before},{label:'nachher',value:after}]),'Eine nötige Null weglassen. Der Platz einer Ziffer bestimmt ihren Wert.'));}
+ }
+ out.push(phase('Was schreibst du auf, und wie prüfst du es?', [fmt(a)+' '+from+' = '+fmt(result)+' '+to+'.',same?'Die Angabe ist unverändert.':'Rückwärts: '+fmt(result)+' '+(down?':':'·')+' '+factor+' = '+fmt(a)+'.',chooseUnit?'Die Maßzahl ist ganz. Damit ist die Bedingung „ohne Komma“ erfüllt.':u.kind==='time'?'Prüfe zusätzlich: 1 h entspricht 60 min.':down?'Die kleinere Einheit hat die größere Maßzahl.':'Die größere Einheit hat die kleinere Maßzahl.'],box('Ergebnis und Rückprobe','<div class="basis-equation">'+E(fmt(a)+' '+from+' = '+fmt(result)+' '+to)+'</div>'),'Nur die Zahl ohne Zieleinheit hinschreiben.'));
+ return{task:fmt(a)+' '+from+' → '+(chooseUnit?'eine passende kleinere Einheit ohne Komma':to),phases:out,result:fmt(result)+' '+to};
+}
+function comparisonPath(left,right){
+ const a=parse(left),b=parse(right),fa=label(a),fb=label(b),sign=cmp(a,b),symbol=sign<0?'<':sign>0?'>':'=',neg=a.n<0n&&b.n<0n;let finite=true,pad=0;try{pad=Math.max(decimals(a),decimals(b));}catch(_){finite=false;}
+ const out=[phase('Was bedeuten die drei Vergleichszeichen?',['Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren.','< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.'],box('Die Zeichen lesen','<div class="basis-equation">2 &lt; 5 &nbsp; · &nbsp; 5 &gt; 2 &nbsp; · &nbsp; 5 = 5</div>'),'Nur die Form des Zeichens auswendig lernen, ohne den Satz von links nach rechts zu lesen.')];
+ if(finite)for(const [input,value]of [[left,a],[right,b]])if(String(input).includes('/')){
+  const m=String(input).replace('−','-').match(/^(-?)(\d+) (\d+)\/(\d+)$/);
+  if(m)out.push(phase('Wie wandelst du die gemischte Zahl in einen Bruch um?', ['Multipliziere den ganzen Teil mit dem Nenner. Addiere danach den Zähler.','Hier: '+m[2]+' · '+m[4]+' + '+m[3]+' = '+(BigInt(m[2])*BigInt(m[4])+BigInt(m[3]))+'.','Ein Minus gilt für die gesamte Zahl.'],box('Ganze und Bruchteile verbinden','<div class="basis-equation">'+E(input+' = '+frac(value))+'</div>'),'Den ganzen Teil und den Zähler einfach addieren, ohne den Nenner zu beachten.'));
+  const k=decimals(value),d=10n**BigInt(k),f=d/value.d,n=value.n*f;
+  out.push(phase('Wie machst du den Bruch als Kommazahl vergleichbar?', ['Erweitere oben und unten mit '+f+'.','So wird '+frac(value)+' zu '+n+'/'+d+'.','Der Nenner '+d+' bestimmt '+k+' Nachkommastellen. Ergebnis: '+fmt(value)+'.'],table([{label:frac(value),value,pad:k}]),'Den Bruch ohne Umwandlung mit den Nachkommastellen vergleichen.'));
+ }
+ out.push(phase('Steht ein Minus vor einer Zahl?', ['Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl.',neg?'Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.':'Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.'],box('Vorzeichen zuerst','<div class="basis-equation">'+E(fa)+' &nbsp; ? &nbsp; '+E(fb)+'</div>'),'Ein Minus übersehen oder bei zwei negativen Zahlen die gewöhnliche positive Reihenfolge übernehmen.'));
+ if((a.n<0n)===(b.n<0n)&&finite){
+  const aa=rat(abs(a.n),a.d),bb=rat(abs(b.n),b.d);
+  out.push(phase('Wie machst du die Stellen gut vergleichbar?', ['Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel.','Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.'],table([{label:'links: Abstand',value:aa,pad},{label:'rechts: Abstand',value:bb,pad}]),'0,45 mit 0,445 nur nach der Anzahl der Ziffern vergleichen.'));
+  const sa=fmt(aa,pad).split(','),sb=fmt(bb,pad).split(','),size=Math.max(sa[0].length,sb[0].length);const da=(sa[0].padStart(size,'0')+(sa[1]||'')).split(''),db=(sb[0].padStart(size,'0')+(sb[1]||'')).split('');
+  for(let i=0;i<da.length;i++){const p=size-1-i,label=p===0?'Einer':p===1?'Zehner':p===2?'Hunderter':p===-1?'Zehntel':p===-2?'Hundertstel':p===-3?'Tausendstel':'Stelle 10 hoch '+p,diff=da[i]!==db[i];out.push(phase('Was zeigen die '+label+'?', ['Links steht '+da[i]+', rechts '+db[i]+'.',diff?'Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.':'Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.'],box('Von links nach rechts','<div class="basis-digit-pair"><span>'+da.map((d,j)=>'<i class="'+(j===i?'basis-focus':'')+'">'+d+(j===size-1&&pad?',':'')+'</i>').join('')+'</span><span>'+db.map((d,j)=>'<i class="'+(j===i?'basis-focus':'')+'">'+d+(j===size-1&&pad?',':'')+'</i>').join('')+'</span></div>'),'Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.'));if(diff)break;}
+ }
+ if(!finite){
+  const d=a.d/gcd(a.d,b.d)*b.d,na=a.n*(d/a.d),nb=b.n*(d/b.d);
+  out.push(phase('Wie schreibst du eine gemischte Zahl als einen Bruch?', ['Die ganze Zahl wird mit dem Nenner multipliziert. Dann kommt der Zähler des Bruchteils dazu.','Zum Beispiel 3 1/3 = (3 · 3 + 1)/3 = 10/3. Ein Minus gilt für die ganze gemischte Zahl.','Hier vergleichst du '+frac(a)+' und '+frac(b)+'.'],box('Gleiche Werte in Bruchschreibweise','<div class="basis-equation">'+E(left+' = '+frac(a))+'<br>'+E(right+' = '+frac(b))+'</div>'),'Bei −3 1/3 nur den Bruchteil negativ machen. Die ganze Zahl ist negativ.'));
+  out.push(phase('Wie bekommst du gleich große Bruchteile?', ['Ein gemeinsamer Nenner ist '+d+'.','Erweitere den ersten Bruch mit '+d/a.d+' und den zweiten mit '+d/b.d+'.','Oben und unten wird jeweils mit derselben Zahl multipliziert.'],box('Gleicher Nenner','<div class="basis-equation">'+na+'/'+d+' &nbsp; ? &nbsp; '+nb+'/'+d+'</div>'),'Die Zähler vergleichen, obwohl die Teile noch unterschiedlich groß sind.'));
+  out.push(phase('Was entscheidet bei gleichem Nenner?', ['Die Bruchteile sind gleich groß. Vergleiche die Zähler mit ihren Vorzeichen.','Es gilt '+na+' '+symbol+' '+nb+'. Also gilt auch '+na+'/'+d+' '+symbol+' '+nb+'/'+d+'.'],box('Gleich große Teile vergleichen','<div class="basis-equation">'+na+' '+E(symbol)+' '+nb+'</div>'),'Bei negativen Zählern die Vorzeichen weglassen.'));
+ }
+ out.push(phase(neg?'Wie wirkt sich das Minus auf die Reihenfolge aus?':'Welche Zahl liegt weiter rechts?', [neg?'Je größer der Abstand links von null, desto kleiner ist die negative Zahl.':'Auf dem Zahlenstrahl ist die Zahl weiter rechts größer.',fa+' '+symbol+' '+fb+'.'],linePicture(a,b),'−0,70 für größer als −0,65 halten, weil 70 größer als 65 ist.'));
+ out.push(phase('Wie liest du dein Ergebnis als Satz?', [fa+' ist '+(sign<0?'kleiner als':sign>0?'größer als':'gleich groß wie')+' '+fb+'.','Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.'],box('Das passende Zeichen','<div class="basis-equation">'+E(fa+' '+symbol+' '+fb)+'</div>'),'Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben.'));
+ return{task:left+' ? '+right,phases:out,result:fa+' '+symbol+' '+fb};
+}
+function gapPath(pattern,right,symbol){
+ if((pattern.match(/□/g)||[]).length!==1||!['<','>','='].includes(symbol))throw Error('Setze genau ein Kästchen □ in die linke Zahl.');
+ const b=parse(right),out=[phase('Welche Stelle soll die gesuchte Ziffer ausfüllen?',['Das Kästchen steht für genau eine Ziffer: 0 bis 9.','Die übrigen Ziffern und das Vorzeichen bleiben unverändert.','Das Zeichen '+symbol+' verlangt '+(symbol==='<'?'echt kleiner':symbol==='>'?'echt größer':'genau gleich')+'.'],box('Die Aufgabe lesen','<div class="basis-equation">'+E(pattern+' '+symbol+' '+right)+'</div>'),'Die Ziffer 0 vergessen oder bei < und > Gleichheit zulassen.')],answers=[];
+ for(let d=0;d<=9;d++){const value=pattern.replace('□',String(d)),a=parse(value),c=cmp(a,b),ok=symbol==='<'?c<0:symbol==='>'?c>0:c===0;if(ok)answers.push(d);out.push(phase('Passt die Ziffer '+d+'?', ['Setze nur diese Ziffer ein: '+value+'.',fmt(a)+' ist '+(c<0?'kleiner als':c>0?'größer als':'gleich groß wie')+' '+fmt(b)+'.',ok?'Die verlangte Aussage stimmt. Merke diese Ziffer.':'Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.'],table([{label:'eingesetzt',value:a,pad:(value.split(/[,.]/)[1]||'').length},{label:'Vergleich',value:b,pad:(value.split(/[,.]/)[1]||'').length}]),a.n<0n?'Bei negativen Zahlen ist der größere Abstand von null die kleinere Zahl.':'Eine Ziffer nur nach Gefühl auswählen, ohne die vollständigen Zahlen zu vergleichen.'));}
+ out.push(phase('Hast du wirklich alle passenden Ziffern gefunden?',['Alle zehn Ziffern wurden geprüft.','Passend: '+(answers.length?answers.join(', '):'keine')+'.','Lies mit jeder passenden Ziffer die ganze Aussage nochmals.'],box('Vollständige Auswahl','<div class="basis-units">'+Array.from({length:10},(_,i)=>'<span class="'+(answers.includes(i)?'basis-to':'')+'">'+i+'</span>').join('')+'</div>'),'Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind.'));
+ return{task:pattern+' '+symbol+' '+right,phases:out,result:answers.join(', ')||'Keine passende Ziffer'};
+}
+function fractionPath(value,direction){
+ const a=parse(value),out=[];
+ if(direction==='decimal'){
+  const k=decimals(a),target=10n**BigInt(k),factor=target/a.d,n=a.n*factor;
+  out.push(phase('Wie liest du den Bruch?', ['Zähler: '+a.n+'. Nenner: '+a.d+'.','Der Nenner sagt, in wie viele gleich große Teile ein Ganzes geteilt ist.','Ein Minus bleibt bei allen Umformungen erhalten.'],box('Zähler und Nenner','<div class="basis-equation">'+E(frac(a))+'</div>'),'Den Zähler als Zahl vor dem Komma und den Nenner als Zahl dahinter schreiben.'));
+  out.push(phase('Welcher Nenner 10, 100 oder 1000 passt?', ['Der gekürzte Nenner '+a.d+' muss auf eine Zehnerpotenz erweitert werden.','Hier passt '+target+'. '+a.d+' · '+factor+' = '+target+'.','Erweitern ändert nur die Einteilung, nicht den Wert.'],equation(a.d,'·',factor,target),'Den Nenner auf 100 setzen, ohne zu prüfen, ob eine ganze Malzahl passt.'));
+  out.push(phase('Was musst du gleichzeitig am Zähler tun?', ['Multipliziere oben und unten mit derselben Zahl '+factor+'.',a.n+' · '+factor+' = '+n+'.',frac(a)+' = '+n+'/'+target+'.'],box('Beide Zahlen gleich behandeln','<div class="basis-equation">'+a.n+' · '+factor+'<br>────────<br>'+a.d+' · '+factor+'</div>'),'Nur den Nenner erweitern. Dann ändert sich der Bruchwert.'));
+  out.push(phase('An welcher Nachkommastelle endet der Zähler?', ['Nenner '+target+' bedeutet '+k+' Nachkommastelle'+(k===1?'':'n')+'.','Fülle leere Stellen mit Nullen. Zum Beispiel 7/100 = 0,07.','Das Ergebnis lautet '+fmt(a)+'.'],table([{label:'Kommazahl',value:a,pad:k}]),'7/100 als 0,7 schreiben. 0,7 sind sieben Zehntel.'));
+ }else{
+  const original=String(value).replace('−','-').replace('.',',');if(!/^-?\d+(,\d+)?$/.test(original))throw Error('Gib hier eine Kommazahl ein, zum Beispiel −0,125.');
+  const k=(original.split(',')[1]||'').length,target=10n**BigInt(k),n=BigInt(original.replace(',','')),g=gcd(n,target);
+  out.push(phase('Wie viele Stellen stehen hinter dem Komma?', ['In '+value+' sind es '+k+' Nachkommastelle'+(k===1?'':'n')+'.','Jede Stelle zählt: Zehntel, Hundertstel, Tausendstel.'],table([{label:'gegeben',value:a,pad:k}]),'Nullen innerhalb einer Zahl überlesen.'));
+  out.push(phase('Welcher Nenner gehört dazu?', ['Bei '+k+' Nachkommastellen ist der Nenner '+target+'.','Die Ziffern ohne Komma ergeben den Zähler '+n+'.',value+' = '+n+'/'+target+'.'],box('Stellen werden Bruchteile','<div class="basis-equation">'+E(value)+' = '+n+'/'+target+'</div>'),'Die Anzahl der Ziffern vor dem Komma für den Nenner mitzählen.'));
+  let cn=n,cd=target;
+  while(gcd(cn,cd)>1n){
+   const f=cn%2n===0n&&cd%2n===0n?2n:5n,nextn=cn/f,nextd=cd/f;
+   out.push(phase('Kannst du Zähler und Nenner noch durch '+f+' teilen?', [f===2n?'Beide Zahlen sind gerade. Ihre letzte Ziffer ist 0, 2, 4, 6 oder 8.':'Beide Zahlen enden auf 0 oder 5. Beide lassen sich deshalb durch 5 teilen.','Teile oben und unten durch dieselbe Zahl '+f+'.',cn+' : '+f+' = '+nextn+'; '+cd+' : '+f+' = '+nextd+'.'],box('Ein Kürzungsschritt','<div class="basis-equation">'+cn+'/'+cd+' = ('+cn+' : '+f+') / ('+cd+' : '+f+') = '+nextn+'/'+nextd+'</div>'),'Nur eine Zahl teilen oder ohne Prüfung behaupten, der Bruch sei schon vollständig gekürzt.'));
+   cn=nextn;cd=nextd;
+  }
+  out.push(phase('Welcher gekürzte Bruch bleibt?', [value+' = '+frac(a)+'.','Zähler und Nenner haben jetzt keinen gemeinsamen Teiler größer als 1.'],box('Gleicher Wert','<div class="basis-equation">'+E(value+' = '+frac(a))+'</div>'),'Ein Minus beim Kürzen verlieren.'));
+ }
+ out.push(phase('Wie prüfst du die Umwandlung?', ['Bruch und Kommazahl müssen denselben Wert haben.','Ein Bruch kleiner als 1 muss eine Kommazahl kleiner als 1 ergeben.','Ein Minus bleibt ein Minus. Prüfe Zähler, Nenner und die Anzahl der Nachkommastellen.'],box('Rückblick','<div class="basis-equation">'+E(frac(a)+' = '+fmt(a))+'</div>'),'Nur das Ergebnis abschreiben, ohne Stellenzahl und Vorzeichen zu prüfen.'));
+ return{task:value+' → '+(direction==='decimal'?'Kommazahl':'vollständig gekürzter Bruch'),phases:out,result:direction==='decimal'?fmt(a):frac(a)};
+}
+const Core={parse,rat,fmt,convert,choose,cmp,conversionPath,comparisonPath,gapPath,fractionPath};host.MerkheftBasis=Core;
+if(typeof document==='undefined')return;
+const topic=document.body.dataset.topic;if(!['groessen','dezimalvergleich','dezimal'].includes(topic))return;
+const mount=document.querySelector('#learn-pane');if(!mount)return;
+const root=document.createElement('section');root.className='basis-course';root.id='grundlagenweg';
+root.innerHTML='<h2>Schritt für Schritt selbst herleiten</h2><p>Wähle deinen Aufgabentyp. Du kannst die Zahlen aus deinem Blatt einsetzen. Jeder Gedanke erscheint einzeln.</p><div class="basis-paths"></div><form class="basis-form"></form><div class="basis-error" role="alert"></div><div class="basis-reader" hidden></div>';
+mount.prepend(root);
+const paths=topic==='groessen'?[['convert','Einheit vorgegeben'],['choose','Ohne Komma schreiben'],['time','Minuten und Stunden']]:topic==='dezimalvergleich'?[['compare','Zahlen vergleichen'],['gap','Alle Ziffern für eine Lücke']]:[['fraction','Bruch → Kommazahl'],['decimal','Kommazahl → Bruch']];
+let mode=paths[0][0],path=null,index=0,shown=false;
+const menu=root.querySelector('.basis-paths'),form=root.querySelector('form'),reader=root.querySelector('.basis-reader'),error=root.querySelector('.basis-error');
+const field=(id,label,value)=>'<label for="basis-'+id+'">'+label+'<input id="basis-'+id+'" name="'+id+'" value="'+E(value)+'" autocomplete="off" spellcheck="false"></label>';
+const select=(id,label,values,value)=>'<label for="basis-'+id+'">'+label+'<select id="basis-'+id+'" name="'+id+'">'+values.map(x=>'<option value="'+E(x)+'"'+(x===value?' selected':'')+'>'+E(x)+'</option>').join('')+'</select></label>';
+function config(){path=null;reader.hidden=true;error.textContent='';menu.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.basisMode===mode)));
+ if(['convert','choose','time'].includes(mode)){
+  const all=mode==='time'?['h','min','s']:Object.keys(units).filter(u=>units[u].kind!=='time');
+  form.innerHTML=field('value','Gegebene Maßzahl',mode==='choose'?'1,5':mode==='time'?'90':'2,35')+select('from','Gegebene Einheit',all,mode==='choose'?'kg':mode==='time'?'min':'km')+(mode==='choose'?'':select('to','Gesuchte Einheit',all,mode==='time'?'h':'m'));
+  const from=form.elements.from,to=form.elements.to;if(to)from.addEventListener('change',()=>{const kind=units[from.value].kind;const old=to.value;to.innerHTML=unitGroups[kind].map(([u])=>'<option>'+E(u)+'</option>').join('');if(units[old]?.kind===kind)to.value=old;});
+  if(to){const selected=to.value,kind=units[from.value].kind;to.innerHTML=unitGroups[kind].map(([u])=>'<option>'+E(u)+'</option>').join('');to.value=selected;}
+ }else if(mode==='compare')form.innerHTML=field('left','Linke Zahl (auch Brüche möglich)','−2,004')+field('right','Rechte Zahl','−1,9999');
+ else if(mode==='gap')form.innerHTML=field('pattern','Linke Zahl: ein Kästchen □ einsetzen','−73,08')+select('symbol','Vergleichszeichen',['<','>','='],'<')+field('right','Rechte Zahl','−7□,88')+'<p>Das Kästchen muss links stehen. Für das Blatt kannst du beide Seiten samt Zeichen umdrehen: −7□,88 &gt; −73,08.</p>';
+ else form.innerHTML=field('value',mode==='fraction'?'Bruch, zum Beispiel 5/8':'Kommazahl, zum Beispiel −0,125',mode==='fraction'?'5/8':'−0,125');
+ if(mode==='gap'){form.elements.pattern.value='−7□,88';form.elements.symbol.value='>';form.elements.right.value='−73,08';}
+ form.insertAdjacentHTML('beforeend','<button type="submit">Meinen Denkweg beginnen</button>');
+}
+for(const [key,label]of paths){const b=document.createElement('button');b.type='button';b.dataset.basisMode=key;b.textContent=label;b.addEventListener('click',()=>{mode=key;config();});menu.append(b);}
+function render(){reader.hidden=false;const s=path.phases[index],previous=index?path.phases[index-1]:null;
+ reader.innerHTML='<div class="basis-task"><b>Deine Aufgabe</b><p>'+E(path.task)+'</p></div><p class="basis-status">Gedanke '+(index+1)+' von '+path.phases.length+'</p><h3 tabindex="-1">'+E(s.ask)+'</h3>'+(shown?s.picture:previous?'<details><summary>Bild zum vorigen Gedanken</summary>'+previous.picture+'</details>':'<p>Schau zuerst auf die gegebenen Zahlen und Einheiten.</p>')+(shown?'<ul>'+s.why.map(x=>'<li>'+E(x)+'</li>').join('')+'</ul><details class="basis-trap"><summary>Warum dieser andere Weg scheitert</summary><p>'+E(s.trap)+'</p></details>':'<p>Überlege kurz. Wenn du noch keinen Anfang findest, lass dir diesen einen Gedanken erklären.</p>')+'<div class="basis-actions"><button type="button" data-basis-action="back"'+(index===0?' disabled':'')+'>← Ein Gedanke zurück</button>'+(shown?index<path.phases.length-1?'<button type="button" data-basis-action="next">Nächsten Gedanken überlegen →</button>':'<p class="basis-result"><b>Ergebnis: '+E(path.result)+'</b></p>':'<button type="button" data-basis-action="reveal">Diesen Gedanken erklären</button>')+'<button type="button" data-basis-action="reset">Ohne Lösung neu beginnen</button></div>';
+}
+form.addEventListener('submit',e=>{e.preventDefault();error.textContent='';try{const f=form.elements;path=['convert','choose','time'].includes(mode)?conversionPath(f.value.value,f.from.value,f.to?.value,mode==='choose'):mode==='compare'?comparisonPath(f.left.value,f.right.value):mode==='gap'?gapPath(f.pattern.value,f.right.value,f.symbol.value):fractionPath(f.value.value,mode==='fraction'?'decimal':'fraction');index=0;shown=false;render();reader.querySelector('h3').focus();}catch(err){reader.hidden=true;error.textContent=err.message;}});
+reader.addEventListener('click',e=>{const action=e.target.closest('[data-basis-action]')?.dataset.basisAction;if(!action)return;if(action==='next'){index++;shown=false;}else if(action==='back'){index--;shown=true;}else if(action==='reset'){index=0;shown=false;}else shown=true;render();reader.querySelector('h3').focus();});
+form.addEventListener('input',()=>{reader.hidden=true;path=null;error.textContent='';});
+config();
+})(typeof window==='undefined'?globalThis:window);

@@ -38,7 +38,7 @@ for(const width of [375,1280])for(const topic of topics){
    await root.locator('#q-reset').click();await expect(root.locator('.q-reduction')).toBeHidden();
   }else{
    await root.locator('[data-do="start-over"]').click();
-   await expect(root.locator('.hands-answer')).toHaveText(initialAnswer);
+   await expect(root.locator('.hands-answer')).toHaveText(initialAnswer,{useInnerText:true});
    await valid();
   }
   await valid();expect(errors).toEqual([]);
