@@ -242,11 +242,11 @@
   state.layer=Number(e.target.value);
   const out=e.target.parentElement.querySelector('output');if(out)out.textContent=String(state.layer);
   if(e.target.id==='gw-rows'){
-   $('.gw-square span').forEach((cell,i)=>cell.classList.toggle('gw-marked',i<state.layer*10));
+   $$('.gw-square span').forEach((cell,i)=>cell.classList.toggle('gw-marked',i<state.layer*10));
    const desc=$('[data-gw-layer-desc]');
    if(desc)desc.innerHTML='<b>'+state.layer+' × 10 = '+(state.layer*10)+'</b> kleine Quadrate. Ganze Fläche: 10 × 10 = <b>100</b>. Die zweite Richtung macht den Unterschied zu gewöhnlichen Längen.';
   }else{
-   $('.gw-cube-svg [data-gw-layer]').forEach(path=>{
+   $$('.gw-cube-svg [data-gw-layer]').forEach(path=>{
     const index=Number(path.dataset.gwLayer),active=index<state.layer;
     path.setAttribute('fill',active?'#9dc6d6':'#edf2f5');
     path.setAttribute('opacity',active?'.9':'.5');
