@@ -89,12 +89,12 @@ main{max-width:1060px;margin:auto;padding:27px 26px 55px}.kicker{color:#826677;f
 <article class="card" id="meter-lesson"><p class="introline">4 · Ein Meter bleibt ein Meter</p><h2>Wie viel ist 90 Zentimeter von einem Meter?</h2>
 <p>Denke an ein <strong>Meterband mit 100 Zentimetern</strong>. Die zehn größeren Felder stehen für je 1 dm. In jedem Feld stecken zehn kleine Zentimeter.</p>
 <div class="meter-band" id="meter-band" role="img" aria-label="Ein Meterband aus zehn Dezimetern mit jeweils zehn Zentimeterabschnitten"></div>
-<div class="meter-limits"><span>0 cm</span><span>100 cm = 1 m</span></div>
+<div class="meter-limits"><span>0 cm</span><span>100 cm = 1 m</span></div><p class="unit-note">Dies ist eine Zeichnung des Meterbands, keine maßstabsgetreue Länge auf deinem Bildschirm.</p>
 <label for="meter-range" class="blue-label">Wie viele Zentimeter markierst du? <output id="meter-value" for="meter-range">90 cm</output></label>
 <input type="range" min="0" max="100" step="1" value="90" id="meter-range" class="meter-range" aria-label="Markierte Länge in Zentimetern">
 <div class="meter-readout" id="meter-result" aria-live="polite"></div>
 <p class="meter-explanation" id="meter-explanation"></p>
-<div class="callout"><strong>Das ist die entscheidende Idee:</strong> 90 cm sind weniger als ein ganzer Meter. Darum muss die Angabe in Metern <strong>kleiner als 1</strong> sein. Die Länge bleibt trotzdem genau gleich.</div>
+<div class="callout"><strong>Das ist die entscheidende Idee:</strong> Weniger als 100 cm sind weniger als 1 m. Darum muss die Angabe in Metern <strong>kleiner als 1</strong> sein. Beim Umrechnen ändert sich die Länge nicht.</div>
 </article>
 <article class="card" id="comma-lesson"><p class="introline">5 · Erst jetzt das Komma</p><h2>Warum werden aus 90 cm genau 0,9 m?</h2>
 <p>Wir gehen nicht mit einem Sprung von cm nach m. Dazwischen liegt noch <strong>dm</strong>. Jeder Schritt zu einer größeren Einheit bedeutet: <strong>durch 10 teilen</strong>.</p>
@@ -131,14 +131,14 @@ main{max-width:1060px;margin:auto;padding:27px 26px 55px}.kicker{color:#826677;f
 <p class="big">m → dm → cm → mm</p><p>Jeder Schritt nach rechts bedeutet: Die Einheit wird zehnmal kleiner. Für dieselbe Länge brauchst du deshalb zehnmal mehr Stücke.</p>
 <table class="ref-table"><thead><tr><th>Eine Einheit</th><th>entspricht</th></tr></thead><tbody><tr><td>1 m</td><td>10 dm = 100 cm = 1.000 mm</td></tr><tr><td>1 dm</td><td>10 cm = 100 mm</td></tr><tr><td>1 cm</td><td>10 mm</td></tr></tbody></table>
 <div class="formula">Nach rechts: × 10 je Schritt &nbsp; · &nbsp; Nach links: ÷ 10 je Schritt</div>
-<p class="quiet">Beispiel: 2 m → dm → cm. Das sind zwei Schritte nach rechts: 2 × 10 × 10 = 200 cm.</p></article>
+<p class="quiet">Beispiel: 2 m → dm → cm. Das sind zwei Schritte nach rechts: 2 × 10 × 10 = 200 cm.</p><div class="callout"><strong>Wichtig beim Komma:</strong> 90 cm : 10 = 9 dm; 9 dm : 10 = 0,9 m. Zweimal durch 10 teilen heißt: Das Komma wandert zweimal nach links. Und 0,9 m sind dieselbe Länge wie 90 cm.</div></article>
 <article class="card"><h2>Typische Denkfallen</h2>
 <div class="danger"><b>„Eine größere Einheit bedeutet immer eine größere Zahl.“ – Falsch.</b><p>1 m und 100 cm sind gleich lang. Bei kleineren Einheiten wird die Zahl größer, nicht die Länge.</p></div>
 <div class="danger"><b>„Von Meter nach Zentimeter ist nur ein Zehnerschritt.“ – Falsch.</b><p>Von m nach dm ist ein Schritt (× 10). Von dm nach cm ist noch ein Schritt (× 10). Zusammen: × 100.</p></div>
 <div class="danger"><b>„Ich verschiebe einfach das Komma.“ – Zu früh.</b><p>Überlege zuerst: Wird die Einheit kleiner oder größer? Wie viele Zehnerschritte liegen dazwischen? Erst danach rechnest du.</p></div>
 <div class="callout"><strong>Kontrolle:</strong> Stell dir vor, du legst einen Meterstab hin. Ob du 1 m oder 100 cm sagst: Beide Angaben reichen von Anfang bis Ende desselben Stabs.</div></article>
 </section>
-</main><footer class="footer">Mathe-Merkheft · Klasse 6 · Grundlagen · Längen verstehen</footer>
+<noscript><div class="card"><h2>Auch ohne JavaScript merken</h2><p>1 m = 10 dm = 100 cm = 1.000 mm. 90 cm : 10 = 9 dm und 9 dm : 10 = 0,9 m. Die Strecke bleibt gleich.</p></div></noscript></main><footer class="footer">Mathe-Merkheft · Klasse 6 · Grundlagen · Längen verstehen</footer>
 <script>
 (()=>{'use strict';
 const $=q=>document.querySelector(q), $$=q=>Array.from(document.querySelectorAll(q));
@@ -215,7 +215,7 @@ function commaBadge(value,unit){
 const meter=$('#meter-band');
 for(let d=0;d<10;d++){
  const block=document.createElement('div');block.className='meter-dm';
- const heading=document.createElement('span');heading.className='meter-dm-title';heading.textContent=(d+1)+'. dm';
+ const heading=document.createElement('span');heading.className='meter-dm-title';heading.textContent='1 dm';
  const ticks=document.createElement('div');ticks.className='meter-cm';
  for(let c=0;c<10;c++){const tick=document.createElement('span');tick.dataset.cm=String(d*10+c);ticks.append(tick);}
  block.append(heading,ticks);meter.append(block);
