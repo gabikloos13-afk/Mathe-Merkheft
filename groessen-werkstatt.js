@@ -78,6 +78,9 @@
  function ladder(){
   const a=q(),to=target();if(!to)return '';
   const arr=sets[a[4]].units,ia=arr.findIndex(x=>x[0]===a[2]),ib=arr.findIndex(x=>x[0]===to);
+  if(a[4]==='length'&&((a[2]==='km'&&to==='m')||(a[2]==='m'&&to==='km'))){
+   return '<div class="gw-chain"><span>1 km</span><i>= 10 × 100 m</i><i>= 100 × 10 m</i><span>= 1.000 m</span></div><p class="gw-muted">Du brauchst keine weiteren Einheitsnamen. Ein Kilometer hat 1.000 Meter: zuerst 10 große Hundertergruppen, dann jeweils zehn Zehnergruppen, dann einzelne Meter.</p>';
+  }
   const start=Math.min(ia,ib),end=Math.max(ia,ib);
   return '<div class="gw-chain" aria-label="Einheiten in Größenfolge">'+arr.slice(start,end+1).map((x,i,r)=>'<span>'+x[0]+'</span>'+(i<r.length-1?'<i>→ × '+arr[start+i][1]/arr[start+i+1][1]+'</i>':'')).join('')+'</div>'+
    '<p class="gw-muted">In der Reihe stehen die größeren Einheiten links und die kleineren rechts. Beim Zurückgehen wird geteilt.</p>';
