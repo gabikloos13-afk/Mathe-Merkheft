@@ -40,7 +40,7 @@ test('Umrechner: Einheiten und Komma-Schritte vor der Lösung wählen',async({pa
  await expect(page.locator('#convert')).toBeEnabled();
  await page.locator('#convert').click();
  await expect(page.locator('#conversion-result')).toContainText('90 cm = 0,9 m');
- await expect(page.locator('#conversion-result')).toContainText('9 dm');
+ await expect(page.locator('#conversion-result')).toContainText('9,0 dm');
  await page.locator('#amount').fill('0,9');
  await page.locator('#from').selectOption('m');
  await page.locator('#to').selectOption('cm');
