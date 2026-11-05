@@ -1,3 +1,13 @@
+## Neues Grundlagenkapitel: Längen verstehen und umrechnen (5.11.2026)
+
+Das eigenständige Kapitel `laengen.html` steht auf der Startseite direkt vor „Mit Größen rechnen“ und ist von dort aus verlinkt. Es ersetzt keine der bestehenden Größen-Erklärungen.
+
+**Didaktischer Weg:** Was ist eine Länge? → mm, cm, dm und m am Lineal erkennen → 1 m als 10 dm mit je 10 cm sehen → dieselbe Strecke in verschiedenen Einheiten benennen → 90 cm = 9 dm = 0,9 m begreifen → erst danach das Komma bei jedem Zehnerschritt nach links oder rechts setzen. Das Meterband zeigt frei wählbare Längen von 0 bis 100 cm in 1-cm-Schritten; die „Längen-Lupe“ vergrößert die Einheiten stufenweise. Das Umrechnungs-Labor verlangt vor der Rechnung eine Entscheidung über die Richtung und zeigt erst danach die Einzelschritte und die Kontrolle. Die vier Register heißen Lernen, Beispiele, Bildwerkzeug und Nachschlagen. Es gibt keine Punkte, Sterne oder separate Übungseinheit.
+
+**Geprüft:** Syntax des eingebauten JavaScripts; eindeutige HTML-IDs; vier Register; Startseiten- und Rückverlinkung; vollständige Einheitenkette; das 90-cm-Meterband mit 90 markierten Teilen; das 35-cm-Meterband mit 35 markierten Teilen; ein zunächst verborgenes Komma-Ergebnis; schrittweises Aufdecken von 90 cm → 9 dm → 0,9 m; korrekte Richtungsentscheidung im Umrechner; Rechenweg 90 cm = 0,9 m; schrittweiser Beispielaufruf. Der bestehende Entwurf wurde im lokalen Chromium-Browser mit Register-, Zoom-, Umrechnungs- und Beispielbedienung geprüft; nach den Ergänzungen wurden die tatsächlichen GitHub-Dateiinhalte und die Interaktionslogik automatisiert geprüft.
+
+**Grenze:** Für die nachträglich ergänzte Meterband-/Komma-Funktion fand kein vollständiger visueller Test auf einem physischen Smartphone und keine Verständniserprobung mit Hanna statt. Die technische Prüfung allein belegt keinen Lernerfolg.
+
 ## Erweitern ohne vorgegebenen Nenner (31.10.2026)
 
 Der Lernweg unterscheidet freie Wahl, vorgegebene Malzahl und Zielnenner. Ohne Vorgabe wird beispielhaft die 2 gewählt und Schritt für Schritt erklärt: 2/3 = 4/6. Der Ausgangsbruch, das neue Ergebnis, die Probe und die Bilder gehören zu derselben Aufgabe. Im Kürzen-Lernweg wird erklärt, dass beide Zahlen ohne Rest teilbar sein müssen.
