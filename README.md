@@ -1,3 +1,13 @@
+## Schulbuch-Aufgaben 1–3: Einheiten-Werkstatt (5.11.2026)
+
+Im bestehenden Kapitel `groessen.html` erscheint jetzt direkt am Anfang des Lernbereichs die **Einheiten-Werkstatt**. Die bisherige Kursführung mit Lernen, Beispielen, Bildwerkzeug, Nachschlagen sowie der allgemeine Grundlagenweg bleiben unverändert erreichbar. Die Werkstatt ist gezielt auf die Schulbuchseite „Dezimalschreibweise bei Größen“, Seite 19, Aufgaben 1a–i, 2a–i und 3a–i abgestimmt (insgesamt 27 Fälle).
+
+**Didaktische Führung:** zuerst Größenart bestimmen; dann die Einheitenbeziehung am passenden Bild entdecken und bei Aufgabe 2 eine kleinere Einheit ohne Komma wählen; anschließend selbst entscheiden, ob die Maßzahl größer oder kleiner wird und welcher Faktor gilt; zuletzt alle Kommaschritte einzeln aufdecken; erst danach das Ergebnis mit Rückprobe sehen. Für den Einstieg ist Aufgabe 1b voreingestellt: `2,35 km → m`. Kilometer werden dabei in Gruppen zu 100 m, 10 m und 1 m zerlegt, ohne zusätzliche Namen lernen zu müssen. Im Ergebnis werden die 2 km, 0,3 km und 0,05 km als 2.000 m + 300 m + 50 m begründet.
+
+**Drei unterschiedliche Grundideen statt einer falschen Universalregel:** Längen und Massen folgen ihren jeweiligen Einheitenfaktoren; bei Flächen ist der Zehnerschritt in zwei Richtungen sichtbar (`10 × 10 = 100`); bei Rauminhalten kommt die dritte Richtung dazu (`10 × 10 × 10 = 1.000`), inklusive veränderbarer Schichten. Geld: `1 € = 100 ct`. Zeit: `1 h = 60 min`, deshalb ausdrücklich **kein gewöhnliches Kommaschieben**. Der große rote Kommastrich dient als visuelle Hilfe; mathematisch verändern die Ziffern ihren Stellenwert. Bei falschen Entscheidungen erscheinen kurze Hilfen, nicht sofort die Lösung. Keine Punkte, Sterne oder Zeitbegrenzungen.
+
+**Technik:** separate Dateien `groessen-werkstatt.js` und `groessen-werkstatt.css`; nur `groessen.html` eingebunden, andere Kapitel unverändert. Testabdeckung: `tests/groessen-werkstatt.spec.cjs` prüft alle 27 Ergebnisse und Denkwege, Eingabesicherungen, Bilder, 60-Minuten-Sonderfall und mobile Breiten 320/375/768/1280 px. Entwicklungszweig `groessen-werkstatt-2026-11-05`; zusätzliche GitHub-Actions-Qualitätsprüfung. Technische Tests belegen keine Verständlichkeit beim Kind; diese muss beim tatsächlichen Bearbeiten beobachtet werden.
+
 ## Didaktische Überarbeitung Längen – Lernen durch Bauen (5.11.2026)
 
 Nach der Rückmeldung, dass das reine Erklären des Umrechnens noch nicht verständlich war, beginnt `laengen.html` jetzt mit **einem einzigen interaktiven Hauptwerkzeug**. Die bisherigen Erläuterungen bleiben unter „Weitere Erklärungen …“ bei Bedarf erreichbar, drängen sich aber nicht vor das eigene Entdecken.
