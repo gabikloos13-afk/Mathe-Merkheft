@@ -1,3 +1,6 @@
+'use strict';
+const {test,expect}=require('@playwright/test');
+const url='http://127.0.0.1:8000/laengen.html';
 
 test('Grundlagen neu: Meter aus 10 Zentimeter-Zehnerstücken bauen',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(String(e)));
@@ -34,10 +37,6 @@ test('Grundlagen neu: Meter aus 10 Zentimeter-Zehnerstücken bauen',async({page}
  await expect(page.locator('.len-result')).toContainText('0,35 m');
  expect(errors).toEqual([]);
 });
-
-'use strict';
-const {test,expect}=require('@playwright/test');
-const url='http://127.0.0.1:8000/laengen.html';
 
 test('Längen: ein Meter als 100 Zentimeter, 90 cm und 35 cm begreifen',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(String(e)));
