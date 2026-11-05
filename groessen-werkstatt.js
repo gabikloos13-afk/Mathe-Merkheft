@@ -105,18 +105,18 @@
    const cells=Array.from({length:100},(_,i)=>'<span'+(i<state.layer*10?' class="gw-marked"':'')+' aria-hidden="true"></span>').join('');
    return common+'<div class="gw-grid-head"><span>10 kleine Quadrate in jeder Reihe</span><span>10 Reihen</span></div><div class="gw-square" role="img" aria-label="Quadrat mit 10 Reihen und 10 Spalten, insgesamt 100 kleine Quadrate">'+cells+'</div>'+
     '<div class="gw-toolrow"><label for="gw-rows">Wie viele der zehn Reihen färbst du? <output>'+state.layer+'</output></label><input type="range" id="gw-rows" min="1" max="10" value="'+state.layer+'"></div>'+
-    '<p><b>'+state.layer+' × 10 = '+(state.layer*10)+'</b> kleine Quadrate. Ganze Fläche: 10 × 10 = <b>100</b>. Die zweite Richtung macht den Unterschied zu gewöhnlichen Längen.</p>'+
+    '<p data-gw-layer-desc><b>'+state.layer+' × 10 = '+(state.layer*10)+'</b> kleine Quadrate. Ganze Fläche: 10 × 10 = <b>100</b>. Die zweite Richtung macht den Unterschied zu gewöhnlichen Längen.</p>'+
     (f!==100?'<p class="gw-muted">Bei mehreren Flächenschritten wiederholst du die Unterteilung in 100 kleinere Quadrate.</p>':'');
   }
   if(k==='volume'){
    const layer=state.layer;
    let svg='<svg viewBox="0 0 370 155" role="img" aria-label="Aufeinanderliegende Schichten mit jeweils 100 Würfeln" class="gw-cube-svg">';
-   for(let i=0;i<10;i++){const y=125-i*10;svg+='<path d="M65 '+y+' L230 '+(y-30)+' L314 '+(y-5)+' L147 '+(y+25)+' Z" fill="'+(i<layer?'#9dc6d6':'#edf2f5')+'" stroke="#406b7e" opacity="'+(i<layer?'.9':'.5')+'"/>';}
+   for(let i=0;i<10;i++){const y=125-i*10;svg+='<path data-gw-layer="'+i+'" d="M65 '+y+' L230 '+(y-30)+' L314 '+(y-5)+' L147 '+(y+25)+' Z" fill="'+(i<layer?'#9dc6d6':'#edf2f5')+'" stroke="#406b7e" opacity="'+(i<layer?'.9':'.5')+'"/>';}
    svg+='</svg>';
    const squares=Array.from({length:100},(_,i)=>'<span'+(i<100?' class="gw-marked"':'')+' aria-hidden="true"></span>').join('');
    return common+'<div class="gw-cube-row"><div>'+svg+'</div><div class="gw-mini-square" role="img" aria-label="Eine Schicht hat 10 mal 10, also 100 kleine Würfel">'+squares+'</div></div>'+
     '<div class="gw-toolrow"><label for="gw-layers">Wie viele Schichten stapelst du? <output>'+layer+'</output></label><input id="gw-layers" type="range" min="1" max="10" value="'+layer+'"></div>'+
-    '<p>Jede Schicht enthält <b>10 × 10 = 100 Würfel</b>. '+layer+' Schichten enthalten <b>'+layer+' × 100 = '+(layer*100)+'</b> Würfel. Zehn Schichten ergeben <b>1.000</b>.</p>'+
+    '<p data-gw-layer-desc>Jede Schicht enthält <b>10 × 10 = 100 Würfel</b>. '+layer+' Schichten enthalten <b>'+layer+' × 100 = '+(layer*100)+'</b> Würfel. Zehn Schichten ergeben <b>1.000</b>.</p>'+
     (f!==1000?'<p class="gw-muted">Bei mehreren Würfelschritten wiederholst du diese Tausender-Unterteilung.</p>':'');
   }
   if(k==='time'){
@@ -238,8 +238,21 @@
   render();
  });
  root.addEventListener('input',e=>{
-  if(e.target.id==='gw-layers'||e.target.id==='gw-rows'){
-   state.layer=Number(e.target.value);render();
+  if(e.target.id!=='gw-layers'&&e.target.id!=='gw-rows')return;
+  state.layer=Number(e.target.value);
+  const out=e.target.parentElement.querySelector('output');if(out)out.textContent=String(state.layer);
+  if(e.target.id==='gw-rows'){
+   $('.gw-square span').forEach((cell,i)=>cell.classList.toggle('gw-marked',i<state.layer*10));
+   const desc=$('[data-gw-layer-desc]');
+   if(desc)desc.innerHTML='<b>'+state.layer+' × 10 = '+(state.layer*10)+'</b> kleine Quadrate. Ganze Fläche: 10 × 10 = <b>100</b>. Die zweite Richtung macht den Unterschied zu gewöhnlichen Längen.';
+  }else{
+   $('.gw-cube-svg [data-gw-layer]').forEach(path=>{
+    const index=Number(path.dataset.gwLayer),active=index<state.layer;
+    path.setAttribute('fill',active?'#9dc6d6':'#edf2f5');
+    path.setAttribute('opacity',active?'.9':'.5');
+   });
+   const desc=$('[data-gw-layer-desc]');
+   if(desc)desc.innerHTML='Jede Schicht enthält <b>10 × 10 = 100 Würfel</b>. '+state.layer+' Schichten enthalten <b>'+state.layer+' × 100 = '+(state.layer*100)+'</b> Würfel. Zehn Schichten ergeben <b>1.000</b>.';
   }
  });
  render();
