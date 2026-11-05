@@ -1,0 +1,41 @@
+name: Längen-Grundlagen – Browserprüfung
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'laengen.html'
+      - 'index.html'
+      - 'groessen.html'
+      - 'tests/laengen-grundlagen.spec.cjs'
+      - 'playwright.config.cjs'
+      - '.github/workflows/laengen-abnahme.yml'
+  workflow_dispatch:
+
+jobs:
+  laengen-browser:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.55.0-noble
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Playwright bereitstellen
+        run: npm install --no-save @playwright/test@1.55.0
+      - name: Neuen Grundlagen-Lernweg in Chromium prüfen
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/merkheft-http.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/laengen.html >/dev/null && break; sleep 1; done
+          npx playwright test tests/laengen-grundlagen.spec.cjs --workers=2
+      - name: Fehlerbilder ablegen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: laengen-browser-abnahme
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14
