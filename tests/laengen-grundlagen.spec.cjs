@@ -8,10 +8,10 @@ test('Längen: ein Meter als 100 Zentimeter, 90 cm und 35 cm begreifen',async({p
  await expect(page.getByRole('heading',{name:'Längen verstehen und umrechnen'})).toBeVisible();
  await expect(page.locator('#meter-result')).toHaveText('90 cm = 9 dm = 0,9 m');
  await expect(page.locator('#meter-band .meter-cm span.filled')).toHaveCount(90);
- await page.locator('#meter-range').fill('35');
+ await page.locator('#meter-range').evaluate((el,n)=>{el.value=String(n);el.dispatchEvent(new Event('input',{bubbles:true}));},35);
  await expect(page.locator('#meter-result')).toHaveText('35 cm = 3,5 dm = 0,35 m');
  await expect(page.locator('#meter-band .meter-cm span.filled')).toHaveCount(35);
- await page.locator('#meter-range').fill('100');
+ await page.locator('#meter-range').evaluate((el,n)=>{el.value=String(n);el.dispatchEvent(new Event('input',{bubbles:true}));},100);
  await expect(page.locator('#meter-result')).toHaveText('100 cm = 10 dm = 1 m');
  await expect(page.locator('#meter-band .meter-cm span.filled')).toHaveCount(100);
  expect(errors).toEqual([]);
