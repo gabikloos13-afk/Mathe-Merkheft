@@ -28242,15 +28242,15 @@ window.MERKHEFT_COURSES = {
             "plain": "0,6 = 0,600.",
             "text": "0,6 = 0,600.",
             "explain": [
-              "Auf dem Zahlenstrahl ist die Zahl weiter rechts größer."
+              "Beide Angaben haben denselben Wert. Ihre Punkte fallen auf dem Zahlenstrahl zusammen."
             ],
             "hint": [
-              "Auf dem Zahlenstrahl ist die Zahl weiter rechts größer."
+              "Beide Angaben haben denselben Wert. Ihre Punkte fallen auf dem Zahlenstrahl zusammen."
             ],
-            "ask": "Welche Zahl liegt weiter rechts?",
+            "ask": "Liegen beide Angaben auf demselben Punkt?",
             "counterexample": {
-              "claim": "−0,70 für größer als −0,65 halten, weil 70 größer als 65 ist.",
-              "reason": "Die passende Begründung: Auf dem Zahlenstrahl ist die Zahl weiter rechts größer. 0,6 = 0,600."
+              "claim": "Zwei verschiedene Punkte zeichnen, obwohl beide Angaben denselben Wert haben.",
+              "reason": "Die passende Begründung: Beide Angaben haben denselben Wert. Ihre Punkte fallen auf dem Zahlenstrahl zusammen. 0,6 = 0,600."
             },
             "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Weiter rechts bedeutet größer</b><svg viewBox=\"0 0 600 110\" role=\"img\" aria-label=\"0,6 und 0,600 am Zahlenstrahl. Beide Angaben liegen auf demselben Punkt.\"><path d=\"M20 65H580m-8 -5 8 5-8 5\" stroke=\"currentColor\" fill=\"none\"/><circle cx=\"300\" cy=\"65\" r=\"6\" fill=\"#783d53\"/><text x=\"300\" y=\"24\" text-anchor=\"middle\">0,6</text><circle cx=\"300\" cy=\"65\" r=\"6\" fill=\"#326b82\"/><text x=\"300\" y=\"45\" text-anchor=\"middle\">0,600</text></svg><p>Beide Angaben liegen auf demselben Punkt.</p></div></figure>",
             "phaseId": "dezimalvergleich:examples:2:8",
@@ -28261,9 +28261,9 @@ window.MERKHEFT_COURSES = {
           {
             "title": "9 · Das passende Zeichen",
             "label": "9 · Das passende Zeichen",
-            "html": "<span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span>",
-            "plain": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
-            "text": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "html": "<span>Das Gleichheitszeichen hat keine offene Seite. Beide Zahlen sind gleich groß.</span>",
+            "plain": "Das Gleichheitszeichen hat keine offene Seite. Beide Zahlen sind gleich groß.",
+            "text": "Das Gleichheitszeichen hat keine offene Seite. Beide Zahlen sind gleich groß.",
             "explain": [
               "0,6 ist gleich groß wie 0,600."
             ],
@@ -28272,8 +28272,8 @@ window.MERKHEFT_COURSES = {
             ],
             "ask": "Wie liest du dein Ergebnis als Satz?",
             "counterexample": {
-              "claim": "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben.",
-              "reason": "Die passende Begründung: 0,6 ist gleich groß wie 0,600. Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl."
+              "claim": "Eine Zahl größer oder kleiner nennen, obwohl beide Angaben gleich viel sind.",
+              "reason": "Die passende Begründung: 0,6 ist gleich groß wie 0,600. Das Gleichheitszeichen hat keine offene Seite. Beide Zahlen sind gleich groß."
             },
             "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Das passende Zeichen</b><div class=\"basis-equation\">0,6 = 0,600</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:2:9",
@@ -28289,7 +28289,7 @@ window.MERKHEFT_COURSES = {
           "Nullen am Ende einer Kommazahl verändern den Wert nicht."
         ],
         "trap": [
-          "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
+          "Eine Zahl größer oder kleiner nennen, obwohl beide Angaben gleich viel sind."
         ],
         "check": [
           "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
@@ -28486,7 +28486,7 @@ window.MERKHEFT_COURSES = {
             "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
           }
         },
-        "notebookHtml": "<div class=\"school-calculation\"><span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span></div><div class=\"school-calculation\"><span>Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.</span></div><div class=\"school-calculation\"><span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Alle Stellen sind gleich. Die beiden Angaben haben denselben Wert.</span></div><div class=\"school-calculation\"><span>0,6 = 0,600.</span></div><div class=\"school-calculation\"><span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span></div>",
+        "notebookHtml": "<div class=\"school-calculation\"><span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span></div><div class=\"school-calculation\"><span>Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.</span></div><div class=\"school-calculation\"><span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Alle Stellen sind gleich. Die beiden Angaben haben denselben Wert.</span></div><div class=\"school-calculation\"><span>0,6 = 0,600.</span></div><div class=\"school-calculation\"><span>Das Gleichheitszeichen hat keine offene Seite. Beide Zahlen sind gleich groß.</span></div>",
         "source": {
           "kind": "Regelbeispiel",
           "page": 18,

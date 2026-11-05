@@ -32,3 +32,5 @@ assert.equal(c.sortPath('1/5; 0,3; 9/10; 0,56; 3/50; 63/100').result,'3/50 < 1/5
 assert.equal(c.sortPath('0,5; 0,50; −1').result,'−1 < 0,5 = 0,50');
 assert.equal(c.comparisonPath('0,6','0,600').result,'0,6 = 0,600');
 assert(c.comparisonPath('−2,004','−1,9999').phases.some(x=>x.picture.includes('rechts außerhalb')));
+
+const equalPath=c.comparisonPath('0,6','0,600');assert(equalPath.phases.at(-2).ask.includes('demselben Punkt'));assert(equalPath.phases.at(-1).why.some(x=>x.includes('keine offene Seite')));
