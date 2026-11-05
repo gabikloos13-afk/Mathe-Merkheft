@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Längen verstehen und umrechnen · Mathe-Merkheft</title>
+<style>
+:root{--burgund:#783d53;--burgund-dark:#5f3044;--ink:#342e38;--muted:#655b66;--border:#dfd7dc;--pale:#f5f2ef;--blue:#326b82;--blue-bg:#f0f7fa;--gold:#a17624;--gold-bg:#fff4d8;--ok:#326a4a;--ok-bg:#eef7f1;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--pale);color:var(--ink);font:17px/1.6 Arial,Helvetica,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #b583a2;outline-offset:3px}[hidden]{display:none!important}
+.sitehead{background:#fff;border-bottom:1px solid var(--border)}.top{max-width:1100px;padding:19px 26px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{font-weight:700;color:var(--burgund);text-decoration:none}.back{border:1px solid #d5c2cb;border-radius:14px;min-height:44px;padding:8px 16px;color:var(--burgund);text-decoration:none;font-size:.94rem;font-weight:700;display:inline-flex;align-items:center}
+main{max-width:1060px;margin:auto;padding:27px 26px 55px}.kicker{color:#826677;font-weight:700;letter-spacing:.11em;font-size:.75rem}.page-title{font-size:clamp(1.85rem,3.5vw,2.65rem);line-height:1.2;letter-spacing:-.02em;margin:7px 0 11px;color:#2d3d4b}.subtitle{color:var(--muted);margin:0 0 23px;max-width:780px}.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:24px}.tabs button{background:#fff;color:#705064;border:1px solid #d6c8d0;border-radius:14px;min-height:48px;padding:10px 8px;font-weight:700}.tabs button[aria-selected=true]{background:var(--burgund);color:white;border-color:var(--burgund)}
+.card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:27px;margin:0 0 20px;box-shadow:0 7px 24px #4b314608}.card h2{font-size:1.38rem;color:#334d5e;margin:0 0 13px;line-height:1.35}.card h3{font-size:1.04rem;margin:0 0 8px;color:#334d5e}.card p{margin:0 0 13px}.card p:last-child{margin-bottom:0}.introline{color:var(--blue);font-size:.79rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;margin-bottom:12px!important}.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.soft{padding:18px;border-radius:16px;background:#f8fbfc;border:1px solid #d5e6ec}.soft.gold{background:#fff9eb;border-color:#efdfb9}.soft p{margin:5px 0 0}.quiet{color:var(--muted);font-size:.95rem}.big{font-size:clamp(1.2rem,2vw,1.65rem);color:var(--burgund);font-weight:700;line-height:1.45}.mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:19px 0 14px}.unit-card{border:1px solid #e2d9df;border-radius:16px;padding:15px 12px;background:#fdfbfc;min-height:120px}.unit-card b{display:block;font-size:1.33rem;color:var(--burgund)}.unit-card span{font-size:.88rem;line-height:1.4;display:block;color:#645b64;margin-top:8px}.pill{display:inline-block;padding:5px 11px;border-radius:99px;background:#eee5ea;color:var(--burgund);font-weight:700;font-size:.85rem}.formula{margin:14px 0;padding:14px 18px;background:var(--gold-bg);border-radius:13px;color:#74571f;font-size:1.17rem;font-weight:700;text-align:center;overflow-wrap:anywhere}.callout{background:var(--blue-bg);border-left:4px solid #77a8bb;border-radius:13px;padding:14px 18px;margin:17px 0}.callout strong{color:var(--blue)}.true-ruler{margin:12px 0 7px;display:grid;grid-template-columns:repeat(10,minmax(0,1fr));max-width:670px;border:2px solid var(--blue);border-radius:7px;overflow:hidden;height:66px;background:#e8f2f7}.true-ruler span{border-right:1px solid #9bb8c9;display:flex;align-items:center;justify-content:center;font-size:.78rem;color:#2d6077}.true-ruler span:last-child{border:0}.true-ruler span:first-child{background:#d6e8f2}.unit-note{font-size:.87rem;color:#675b62}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.primary,.secondary,.choice{border:1px solid var(--burgund);border-radius:13px;min-height:46px;padding:10px 15px;font-weight:700}.primary{background:var(--burgund);color:white}.secondary{background:white;color:var(--burgund);border-color:#c8adbc}.primary:disabled,.secondary:disabled{opacity:.38;cursor:default}.tab-link{background:transparent;color:var(--burgund);padding:0;text-decoration:underline;border:0;font-weight:700}.path{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0}.path span{border:1px solid #cddde6;background:#f0f8fb;color:#2b5e74;padding:7px 11px;border-radius:10px;font-weight:700}.path i{font-style:normal;color:#7e6775;font-weight:700}.blue-label{color:var(--blue);font-weight:700}.note-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.note-pair>div{padding:16px;border-radius:13px;background:#f8fbfd;border:1px solid #d5e7ed}
+/* Interactive zoom */
+.tool-header{display:flex;justify-content:space-between;align-items:start;gap:15px;flex-wrap:wrap}.zoom-controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.zoom-controls button{border:1px solid #c9b3bf;background:#fff;border-radius:12px;padding:9px 13px;min-height:44px;color:var(--burgund);font-weight:700}.zoom-controls button[aria-pressed=true]{background:var(--burgund);border-color:var(--burgund);color:#fff}.zoom-board{background:#f7fbfd;border:1px solid #cddfe7;border-radius:17px;padding:21px 16px;margin:17px 0}.zoom-caption{font-weight:700;color:#356879;margin:0 0 14px!important}.zoom-strip{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));border:2px solid #326b82;border-radius:8px;overflow:hidden;max-width:850px;background:#fff}.zoom-piece{height:87px;min-width:0;border:0;border-right:1px solid #9dbac7;background:linear-gradient(180deg,#f8fcfd,#e7f1f6);display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center;color:#346679;font-weight:700;padding:5px 2px;border-radius:0}.zoom-piece:last-child{border-right:0}.zoom-piece small{font-weight:400;font-size:.73rem}.zoom-piece[aria-pressed=true]{background:#e8c9d8;color:#603248;box-shadow:inset 0 0 0 2px #9e5f7c}.zoom-explain{min-height:42px;color:#376579;margin-top:13px}.zoom-scale{font-size:.83rem;color:#675e68;margin:10px 0 0!important}.zoom-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.summary-bridge{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}.bridge{border:1px solid #e6d7df;background:#faf7f9;border-radius:13px;padding:15px;text-align:center}.bridge strong{display:block;color:var(--burgund);font-size:1.15rem}.bridge small{color:var(--muted)}
+/* Conversion laboratory */
+.form-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;margin:14px 0 17px}.field label{display:block;font-size:.89rem;color:#5b5360;font-weight:700;margin-bottom:7px}.field input,.field select,.example-picker{width:100%;min-height:49px;border:1px solid #c8c0c5;background:white;border-radius:12px;color:var(--ink);padding:10px 12px}.explain-result{margin-top:18px;border-radius:16px;background:var(--blue-bg);border:1px solid #cde0e7;padding:20px}.result-line{font-weight:700;color:var(--burgund);font-size:1.45rem;line-height:1.4;margin:14px 0}.step-line{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:11px 0}.step-line b{font-size:1rem;color:#345f75;background:white;border:1px solid #cce0e8;padding:9px 12px;border-radius:11px}.step-line span{color:#765d70;font-size:.9rem}.check-row{margin-top:11px;padding:12px 15px;background:#eef7f1;color:#285b40;border-radius:11px}
+/* Examples */
+.example-title{font-size:1.4rem;color:var(--burgund);margin:5px 0 15px}.stage-head{display:flex;align-items:center;justify-content:space-between;gap:14px;color:var(--blue);font-weight:700;font-size:.9rem}.stage{background:#f7fbfc;border:1px solid #cfdee5;border-radius:17px;padding:22px;margin:13px 0 18px;min-height:225px}.stage .big{margin-bottom:10px}.stage p{margin-bottom:12px}.stage ul{padding-left:22px}.stage li{margin:7px 0}.stage .path{margin:9px 0}.example-controls{display:flex;justify-content:space-between;gap:12px;align-items:center}.example-controls button{flex:0 0 auto}.example-controls span{font-size:.88rem;color:var(--muted);text-align:center}.tip{margin:18px 0 0;padding:12px 15px;background:#fff7e3;border-radius:11px;color:#74551d}.stage .answer{font-size:1.4rem;font-weight:700;color:#2d6749;background:#edf7ef;border-radius:12px;padding:15px 16px;margin:13px 0}
+/* Reference */
+.ref-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:15px 0}.ref-grid>div{background:#f8f6f8;border:1px solid #e5dce1;padding:14px;border-radius:14px}.ref-grid b{display:block;font-size:1.28rem;color:var(--burgund)}.ref-grid span{color:#615963;font-size:.88rem}.ref-table{width:100%;border-collapse:collapse;margin:12px 0;line-height:1.5}.ref-table th,.ref-table td{text-align:left;padding:12px 10px;border-bottom:1px solid #e6e0e4}.ref-table th{background:#f9f5f7;color:#5e3950}.danger{background:#fff7eb;border-left:4px solid #d7aa5c;border-radius:12px;padding:16px;margin-top:18px}.danger b{color:#795621}.footer{text-align:center;color:#837681;font-size:.86rem;padding:0 15px 26px}
+@media(max-width:700px){.top{padding:14px 16px}main{padding:21px 14px 38px}.card{padding:19px 15px;border-radius:18px}.tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:18px}.mini-grid,.ref-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.split,.note-pair{grid-template-columns:1fr}.summary-bridge{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr 1fr}.form-grid>.field:first-child{grid-column:1/-1}.zoom-piece{height:70px;font-size:.75rem}.zoom-piece small{font-size:.62rem}.stage{padding:16px 13px}.example-controls{flex-wrap:wrap}.example-controls span{order:3;flex-basis:100%}.example-controls button{flex:1}.result-line{font-size:1.23rem}.back{padding:7px 10px;font-size:.82rem}.brand{font-size:.94rem}}
+@media(max-width:380px){.zoom-piece small{display:none}.zoom-board{padding:15px 9px}.mini-grid{gap:7px}.unit-card{padding:10px 8px}}
+@media print{.sitehead,.tabs,.zoom-controls,.zoom-foot,.example-controls,.primary,.secondary,.footer{display:none!important}main{max-width:none;padding:0}.card{box-shadow:none;border:1px solid #ddd}.tab-panel{display:block!important}.page-title{font-size:25px}.tool-header{display:block}}
+
+/* Längen: gedanklich einen Meter in 100 Zentimeter aufteilen */
+.meter-band{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));border:2px solid #326b82;border-radius:10px;overflow:hidden;margin:17px 0 5px;background:white;min-height:88px}
+.meter-dm{min-width:0;display:flex;flex-direction:column;border-right:2px solid #326b82;background:#f9fcfd}
+.meter-dm:last-child{border-right:0}
+.meter-dm-title{text-align:center;font-size:.77rem;font-weight:700;color:#326b82;padding:6px 0;white-space:nowrap}
+.meter-cm{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));flex:1;border-top:1px solid #b6cdd9}
+.meter-cm span{border-right:1px solid #e0e7ec;background:#fff}
+.meter-cm span:last-child{border-right:0}
+.meter-cm span.filled{background:#ab6788}
+.meter-cm span.filled:nth-child(even){background:#965673}
+.meter-limits{display:flex;justify-content:space-between;font-size:.84rem;color:#5a5360}
+.meter-range{width:100%;display:block;accent-color:#783d53;min-height:46px;margin:8px 0}
+.meter-readout{font-size:clamp(1.05rem,2vw,1.43rem);color:#783d53;font-weight:700;padding:14px 16px;border:1px solid #dbc7d2;background:#fcf8fa;border-radius:14px;margin:12px 0}
+.meter-explanation{font-size:.95rem;color:#426879;line-height:1.6}
+.comma-flow{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin:13px 0}
+.comma-box{background:#fff;border:1px solid #cbdfe7;border-radius:13px;padding:13px 16px;display:flex;align-items:center;gap:7px}
+.comma-box .comma-number{font-size:clamp(1.2rem,2.6vw,1.65rem);font-weight:700;color:#326b82;font-variant-numeric:tabular-nums}
+.comma-mark{color:#b14b72!important;font-weight:900}
+.comma-box .comma-unit{font-weight:700;color:#68465a}
+.comma-arrow{align-self:center;color:#78445b;font-weight:700;padding:7px;line-height:1.3;text-align:center;font-size:.87rem}
+.comma-step{padding:14px 16px;border-radius:12px;background:#f5f9fb;color:#355b6e;line-height:1.55;margin-top:10px}
+.comma-step b{color:#783d53}
+.comma-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.comma-legend{font-size:.9rem;color:#675e68}
+.comma-math{font-weight:700;color:#783d53}
+@media(max-width:460px){.meter-band{min-height:74px}.meter-dm-title{font-size:.63rem}.comma-flow{gap:5px}.comma-box{padding:10px 8px;gap:5px}.comma-box .comma-number{font-size:1.15rem}.comma-arrow{padding:5px;font-size:.8rem}}
+
+</style>
+</head>
+<body>
+<header class="sitehead"><div class="top"><a class="brand" href="index.html">Mathe-Merkheft</a><a class="back" href="index.html">← Alle Themen</a></div></header>
+<main>
+<div class="kicker">KLASSE 6 · GRUNDLAGEN</div><h1 class="page-title">Längen verstehen und umrechnen</h1>
+<p class="subtitle">Erst sehen, wie groß Millimeter, Zentimeter, Dezimeter und Meter sind. Dann verstehen, warum beim Umrechnen andere Zahlen entstehen – obwohl die Länge gleich bleibt.</p>
+<nav class="tabs" aria-label="Bereich wählen" role="tablist">
+<button id="tab-learn" type="button" role="tab" aria-selected="true" aria-controls="pane-learn" data-tab="learn">Lernen</button>
+<button id="tab-examples" type="button" role="tab" aria-selected="false" aria-controls="pane-examples" data-tab="examples" tabindex="-1">Beispiele</button>
+<button id="tab-tool" type="button" role="tab" aria-selected="false" aria-controls="pane-tool" data-tab="tool" tabindex="-1">Bildwerkzeug</button>
+<button id="tab-reference" type="button" role="tab" aria-selected="false" aria-controls="pane-reference" data-tab="reference" tabindex="-1">Nachschlagen</button>
+</nav>
+
+<section id="pane-learn" class="tab-panel" role="tabpanel" aria-labelledby="tab-learn">
+<article class="card"><p class="introline">1 · Zuerst verstehen</p><h2>Was bedeutet eine Längeneinheit?</h2><p>Eine Länge sagt dir, <strong>wie weit etwas von einem Ende zum anderen reicht.</strong> Mit der Einheit legst du fest, in welchen Stücken du misst.</p>
+<div class="mini-grid">
+<div class="unit-card"><b>1 mm</b><span>Ein winziger Abstand zwischen zwei Millimeter-Strichen auf dem Lineal.</span></div>
+<div class="unit-card"><b>1 cm</b><span>Der Abstand von 0 bis 1 auf der Zentimeter-Skala.</span></div>
+<div class="unit-card"><b>1 dm</b><span>Ein Stück von 10 Zentimetern auf dem Lineal.</span></div>
+<div class="unit-card"><b>1 m</b><span>Die Länge eines Meterstabs – 100 Zentimeter.</span></div>
+</div>
+<div class="callout"><strong>Mit einem echten Lineal entdecken:</strong> Suche 1 cm. Zähle darin die 10 kleinen Millimeter-Abstände. Gehe dann vom Nullstrich bis zur 10: Das sind 10 cm, also 1 dm.</div>
+<div class="soft gold"><h3>Wichtig: „Dezimeter“ heißt nicht „Dezimalzahl“.</h3><p>Ein Dezimeter ist eine <strong>Längeneinheit</strong>. Das Wort „Dezi“ steht hier für ein Zehntel: <strong>1 dm ist ein Zehntel von 1 m.</strong></p></div></article>
+
+<article class="card"><p class="introline">2 · Zusammenhänge sehen</p><h2>Wie viele kleine Stücke ergeben ein großes?</h2><p>Dieser Streifen zeigt <strong>1 dm</strong>. Er besteht aus <strong>10 gleich langen Zentimeter-Stücken</strong>:</p>
+<div class="true-ruler" role="img" aria-label="Ein Dezimeter ist in zehn gleiche Zentimeterabschnitte aufgeteilt"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div><p class="unit-note">Jedes Kästchen steht für 1 cm. Alle zehn zusammen stehen für 1 dm. Die Bildschirmgröße ist nicht die echte Zentimeterlänge.</p>
+<div class="formula">1 m = 10 dm = 100 cm = 1.000 mm</div>
+<p>Die vier Angaben beschreiben <strong>dieselbe Länge</strong>. Nur die Größe der verwendeten Stücke ist verschieden.</p>
+<button type="button" class="tab-link" data-go="tool">Mit der Längen-Lupe ein Stück vergrößern →</button></article>
+
+<article class="card"><p class="introline">3 · Das wichtigste Aha</p><h2>Warum wird die Zahl manchmal größer?</h2>
+<div class="split"><div class="soft"><div class="pill">Große Stücke</div><p class="big">1 Meter</p><p>Ein einziges großes Stück reicht für die ganze Länge.</p></div><div class="soft"><div class="pill">Kleinere Stücke</div><p class="big">100 Zentimeter</p><p>Für genau dieselbe Länge brauchst du hundert kleinere Stücke.</p></div></div>
+<div class="callout"><strong>Merke:</strong> Kleinere Einheit → mehr Stücke → größere Zahl. Größere Einheit → weniger Stücke → kleinere Zahl. <strong>Die Länge selbst ändert sich nicht!</strong></div>
+<p>Erst wenn du das verstanden hast, ist Umrechnen sinnvoll. <button class="tab-link" type="button" data-go="examples">Jetzt einen Rechenweg ansehen →</button></p></article>
+
+<article class="card" id="meter-lesson"><p class="introline">4 · Ein Meter bleibt ein Meter</p><h2>Wie viel ist 90 Zentimeter von einem Meter?</h2>
+<p>Denke an ein <strong>Meterband mit 100 Zentimetern</strong>. Die zehn größeren Felder stehen für je 1 dm. In jedem Feld stecken zehn kleine Zentimeter.</p>
+<div class="meter-band" id="meter-band" role="img" aria-label="Ein Meterband aus zehn Dezimetern mit jeweils zehn Zentimeterabschnitten"></div>
+<div class="meter-limits"><span>0 cm</span><span>100 cm = 1 m</span></div>
+<label for="meter-range" class="blue-label">Wie viele Zentimeter markierst du? <output id="meter-value" for="meter-range">90 cm</output></label>
+<input type="range" min="0" max="100" step="1" value="90" id="meter-range" class="meter-range" aria-label="Markierte Länge in Zentimetern">
+<div class="meter-readout" id="meter-result" aria-live="polite"></div>
+<p class="meter-explanation" id="meter-explanation"></p>
+<div class="callout"><strong>Das ist die entscheidende Idee:</strong> 90 cm sind weniger als ein ganzer Meter. Darum muss die Angabe in Metern <strong>kleiner als 1</strong> sein. Die Länge bleibt trotzdem genau gleich.</div>
+</article>
+<article class="card" id="comma-lesson"><p class="introline">5 · Erst jetzt das Komma</p><h2>Warum werden aus 90 cm genau 0,9 m?</h2>
+<p>Wir gehen nicht mit einem Sprung von cm nach m. Dazwischen liegt noch <strong>dm</strong>. Jeder Schritt zu einer größeren Einheit bedeutet: <strong>durch 10 teilen</strong>.</p>
+<div id="comma-stage" aria-live="polite"></div>
+<div class="comma-actions"><button type="button" id="comma-back" class="secondary">← Vorheriger Schritt</button><button type="button" id="comma-next" class="primary">Nächsten Schritt aufdecken →</button></div>
+<p class="comma-legend">Der rote Kommastrich hilft beim Sehen. Er ersetzt nicht das Verstehen, warum wir durch 10 teilen.</p>
+</article>
+
+</section>
+
+<section id="pane-examples" class="tab-panel" role="tabpanel" aria-labelledby="tab-examples" hidden>
+<article class="card"><p class="introline">Beispiele · Schrittweise erklärt</p><h2>Den Rechenweg selbst nachvollziehen</h2><p>Die Lösung bleibt verborgen, bis du die Richtung und die Schritte gesehen hast. Das ist ein Musterweg, kein Test.</p>
+<label for="example-select" style="display:block;font-weight:700;margin-bottom:7px">Wähle ein Beispiel</label><select class="example-picker" id="example-select"></select>
+<div class="stage-head" style="margin-top:22px"><span id="example-phase-name"></span><span id="example-phase-count"></span></div>
+<div class="stage" id="example-stage" aria-live="polite"></div>
+<div class="example-controls"><button type="button" id="example-prev" class="secondary">← Zurück</button><span>Ein Schritt nach dem anderen</span><button type="button" id="example-next" class="primary">Weiter →</button></div>
+</article></section>
+
+<section id="pane-tool" class="tab-panel" role="tabpanel" aria-labelledby="tab-tool" hidden>
+<article class="card"><p class="introline">Bildwerkzeug · Längen-Lupe</p><div class="tool-header"><div><h2>Eine Länge auseinandernehmen</h2><p>Gehe von einem großen Stück zu immer kleineren Stücken. Klicke auf einen Abschnitt, um hineinzuzoomen.</p></div><span class="pill">Kein Test – selbst entdecken</span></div>
+<div class="zoom-controls" role="group" aria-label="Vergrößerung wählen"><button type="button" data-zoom="0" aria-pressed="true">1 m ansehen</button><button type="button" data-zoom="1" aria-pressed="false">1 dm ansehen</button><button type="button" data-zoom="2" aria-pressed="false">1 cm ansehen</button></div>
+<div class="zoom-board"><p id="zoom-caption" class="zoom-caption"></p><div id="zoom-strip" class="zoom-strip" role="group" aria-label="Zehn gleich lange Teilstücke"></div><div id="zoom-explain" class="zoom-explain" aria-live="polite"></div><p class="zoom-scale">Achtung: Das ist eine Vergrößerungsansicht. Sie zeigt die richtigen Verhältnisse, aber keine echten Zentimeter auf dem Bildschirm.</p></div>
+<div class="zoom-foot"><button class="secondary" type="button" id="zoom-back">← Größeres Stück ansehen</button><button class="primary" type="button" id="zoom-deeper">Ein Teil vergrößern →</button></div>
+<div class="summary-bridge"><div class="bridge"><strong>10 mm = 1 cm</strong><small>10 kleine Millimeter</small></div><div class="bridge"><strong>10 cm = 1 dm</strong><small>10 Zentimeter</small></div><div class="bridge"><strong>10 dm = 1 m</strong><small>10 Dezimeter</small></div></div>
+</article>
+<article class="card"><p class="introline">Bildwerkzeug · Umrechnungs-Labor</p><h2>Verändere die Einheit – nicht die Länge</h2><p>Gib eine Länge ein. Überlege zuerst, ob die Ziel-Einheit kleiner oder größer ist. Danach zeigt dir das Werkzeug jeden Umrechnungsschritt.</p>
+<div class="form-grid"><div class="field"><label for="amount">Gegebene Zahl</label><input id="amount" type="text" inputmode="decimal" autocomplete="off" value="90" placeholder="z. B. 0,9"></div><div class="field"><label for="from">Von</label><select id="from"><option value="m">Meter (m)</option><option value="dm">Dezimeter (dm)</option><option value="cm" selected>Zentimeter (cm)</option><option value="mm">Millimeter (mm)</option></select></div><div class="field"><label for="to">In</label><select id="to"><option value="m" selected>Meter (m)</option><option value="dm">Dezimeter (dm)</option><option value="cm">Zentimeter (cm)</option><option value="mm">Millimeter (mm)</option></select></div></div>
+<div class="soft gold" id="prediction" aria-live="polite"></div><div class="row" style="margin-top:16px"><button class="primary" type="button" id="convert">Rechenweg zeigen</button><button class="secondary" type="button" id="convert-reset">Beispiel zurücksetzen</button></div>
+<div id="conversion-result" class="explain-result" hidden aria-live="polite"></div></article>
+</section>
+
+<section id="pane-reference" class="tab-panel" role="tabpanel" aria-labelledby="tab-reference" hidden>
+<article class="card"><p class="introline">Nachschlagen · Spickzettel</p><h2>Die vier Längeneinheiten</h2><div class="ref-grid"><div><b>m</b><span>Meter – groß</span></div><div><b>dm</b><span>Dezimeter</span></div><div><b>cm</b><span>Zentimeter</span></div><div><b>mm</b><span>Millimeter – klein</span></div></div>
+<p class="big">m → dm → cm → mm</p><p>Jeder Schritt nach rechts bedeutet: Die Einheit wird zehnmal kleiner. Für dieselbe Länge brauchst du deshalb zehnmal mehr Stücke.</p>
+<table class="ref-table"><thead><tr><th>Eine Einheit</th><th>entspricht</th></tr></thead><tbody><tr><td>1 m</td><td>10 dm = 100 cm = 1.000 mm</td></tr><tr><td>1 dm</td><td>10 cm = 100 mm</td></tr><tr><td>1 cm</td><td>10 mm</td></tr></tbody></table>
+<div class="formula">Nach rechts: × 10 je Schritt &nbsp; · &nbsp; Nach links: ÷ 10 je Schritt</div>
+<p class="quiet">Beispiel: 2 m → dm → cm. Das sind zwei Schritte nach rechts: 2 × 10 × 10 = 200 cm.</p></article>
+<article class="card"><h2>Typische Denkfallen</h2>
+<div class="danger"><b>„Eine größere Einheit bedeutet immer eine größere Zahl.“ – Falsch.</b><p>1 m und 100 cm sind gleich lang. Bei kleineren Einheiten wird die Zahl größer, nicht die Länge.</p></div>
+<div class="danger"><b>„Von Meter nach Zentimeter ist nur ein Zehnerschritt.“ – Falsch.</b><p>Von m nach dm ist ein Schritt (× 10). Von dm nach cm ist noch ein Schritt (× 10). Zusammen: × 100.</p></div>
+<div class="danger"><b>„Ich verschiebe einfach das Komma.“ – Zu früh.</b><p>Überlege zuerst: Wird die Einheit kleiner oder größer? Wie viele Zehnerschritte liegen dazwischen? Erst danach rechnest du.</p></div>
+<div class="callout"><strong>Kontrolle:</strong> Stell dir vor, du legst einen Meterstab hin. Ob du 1 m oder 100 cm sagst: Beide Angaben reichen von Anfang bis Ende desselben Stabs.</div></article>
+</section>
+</main><footer class="footer">Mathe-Merkheft · Klasse 6 · Grundlagen · Längen verstehen</footer>
+<script>
+(()=>{'use strict';
+const $=q=>document.querySelector(q), $$=q=>Array.from(document.querySelectorAll(q));
+const unitNames={m:'Meter',dm:'Dezimeter',cm:'Zentimeter',mm:'Millimeter'};
+const units=['m','dm','cm','mm'], mmValues={m:1000,dm:100,cm:10,mm:1};
+const fmt=n=>new Intl.NumberFormat('de-DE',{maximumFractionDigits:6}).format(Math.abs(n)<1e-10?0:n);
+function showTab(name,focus=false){$$('[data-tab]').forEach(b=>{const on=b.dataset.tab===name;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;});$$('.tab-panel').forEach(el=>el.hidden=el.id!=='pane-'+name);if(focus)$('#tab-'+name).focus();}
+$$('[data-tab]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+$$('[data-go]').forEach(b=>b.addEventListener('click',()=>{showTab(b.dataset.go,true);window.scrollTo({top:0,behavior:'smooth'});}));
+$('.tabs').addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;const tabs=$$('[data-tab]');let i=tabs.findIndex(x=>x.getAttribute('aria-selected')==='true');if(e.key==='Home')i=0;else if(e.key==='End')i=tabs.length-1;else i=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;e.preventDefault();showTab(tabs[i].dataset.tab,true);});
+// Längen-Lupe: Jede Ansicht zeigt genau zehn gleiche Teilstücke. Die Zoom-Ebenen sind bewusst keine physische Bildschirmskala.
+let zoom=0,selectedPiece=0;
+const zoomText=[['1 m','dm','Dezimeter'],['1 dm','cm','Zentimeter'],['1 cm','mm','Millimeter']];
+function drawZoom(){const [big,small,long]=zoomText[zoom];$('#zoom-caption').textContent=big+' besteht aus 10 gleichen '+long+'-Stücken.';
+$('#zoom-strip').innerHTML=Array.from({length:10},(_,i)=>'<button type="button" class="zoom-piece" data-piece="'+i+'" aria-label="Stück '+(i+1)+' von 10: 1 '+small+'" aria-pressed="'+(selectedPiece===i)+'"><small>1</small>'+small+'</button>').join('');
+$('#zoom-explain').innerHTML='<strong>Du siehst '+big+'.</strong> Das markierte Stück ist genau 1 '+small+'. '+(zoom<2?'Tippe auf ein Teilstück, um eine Ebene tiefer zu schauen.':'Jetzt ist der Abstand von 1 Millimeter erreicht.');
+$$('[data-zoom]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.zoom)===zoom)));
+$('#zoom-back').disabled=zoom===0;$('#zoom-deeper').disabled=zoom===2;
+$('#zoom-strip').querySelectorAll('[data-piece]').forEach(b=>b.addEventListener('click',()=>{selectedPiece=Number(b.dataset.piece);if(zoom<2){zoom++;selectedPiece=0;}drawZoom();}));}
+$$('[data-zoom]').forEach(b=>b.addEventListener('click',()=>{zoom=Number(b.dataset.zoom);selectedPiece=0;drawZoom();}));
+$('#zoom-back').addEventListener('click',()=>{zoom=Math.max(0,zoom-1);selectedPiece=0;drawZoom()});
+$('#zoom-deeper').addEventListener('click',()=>{zoom=Math.min(2,zoom+1);selectedPiece=0;drawZoom()});drawZoom();
+// Interaktives Umrechnen mit einer sichtbaren Zehnerschritt-Kette.
+function updatePrediction(){
+$('#prediction').innerHTML='<h3>Erst überlegen: Was passiert mit der Zahl?</h3><p>Du wandelst von <b>'+$('#from').value+'</b> in <b>'+$('#to').value+'</b> um. Die Länge bleibt gleich. Wird die Zahl größer, kleiner oder bleibt sie gleich?</p><div class="row"><button type="button" class="secondary" data-predict="up">Größer</button><button type="button" class="secondary" data-predict="down">Kleiner</button><button type="button" class="secondary" data-predict="same">Gleich</button></div><p class="quiet" id="prediction-feedback" role="status" style="margin-top:12px">Wähle deine Vermutung. Danach kannst du den Rechenweg ansehen.</p>';
+$('#convert').disabled=true;
+$('#conversion-result').hidden=true;
+}
+$('#prediction').addEventListener('click',e=>{
+const button=e.target.closest('[data-predict]');if(!button)return;
+const from=$('#from').value,to=$('#to').value,i=units.indexOf(from),j=units.indexOf(to),correct=i===j?'same':i<j?'up':'down';
+$$('[data-predict]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+const ok=button.dataset.predict===correct;
+const explanation=i===j?'Die Einheit ist dieselbe. Deshalb bleibt auch die Zahl gleich.':i<j?'Die Ziel-Einheit '+unitNames[to]+' ist kleiner. Für dieselbe Länge brauchst du mehr Stücke, also eine größere Zahl.':'Die Ziel-Einheit '+unitNames[to]+' ist größer. Du bündelst kleine Stücke und brauchst weniger davon, also eine kleinere Zahl.';
+$('#prediction-feedback').textContent=(ok?'Das passt. ':'Noch nicht. Überlege noch einmal. ')+(ok?explanation:'Frage dich: Brauche ich von kleineren Stücken mehr oder weniger?');
+$('#convert').disabled=!ok;
+});
+['from','to','amount'].forEach(id=>$('#'+id).addEventListener('input',()=>{if(id!=='amount')updatePrediction();else $('#conversion-result').hidden=true;}));
+function conversionHTML(amount,from,to){const i=units.indexOf(from),j=units.indexOf(to);let a=amount;const parts=[commaBadge(a,from)];const op=i<j?'× 10':'÷ 10';const sign=i<j?1:-1;
+for(let k=i;k!==j;k+=sign){a=i<j?a*10:a/10;a=Math.round(a*1e9)/1e9;parts.push('<span>'+op+'</span>'+commaBadge(a,units[k+sign]));}
+const explanation=i===j?'Du verwendest bereits dieselbe Einheit. Deshalb ändert sich die Zahl nicht.':(i<j?'Jeder Schritt zu einer kleineren Einheit macht aus einem Stück zehn kleinere Stücke. Deshalb multiplizierst du pro Schritt mit 10.':'Je zehn kleine Stücke werden zu einem größeren Stück zusammengefasst. Deshalb teilst du pro Schritt durch 10.');
+return '<h3>So entsteht das Ergebnis</h3><div class="step-line">'+parts.join('')+'</div><p>'+explanation+' Das rot markierte Komma wandert bei jedem Zehnerschritt um eine Stelle: bei ÷ 10 nach links, bei × 10 nach rechts. Falls eine Stelle fehlt, ergänzen wir eine Null.</p><div class="result-line">'+fmt(amount)+' '+from+' = '+fmt(a)+' '+to+'</div><div class="check-row">Kontrolle: '+fmt(amount*mmValues[from])+' mm = '+fmt(a*mmValues[to])+' mm. Es ist dieselbe Länge.</div>';}
+$('#convert').addEventListener('click',()=>{const raw=$('#amount').value.trim();const valid=/^\d+(?:[.,]\d{1,3})?$/.test(raw);const amount=valid?Number(raw.replace(',','.')):NaN;if(!Number.isFinite(amount)||amount<0||amount>100000){$('#conversion-result').hidden=false;$('#conversion-result').textContent='Gib eine Zahl zwischen 0 und 100.000 ein. Bis zu drei Stellen nach dem Komma sind möglich, zum Beispiel 0,9.';return;}const result=$('#conversion-result');result.innerHTML=conversionHTML(amount,$('#from').value,$('#to').value);result.hidden=false;});
+$('#convert-reset').addEventListener('click',()=>{$('#amount').value='90';$('#from').value='cm';$('#to').value='m';updatePrediction();});updatePrediction();
+// Beispiele ohne Quiz und ohne vorgezogene Auflösung. Jede Phase wird erst durch Weiter sichtbar.
+const examples=[
+{title:'90 cm in m',a:90,from:'cm',to:'m',question:'Wie viele Meter sind 90 Zentimeter?'},
+{title:'100 cm in m',a:100,from:'cm',to:'m',question:'Wie viele Meter sind 100 Zentimeter?'},
+{title:'125 cm in m',a:125,from:'cm',to:'m',question:'Wie viele Meter sind 125 Zentimeter?'},
+{title:'2 dm in cm',a:2,from:'dm',to:'cm',question:'Wie viele Zentimeter stecken in 2 Dezimetern?'},
+{title:'35 cm in dm',a:35,from:'cm',to:'dm',question:'Wie viele Dezimeter sind 35 Zentimeter?'},
+{title:'1,4 m in cm',a:1.4,from:'m',to:'cm',question:'Wie viele Zentimeter hat eine Länge von 1,4 Metern?'},
+{title:'80 mm in cm',a:80,from:'mm',to:'cm',question:'Wie viele Zentimeter stecken in 80 Millimetern?'},
+{title:'1,25 m in mm',a:1.25,from:'m',to:'mm',question:'Wie viele Millimeter hat eine Länge von 1,25 Metern?'}
+];let exIndex=0,exPhase=0;
+examples.forEach((x,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=x.title;$('#example-select').append(opt);});
+$('#example-select').addEventListener('change',e=>{exIndex=Number(e.target.value);exPhase=0;drawExample()});
+const phaseTitles=['Aufgabe verstehen','Richtung erkennen','Zehnerschritte finden','Rechenweg zeigen','Ergebnis prüfen'];
+function examplePath(x){const i=units.indexOf(x.from),j=units.indexOf(x.to),d=Math.sign(j-i);return d===0?[x.from]:Array.from({length:Math.abs(j-i)+1},(_,k)=>units[i+k*d]);}
+function drawExample(){const x=examples[exIndex],path=examplePath(x),smaller=units.indexOf(x.to)>units.indexOf(x.from),equals=units.indexOf(x.to)===units.indexOf(x.from),out=x.a*mmValues[x.from]/mmValues[x.to];$('#example-select').value=exIndex;$('#example-phase-name').textContent=phaseTitles[exPhase];$('#example-phase-count').textContent='Schritt '+(exPhase+1)+' von 5';let html='';
+if(exPhase===0)html='<h3>Aufgabe</h3><p class="big">'+x.question+'</p><p>Gegeben: <b>'+fmt(x.a)+' '+x.from+'</b>. Gesucht: <b>? '+x.to+'</b>.</p><div class="tip">Noch nicht rechnen: Ist '+x.to+' eine größere oder eine kleinere Einheit als '+x.from+'?</div>';
+if(exPhase===1)html='<h3>Die Richtung</h3><p class="big">'+x.from+' → '+x.to+'</p><p>'+(equals?'Es ist dieselbe Einheit. Die Zahl bleibt gleich.':smaller?'Die Ziel-Einheit ist kleiner. Ich brauche mehr kleine Stücke für dieselbe Länge. Die Zahl wird größer.':'Die Ziel-Einheit ist größer. Ich fasse kleine Stücke zusammen. Die Zahl wird kleiner.')+'</p><p>Denke dir ein Lineal: Die Strecke bleibt liegen. Nur die Stückgröße ändert sich.</p>';
+if(exPhase===2)html='<h3>Über diese Einheiten gehe ich</h3><div class="path">'+path.map((u,k)=>(k?'<i>→</i>':'')+'<span>'+u+'</span>').join('')+'</div><p>Das sind <b>'+(path.length-1)+' Zehnerschritt'+(path.length===2?'':'e')+'</b>.</p><p>'+(equals?'Es ist keine Umrechnung nötig.':'Bei jedem einzelnen Schritt rechne ich '+(smaller?'mal 10':'geteilt durch 10')+'.')+'</p><div class="tip">Überlege: Welche Rechenoperation brauchst du '+(path.length-1)+'-mal?</div>';
+if(exPhase===3){const i=units.indexOf(x.from),j=units.indexOf(x.to),dir=Math.sign(j-i);let a=x.a;const rows=['<span>'+fmt(a)+' '+x.from+'</span>'];for(let k=i;k!==j;k+=dir){a=dir>0?a*10:a/10;rows.push('<i>→ '+(dir>0?'× 10':'÷ 10')+' →</i><span>'+fmt(a)+' '+units[k+dir]+'</span>');}html='<h3>So rechne ich</h3><div class="path">'+rows.join('')+'</div><div class="answer">'+fmt(x.a)+' '+x.from+' = '+fmt(out)+' '+x.to+'</div>';}
+if(exPhase===4)html='<h3>Ist die Länge wirklich gleich geblieben?</h3><p>Wir rechnen beide Angaben in Millimeter um:</p><div class="split"><div class="soft"><h3>Vorher</h3><p class="big">'+fmt(x.a)+' '+x.from+'</p><p>= '+fmt(x.a*mmValues[x.from])+' mm</p></div><div class="soft"><h3>Nachher</h3><p class="big">'+fmt(out)+' '+x.to+'</p><p>= '+fmt(out*mmValues[x.to])+' mm</p></div></div><div class="check-row">Beide Angaben ergeben dieselbe Anzahl Millimeter. Das Ergebnis passt.</div>';
+$('#example-stage').innerHTML=html;$('#example-prev').disabled=exPhase===0;$('#example-next').disabled=exPhase===4;$('#example-next').textContent=exPhase===3?'Zur Kontrolle →':'Weiter →';}
+$('#example-prev').addEventListener('click',()=>{exPhase=Math.max(0,exPhase-1);drawExample()});$('#example-next').addEventListener('click',()=>{exPhase=Math.min(4,exPhase+1);drawExample()});drawExample();
+// Für die Komma-Anzeige: ohne Vorwegnahme der Antwort sichtbar machen, wie Stellen rücken.
+function commaBadge(value,unit){
+ const s=fmt(value), parts=s.split(',');
+ return '<span class="comma-box"><span class="comma-number">'+parts[0]+'<span class="comma-mark">,</span>'+(parts[1]||'0')+'</span><span class="comma-unit">'+unit+'</span></span>';
+}
+// Der Meterstreifen zeigt 100 Zentimeter als 10 Gruppen zu je 10 Zentimetern.
+const meter=$('#meter-band');
+for(let d=0;d<10;d++){
+ const block=document.createElement('div');block.className='meter-dm';
+ const heading=document.createElement('span');heading.className='meter-dm-title';heading.textContent=(d+1)+'. dm';
+ const ticks=document.createElement('div');ticks.className='meter-cm';
+ for(let c=0;c<10;c++){const tick=document.createElement('span');tick.dataset.cm=String(d*10+c);ticks.append(tick);}
+ block.append(heading,ticks);meter.append(block);
+}
+function updateMeter(){
+ const n=Number($('#meter-range').value);
+ meter.querySelectorAll('[data-cm]').forEach(cell=>cell.classList.toggle('filled',Number(cell.dataset.cm)<n));
+ $('#meter-value').textContent=n+' cm';
+ $('#meter-result').textContent=n+' cm = '+fmt(n/10)+' dm = '+fmt(n/100)+' m';
+ $('#meter-explanation').textContent=n===100?'100 von 100 Zentimetern sind markiert. Das ist 1 ganzer Meter.':n===0?'Es sind 0 von 100 Zentimetern markiert. Die Länge ist 0.':'Von den 100 Zentimetern eines Meters sind '+n+' markiert. '+n+' : 100 = '+fmt(n/100)+'. So groß ist der Anteil an einem Meter.';
+}
+$('#meter-range').addEventListener('input',updateMeter);updateMeter();
+// Lernweg: Von 90 cm über 9 dm zu 0,9 m. Die letzte Form ist bis zum 3. Schritt verborgen.
+let commaPhase=0;
+function renderComma(){
+ const rows=[commaBadge(90,'cm')];
+ if(commaPhase>=1)rows.push('<span class="comma-arrow">÷ 10<br>→</span>'+commaBadge(9,'dm'));
+ if(commaPhase>=2)rows.push('<span class="comma-arrow">÷ 10<br>→</span>'+commaBadge(0.9,'m'));
+ let msg;
+ if(commaPhase===0) msg='<b>Start:</b> 90 cm liegen auf dem Meterband noch vor der 100. In Metern muss also weniger als 1 herauskommen. Zwischen cm und m liegt dm. Was geschieht bei einem Schritt in die größere Einheit?';
+ else if(commaPhase===1) msg='<b>Schritt 1 – cm zu dm:</b> 10 cm ergeben 1 dm. Wir bündeln also 90 einzelne Zentimeter zu 9 Zehnergruppen: <span class="comma-math">90 : 10 = 9</span>. Das Komma rückt von 90,0 eine Stelle nach links zu 9,0.';
+ else msg='<b>Schritt 2 – dm zu m:</b> 10 dm ergeben 1 m. 9 dm sind deshalb <span class="comma-math">9 : 10 = 0,9 m</span>. Das Komma rückt noch einmal nach links. <b>90 cm = 0,9 m</b>. Das sind keine zwei Längen, sondern zwei Namen für dieselbe Strecke.';
+ $('#comma-stage').innerHTML='<div class="comma-flow">'+rows.join('')+'</div><div class="comma-step">'+msg+'</div>';
+ $('#comma-back').disabled=commaPhase===0;$('#comma-next').disabled=commaPhase===2;
+ $('#comma-next').textContent=commaPhase===1?'Ergebnis aufdecken →':'Nächsten Schritt aufdecken →';
+}
+$('#comma-back').addEventListener('click',()=>{commaPhase=Math.max(0,commaPhase-1);renderComma();});
+$('#comma-next').addEventListener('click',()=>{commaPhase=Math.min(2,commaPhase+1);renderComma();});
+renderComma();
+
+})();
+</script>
+</body></html>
