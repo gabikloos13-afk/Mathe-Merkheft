@@ -27580,7 +27580,7 @@ window.MERKHEFT_COURSES = {
   },
   "dezimalvergleich": {
     "title": "Kommazahlen vergleichen",
-    "goal": "Vergleiche Kommazahlen und Brüche nach ihrem Stellenwert, ordne sie und finde Zahlen dazwischen.",
+    "goal": "Verstehe zuerst die Vergleichsregeln. Wende sie Schritt für Schritt an. Übertrage den Weg dann auf deinen Aufgabentyp.",
     "lessons": [
       {
         "id": 2,
@@ -27603,20 +27603,20 @@ window.MERKHEFT_COURSES = {
       [
         2,
         1,
-        7
-      ],
-      [
+        3,
         4,
-        5,
-        6,
         8
       ],
       [
-        3,
+        5,
+        12,
+        6,
+        7
+      ],
+      [
         9,
         10,
         11,
-        12,
         13
       ]
     ],
@@ -27660,95 +27660,216 @@ window.MERKHEFT_COURSES = {
     "cases": {
       "1": {
         "id": 1,
-        "title": "Ziffer für Ziffer vergleichen",
+        "title": "Positive Dezimalzahlen vergleichen",
         "question": [
-          "Vergleiche 0,43 und 0,418.",
-          "Setze das passende Zeichen ein: <, > oder =."
+          "0,45 ? 0,4455"
         ],
         "givenPairs": [],
         "steps": [
           {
-            "html": "0,430 &gt; 0,418",
-            "text": "0,430 > 0,418",
-            "label": "",
-            "pairs": [],
-            "plain": "0,430 > 0,418",
-            "tokens": [
-              "0,430",
-              "0,418"
-            ],
-            "operation": "",
+            "title": "1 · Die Zeichen lesen",
+            "label": "1 · Die Zeichen lesen",
+            "html": "<span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span>",
+            "plain": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
+            "text": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
             "explain": [
-              "Hänge an 0,43 eine Null an. Der Wert bleibt gleich.",
-              "Vergleiche 0,430 und 0,418 von links: Bei den Hundertsteln ist 3 größer als 1."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
             "hint": [
-              "Ergänze eine Endnull. Vergleiche dann von links die Stellen mit gleichem Wert."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
-            "ask": "Welche Stelle ist beim Vergleich von links die erste unterschiedliche?",
+            "ask": "Was bedeuten die drei Vergleichszeichen?",
             "counterexample": {
-              "claim": "Die letzten Ziffern drei und acht unabhängig von ihrer Stelle vergleichen",
-              "reason": "Drei Hundertstel müssen mit einem Hundertstel verglichen werden. Gleiche Stellen zählen zusammen."
+              "claim": "Nur die Form des Zeichens auswendig lernen, ohne den Satz von links nach rechts zu lesen.",
+              "reason": "Die passende Begründung: Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren. < bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Die Zeichen lesen</b><div class=\"basis-equation\">2 &lt; 5 &nbsp; · &nbsp; 5 &gt; 2 &nbsp; · &nbsp; 5 = 5</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:1:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
           },
           {
-            "html": "Also: 0,43 &gt; 0,418",
-            "text": "Also: 0,43 > 0,418",
-            "label": "",
-            "pairs": [],
-            "plain": "Also: 0,43 > 0,418",
-            "tokens": [
-              "0,43",
-              "0,418"
-            ],
-            "operation": "",
+            "title": "2 · Vorzeichen zuerst",
+            "label": "2 · Vorzeichen zuerst",
+            "html": "<span>Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.</span>",
+            "plain": "Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.",
+            "text": "Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.",
             "explain": [
-              "Die angehängte Null hat nichts am Wert geändert.",
-              "Deshalb ist auch 0,43 größer als 0,418."
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
             ],
             "hint": [
-              "Die ergänzte Endnull hat die erste Zahl nicht verändert."
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
             ],
-            "ask": "Was folgt für 0,43, wenn 0,430 größer als 0,418 ist?",
+            "ask": "Steht ein Minus vor einer Zahl?",
             "counterexample": {
-              "claim": "Die angehängte Null mache erst den größeren Wert",
-              "reason": "Die Endnull hat den Wert nicht verändert. Das Vergleichszeichen gilt auch vorher."
+              "claim": "Ein Minus übersehen oder bei zwei negativen Zahlen die gewöhnliche positive Reihenfolge übernehmen.",
+              "reason": "Die passende Begründung: Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl. Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vorzeichen zuerst</b><div class=\"basis-equation\">0,45 &nbsp; ? &nbsp; 0,4455</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:1:2",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 1
+          },
+          {
+            "title": "3 · Jede Ziffer hat einen Platz",
+            "label": "3 · Jede Ziffer hat einen Platz",
+            "html": "<span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span>",
+            "plain": "Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.",
+            "text": "Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.",
+            "explain": [
+              "Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel."
+            ],
+            "hint": [
+              "Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel."
+            ],
+            "ask": "Wie machst du die Stellen gut vergleichbar?",
+            "counterexample": {
+              "claim": "0,45 mit 0,445 nur nach der Anzahl der Ziffern vergleichen.",
+              "reason": "Die passende Begründung: Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel. Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th></tr></thead><tbody><tr><th>links: Abstand</th><td>+</td><td class=\"basis-comma \">0</td><td>4</td><td>5</td><td>0</td><td>0</td></tr><tr><th>rechts: Abstand</th><td>+</td><td class=\"basis-comma \">0</td><td>4</td><td>4</td><td>5</td><td>5</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:1:3",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 2
+          },
+          {
+            "title": "4 · Von links nach rechts",
+            "label": "4 · Von links nach rechts",
+            "html": "<span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span>",
+            "plain": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "text": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "explain": [
+              "Links steht 0, rechts 0."
+            ],
+            "hint": [
+              "Links steht 0, rechts 0."
+            ],
+            "ask": "Was zeigen die Einer?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 0, rechts 0. Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"basis-focus\">0,</i><i class=\"\">4</i><i class=\"\">5</i><i class=\"\">0</i><i class=\"\">0</i></span><span><i class=\"basis-focus\">0,</i><i class=\"\">4</i><i class=\"\">4</i><i class=\"\">5</i><i class=\"\">5</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:1:4",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 3
+          },
+          {
+            "title": "5 · Von links nach rechts",
+            "label": "5 · Von links nach rechts",
+            "html": "<span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span>",
+            "plain": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "text": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "explain": [
+              "Links steht 4, rechts 4."
+            ],
+            "hint": [
+              "Links steht 4, rechts 4."
+            ],
+            "ask": "Was zeigen die Zehntel?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 4, rechts 4. Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"\">0,</i><i class=\"basis-focus\">4</i><i class=\"\">5</i><i class=\"\">0</i><i class=\"\">0</i></span><span><i class=\"\">0,</i><i class=\"basis-focus\">4</i><i class=\"\">4</i><i class=\"\">5</i><i class=\"\">5</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:1:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Von links nach rechts",
+            "label": "6 · Von links nach rechts",
+            "html": "<span>Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.</span>",
+            "plain": "Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.",
+            "text": "Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.",
+            "explain": [
+              "Links steht 5, rechts 4."
+            ],
+            "hint": [
+              "Links steht 5, rechts 4."
+            ],
+            "ask": "Was zeigen die Hundertstel?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 5, rechts 4. Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"\">0,</i><i class=\"\">4</i><i class=\"basis-focus\">5</i><i class=\"\">0</i><i class=\"\">0</i></span><span><i class=\"\">0,</i><i class=\"\">4</i><i class=\"basis-focus\">4</i><i class=\"\">5</i><i class=\"\">5</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:1:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
+          },
+          {
+            "title": "7 · Weiter rechts bedeutet größer",
+            "label": "7 · Weiter rechts bedeutet größer",
+            "html": "<span>0,45 &gt; 0,4455.</span>",
+            "plain": "0,45 > 0,4455.",
+            "text": "0,45 > 0,4455.",
+            "explain": [
+              "Auf dem Zahlenstrahl ist die Zahl weiter rechts größer."
+            ],
+            "hint": [
+              "Auf dem Zahlenstrahl ist die Zahl weiter rechts größer."
+            ],
+            "ask": "Welche Zahl liegt weiter rechts?",
+            "counterexample": {
+              "claim": "−0,70 für größer als −0,65 halten, weil 70 größer als 65 ist.",
+              "reason": "Die passende Begründung: Auf dem Zahlenstrahl ist die Zahl weiter rechts größer. 0,45 > 0,4455."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Weiter rechts bedeutet größer</b><svg viewBox=\"0 0 600 110\" role=\"img\" aria-label=\"0,45 und 0,4455 am Zahlenstrahl. Vergrößerter Ausschnitt zwischen den beiden Zahlen. Die Null liegt links außerhalb.\"><path d=\"M20 65H580m-8 -5 8 5-8 5\" stroke=\"currentColor\" fill=\"none\"/><circle cx=\"510\" cy=\"65\" r=\"6\" fill=\"#783d53\"/><text x=\"510\" y=\"24\" text-anchor=\"middle\">0,45</text><circle cx=\"90\" cy=\"65\" r=\"6\" fill=\"#326b82\"/><text x=\"90\" y=\"45\" text-anchor=\"middle\">0,4455</text></svg><p>Vergrößerter Ausschnitt zwischen den beiden Zahlen. Die Null liegt links außerhalb.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:1:7",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 6
+          },
+          {
+            "title": "8 · Das passende Zeichen",
+            "label": "8 · Das passende Zeichen",
+            "html": "<span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span>",
+            "plain": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "text": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "explain": [
+              "0,45 ist größer als 0,4455."
+            ],
+            "hint": [
+              "0,45 ist größer als 0,4455."
+            ],
+            "ask": "Wie liest du dein Ergebnis als Satz?",
+            "counterexample": {
+              "claim": "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben.",
+              "reason": "Die passende Begründung: 0,45 ist größer als 0,4455. Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Das passende Zeichen</b><div class=\"basis-equation\">0,45 &gt; 0,4455</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:1:8",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 7
           }
         ],
         "answer": [
-          "0,43 ist größer als 0,418.",
-          "Das passende Zeichen ist >."
+          "0,45 &gt; 0,4455"
         ],
         "hint": [
           "Vergleiche Stellen von links nach rechts."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du hältst die Zahl mit mehr Ziffern nach dem Komma für größer.",
-          "<b>Richtig:</b> Schreibe 0,43 als 0,430.",
-          "Vergleiche nun die gleichen Stellen von links nach rechts."
+          "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "3 Hundertstel sind mehr als 1 Hundertstel; die Tausendstel entscheiden nicht mehr."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "Vergleiche 0,43 und 0,418. Setze das passende Zeichen ein: <, > oder =.",
+        "questionPlain": "0,45 ? 0,4455",
         "givenTokens": [
-          "0,43",
-          "0,418"
+          "0,45 ? 0,4455"
         ],
-        "intro": [
-          "Vergleiche die Ziffern von links nach rechts.",
-          "Endnullen helfen, gleich viele Stellen zu sehen."
-        ],
-        "recognize": "Vergleiche Stellen mit demselben Wert: Zehntel mit Zehnteln, Hundertstel mit Hundertsteln.",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
         "learnSteps": [
           {
             "title": "Gleich viele Stellen herstellen",
@@ -27889,7 +28010,7 @@ window.MERKHEFT_COURSES = {
             "pictureAfter": 2
           }
         ],
-        "startHint": "Ergänze eine Endnull. Vergleiche dann von links die Stellen mit gleichem Wert.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
         "learning": {
           "title": "Die entscheidende Stelle finden",
           "question": [
@@ -27934,79 +28055,252 @@ window.MERKHEFT_COURSES = {
             "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
           }
         },
-        "notebookHtml": "<div class=\"school-calculation\">0,430 &gt; 0,418</div><div class=\"school-calculation\">Also: 0,43 &gt; 0,418</div>",
+        "notebookHtml": "<div class=\"school-calculation\"><span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span></div><div class=\"school-calculation\"><span>Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.</span></div><div class=\"school-calculation\"><span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.</span></div><div class=\"school-calculation\"><span>0,45 &gt; 0,4455.</span></div><div class=\"school-calculation\"><span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span></div>",
         "source": {
           "kind": "Originalwerte",
-          "page": 25,
-          "location": "Erklärung Stellenvergleich",
-          "file": "20261023_065558.jpg",
-          "note": "0,43 und 0,418; erste verschiedene Stelle sind die Hundertstel.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "page": 18,
+          "location": "Arbeitsheft Nr. 1a",
+          "file": "76361.jpg",
+          "note": "Werte und Aufgabenfamilie des hochgeladenen Schulblatts; kleinschrittiger eigener Erklärweg.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">0,45 ? 0,4455</div></figure>"
       },
       "2": {
         "id": 2,
-        "title": "Nullen am Ende nach dem Komma",
+        "title": "Endnullen und Gleichheit verstehen",
         "question": [
-          "Vergleiche 0,6 und 0,600.",
-          "Setze das passende Zeichen ein: <, > oder =."
+          "0,6 ? 0,600"
         ],
         "givenPairs": [],
         "steps": [
           {
-            "html": "0,6 = 0,600",
-            "text": "0,6 = 0,600",
-            "label": "",
-            "pairs": [],
-            "plain": "0,6 = 0,600",
-            "tokens": [
-              "0,6",
-              "0,600"
-            ],
-            "operation": "",
+            "title": "1 · Die Zeichen lesen",
+            "label": "1 · Die Zeichen lesen",
+            "html": "<span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span>",
+            "plain": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
+            "text": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
             "explain": [
-              "Sechs Zehntel sind gleich viel wie 600 Tausendstel.",
-              "Nullen ganz am Ende nach dem Komma ändern den Wert nicht."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
             "hint": [
-              "Nullen ganz am Ende nach dem Komma ändern den Wert nicht."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
-            "ask": "Ändert eine zusätzliche Endnull den Wert nach dem Komma?",
+            "ask": "Was bedeuten die drei Vergleichszeichen?",
             "counterexample": {
-              "claim": "Mehr Nachkommastellen bedeuten automatisch mehr",
-              "reason": "Sechs Zehntel und sechshundert Tausendstel bezeichnen dieselbe Zahl."
+              "claim": "Nur die Form des Zeichens auswendig lernen, ohne den Satz von links nach rechts zu lesen.",
+              "reason": "Die passende Begründung: Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren. < bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Die Zeichen lesen</b><div class=\"basis-equation\">2 &lt; 5 &nbsp; · &nbsp; 5 &gt; 2 &nbsp; · &nbsp; 5 = 5</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:2:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
+          },
+          {
+            "title": "2 · Vorzeichen zuerst",
+            "label": "2 · Vorzeichen zuerst",
+            "html": "<span>Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.</span>",
+            "plain": "Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.",
+            "text": "Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.",
+            "explain": [
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
+            ],
+            "hint": [
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
+            ],
+            "ask": "Steht ein Minus vor einer Zahl?",
+            "counterexample": {
+              "claim": "Ein Minus übersehen oder bei zwei negativen Zahlen die gewöhnliche positive Reihenfolge übernehmen.",
+              "reason": "Die passende Begründung: Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl. Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vorzeichen zuerst</b><div class=\"basis-equation\">0,6 &nbsp; ? &nbsp; 0,600</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:2:2",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 1
+          },
+          {
+            "title": "3 · Jede Ziffer hat einen Platz",
+            "label": "3 · Jede Ziffer hat einen Platz",
+            "html": "<span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span>",
+            "plain": "Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.",
+            "text": "Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.",
+            "explain": [
+              "Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel."
+            ],
+            "hint": [
+              "Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel."
+            ],
+            "ask": "Wie machst du die Stellen gut vergleichbar?",
+            "counterexample": {
+              "claim": "0,45 mit 0,445 nur nach der Anzahl der Ziffern vergleichen.",
+              "reason": "Die passende Begründung: Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel. Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th></tr></thead><tbody><tr><th>links: Abstand</th><td>+</td><td class=\"basis-comma \">0</td><td>6</td><td>0</td><td>0</td></tr><tr><th>rechts: Abstand</th><td>+</td><td class=\"basis-comma \">0</td><td>6</td><td>0</td><td>0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:2:3",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 2
+          },
+          {
+            "title": "4 · Von links nach rechts",
+            "label": "4 · Von links nach rechts",
+            "html": "<span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span>",
+            "plain": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "text": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "explain": [
+              "Links steht 0, rechts 0."
+            ],
+            "hint": [
+              "Links steht 0, rechts 0."
+            ],
+            "ask": "Was zeigen die Einer?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 0, rechts 0. Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"basis-focus\">0,</i><i class=\"\">6</i><i class=\"\">0</i><i class=\"\">0</i></span><span><i class=\"basis-focus\">0,</i><i class=\"\">6</i><i class=\"\">0</i><i class=\"\">0</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:2:4",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 3
+          },
+          {
+            "title": "5 · Von links nach rechts",
+            "label": "5 · Von links nach rechts",
+            "html": "<span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span>",
+            "plain": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "text": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "explain": [
+              "Links steht 6, rechts 6."
+            ],
+            "hint": [
+              "Links steht 6, rechts 6."
+            ],
+            "ask": "Was zeigen die Zehntel?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 6, rechts 6. Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"\">0,</i><i class=\"basis-focus\">6</i><i class=\"\">0</i><i class=\"\">0</i></span><span><i class=\"\">0,</i><i class=\"basis-focus\">6</i><i class=\"\">0</i><i class=\"\">0</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:2:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Von links nach rechts",
+            "label": "6 · Von links nach rechts",
+            "html": "<span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span>",
+            "plain": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "text": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "explain": [
+              "Links steht 0, rechts 0."
+            ],
+            "hint": [
+              "Links steht 0, rechts 0."
+            ],
+            "ask": "Was zeigen die Hundertstel?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 0, rechts 0. Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"\">0,</i><i class=\"\">6</i><i class=\"basis-focus\">0</i><i class=\"\">0</i></span><span><i class=\"\">0,</i><i class=\"\">6</i><i class=\"basis-focus\">0</i><i class=\"\">0</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:2:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
+          },
+          {
+            "title": "7 · Von links nach rechts",
+            "label": "7 · Von links nach rechts",
+            "html": "<span>Alle Stellen sind gleich. Die beiden Angaben haben denselben Wert.</span>",
+            "plain": "Alle Stellen sind gleich. Die beiden Angaben haben denselben Wert.",
+            "text": "Alle Stellen sind gleich. Die beiden Angaben haben denselben Wert.",
+            "explain": [
+              "Links steht 0, rechts 0."
+            ],
+            "hint": [
+              "Links steht 0, rechts 0."
+            ],
+            "ask": "Was zeigen die Tausendstel?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 0, rechts 0. Alle Stellen sind gleich. Die beiden Angaben haben denselben Wert."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"\">0,</i><i class=\"\">6</i><i class=\"\">0</i><i class=\"basis-focus\">0</i></span><span><i class=\"\">0,</i><i class=\"\">6</i><i class=\"\">0</i><i class=\"basis-focus\">0</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:2:7",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 6
+          },
+          {
+            "title": "8 · Weiter rechts bedeutet größer",
+            "label": "8 · Weiter rechts bedeutet größer",
+            "html": "<span>0,6 = 0,600.</span>",
+            "plain": "0,6 = 0,600.",
+            "text": "0,6 = 0,600.",
+            "explain": [
+              "Auf dem Zahlenstrahl ist die Zahl weiter rechts größer."
+            ],
+            "hint": [
+              "Auf dem Zahlenstrahl ist die Zahl weiter rechts größer."
+            ],
+            "ask": "Welche Zahl liegt weiter rechts?",
+            "counterexample": {
+              "claim": "−0,70 für größer als −0,65 halten, weil 70 größer als 65 ist.",
+              "reason": "Die passende Begründung: Auf dem Zahlenstrahl ist die Zahl weiter rechts größer. 0,6 = 0,600."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Weiter rechts bedeutet größer</b><svg viewBox=\"0 0 600 110\" role=\"img\" aria-label=\"0,6 und 0,600 am Zahlenstrahl. Beide Angaben liegen auf demselben Punkt.\"><path d=\"M20 65H580m-8 -5 8 5-8 5\" stroke=\"currentColor\" fill=\"none\"/><circle cx=\"300\" cy=\"65\" r=\"6\" fill=\"#783d53\"/><text x=\"300\" y=\"24\" text-anchor=\"middle\">0,6</text><circle cx=\"300\" cy=\"65\" r=\"6\" fill=\"#326b82\"/><text x=\"300\" y=\"45\" text-anchor=\"middle\">0,600</text></svg><p>Beide Angaben liegen auf demselben Punkt.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:2:8",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 7
+          },
+          {
+            "title": "9 · Das passende Zeichen",
+            "label": "9 · Das passende Zeichen",
+            "html": "<span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span>",
+            "plain": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "text": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "explain": [
+              "0,6 ist gleich groß wie 0,600."
+            ],
+            "hint": [
+              "0,6 ist gleich groß wie 0,600."
+            ],
+            "ask": "Wie liest du dein Ergebnis als Satz?",
+            "counterexample": {
+              "claim": "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben.",
+              "reason": "Die passende Begründung: 0,6 ist gleich groß wie 0,600. Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Das passende Zeichen</b><div class=\"basis-equation\">0,6 = 0,600</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:2:9",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 8
           }
         ],
         "answer": [
-          "0,6 und 0,600 haben denselben Wert.",
-          "Das passende Zeichen ist =."
+          "0,6 = 0,600"
         ],
         "hint": [
           "Nullen am Ende einer Kommazahl verändern den Wert nicht."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du hältst 0,600 für mehr als 0,6.",
-          "<b>Richtig:</b> Nullen ganz am Ende nach dem Komma ändern den Wert nicht.",
-          "0,6 = 0,60 = 0,600."
+          "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "0,6 = <span class=\"fraction\" aria-label=\"6 durch 10\"><span>6</span><span>10</span></span> = <span class=\"fraction\" aria-label=\"600 durch 1000\"><span>600</span><span>1000</span></span>."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "Vergleiche 0,6 und 0,600. Setze das passende Zeichen ein: <, > oder =.",
+        "questionPlain": "0,6 ? 0,600",
         "givenTokens": [
-          "0,6",
-          "0,600"
+          "0,6 ? 0,600"
         ],
-        "intro": [
-          "Prüfe, ob die zusätzlichen Nullen am Ende den Wert ändern.",
-          "Achte auf die Stelle direkt nach dem Komma."
-        ],
-        "recognize": "Die Zahlen unterscheiden sich nur durch Nullen am Ende nach dem Komma.",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
         "learnSteps": [
           {
             "title": "Den Wert der ersten Zahl erkennen",
@@ -28147,7 +28441,7 @@ window.MERKHEFT_COURSES = {
             "pictureAfter": 2
           }
         ],
-        "startHint": "Nullen ganz am Ende nach dem Komma ändern den Wert nicht.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
         "learning": {
           "title": "Endnullen erkennen",
           "question": [
@@ -28192,124 +28486,200 @@ window.MERKHEFT_COURSES = {
             "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
           }
         },
-        "notebookHtml": "<div class=\"school-calculation\">0,6 = 0,600</div>",
+        "notebookHtml": "<div class=\"school-calculation\"><span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span></div><div class=\"school-calculation\"><span>Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.</span></div><div class=\"school-calculation\"><span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Alle Stellen sind gleich. Die beiden Angaben haben denselben Wert.</span></div><div class=\"school-calculation\"><span>0,6 = 0,600.</span></div><div class=\"school-calculation\"><span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span></div>",
         "source": {
-          "kind": "adaptiert",
-          "page": 22,
-          "location": "Endnullregel",
-          "file": "20261023_065543.jpg",
-          "note": "Eigene Werte 0,6 und 0,600.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "kind": "Regelbeispiel",
+          "page": 18,
+          "location": "Arbeitsheft Nr. Grundregel zu 1 und 2c",
+          "file": "76361.jpg",
+          "note": "Eigenes Regelbeispiel zur Wertgleichheit durch Endnullen.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">0,6 ? 0,600</div></figure>"
       },
       "3": {
         "id": 3,
-        "title": "Kommazahlen mit Minus",
+        "title": "Negative Dezimalzahlen vergleichen",
         "question": [
-          "Vergleiche −0,7 und −0,65.",
-          "Setze das passende Zeichen ein: <, > oder =."
+          "−2,004 ? −1,9999"
         ],
         "givenPairs": [],
         "steps": [
           {
-            "html": "−0,7 = −0,70",
-            "text": "−0,7 = −0,70",
-            "label": "",
-            "pairs": [],
-            "plain": "−0,7 = −0,70",
-            "tokens": [
-              "−0,7",
-              "−0,70"
-            ],
-            "operation": "",
+            "title": "1 · Die Zeichen lesen",
+            "label": "1 · Die Zeichen lesen",
+            "html": "<span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span>",
+            "plain": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
+            "text": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
             "explain": [
-              "Hänge an −0,7 eine Null an.",
-              "So lassen sich −0,70 und −0,65 leichter vergleichen."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
             "hint": [
-              "Hänge eine Null an, damit beide Zahlen zwei Nachkommastellen haben."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
-            "ask": "Wie ergänzt du minus sieben Zehntel wertgleich um eine Nachkommastelle?",
+            "ask": "Was bedeuten die drei Vergleichszeichen?",
             "counterexample": {
-              "claim": "Eine Null vor die sieben setzen",
-              "reason": "Eine eingefügte Null würde den Stellenwert ändern. Die Null wird rechts angehängt."
+              "claim": "Nur die Form des Zeichens auswendig lernen, ohne den Satz von links nach rechts zu lesen.",
+              "reason": "Die passende Begründung: Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren. < bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Die Zeichen lesen</b><div class=\"basis-equation\">2 &lt; 5 &nbsp; · &nbsp; 5 &gt; 2 &nbsp; · &nbsp; 5 = 5</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:3:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
           },
           {
-            "html": "−0,70 &lt; −0,65",
-            "text": "−0,70 < −0,65",
-            "label": "",
-            "pairs": [],
-            "plain": "−0,70 < −0,65",
-            "tokens": [
-              "−0,70",
-              "−0,65"
-            ],
-            "operation": "",
+            "title": "2 · Vorzeichen zuerst",
+            "label": "2 · Vorzeichen zuerst",
+            "html": "<span>Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.</span>",
+            "plain": "Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.",
+            "text": "Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.",
             "explain": [
-              "Bei negativen Zahlen ist die Zahl weiter links kleiner.",
-              "−0,70 liegt weiter links als −0,65."
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
             ],
             "hint": [
-              "Bei negativen Zahlen entscheidet die Lage auf dem Zahlenstrahl: weiter links ist kleiner."
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
             ],
-            "ask": "Welche der negativen Zahlen liegt weiter links?",
+            "ask": "Steht ein Minus vor einer Zahl?",
             "counterexample": {
-              "claim": "Die Reihenfolge der positiven Beträge unverändert übernehmen",
-              "reason": "Bei negativen Zahlen liegt der größere Betrag weiter links und bezeichnet den kleineren Wert."
+              "claim": "Ein Minus übersehen oder bei zwei negativen Zahlen die gewöhnliche positive Reihenfolge übernehmen.",
+              "reason": "Die passende Begründung: Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl. Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vorzeichen zuerst</b><div class=\"basis-equation\">−2,004 &nbsp; ? &nbsp; −1,9999</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:3:2",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 1
+          },
+          {
+            "title": "3 · Jede Ziffer hat einen Platz",
+            "label": "3 · Jede Ziffer hat einen Platz",
+            "html": "<span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span>",
+            "plain": "Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.",
+            "text": "Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.",
+            "explain": [
+              "Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel."
+            ],
+            "hint": [
+              "Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel."
+            ],
+            "ask": "Wie machst du die Stellen gut vergleichbar?",
+            "counterexample": {
+              "claim": "0,45 mit 0,445 nur nach der Anzahl der Ziffern vergleichen.",
+              "reason": "Die passende Begründung: Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel. Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th></tr></thead><tbody><tr><th>links: Abstand</th><td>+</td><td class=\"basis-comma \">2</td><td>0</td><td>0</td><td>4</td><td>0</td></tr><tr><th>rechts: Abstand</th><td>+</td><td class=\"basis-comma \">1</td><td>9</td><td>9</td><td>9</td><td>9</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:3:3",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 2
+          },
+          {
+            "title": "4 · Von links nach rechts",
+            "label": "4 · Von links nach rechts",
+            "html": "<span>Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.</span>",
+            "plain": "Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.",
+            "text": "Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.",
+            "explain": [
+              "Links steht 2, rechts 1."
+            ],
+            "hint": [
+              "Links steht 2, rechts 1."
+            ],
+            "ask": "Was zeigen die Einer?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 2, rechts 1. Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"basis-focus\">2,</i><i class=\"\">0</i><i class=\"\">0</i><i class=\"\">4</i><i class=\"\">0</i></span><span><i class=\"basis-focus\">1,</i><i class=\"\">9</i><i class=\"\">9</i><i class=\"\">9</i><i class=\"\">9</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:3:4",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 3
+          },
+          {
+            "title": "5 · Weiter rechts bedeutet größer",
+            "label": "5 · Weiter rechts bedeutet größer",
+            "html": "<span>−2,004 &lt; −1,9999.</span>",
+            "plain": "−2,004 < −1,9999.",
+            "text": "−2,004 < −1,9999.",
+            "explain": [
+              "Je größer der Abstand links von null, desto kleiner ist die negative Zahl."
+            ],
+            "hint": [
+              "Je größer der Abstand links von null, desto kleiner ist die negative Zahl."
+            ],
+            "ask": "Wie wirkt sich das Minus auf die Reihenfolge aus?",
+            "counterexample": {
+              "claim": "−0,70 für größer als −0,65 halten, weil 70 größer als 65 ist.",
+              "reason": "Die passende Begründung: Je größer der Abstand links von null, desto kleiner ist die negative Zahl. −2,004 < −1,9999."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Weiter rechts bedeutet größer</b><svg viewBox=\"0 0 600 110\" role=\"img\" aria-label=\"−2,004 und −1,9999 am Zahlenstrahl. Vergrößerter Ausschnitt zwischen den beiden Zahlen. Die Null liegt rechts außerhalb.\"><path d=\"M20 65H580m-8 -5 8 5-8 5\" stroke=\"currentColor\" fill=\"none\"/><circle cx=\"90\" cy=\"65\" r=\"6\" fill=\"#783d53\"/><text x=\"90\" y=\"24\" text-anchor=\"middle\">−2,004</text><circle cx=\"510\" cy=\"65\" r=\"6\" fill=\"#326b82\"/><text x=\"510\" y=\"45\" text-anchor=\"middle\">−1,9999</text></svg><p>Vergrößerter Ausschnitt zwischen den beiden Zahlen. Die Null liegt rechts außerhalb.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:3:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Das passende Zeichen",
+            "label": "6 · Das passende Zeichen",
+            "html": "<span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span>",
+            "plain": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "text": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "explain": [
+              "−2,004 ist kleiner als −1,9999."
+            ],
+            "hint": [
+              "−2,004 ist kleiner als −1,9999."
+            ],
+            "ask": "Wie liest du dein Ergebnis als Satz?",
+            "counterexample": {
+              "claim": "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben.",
+              "reason": "Die passende Begründung: −2,004 ist kleiner als −1,9999. Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Das passende Zeichen</b><div class=\"basis-equation\">−2,004 &lt; −1,9999</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:3:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
           }
         ],
         "answer": [
-          "−0,7 ist kleiner als −0,65.",
-          "Das passende Zeichen ist <."
+          "−2,004 &lt; −1,9999"
         ],
         "hint": [
           "Bei negativen Zahlen ist die Zahl näher an 0 größer."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du vergleichst die Zahlen so, als hätten sie kein Minus.",
-          "<b>Richtig:</b> Bei negativen Zahlen ist die Zahl näher an 0 größer.",
-          "−0,65 ist näher an 0 als −0,70."
+          "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "−0,65 liegt rechts von −0,70 auf dem Zahlenstrahl."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "Vergleiche −0,7 und −0,65. Setze das passende Zeichen ein: <, > oder =.",
+        "questionPlain": "−2,004 ? −1,9999",
         "givenTokens": [
-          "−0,7",
-          "−0,65"
+          "−2,004 ? −1,9999"
         ],
-        "intro": [
-          "Beide Zahlen liegen links von 0.",
-          "Die Zahl weiter links ist kleiner."
-        ],
-        "recognize": "Beide Zahlen sind negativ. Die weiter links liegende Zahl ist kleiner.",
-        "startHint": "Hänge eine Null an, damit beide Zahlen zwei Nachkommastellen haben.",
-        "notebookHtml": "<div class=\"school-calculation\">−0,7 = −0,70</div><div class=\"school-calculation\">−0,70 &lt; −0,65</div>",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
+        "notebookHtml": "<div class=\"school-calculation\"><span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span></div><div class=\"school-calculation\"><span>Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.</span></div><div class=\"school-calculation\"><span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span></div><div class=\"school-calculation\"><span>Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.</span></div><div class=\"school-calculation\"><span>−2,004 &lt; −1,9999.</span></div><div class=\"school-calculation\"><span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span></div>",
         "source": {
-          "kind": "adaptiert",
-          "page": 25,
-          "location": "Beispiel 2",
-          "file": "20261023_065558.jpg",
-          "note": "Eigene negative Werte minus 0,7 und minus 0,65.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "kind": "Originalwerte",
+          "page": 18,
+          "location": "Arbeitsheft Nr. 1f",
+          "file": "76361.jpg",
+          "note": "Werte und Aufgabenfamilie des hochgeladenen Schulblatts; kleinschrittiger eigener Erklärweg.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">−2,004 ? −1,9999</div></figure>"
       },
       "4": {
         "id": 4,
-        "title": "Einen Bruch mit einer Kommazahl vergleichen",
+        "title": "Brüche und Kommazahlen vergleichen",
         "question": [
-          "Vergleiche <span class=\"fraction\" aria-label=\"3 durch 5\"><span>3</span><span>5</span></span> und 0,58.",
-          "Setze das passende Zeichen ein: <, > oder =."
+          "47/100 ? 9/20"
         ],
         "givenPairs": [
           {
@@ -28319,356 +28689,999 @@ window.MERKHEFT_COURSES = {
         ],
         "steps": [
           {
-            "html": "<span class=\"fraction\" aria-label=\"3 durch 5\"><span>3</span><span>5</span></span> = 0,60",
-            "text": "35 = 0,60",
-            "label": "",
-            "pairs": [
-              {
-                "n": 3,
-                "d": 5
-              }
-            ],
-            "plain": "3/5 = 0,60",
-            "tokens": [
-              "3/5",
-              "0,60"
-            ],
-            "operation": "",
+            "title": "1 · Die Zeichen lesen",
+            "label": "1 · Die Zeichen lesen",
+            "html": "<span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span>",
+            "plain": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
+            "text": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
             "explain": [
-              "Erweitere drei Fünftel mit 20 zu 60 Hundertsteln.",
-              "Das schreibt man 0,60."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
             "hint": [
-              "Fünftel lassen sich mit mal 20 in Hundertstel verwandeln."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
-            "ask": "Wie schreibst du drei Fünftel als Kommazahl?",
+            "ask": "Was bedeuten die drei Vergleichszeichen?",
             "counterexample": {
-              "claim": "Den Zähler drei direkt als 0,3 verwenden",
-              "reason": "Drei Fünftel sind sechzig Hundertstel. Der Nenner muss beim Umwandeln berücksichtigt werden."
+              "claim": "Nur die Form des Zeichens auswendig lernen, ohne den Satz von links nach rechts zu lesen.",
+              "reason": "Die passende Begründung: Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren. < bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Die Zeichen lesen</b><div class=\"basis-equation\">2 &lt; 5 &nbsp; · &nbsp; 5 &gt; 2 &nbsp; · &nbsp; 5 = 5</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:4:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
           },
           {
-            "html": "0,60 &gt; 0,58",
-            "text": "0,60 > 0,58",
-            "label": "",
-            "pairs": [],
-            "plain": "0,60 > 0,58",
-            "tokens": [
-              "0,60",
-              "0,58"
-            ],
-            "operation": "",
+            "title": "2 · Jede Ziffer hat einen Platz",
+            "label": "2 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die Kommazahl ist 0,47.</span>",
+            "plain": "Die Kommazahl ist 0,47.",
+            "text": "Die Kommazahl ist 0,47.",
             "explain": [
-              "Die Zehntel entscheiden schon: 6 Zehntel sind mehr als 5 Zehntel.",
-              "Deshalb ist 0,60 größer als 0,58."
+              "Nenner 100 bedeutet 2 Stellen nach dem Komma.",
+              "Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null."
             ],
             "hint": [
-              "Vergleiche zuerst die Zehntelstellen. Sie entscheiden hier schon."
+              "Nenner 100 bedeutet 2 Stellen nach dem Komma."
             ],
-            "ask": "Entscheiden bereits die Zehntel oder brauchst du die Hundertstel?",
+            "ask": "Wie liest du 47/100 als Kommazahl?",
             "counterexample": {
-              "claim": "Erst die letzte Stelle null mit acht vergleichen",
-              "reason": "Schon sechs Zehntel sind mehr als fünf Zehntel. Spätere Stellen ändern das nicht."
+              "claim": "Den Zähler einfach hinter das Komma schreiben und nötige Nullen weglassen.",
+              "reason": "Die passende Begründung: Nenner 100 bedeutet 2 Stellen nach dem Komma. Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null. Die Kommazahl ist 0,47."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>47/100</th><td>+</td><td class=\"basis-comma \">0</td><td>4</td><td>7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
             "phaseId": "dezimalvergleich:examples:4:2",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 1
           },
           {
-            "html": "Also: <span class=\"fraction\" aria-label=\"3 durch 5\"><span>3</span><span>5</span></span> &gt; 0,58",
-            "text": "Also: 35 > 0,58",
-            "label": "",
-            "pairs": [
-              {
-                "n": 3,
-                "d": 5
-              }
-            ],
-            "plain": "Also: 3/5 > 0,58",
-            "tokens": [
-              "3/5",
-              "0,58"
-            ],
-            "operation": "",
+            "title": "3 · Den passenden Nenner herstellen",
+            "label": "3 · Den passenden Nenner herstellen",
+            "html": "<span>Die Malzahl ist 5, denn 100 : 20 = 5.</span>",
+            "plain": "Die Malzahl ist 5, denn 100 : 20 = 5.",
+            "text": "Die Malzahl ist 5, denn 100 : 20 = 5.",
             "explain": [
-              "0,60 ist genauso viel wie drei Fünftel.",
-              "Also sind drei Fünftel größer als 0,58."
+              "Mit dem Nenner 100 lassen sich die Stellen nach dem Komma direkt lesen.",
+              "Suche die fehlende Malzahl: 20 · ? = 100."
             ],
             "hint": [
-              "Ersetze die umgerechnete Kommazahl wieder durch den ursprünglichen Bruch."
+              "Mit dem Nenner 100 lassen sich die Stellen nach dem Komma direkt lesen."
             ],
-            "ask": "Welches Zeichen überträgst du zurück auf den Bruchvergleich?",
+            "ask": "Welche Malzahl führt vom Nenner 20 zum Zehnernenner?",
             "counterexample": {
-              "claim": "Beim Wechsel der Schreibweise das Zeichen umdrehen",
-              "reason": "Drei Fünftel und 0,60 sind wertgleich. Das Vergleichszeichen bleibt erhalten."
+              "claim": "Den Nenner durch 100 ersetzen, ohne den Zähler mitzunehmen.",
+              "reason": "Die passende Begründung: Mit dem Nenner 100 lassen sich die Stellen nach dem Komma direkt lesen. Suche die fehlende Malzahl: 20 · ? = 100. Die Malzahl ist 5, denn 100 : 20 = 5."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Den passenden Nenner herstellen</b><div class=\"basis-equation\">20 · 5 = 100</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:4:3",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 2
+          },
+          {
+            "title": "4 · Den Wert erhalten",
+            "label": "4 · Den Wert erhalten",
+            "html": "<span>Nenner: 20 · 5 = 100.</span>",
+            "plain": "Nenner: 20 · 5 = 100.",
+            "text": "Nenner: 20 · 5 = 100.",
+            "explain": [
+              "Multipliziere oben und unten mit 5.",
+              "Zähler: 9 · 5 = 45."
+            ],
+            "hint": [
+              "Multipliziere oben und unten mit 5."
+            ],
+            "ask": "Was passiert gleichzeitig mit dem Zähler?",
+            "counterexample": {
+              "claim": "Nur unten multiplizieren. Zähler und Nenner müssen denselben Faktor erhalten.",
+              "reason": "Die passende Begründung: Multipliziere oben und unten mit 5. Zähler: 9 · 5 = 45. Nenner: 20 · 5 = 100."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Den Wert erhalten</b><div class=\"basis-equation\">9/20 = 45/100</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:4",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 3
+          },
+          {
+            "title": "5 · Jede Ziffer hat einen Platz",
+            "label": "5 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die Kommazahl ist 0,45.</span>",
+            "plain": "Die Kommazahl ist 0,45.",
+            "text": "Die Kommazahl ist 0,45.",
+            "explain": [
+              "Nenner 100 bedeutet 2 Stellen nach dem Komma.",
+              "Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null."
+            ],
+            "hint": [
+              "Nenner 100 bedeutet 2 Stellen nach dem Komma."
+            ],
+            "ask": "Wie liest du 45/100 als Kommazahl?",
+            "counterexample": {
+              "claim": "Den Zähler einfach hinter das Komma schreiben und nötige Nullen weglassen.",
+              "reason": "Die passende Begründung: Nenner 100 bedeutet 2 Stellen nach dem Komma. Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null. Die Kommazahl ist 0,45."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>9/20</th><td>+</td><td class=\"basis-comma \">0</td><td>4</td><td>5</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Vorzeichen zuerst",
+            "label": "6 · Vorzeichen zuerst",
+            "html": "<span>Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.</span>",
+            "plain": "Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.",
+            "text": "Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.",
+            "explain": [
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
+            ],
+            "hint": [
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
+            ],
+            "ask": "Steht ein Minus vor einer Zahl?",
+            "counterexample": {
+              "claim": "Ein Minus übersehen oder bei zwei negativen Zahlen die gewöhnliche positive Reihenfolge übernehmen.",
+              "reason": "Die passende Begründung: Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl. Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vorzeichen zuerst</b><div class=\"basis-equation\">47/100 &nbsp; ? &nbsp; 9/20</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
+          },
+          {
+            "title": "7 · Jede Ziffer hat einen Platz",
+            "label": "7 · Jede Ziffer hat einen Platz",
+            "html": "<span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span>",
+            "plain": "Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.",
+            "text": "Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.",
+            "explain": [
+              "Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel."
+            ],
+            "hint": [
+              "Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel."
+            ],
+            "ask": "Wie machst du die Stellen gut vergleichbar?",
+            "counterexample": {
+              "claim": "0,45 mit 0,445 nur nach der Anzahl der Ziffern vergleichen.",
+              "reason": "Die passende Begründung: Schreibe Einer unter Einer, Zehntel unter Zehntel und Hundertstel unter Hundertstel. Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links: Abstand</th><td>+</td><td class=\"basis-comma \">0</td><td>4</td><td>7</td></tr><tr><th>rechts: Abstand</th><td>+</td><td class=\"basis-comma \">0</td><td>4</td><td>5</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:7",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 6
+          },
+          {
+            "title": "8 · Von links nach rechts",
+            "label": "8 · Von links nach rechts",
+            "html": "<span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span>",
+            "plain": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "text": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "explain": [
+              "Links steht 0, rechts 0."
+            ],
+            "hint": [
+              "Links steht 0, rechts 0."
+            ],
+            "ask": "Was zeigen die Einer?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 0, rechts 0. Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"basis-focus\">0,</i><i class=\"\">4</i><i class=\"\">7</i></span><span><i class=\"basis-focus\">0,</i><i class=\"\">4</i><i class=\"\">5</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:8",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 7
+          },
+          {
+            "title": "9 · Von links nach rechts",
+            "label": "9 · Von links nach rechts",
+            "html": "<span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span>",
+            "plain": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "text": "Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.",
+            "explain": [
+              "Links steht 4, rechts 4."
+            ],
+            "hint": [
+              "Links steht 4, rechts 4."
+            ],
+            "ask": "Was zeigen die Zehntel?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 4, rechts 4. Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"\">0,</i><i class=\"basis-focus\">4</i><i class=\"\">7</i></span><span><i class=\"\">0,</i><i class=\"basis-focus\">4</i><i class=\"\">5</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:9",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 8
+          },
+          {
+            "title": "10 · Von links nach rechts",
+            "label": "10 · Von links nach rechts",
+            "html": "<span>Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.</span>",
+            "plain": "Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.",
+            "text": "Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.",
+            "explain": [
+              "Links steht 7, rechts 5."
+            ],
+            "hint": [
+              "Links steht 7, rechts 5."
+            ],
+            "ask": "Was zeigen die Hundertstel?",
+            "counterexample": {
+              "claim": "Nach einer entscheidenden Stelle mit einer späteren Ziffer die Entscheidung wieder ändern.",
+              "reason": "Die passende Begründung: Links steht 7, rechts 5. Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Von links nach rechts</b><div class=\"basis-digit-pair\"><span><i class=\"\">0,</i><i class=\"\">4</i><i class=\"basis-focus\">7</i></span><span><i class=\"\">0,</i><i class=\"\">4</i><i class=\"basis-focus\">5</i></span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:10",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 9
+          },
+          {
+            "title": "11 · Weiter rechts bedeutet größer",
+            "label": "11 · Weiter rechts bedeutet größer",
+            "html": "<span>47/100 &gt; 9/20.</span>",
+            "plain": "47/100 > 9/20.",
+            "text": "47/100 > 9/20.",
+            "explain": [
+              "Auf dem Zahlenstrahl ist die Zahl weiter rechts größer."
+            ],
+            "hint": [
+              "Auf dem Zahlenstrahl ist die Zahl weiter rechts größer."
+            ],
+            "ask": "Welche Zahl liegt weiter rechts?",
+            "counterexample": {
+              "claim": "−0,70 für größer als −0,65 halten, weil 70 größer als 65 ist.",
+              "reason": "Die passende Begründung: Auf dem Zahlenstrahl ist die Zahl weiter rechts größer. 47/100 > 9/20."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Weiter rechts bedeutet größer</b><svg viewBox=\"0 0 600 110\" role=\"img\" aria-label=\"47/100 und 9/20 am Zahlenstrahl. Vergrößerter Ausschnitt zwischen den beiden Zahlen. Die Null liegt links außerhalb.\"><path d=\"M20 65H580m-8 -5 8 5-8 5\" stroke=\"currentColor\" fill=\"none\"/><circle cx=\"510\" cy=\"65\" r=\"6\" fill=\"#783d53\"/><text x=\"510\" y=\"24\" text-anchor=\"middle\">47/100</text><circle cx=\"90\" cy=\"65\" r=\"6\" fill=\"#326b82\"/><text x=\"90\" y=\"45\" text-anchor=\"middle\">9/20</text></svg><p>Vergrößerter Ausschnitt zwischen den beiden Zahlen. Die Null liegt links außerhalb.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:11",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 10
+          },
+          {
+            "title": "12 · Das passende Zeichen",
+            "label": "12 · Das passende Zeichen",
+            "html": "<span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span>",
+            "plain": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "text": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "explain": [
+              "47/100 ist größer als 9/20."
+            ],
+            "hint": [
+              "47/100 ist größer als 9/20."
+            ],
+            "ask": "Wie liest du dein Ergebnis als Satz?",
+            "counterexample": {
+              "claim": "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben.",
+              "reason": "Die passende Begründung: 47/100 ist größer als 9/20. Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Das passende Zeichen</b><div class=\"basis-equation\">47/100 &gt; 9/20</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:4:12",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 11
           }
         ],
         "answer": [
-          "<span class=\"fraction\" aria-label=\"3 durch 5\"><span>3</span><span>5</span></span> ist größer als 0,58.",
-          "Denn <span class=\"fraction\" aria-label=\"3 durch 5\"><span>3</span><span>5</span></span> = 0,60."
+          "47/100 &gt; 9/20"
         ],
         "hint": [
           "Brüche und Kommazahlen brauchen zum Vergleichen dieselbe Schreibweise."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du vergleichst den Bruch und die Kommazahl ohne Umwandlung.",
-          "<b>Richtig:</b> Schreibe <span class=\"fraction\" aria-label=\"3 durch 5\"><span>3</span><span>5</span></span> als 0,60.",
-          "Jetzt kannst du 0,60 mit 0,58 vergleichen."
+          "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "60 Hundertstel sind mehr als 58 Hundertstel."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "Vergleiche 3/5 und 0,58. Setze das passende Zeichen ein: <, > oder =.",
+        "questionPlain": "47/100 ? 9/20",
         "givenTokens": [
-          "3/5",
-          "0,58"
+          "47/100 ? 9/20"
         ],
-        "intro": [
-          "Bringe beide Angaben in dieselbe Schreibweise.",
-          "Wandle den Bruch zuerst in eine Kommazahl um."
-        ],
-        "recognize": "Bruch und Kommazahl sind gemischt. Wandle den Bruch zuerst um.",
-        "startHint": "Fünftel lassen sich mit mal 20 in Hundertstel verwandeln.",
-        "notebookHtml": "<div class=\"school-calculation\"><span class=\"fraction\" aria-label=\"3 durch 5\"><span>3</span><span>5</span></span> = 0,60</div><div class=\"school-calculation\">0,60 &gt; 0,58</div><div class=\"school-calculation\">Also: <span class=\"fraction\" aria-label=\"3 durch 5\"><span>3</span><span>5</span></span> &gt; 0,58</div>",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
+        "notebookHtml": "<div class=\"school-calculation\"><span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span></div><div class=\"school-calculation\"><span>Die Kommazahl ist 0,47.</span></div><div class=\"school-calculation\"><span>Die Malzahl ist 5, denn 100 : 20 = 5.</span></div><div class=\"school-calculation\"><span>Nenner: 20 · 5 = 100.</span></div><div class=\"school-calculation\"><span>Die Kommazahl ist 0,45.</span></div><div class=\"school-calculation\"><span>Vergleiche bei gleichem positiven Vorzeichen die Stellen von links nach rechts.</span></div><div class=\"school-calculation\"><span>Nur am Ende nach dem Komma darfst du Nullen ergänzen. Der Wert bleibt gleich.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Diese Stelle ist gleich. Vergleiche die nächste Stelle rechts davon.</span></div><div class=\"school-calculation\"><span>Hier unterscheiden sich die Zahlen zum ersten Mal. Diese Stelle entscheidet; spätere Stellen können das nicht ändern.</span></div><div class=\"school-calculation\"><span>47/100 &gt; 9/20.</span></div><div class=\"school-calculation\"><span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span></div>",
         "source": {
-          "kind": "adaptiert",
-          "page": 26,
-          "location": "Beispiel 3",
-          "file": "20261023_065602.jpg",
-          "note": "Eigene Werte drei Fünftel und 0,58.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "kind": "Originalwerte",
+          "page": 18,
+          "location": "Arbeitsheft Nr. 3k",
+          "file": "76361.jpg",
+          "note": "Werte und Aufgabenfamilie des hochgeladenen Schulblatts; kleinschrittiger eigener Erklärweg.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">47/100 ? 9/20</div></figure>"
       },
       "5": {
         "id": 5,
-        "title": "Welche Ziffer fehlt?",
+        "title": "Alle Ziffern einer positiven Ungleichung finden",
         "question": [
-          "0,4□ < 0,43: Welche Ziffern passen?"
+          "5,□ &gt; 5,7"
         ],
         "givenPairs": [],
         "steps": [
           {
-            "html": "0,40 &lt; 0,43",
-            "text": "0,40 < 0,43",
-            "label": "",
-            "pairs": [],
-            "plain": "0,40 < 0,43",
-            "tokens": [
-              "0,40",
-              "0,43"
-            ],
-            "operation": "",
+            "title": "1 · Die Aufgabe lesen",
+            "label": "1 · Die Aufgabe lesen",
+            "html": "<span>Das Zeichen &gt; verlangt echt größer.</span>",
+            "plain": "Das Zeichen > verlangt echt größer.",
+            "text": "Das Zeichen > verlangt echt größer.",
             "explain": [
-              "Die Lücke ist die Hundertstelstelle.",
-              "Mit einer 0 entsteht 0,40. Das ist kleiner als 0,43."
+              "Das Kästchen steht für genau eine Ziffer: 0 bis 9.",
+              "Die übrigen Ziffern und das Vorzeichen bleiben unverändert."
             ],
             "hint": [
-              "Setze probeweise eine 0 in die Lücke und vergleiche die Hundertstel."
+              "Das Kästchen steht für genau eine Ziffer: 0 bis 9."
             ],
-            "ask": "Welche Zahl entsteht, wenn die Lückenziffer null ist?",
+            "ask": "Was verlangt das Zeichen, und an welcher Stelle steht die Lücke?",
             "counterexample": {
-              "claim": "Die Lücke als Zehntelstelle behandeln",
-              "reason": "Die vier besetzt bereits die Zehntelstelle. Die Lücke zählt Hundertstel."
+              "claim": "Die Ziffer 0 vergessen oder bei < und > Gleichheit zulassen.",
+              "reason": "Die passende Begründung: Das Kästchen steht für genau eine Ziffer: 0 bis 9. Die übrigen Ziffern und das Vorzeichen bleiben unverändert. Das Zeichen > verlangt echt größer."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Die Aufgabe lesen</b><div class=\"basis-equation\">5,□ &gt; 5,7</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:5:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
           },
           {
-            "html": "0,41 &lt; 0,43",
-            "text": "0,41 < 0,43",
-            "label": "",
-            "pairs": [],
-            "plain": "0,41 < 0,43",
-            "tokens": [
-              "0,41",
-              "0,43"
-            ],
-            "operation": "",
+            "title": "2 · Jede Ziffer hat einen Platz",
+            "label": "2 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
             "explain": [
-              "Mit einer 1 entsteht 0,41.",
-              "Auch diese Zahl ist kleiner als 0,43."
+              "Setze nur diese Ziffer ein: 5,0 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 0, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,0 ist kleiner als 5,7."
             ],
             "hint": [
-              "Probiere als Nächstes die 1 in der Lücke."
+              "Setze nur diese Ziffer ein: 5,0 > 5,7."
             ],
-            "ask": "Ist der Wert mit einer eins in der Lücke noch kleiner als 0,43?",
+            "ask": "Passt die Ziffer 0?",
             "counterexample": {
-              "claim": "0,41 wegen der eins vor dem Komma lesen",
-              "reason": "Die eins steht an der Hundertstelstelle. Die Einerstelle bleibt null."
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,0 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 0, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,0 ist kleiner als 5,7. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">0</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
             "phaseId": "dezimalvergleich:examples:5:2",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 1
           },
           {
-            "html": "0,42 &lt; 0,43",
-            "text": "0,42 < 0,43",
-            "label": "",
-            "pairs": [],
-            "plain": "0,42 < 0,43",
-            "tokens": [
-              "0,42",
-              "0,43"
-            ],
-            "operation": "",
+            "title": "3 · Jede Ziffer hat einen Platz",
+            "label": "3 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
             "explain": [
-              "Mit einer 2 entsteht 0,42.",
-              "Diese Zahl ist ebenfalls kleiner als 0,43."
+              "Setze nur diese Ziffer ein: 5,1 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 1, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,1 ist kleiner als 5,7."
             ],
             "hint": [
-              "Probiere als Nächstes die 2 in der Lücke."
+              "Setze nur diese Ziffer ein: 5,1 > 5,7."
             ],
-            "ask": "Ist auch die Ziffer zwei an der Lückenstelle erlaubt?",
+            "ask": "Passt die Ziffer 1?",
             "counterexample": {
-              "claim": "Jede größere Ziffer als die bisherige eins ausschließen",
-              "reason": "0,42 bleibt unter der Grenze 0,43. Die Ziffer zwei ist deshalb ebenfalls möglich."
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,1 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 1, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,1 ist kleiner als 5,7. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">1</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
             "phaseId": "dezimalvergleich:examples:5:3",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 2
           },
           {
-            "html": "□ = 0, 1 oder 2",
-            "text": "□ = 0, 1 oder 2",
-            "label": "",
-            "pairs": [],
-            "plain": "□ = 0, 1 oder 2",
-            "tokens": [
-              "0",
-              "1",
-              "2"
-            ],
-            "operation": "",
+            "title": "4 · Jede Ziffer hat einen Platz",
+            "label": "4 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
             "explain": [
-              "Mit einer 3 wäre die Zahl gleich 0,43. Das ist hier nicht erlaubt.",
-              "Größere Ziffern machen die Zahl zu groß. Es passen nur 0, 1 und 2."
+              "Setze nur diese Ziffer ein: 5,2 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,2 ist kleiner als 5,7."
             ],
             "hint": [
-              "Mit 3 wäre die Zahl gleich groß. Das Zeichen verlangt aber kleiner."
+              "Setze nur diese Ziffer ein: 5,2 > 5,7."
             ],
-            "ask": "Warum ist die Ziffer drei nicht mehr erlaubt?",
+            "ask": "Passt die Ziffer 2?",
             "counterexample": {
-              "claim": "Gleichheit bei einem Kleinerzeichen zulassen",
-              "reason": "0,43 ist gleich der Grenze. Gesucht ist aber streng kleiner, deshalb endet die Liste bei zwei."
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,2 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,2 ist kleiner als 5,7. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">2</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
             "phaseId": "dezimalvergleich:examples:5:4",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 3
+          },
+          {
+            "title": "5 · Jede Ziffer hat einen Platz",
+            "label": "5 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 5,3 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 3, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,3 ist kleiner als 5,7."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 5,3 > 5,7."
+            ],
+            "ask": "Passt die Ziffer 3?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,3 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 3, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,3 ist kleiner als 5,7. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">3</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:5:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Jede Ziffer hat einen Platz",
+            "label": "6 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 5,4 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 4, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,4 ist kleiner als 5,7."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 5,4 > 5,7."
+            ],
+            "ask": "Passt die Ziffer 4?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,4 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 4, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,4 ist kleiner als 5,7. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">4</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:5:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
+          },
+          {
+            "title": "7 · Jede Ziffer hat einen Platz",
+            "label": "7 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 5,5 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 5, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,5 ist kleiner als 5,7."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 5,5 > 5,7."
+            ],
+            "ask": "Passt die Ziffer 5?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,5 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 5, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,5 ist kleiner als 5,7. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">5</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:5:7",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 6
+          },
+          {
+            "title": "8 · Jede Ziffer hat einen Platz",
+            "label": "8 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 5,6 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 6, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,6 ist kleiner als 5,7."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 5,6 > 5,7."
+            ],
+            "ask": "Passt die Ziffer 6?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,6 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 6, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,6 ist kleiner als 5,7. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">6</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:5:8",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 7
+          },
+          {
+            "title": "9 · Jede Ziffer hat einen Platz",
+            "label": "9 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 5,7 > 5,7.",
+              "Alle Stellen stimmen überein. Endnullen ändern den Wert nicht. Die Zahlen sind gleich groß.",
+              "5,7 ist gleich groß wie 5,7."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 5,7 > 5,7."
+            ],
+            "ask": "Passt die Ziffer 7?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,7 > 5,7. Alle Stellen stimmen überein. Endnullen ändern den Wert nicht. Die Zahlen sind gleich groß. 5,7 ist gleich groß wie 5,7. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td>7</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td>7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:5:9",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 8
+          },
+          {
+            "title": "10 · Jede Ziffer hat einen Platz",
+            "label": "10 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span>",
+            "plain": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "text": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 5,8 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 8, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,8 ist größer als 5,7."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 5,8 > 5,7."
+            ],
+            "ask": "Passt die Ziffer 8?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,8 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 8, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,8 ist größer als 5,7. Die verlangte Aussage stimmt. Merke diese Ziffer."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">8</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:5:10",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 9
+          },
+          {
+            "title": "11 · Jede Ziffer hat einen Platz",
+            "label": "11 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span>",
+            "plain": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "text": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 5,9 > 5,7.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 9, rechts 7.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "5,9 ist größer als 5,7."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 5,9 > 5,7."
+            ],
+            "ask": "Passt die Ziffer 9?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 5,9 > 5,7. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 9, rechts 7. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 5,9 ist größer als 5,7. Die verlangte Aussage stimmt. Merke diese Ziffer."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">9</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">5</td><td class=\"basis-first-difference\">7</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:5:11",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 10
+          },
+          {
+            "title": "12 · Vollständige Auswahl",
+            "label": "12 · Vollständige Auswahl",
+            "html": "<span>Lies mit jeder passenden Ziffer die ganze Aussage nochmals.</span>",
+            "plain": "Lies mit jeder passenden Ziffer die ganze Aussage nochmals.",
+            "text": "Lies mit jeder passenden Ziffer die ganze Aussage nochmals.",
+            "explain": [
+              "Alle zehn Ziffern wurden geprüft.",
+              "Passend: 8, 9."
+            ],
+            "hint": [
+              "Alle zehn Ziffern wurden geprüft."
+            ],
+            "ask": "Hast du wirklich alle passenden Ziffern gefunden?",
+            "counterexample": {
+              "claim": "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind.",
+              "reason": "Die passende Begründung: Alle zehn Ziffern wurden geprüft. Passend: 8, 9. Lies mit jeder passenden Ziffer die ganze Aussage nochmals."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vollständige Auswahl</b><div class=\"basis-units\"><span class=\"\">0</span><span class=\"\">1</span><span class=\"\">2</span><span class=\"\">3</span><span class=\"\">4</span><span class=\"\">5</span><span class=\"\">6</span><span class=\"\">7</span><span class=\"basis-to\">8</span><span class=\"basis-to\">9</span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:5:12",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 11
           }
         ],
         "answer": [
-          "In das Kästchen passen die Ziffern 0, 1 oder 2."
+          "8, 9"
         ],
         "hint": [
           "Die Zehntel stimmen bereits überein."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du setzt auch die 3 ein.",
-          "<b>Richtig:</b> Mit 3 wäre 0,43 = 0,43.",
-          "Gesucht ist aber kleiner als; deshalb passen nur 0, 1 und 2."
+          "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind."
         ],
         "check": [
-          "Mit 3 wäre Gleichheit, nicht mehr „kleiner als“."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "0,4□ < 0,43: Welche Ziffern passen?",
+        "questionPlain": "5,□ > 5,7",
         "givenTokens": [
-          "0,4",
-          "0,43"
+          "5,□ > 5,7"
         ],
-        "intro": [
-          "Das Zeichen verlangt: links muss kleiner sein als rechts.",
-          "Probiere die Ziffern an der Hundertstelstelle."
-        ],
-        "recognize": "Eine Ziffer fehlt. Das Vergleichszeichen entscheidet, welche Ziffern erlaubt sind.",
-        "startHint": "Setze probeweise eine 0 in die Lücke und vergleiche die Hundertstel.",
-        "notebookHtml": "<div class=\"school-calculation\">0,40 &lt; 0,43</div><div class=\"school-calculation\">0,41 &lt; 0,43</div><div class=\"school-calculation\">0,42 &lt; 0,43</div><div class=\"school-calculation\">□ = 0, 1 oder 2</div>",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
+        "notebookHtml": "<div class=\"school-calculation\"><span>Das Zeichen &gt; verlangt echt größer.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span></div><div class=\"school-calculation\"><span>Lies mit jeder passenden Ziffer die ganze Aussage nochmals.</span></div>",
         "source": {
-          "kind": "adaptiert",
-          "page": 26,
-          "location": "Aufgabe 5",
-          "file": "20261023_065602.jpg",
-          "note": "Eigene Hundertstellücke 0,4□ < 0,43.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "kind": "Originalwerte",
+          "page": 18,
+          "location": "Arbeitsheft Nr. 2a",
+          "file": "76361.jpg",
+          "note": "Werte und Aufgabenfamilie des hochgeladenen Schulblatts; kleinschrittiger eigener Erklärweg.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">5,□ &gt; 5,7</div></figure>"
       },
       "6": {
         "id": 6,
-        "title": "Eine Zahl dazwischen finden",
+        "title": "Eine Ziffernlücke mit Gleichheitszeichen lösen",
         "question": [
-          "Finde eine Zahl zwischen 0,4 und 0,5."
+          "0,0034□ = 0,0034"
         ],
         "givenPairs": [],
         "steps": [
           {
-            "html": "0,40 &lt; 0,45 &lt; 0,50",
-            "text": "0,40 < 0,45 < 0,50",
-            "label": "",
-            "pairs": [],
-            "plain": "0,40 < 0,45 < 0,50",
-            "tokens": [
-              "0,40",
-              "0,45",
-              "0,50"
-            ],
-            "operation": "",
+            "title": "1 · Die Aufgabe lesen",
+            "label": "1 · Die Aufgabe lesen",
+            "html": "<span>Das Zeichen = verlangt genau gleich.</span>",
+            "plain": "Das Zeichen = verlangt genau gleich.",
+            "text": "Das Zeichen = verlangt genau gleich.",
             "explain": [
-              "Schreibe die Grenzen als 0,40 und 0,50.",
-              "0,45 ist größer als 0,40 und kleiner als 0,50. Es ist eine mögliche Antwort."
+              "Das Kästchen steht für genau eine Ziffer: 0 bis 9.",
+              "Die übrigen Ziffern und das Vorzeichen bleiben unverändert."
             ],
             "hint": [
-              "Schreibe die Grenzen als 0,40 und 0,50. Dazwischen gibt es weitere Hundertstel."
+              "Das Kästchen steht für genau eine Ziffer: 0 bis 9."
             ],
-            "ask": "Wie prüfst du einen Vorschlag an beiden Grenzen?",
+            "ask": "Was verlangt das Zeichen, und an welcher Stelle steht die Lücke?",
             "counterexample": {
-              "claim": "0,40 oder 0,50 als Zwischenzahl nennen",
-              "reason": "Beide sind nur die Randwerte. Eine Zwischenzahl muss größer als der linke und kleiner als der rechte sein."
+              "claim": "Die Ziffer 0 vergessen oder bei < und > Gleichheit zulassen.",
+              "reason": "Die passende Begründung: Das Kästchen steht für genau eine Ziffer: 0 bis 9. Die übrigen Ziffern und das Vorzeichen bleiben unverändert. Das Zeichen = verlangt genau gleich."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Die Aufgabe lesen</b><div class=\"basis-equation\">0,0034□ = 0,0034</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:6:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
+          },
+          {
+            "title": "2 · Jede Ziffer hat einen Platz",
+            "label": "2 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span>",
+            "plain": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "text": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00340 = 0,0034.",
+              "Alle Stellen stimmen überein. Endnullen ändern den Wert nicht. Die Zahlen sind gleich groß.",
+              "0,00340 ist gleich groß wie 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00340 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 0?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00340 = 0,0034. Alle Stellen stimmen überein. Endnullen ändern den Wert nicht. Die Zahlen sind gleich groß. 0,00340 ist gleich groß wie 0,00340. Die verlangte Aussage stimmt. Merke diese Ziffer."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th>Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td>0</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td>0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:2",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 1
+          },
+          {
+            "title": "3 · Jede Ziffer hat einen Platz",
+            "label": "3 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00341 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 1, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00341 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00341 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 1?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00341 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 1, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00341 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">1</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:3",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 2
+          },
+          {
+            "title": "4 · Jede Ziffer hat einen Platz",
+            "label": "4 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00342 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 2, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00342 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00342 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 2?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00342 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 2, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00342 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">2</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:4",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 3
+          },
+          {
+            "title": "5 · Jede Ziffer hat einen Platz",
+            "label": "5 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00343 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 3, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00343 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00343 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 3?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00343 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 3, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00343 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">3</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Jede Ziffer hat einen Platz",
+            "label": "6 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00344 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 4, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00344 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00344 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 4?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00344 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 4, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00344 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">4</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
+          },
+          {
+            "title": "7 · Jede Ziffer hat einen Platz",
+            "label": "7 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00345 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 5, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00345 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00345 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 5?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00345 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 5, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00345 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">5</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:7",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 6
+          },
+          {
+            "title": "8 · Jede Ziffer hat einen Platz",
+            "label": "8 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00346 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 6, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00346 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00346 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 6?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00346 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 6, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00346 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">6</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:8",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 7
+          },
+          {
+            "title": "9 · Jede Ziffer hat einen Platz",
+            "label": "9 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00347 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 7, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00347 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00347 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 7?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00347 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 7, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00347 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">7</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:9",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 8
+          },
+          {
+            "title": "10 · Jede Ziffer hat einen Platz",
+            "label": "10 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00348 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 8, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00348 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00348 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 8?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00348 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 8, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00348 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">8</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:10",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 9
+          },
+          {
+            "title": "11 · Jede Ziffer hat einen Platz",
+            "label": "11 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: 0,00349 = 0,0034.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 9, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl.",
+              "0,00349 ist größer als 0,00340."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: 0,00349 = 0,0034."
+            ],
+            "ask": "Passt die Ziffer 9?",
+            "counterexample": {
+              "claim": "Nur die eingesetzte Ziffer vergleichen. Du musst die vollständigen Zahlen und ihre erste unterschiedliche Stelle beachten.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: 0,00349 = 0,0034. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Hunderttausendstel. Links steht 9, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,00349 ist größer als 0,00340. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th><th>Tausendstel</th><th>Zehntausendstel</th><th class=\"basis-first-difference\">Hunderttausendstel</th></tr></thead><tbody><tr><th>links</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">9</td></tr><tr><th>rechts</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>0</td><td>3</td><td>4</td><td class=\"basis-first-difference\">0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:11",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 10
+          },
+          {
+            "title": "12 · Vollständige Auswahl",
+            "label": "12 · Vollständige Auswahl",
+            "html": "<span>Lies mit jeder passenden Ziffer die ganze Aussage nochmals.</span>",
+            "plain": "Lies mit jeder passenden Ziffer die ganze Aussage nochmals.",
+            "text": "Lies mit jeder passenden Ziffer die ganze Aussage nochmals.",
+            "explain": [
+              "Alle zehn Ziffern wurden geprüft.",
+              "Passend: 0."
+            ],
+            "hint": [
+              "Alle zehn Ziffern wurden geprüft."
+            ],
+            "ask": "Hast du wirklich alle passenden Ziffern gefunden?",
+            "counterexample": {
+              "claim": "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind.",
+              "reason": "Die passende Begründung: Alle zehn Ziffern wurden geprüft. Passend: 0. Lies mit jeder passenden Ziffer die ganze Aussage nochmals."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vollständige Auswahl</b><div class=\"basis-units\"><span class=\"basis-to\">0</span><span class=\"\">1</span><span class=\"\">2</span><span class=\"\">3</span><span class=\"\">4</span><span class=\"\">5</span><span class=\"\">6</span><span class=\"\">7</span><span class=\"\">8</span><span class=\"\">9</span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:6:12",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 11
           }
         ],
         "answer": [
-          "Eine mögliche Zahl ist 0,45.",
-          "Es gilt: 0,4 < 0,45 < 0,5."
+          "0"
         ],
         "hint": [
           "Schreibe beide Zahlen mit gleich vielen Nachkommastellen."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du nennst 0,4 oder 0,5 selbst.",
-          "<b>Richtig:</b> Gesucht ist eine Zahl dazwischen.",
-          "0,45 ist größer als 0,4 und kleiner als 0,5."
+          "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind."
         ],
         "check": [
-          "0,45 ist größer als 0,4 und kleiner als 0,5."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "Finde eine Zahl zwischen 0,4 und 0,5.",
+        "questionPlain": "0,0034□ = 0,0034",
         "givenTokens": [
-          "0,4",
-          "0,5"
+          "0,0034□ = 0,0034"
         ],
-        "intro": [
-          "Du darfst mehr Stellen nach dem Komma benutzen.",
-          "Schreibe die Grenzen zuerst mit zwei Nachkommastellen."
-        ],
-        "recognize": "Eine beliebige Zahl dazwischen reicht. Mehr Nachkommastellen sind erlaubt.",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
         "learnSteps": [
           {
             "title": "Die Grenzen feiner einteilen",
@@ -28812,7 +29825,7 @@ window.MERKHEFT_COURSES = {
             "pictureAfter": 2
           }
         ],
-        "startHint": "Schreibe die Grenzen als 0,40 und 0,50. Dazwischen gibt es weitere Hundertstel.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
         "learning": {
           "title": "Eine Kommazahl dazwischen finden",
           "question": [
@@ -28857,109 +29870,797 @@ window.MERKHEFT_COURSES = {
             "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
           }
         },
-        "notebookHtml": "<div class=\"school-calculation\">0,40 &lt; 0,45 &lt; 0,50</div>",
+        "notebookHtml": "<div class=\"school-calculation\"><span>Das Zeichen = verlangt genau gleich.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Lies mit jeder passenden Ziffer die ganze Aussage nochmals.</span></div>",
         "source": {
-          "kind": "adaptiert",
-          "page": 26,
-          "location": "Aufgabe 8",
-          "file": "20261023_065602.jpg",
-          "note": "Eigene Grenzen 0,4 und 0,5 und ein möglicher Zwischenwert.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "kind": "Originalwerte",
+          "page": 18,
+          "location": "Arbeitsheft Nr. 2c",
+          "file": "76361.jpg",
+          "note": "Werte und Aufgabenfamilie des hochgeladenen Schulblatts; kleinschrittiger eigener Erklärweg.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">0,0034□ = 0,0034</div></figure>"
       },
       "7": {
         "id": 7,
-        "title": "Mit der kleinsten Zahl beginnen",
+        "title": "Brüche und Dezimalzahlen gemeinsam ordnen",
         "question": [
-          "Ordne 0,506; 0,56; 0,5.",
-          "Beginne mit der kleinsten Zahl."
+          "Beginne mit der kleinsten Zahl: 1/5; 0,3; 9/10; 0,56; 3/50; 63/100"
         ],
         "givenPairs": [],
         "steps": [
           {
-            "html": "0,500 &lt; 0,506 &lt; 0,560",
-            "text": "0,500 < 0,506 < 0,560",
-            "label": "",
-            "pairs": [],
-            "plain": "0,500 < 0,506 < 0,560",
-            "tokens": [
-              "0,500",
-              "0,506",
-              "0,560"
-            ],
-            "operation": "",
+            "title": "1 · Noch nicht geordnet",
+            "label": "1 · Noch nicht geordnet",
+            "html": "<span>Die Antwort wird mit &lt; verbunden. Gleiche Werte verbindest du mit =.</span>",
+            "plain": "Die Antwort wird mit < verbunden. Gleiche Werte verbindest du mit =.",
+            "text": "Die Antwort wird mit < verbunden. Gleiche Werte verbindest du mit =.",
             "explain": [
-              "Ergänze Endnullen: 0,500; 0,506; 0,560.",
-              "Vergleiche von links. Erst entscheiden die Hundertstel, dann die Tausendstel."
+              "Beginne mit der kleinsten Zahl. Die Zahlen werden nach rechts größer."
             ],
             "hint": [
-              "Hänge Endnullen an, damit alle Zahlen gleich viele Nachkommastellen haben."
+              "Beginne mit der kleinsten Zahl. Die Zahlen werden nach rechts größer."
             ],
-            "ask": "Wie kannst du alle drei Zahlen mit gleich vielen Nachkommastellen schreiben?",
+            "ask": "Was bedeutet: Ordne der Größe nach?",
             "counterexample": {
-              "claim": "Nullen mitten in die Zahlen einfügen",
-              "reason": "Nur angehängte Endnullen lassen den Wert unverändert."
+              "claim": "In der Reihenfolge des Arbeitsblatts abschreiben, ohne die Werte zu vergleichen.",
+              "reason": "Die passende Begründung: Beginne mit der kleinsten Zahl. Die Zahlen werden nach rechts größer. Die Antwort wird mit < verbunden. Gleiche Werte verbindest du mit =."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Noch nicht geordnet</b><div class=\"basis-equation\">1/5; 0,3; 9/10; 0,56; 3/50; 63/100</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:7:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
           },
           {
-            "html": "Also: 0,5 &lt; 0,506 &lt; 0,56",
-            "text": "Also: 0,5 < 0,506 < 0,56",
-            "label": "",
-            "pairs": [],
-            "plain": "Also: 0,5 < 0,506 < 0,56",
-            "tokens": [
-              "0,5",
-              "0,506",
-              "0,56"
-            ],
-            "operation": "",
+            "title": "2 · Den passenden Nenner herstellen",
+            "label": "2 · Den passenden Nenner herstellen",
+            "html": "<span>Die Malzahl ist 2, denn 10 : 5 = 2.</span>",
+            "plain": "Die Malzahl ist 2, denn 10 : 5 = 2.",
+            "text": "Die Malzahl ist 2, denn 10 : 5 = 2.",
             "explain": [
-              "Die Endnullen ändern die Zahlen nicht.",
-              "Schreibe die ursprünglichen Zahlen in derselben Reihenfolge auf."
+              "Mit dem Nenner 10 lassen sich die Stellen nach dem Komma direkt lesen.",
+              "Suche die fehlende Malzahl: 5 · ? = 10."
             ],
             "hint": [
-              "Lass danach nur die zusätzlich angehängten Nullen wieder weg."
+              "Mit dem Nenner 10 lassen sich die Stellen nach dem Komma direkt lesen."
             ],
-            "ask": "In welcher Reihenfolge schreibst du die ursprünglichen drei Zahlen auf?",
+            "ask": "Welche Malzahl führt vom Nenner 5 zum Zehnernenner?",
             "counterexample": {
-              "claim": "Die Zahlen nach Länge ihrer Schreibweise ordnen",
-              "reason": "Die Stellenwerte entscheiden. Die längere Schreibweise kann einen kleineren Wert bezeichnen."
+              "claim": "Den Nenner durch 10 ersetzen, ohne den Zähler mitzunehmen.",
+              "reason": "Die passende Begründung: Mit dem Nenner 10 lassen sich die Stellen nach dem Komma direkt lesen. Suche die fehlende Malzahl: 5 · ? = 10. Die Malzahl ist 2, denn 10 : 5 = 2."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Den passenden Nenner herstellen</b><div class=\"basis-equation\">5 · 2 = 10</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:7:2",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 1
+          },
+          {
+            "title": "3 · Den Wert erhalten",
+            "label": "3 · Den Wert erhalten",
+            "html": "<span>Nenner: 5 · 2 = 10.</span>",
+            "plain": "Nenner: 5 · 2 = 10.",
+            "text": "Nenner: 5 · 2 = 10.",
+            "explain": [
+              "Multipliziere oben und unten mit 2.",
+              "Zähler: 1 · 2 = 2."
+            ],
+            "hint": [
+              "Multipliziere oben und unten mit 2."
+            ],
+            "ask": "Was passiert gleichzeitig mit dem Zähler?",
+            "counterexample": {
+              "claim": "Nur unten multiplizieren. Zähler und Nenner müssen denselben Faktor erhalten.",
+              "reason": "Die passende Begründung: Multipliziere oben und unten mit 2. Zähler: 1 · 2 = 2. Nenner: 5 · 2 = 10."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Den Wert erhalten</b><div class=\"basis-equation\">1/5 = 2/10</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:3",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 2
+          },
+          {
+            "title": "4 · Jede Ziffer hat einen Platz",
+            "label": "4 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die Kommazahl ist 0,2.</span>",
+            "plain": "Die Kommazahl ist 0,2.",
+            "text": "Die Kommazahl ist 0,2.",
+            "explain": [
+              "Nenner 10 bedeutet 1 Stellen nach dem Komma.",
+              "Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null."
+            ],
+            "hint": [
+              "Nenner 10 bedeutet 1 Stellen nach dem Komma."
+            ],
+            "ask": "Wie liest du 2/10 als Kommazahl?",
+            "counterexample": {
+              "claim": "Den Zähler einfach hinter das Komma schreiben und nötige Nullen weglassen.",
+              "reason": "Die passende Begründung: Nenner 10 bedeutet 1 Stellen nach dem Komma. Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null. Die Kommazahl ist 0,2."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td>2</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:4",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 3
+          },
+          {
+            "title": "5 · Jede Ziffer hat einen Platz",
+            "label": "5 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die Kommazahl ist 0,9.</span>",
+            "plain": "Die Kommazahl ist 0,9.",
+            "text": "Die Kommazahl ist 0,9.",
+            "explain": [
+              "Nenner 10 bedeutet 1 Stellen nach dem Komma.",
+              "Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null."
+            ],
+            "hint": [
+              "Nenner 10 bedeutet 1 Stellen nach dem Komma."
+            ],
+            "ask": "Wie liest du 9/10 als Kommazahl?",
+            "counterexample": {
+              "claim": "Den Zähler einfach hinter das Komma schreiben und nötige Nullen weglassen.",
+              "reason": "Die passende Begründung: Nenner 10 bedeutet 1 Stellen nach dem Komma. Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null. Die Kommazahl ist 0,9."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th></tr></thead><tbody><tr><th>9/10</th><td>+</td><td class=\"basis-comma \">0</td><td>9</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Den passenden Nenner herstellen",
+            "label": "6 · Den passenden Nenner herstellen",
+            "html": "<span>Die Malzahl ist 2, denn 100 : 50 = 2.</span>",
+            "plain": "Die Malzahl ist 2, denn 100 : 50 = 2.",
+            "text": "Die Malzahl ist 2, denn 100 : 50 = 2.",
+            "explain": [
+              "Mit dem Nenner 100 lassen sich die Stellen nach dem Komma direkt lesen.",
+              "Suche die fehlende Malzahl: 50 · ? = 100."
+            ],
+            "hint": [
+              "Mit dem Nenner 100 lassen sich die Stellen nach dem Komma direkt lesen."
+            ],
+            "ask": "Welche Malzahl führt vom Nenner 50 zum Zehnernenner?",
+            "counterexample": {
+              "claim": "Den Nenner durch 100 ersetzen, ohne den Zähler mitzunehmen.",
+              "reason": "Die passende Begründung: Mit dem Nenner 100 lassen sich die Stellen nach dem Komma direkt lesen. Suche die fehlende Malzahl: 50 · ? = 100. Die Malzahl ist 2, denn 100 : 50 = 2."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Den passenden Nenner herstellen</b><div class=\"basis-equation\">50 · 2 = 100</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
+          },
+          {
+            "title": "7 · Den Wert erhalten",
+            "label": "7 · Den Wert erhalten",
+            "html": "<span>Nenner: 50 · 2 = 100.</span>",
+            "plain": "Nenner: 50 · 2 = 100.",
+            "text": "Nenner: 50 · 2 = 100.",
+            "explain": [
+              "Multipliziere oben und unten mit 2.",
+              "Zähler: 3 · 2 = 6."
+            ],
+            "hint": [
+              "Multipliziere oben und unten mit 2."
+            ],
+            "ask": "Was passiert gleichzeitig mit dem Zähler?",
+            "counterexample": {
+              "claim": "Nur unten multiplizieren. Zähler und Nenner müssen denselben Faktor erhalten.",
+              "reason": "Die passende Begründung: Multipliziere oben und unten mit 2. Zähler: 3 · 2 = 6. Nenner: 50 · 2 = 100."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Den Wert erhalten</b><div class=\"basis-equation\">3/50 = 6/100</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:7",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 6
+          },
+          {
+            "title": "8 · Jede Ziffer hat einen Platz",
+            "label": "8 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die Kommazahl ist 0,06.</span>",
+            "plain": "Die Kommazahl ist 0,06.",
+            "text": "Die Kommazahl ist 0,06.",
+            "explain": [
+              "Nenner 100 bedeutet 2 Stellen nach dem Komma.",
+              "Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null."
+            ],
+            "hint": [
+              "Nenner 100 bedeutet 2 Stellen nach dem Komma."
+            ],
+            "ask": "Wie liest du 6/100 als Kommazahl?",
+            "counterexample": {
+              "claim": "Den Zähler einfach hinter das Komma schreiben und nötige Nullen weglassen.",
+              "reason": "Die passende Begründung: Nenner 100 bedeutet 2 Stellen nach dem Komma. Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null. Die Kommazahl ist 0,06."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>3/50</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>6</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:8",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 7
+          },
+          {
+            "title": "9 · Jede Ziffer hat einen Platz",
+            "label": "9 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die Kommazahl ist 0,63.</span>",
+            "plain": "Die Kommazahl ist 0,63.",
+            "text": "Die Kommazahl ist 0,63.",
+            "explain": [
+              "Nenner 100 bedeutet 2 Stellen nach dem Komma.",
+              "Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null."
+            ],
+            "hint": [
+              "Nenner 100 bedeutet 2 Stellen nach dem Komma."
+            ],
+            "ask": "Wie liest du 63/100 als Kommazahl?",
+            "counterexample": {
+              "claim": "Den Zähler einfach hinter das Komma schreiben und nötige Nullen weglassen.",
+              "reason": "Die passende Begründung: Nenner 100 bedeutet 2 Stellen nach dem Komma. Trage den Zähler passend in die Stellenwerttafel ein. Leere Stellen bekommen eine Null. Die Kommazahl ist 0,63."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>63/100</th><td>+</td><td class=\"basis-comma \">0</td><td>6</td><td>3</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:9",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 8
+          },
+          {
+            "title": "10 · Jede Ziffer hat einen Platz",
+            "label": "10 · Jede Ziffer hat einen Platz",
+            "html": "<span>Ergänze nur Endnullen nach dem Komma. Alle Zahlen behalten ihren Wert.</span>",
+            "plain": "Ergänze nur Endnullen nach dem Komma. Alle Zahlen behalten ihren Wert.",
+            "text": "Ergänze nur Endnullen nach dem Komma. Alle Zahlen behalten ihren Wert.",
+            "explain": [
+              "Schreibe die Kommas untereinander."
+            ],
+            "hint": [
+              "Schreibe die Kommas untereinander."
+            ],
+            "ask": "Wie bereitest du alle Zahlen zum Vergleichen vor?",
+            "counterexample": {
+              "claim": "Nullen mitten in die Zahl einsetzen.",
+              "reason": "Die passende Begründung: Schreibe die Kommas untereinander. Ergänze nur Endnullen nach dem Komma. Alle Zahlen behalten ihren Wert."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td>2</td><td>0</td></tr><tr><th>0,3</th><td>+</td><td class=\"basis-comma \">0</td><td>3</td><td>0</td></tr><tr><th>9/10</th><td>+</td><td class=\"basis-comma \">0</td><td>9</td><td>0</td></tr><tr><th>0,56</th><td>+</td><td class=\"basis-comma \">0</td><td>5</td><td>6</td></tr><tr><th>3/50</th><td>+</td><td class=\"basis-comma \">0</td><td>0</td><td>6</td></tr><tr><th>63/100</th><td>+</td><td class=\"basis-comma \">0</td><td>6</td><td>3</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:10",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 9
+          },
+          {
+            "title": "11 · Jede Ziffer hat einen Platz",
+            "label": "11 · Jede Ziffer hat einen Platz",
+            "html": "<span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "1/5 = 0,20; 0,3 = 0,30.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 3.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "1/5 = 0,20; 0,3 = 0,30."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 1/5 = 0,20; 0,3 = 0,30. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 3. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 1/5 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">2</td><td>0</td></tr><tr><th>0,3</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">3</td><td>0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:11",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 10
+          },
+          {
+            "title": "12 · Jede Ziffer hat einen Platz",
+            "label": "12 · Jede Ziffer hat einen Platz",
+            "html": "<span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "1/5 = 0,20; 9/10 = 0,90.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 9.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "1/5 = 0,20; 9/10 = 0,90."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 1/5 = 0,20; 9/10 = 0,90. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 9. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 1/5 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">2</td><td>0</td></tr><tr><th>9/10</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">9</td><td>0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:12",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 11
+          },
+          {
+            "title": "13 · Jede Ziffer hat einen Platz",
+            "label": "13 · Jede Ziffer hat einen Platz",
+            "html": "<span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "1/5 = 0,20; 0,56 = 0,56.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 5.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "1/5 = 0,20; 0,56 = 0,56."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 1/5 = 0,20; 0,56 = 0,56. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 5. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 1/5 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">2</td><td>0</td></tr><tr><th>0,56</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">5</td><td>6</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:13",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 12
+          },
+          {
+            "title": "14 · Jede Ziffer hat einen Platz",
+            "label": "14 · Jede Ziffer hat einen Platz",
+            "html": "<span>3/50 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "3/50 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "3/50 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "1/5 = 0,20; 3/50 = 0,06.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 0.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "1/5 = 0,20; 3/50 = 0,06."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 1/5 = 0,20; 3/50 = 0,06. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 0. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 3/50 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">2</td><td>0</td></tr><tr><th>3/50</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">0</td><td>6</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:14",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 13
+          },
+          {
+            "title": "15 · Jede Ziffer hat einen Platz",
+            "label": "15 · Jede Ziffer hat einen Platz",
+            "html": "<span>3/50 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "3/50 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "3/50 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "3/50 = 0,06; 63/100 = 0,63.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 0, rechts 6.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "3/50 = 0,06; 63/100 = 0,63."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 3/50 = 0,06; 63/100 = 0,63. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 0, rechts 6. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 3/50 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>3/50</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">0</td><td>6</td></tr><tr><th>63/100</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">6</td><td>3</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:15",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 14
+          },
+          {
+            "title": "16 · Bisher geordnet",
+            "label": "16 · Bisher geordnet",
+            "html": "<span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span>",
+            "plain": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "text": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "explain": [
+              "3/50 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "hint": [
+              "3/50 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "ask": "Welche Zahl steht jetzt als Nächstes in der Reihe?",
+            "counterexample": {
+              "claim": "Eine schon eingeordnete Zahl nochmals verwenden oder eine Zahl auslassen.",
+              "reason": "Die passende Begründung: 3/50 ist die kleinste der noch übrigen Zahlen. Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Bisher geordnet</b><div class=\"basis-equation\">3/50</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:16",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 15
+          },
+          {
+            "title": "17 · Jede Ziffer hat einen Platz",
+            "label": "17 · Jede Ziffer hat einen Platz",
+            "html": "<span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "1/5 = 0,20; 0,3 = 0,30.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 3.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "1/5 = 0,20; 0,3 = 0,30."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 1/5 = 0,20; 0,3 = 0,30. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 3. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 1/5 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">2</td><td>0</td></tr><tr><th>0,3</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">3</td><td>0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:17",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 16
+          },
+          {
+            "title": "18 · Jede Ziffer hat einen Platz",
+            "label": "18 · Jede Ziffer hat einen Platz",
+            "html": "<span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "1/5 = 0,20; 9/10 = 0,90.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 9.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "1/5 = 0,20; 9/10 = 0,90."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 1/5 = 0,20; 9/10 = 0,90. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 9. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 1/5 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">2</td><td>0</td></tr><tr><th>9/10</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">9</td><td>0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:18",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 17
+          },
+          {
+            "title": "19 · Jede Ziffer hat einen Platz",
+            "label": "19 · Jede Ziffer hat einen Platz",
+            "html": "<span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "1/5 = 0,20; 0,56 = 0,56.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 5.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "1/5 = 0,20; 0,56 = 0,56."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 1/5 = 0,20; 0,56 = 0,56. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 5. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 1/5 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">2</td><td>0</td></tr><tr><th>0,56</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">5</td><td>6</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:19",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 18
+          },
+          {
+            "title": "20 · Jede Ziffer hat einen Platz",
+            "label": "20 · Jede Ziffer hat einen Platz",
+            "html": "<span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "1/5 = 0,20; 63/100 = 0,63.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 6.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "1/5 = 0,20; 63/100 = 0,63."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 1/5 = 0,20; 63/100 = 0,63. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 2, rechts 6. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 1/5 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>1/5</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">2</td><td>0</td></tr><tr><th>63/100</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">6</td><td>3</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:20",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 19
+          },
+          {
+            "title": "21 · Bisher geordnet",
+            "label": "21 · Bisher geordnet",
+            "html": "<span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span>",
+            "plain": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "text": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "explain": [
+              "1/5 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "hint": [
+              "1/5 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "ask": "Welche Zahl steht jetzt als Nächstes in der Reihe?",
+            "counterexample": {
+              "claim": "Eine schon eingeordnete Zahl nochmals verwenden oder eine Zahl auslassen.",
+              "reason": "Die passende Begründung: 1/5 ist die kleinste der noch übrigen Zahlen. Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Bisher geordnet</b><div class=\"basis-equation\">3/50 &lt; 1/5</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:21",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 20
+          },
+          {
+            "title": "22 · Jede Ziffer hat einen Platz",
+            "label": "22 · Jede Ziffer hat einen Platz",
+            "html": "<span>0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "0,3 = 0,30; 9/10 = 0,90.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 3, rechts 9.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "0,3 = 0,30; 9/10 = 0,90."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 0,3 = 0,30; 9/10 = 0,90. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 3, rechts 9. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,3 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>0,3</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">3</td><td>0</td></tr><tr><th>9/10</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">9</td><td>0</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:22",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 21
+          },
+          {
+            "title": "23 · Jede Ziffer hat einen Platz",
+            "label": "23 · Jede Ziffer hat einen Platz",
+            "html": "<span>0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "0,3 = 0,30; 0,56 = 0,56.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 3, rechts 5.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "0,3 = 0,30; 0,56 = 0,56."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 0,3 = 0,30; 0,56 = 0,56. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 3, rechts 5. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,3 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>0,3</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">3</td><td>0</td></tr><tr><th>0,56</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">5</td><td>6</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:23",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 22
+          },
+          {
+            "title": "24 · Jede Ziffer hat einen Platz",
+            "label": "24 · Jede Ziffer hat einen Platz",
+            "html": "<span>0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "0,3 = 0,30; 63/100 = 0,63.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 3, rechts 6.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "0,3 = 0,30; 63/100 = 0,63."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 0,3 = 0,30; 63/100 = 0,63. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 3, rechts 6. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,3 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>0,3</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">3</td><td>0</td></tr><tr><th>63/100</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">6</td><td>3</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:24",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 23
+          },
+          {
+            "title": "25 · Bisher geordnet",
+            "label": "25 · Bisher geordnet",
+            "html": "<span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span>",
+            "plain": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "text": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "explain": [
+              "0,3 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "hint": [
+              "0,3 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "ask": "Welche Zahl steht jetzt als Nächstes in der Reihe?",
+            "counterexample": {
+              "claim": "Eine schon eingeordnete Zahl nochmals verwenden oder eine Zahl auslassen.",
+              "reason": "Die passende Begründung: 0,3 ist die kleinste der noch übrigen Zahlen. Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Bisher geordnet</b><div class=\"basis-equation\">3/50 &lt; 1/5 &lt; 0,3</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:25",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 24
+          },
+          {
+            "title": "26 · Jede Ziffer hat einen Platz",
+            "label": "26 · Jede Ziffer hat einen Platz",
+            "html": "<span>0,56 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "0,56 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "0,56 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "9/10 = 0,90; 0,56 = 0,56.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 9, rechts 5.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "9/10 = 0,90; 0,56 = 0,56."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 9/10 = 0,90; 0,56 = 0,56. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 9, rechts 5. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,56 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>9/10</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">9</td><td>0</td></tr><tr><th>0,56</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">5</td><td>6</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:26",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 25
+          },
+          {
+            "title": "27 · Jede Ziffer hat einen Platz",
+            "label": "27 · Jede Ziffer hat einen Platz",
+            "html": "<span>0,56 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "0,56 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "0,56 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "0,56 = 0,56; 63/100 = 0,63.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 5, rechts 6.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "0,56 = 0,56; 63/100 = 0,63."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 0,56 = 0,56; 63/100 = 0,63. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 5, rechts 6. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 0,56 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>0,56</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">5</td><td>6</td></tr><tr><th>63/100</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">6</td><td>3</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:27",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 26
+          },
+          {
+            "title": "28 · Bisher geordnet",
+            "label": "28 · Bisher geordnet",
+            "html": "<span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span>",
+            "plain": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "text": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "explain": [
+              "0,56 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "hint": [
+              "0,56 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "ask": "Welche Zahl steht jetzt als Nächstes in der Reihe?",
+            "counterexample": {
+              "claim": "Eine schon eingeordnete Zahl nochmals verwenden oder eine Zahl auslassen.",
+              "reason": "Die passende Begründung: 0,56 ist die kleinste der noch übrigen Zahlen. Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Bisher geordnet</b><div class=\"basis-equation\">3/50 &lt; 1/5 &lt; 0,3 &lt; 0,56</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:28",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 27
+          },
+          {
+            "title": "29 · Jede Ziffer hat einen Platz",
+            "label": "29 · Jede Ziffer hat einen Platz",
+            "html": "<span>63/100 ist kleiner. Vergleiche mit dieser Zahl weiter.</span>",
+            "plain": "63/100 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "text": "63/100 ist kleiner. Vergleiche mit dieser Zahl weiter.",
+            "explain": [
+              "9/10 = 0,90; 63/100 = 0,63.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 9, rechts 6.",
+              "Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl."
+            ],
+            "hint": [
+              "9/10 = 0,90; 63/100 = 0,63."
+            ],
+            "ask": "Welche der beiden Zahlen ist kleiner?",
+            "counterexample": {
+              "claim": "Nach einer großen ersten Ziffer eine spätere kleine Ziffer als entscheidend ansehen.",
+              "reason": "Die passende Begründung: 9/10 = 0,90; 63/100 = 0,63. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 9, rechts 6. Die größere Ziffer an dieser ersten unterschiedlichen Stelle gehört zur größeren Zahl. 63/100 ist kleiner. Vergleiche mit dieser Zahl weiter."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>9/10</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">9</td><td>0</td></tr><tr><th>63/100</th><td>+</td><td class=\"basis-comma \">0</td><td class=\"basis-first-difference\">6</td><td>3</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:29",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 28
+          },
+          {
+            "title": "30 · Bisher geordnet",
+            "label": "30 · Bisher geordnet",
+            "html": "<span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span>",
+            "plain": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "text": "Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.",
+            "explain": [
+              "63/100 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "hint": [
+              "63/100 ist die kleinste der noch übrigen Zahlen."
+            ],
+            "ask": "Welche Zahl steht jetzt als Nächstes in der Reihe?",
+            "counterexample": {
+              "claim": "Eine schon eingeordnete Zahl nochmals verwenden oder eine Zahl auslassen.",
+              "reason": "Die passende Begründung: 63/100 ist die kleinste der noch übrigen Zahlen. Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Bisher geordnet</b><div class=\"basis-equation\">3/50 &lt; 1/5 &lt; 0,3 &lt; 0,56 &lt; 63/100</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:30",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 29
+          },
+          {
+            "title": "31 · Vollständige Reihe",
+            "label": "31 · Vollständige Reihe",
+            "html": "<span>Jede ursprüngliche Zahl muss genau einmal vorkommen. Schreibe wieder die ursprünglichen Brüche und Kommazahlen.</span>",
+            "plain": "Jede ursprüngliche Zahl muss genau einmal vorkommen. Schreibe wieder die ursprünglichen Brüche und Kommazahlen.",
+            "text": "Jede ursprüngliche Zahl muss genau einmal vorkommen. Schreibe wieder die ursprünglichen Brüche und Kommazahlen.",
+            "explain": [
+              "Die Reihe lautet: 3/50 < 1/5 < 0,3 < 0,56 < 63/100 < 9/10.",
+              "Prüfe jedes benachbarte Paar. Links darf der Wert nie größer sein."
+            ],
+            "hint": [
+              "Die Reihe lautet: 3/50 < 1/5 < 0,3 < 0,56 < 63/100 < 9/10."
+            ],
+            "ask": "Wie prüfst du die vollständige Reihenfolge?",
+            "counterexample": {
+              "claim": "Nur die umgewandelten Zahlen notieren, wenn die ursprünglichen Angaben geordnet werden sollen.",
+              "reason": "Die passende Begründung: Die Reihe lautet: 3/50 < 1/5 < 0,3 < 0,56 < 63/100 < 9/10. Prüfe jedes benachbarte Paar. Links darf der Wert nie größer sein. Jede ursprüngliche Zahl muss genau einmal vorkommen. Schreibe wieder die ursprünglichen Brüche und Kommazahlen."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vollständige Reihe</b><div class=\"basis-equation\">3/50 &lt; 1/5 &lt; 0,3 &lt; 0,56 &lt; 63/100 &lt; 9/10</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:7:31",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 30
           }
         ],
         "answer": [
-          "Von klein nach groß: 0,5 < 0,506 < 0,56."
+          "3/50 &lt; 1/5 &lt; 0,3 &lt; 0,56 &lt; 63/100 &lt; 9/10"
         ],
         "hint": [
           "Beim Ordnen hilft es, die Kommazahlen auf die gleiche Anzahl Nachkommastellen zu bringen."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du ordnest nach der Anzahl der Ziffern.",
-          "<b>Richtig:</b> Ergänze am Ende Nullen: 0,500; 0,506; 0,560.",
-          "Vergleiche dann die Stellen von links nach rechts."
+          "Nur die umgewandelten Zahlen notieren, wenn die ursprünglichen Angaben geordnet werden sollen."
         ],
         "check": [
-          "Die Zahlen liegen von links nach rechts von klein nach groß."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "Ordne 0,506; 0,56; 0,5. Beginne mit der kleinsten Zahl.",
+        "questionPlain": "Beginne mit der kleinsten Zahl: 1/5; 0,3; 9/10; 0,56; 3/50; 63/100",
         "givenTokens": [
-          "0,506",
-          "0,56",
-          "0,5"
+          "Beginne mit der kleinsten Zahl: 1/5; 0,3; 9/10; 0,56; 3/50; 63/100"
         ],
-        "intro": [
-          "Ergänze Endnullen, damit alle Zahlen drei Nachkommastellen haben.",
-          "Vergleiche danach von links."
-        ],
-        "recognize": "Mehrere Zahlen sollen geordnet werden. Ergänze zuerst hilfreiche Endnullen.",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
         "learnSteps": [
           {
             "title": "Endnullen ergänzen",
@@ -29158,7 +30859,7 @@ window.MERKHEFT_COURSES = {
             "pictureAfter": 3
           }
         ],
-        "startHint": "Hänge Endnullen an, damit alle Zahlen gleich viele Nachkommastellen haben.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
         "learning": {
           "title": "Drei Kommazahlen ordnen",
           "question": [
@@ -29204,91 +30905,292 @@ window.MERKHEFT_COURSES = {
             "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
           }
         },
-        "notebookHtml": "<div class=\"school-calculation\">0,500 &lt; 0,506 &lt; 0,560</div><div class=\"school-calculation\">Also: 0,5 &lt; 0,506 &lt; 0,56</div>",
+        "notebookHtml": "<div class=\"school-calculation\"><span>Die Antwort wird mit &lt; verbunden. Gleiche Werte verbindest du mit =.</span></div><div class=\"school-calculation\"><span>Die Malzahl ist 2, denn 10 : 5 = 2.</span></div><div class=\"school-calculation\"><span>Nenner: 5 · 2 = 10.</span></div><div class=\"school-calculation\"><span>Die Kommazahl ist 0,2.</span></div><div class=\"school-calculation\"><span>Die Kommazahl ist 0,9.</span></div><div class=\"school-calculation\"><span>Die Malzahl ist 2, denn 100 : 50 = 2.</span></div><div class=\"school-calculation\"><span>Nenner: 50 · 2 = 100.</span></div><div class=\"school-calculation\"><span>Die Kommazahl ist 0,06.</span></div><div class=\"school-calculation\"><span>Die Kommazahl ist 0,63.</span></div><div class=\"school-calculation\"><span>Ergänze nur Endnullen nach dem Komma. Alle Zahlen behalten ihren Wert.</span></div><div class=\"school-calculation\"><span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>3/50 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>3/50 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span></div><div class=\"school-calculation\"><span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>1/5 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span></div><div class=\"school-calculation\"><span>0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>0,3 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span></div><div class=\"school-calculation\"><span>0,56 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>0,56 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span></div><div class=\"school-calculation\"><span>63/100 ist kleiner. Vergleiche mit dieser Zahl weiter.</span></div><div class=\"school-calculation\"><span>Schreibe sie rechts an die bisherige Reihe. Suche danach die kleinste der übrigen Zahlen.</span></div><div class=\"school-calculation\"><span>Jede ursprüngliche Zahl muss genau einmal vorkommen. Schreibe wieder die ursprünglichen Brüche und Kommazahlen.</span></div>",
         "source": {
-          "kind": "adaptiert",
-          "page": 25,
-          "location": "Einstiegsaufgabe Ordnen",
-          "file": "20261023_065558.jpg",
-          "note": "Eigene Werte 0,506, 0,56 und 0,5.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "kind": "Originalwerte",
+          "page": 18,
+          "location": "Arbeitsheft Nr. 7a",
+          "file": "76361.jpg",
+          "note": "Werte und Aufgabenfamilie des hochgeladenen Schulblatts; kleinschrittiger eigener Erklärweg.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">Beginne mit der kleinsten Zahl: 1/5; 0,3; 9/10; 0,56; 3/50; 63/100</div></figure>"
       },
       "8": {
         "id": 8,
-        "title": "Wer läuft weiter?",
+        "title": "Negative gemischte Zahlen vergleichen",
         "question": [
-          "Lena läuft 1,205 km, Max 1,25 km.",
-          "Wer läuft weiter?"
+          "−3 1/3 ? −3 1/5"
         ],
         "givenPairs": [],
         "steps": [
           {
-            "html": "1,205 km &lt; 1,250 km",
-            "text": "1,205 km < 1,250 km",
-            "label": "",
-            "pairs": [],
-            "plain": "1,205 km < 1,250 km",
-            "tokens": [
-              "1,205 km",
-              "1,250 km"
-            ],
-            "operation": "",
+            "title": "1 · Die Zeichen lesen",
+            "label": "1 · Die Zeichen lesen",
+            "html": "<span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span>",
+            "plain": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
+            "text": "< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.",
             "explain": [
-              "Schreibe 1,25 km als 1,250 km. Jetzt haben beide Zahlen drei Nachkommastellen.",
-              "Bei den Hundertsteln ist 0 kleiner als 5. Deshalb läuft Max weiter."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
             "hint": [
-              "Schreibe 1,25 als 1,250. Vergleiche dann die Ziffern von links."
+              "Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren."
             ],
-            "ask": "Welche Stelle unterscheidet die beiden Laufstrecken zuerst?",
+            "ask": "Was bedeuten die drei Vergleichszeichen?",
             "counterexample": {
-              "claim": "Die Ziffer fünf an der letzten Stelle von 1,205 für größer halten",
-              "reason": "Beim Vergleich zählen gleiche Stellen. Bei den Hundertsteln steht null gegen fünf."
+              "claim": "Nur die Form des Zeichens auswendig lernen, ohne den Satz von links nach rechts zu lesen.",
+              "reason": "Die passende Begründung: Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren. < bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Die Zeichen lesen</b><div class=\"basis-equation\">2 &lt; 5 &nbsp; · &nbsp; 5 &gt; 2 &nbsp; · &nbsp; 5 = 5</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:8:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
+          },
+          {
+            "title": "2 · Vorzeichen zuerst",
+            "label": "2 · Vorzeichen zuerst",
+            "html": "<span>Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.</span>",
+            "plain": "Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.",
+            "text": "Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.",
+            "explain": [
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
+            ],
+            "hint": [
+              "Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl."
+            ],
+            "ask": "Steht ein Minus vor einer Zahl?",
+            "counterexample": {
+              "claim": "Ein Minus übersehen oder bei zwei negativen Zahlen die gewöhnliche positive Reihenfolge übernehmen.",
+              "reason": "Die passende Begründung: Ohne Minus ist eine positive Zahl größer als jede negative Zahl. Null ist größer als jede negative Zahl. Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vorzeichen zuerst</b><div class=\"basis-equation\">−3 1/3 &nbsp; ? &nbsp; −3 1/5</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:2",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 1
+          },
+          {
+            "title": "3 · Ganze und Bruchteile verbinden",
+            "label": "3 · Ganze und Bruchteile verbinden",
+            "html": "<span>Das Minus gilt für die ganze Zahl. Der neue Zähler ist −10.</span>",
+            "plain": "Das Minus gilt für die ganze Zahl. Der neue Zähler ist −10.",
+            "text": "Das Minus gilt für die ganze Zahl. Der neue Zähler ist −10.",
+            "explain": [
+              "Der ganze Teil besteht aus 3 · 3 = 9 Bruchteilen.",
+              "Addiere den Bruchzähler: 9 + 1 = 10."
+            ],
+            "hint": [
+              "Der ganze Teil besteht aus 3 · 3 = 9 Bruchteilen."
+            ],
+            "ask": "Wie schreibst du −3 1/3 als einen Bruch?",
+            "counterexample": {
+              "claim": "Den ganzen Teil und den Zähler addieren, ohne die Ganzen zuerst in Bruchteile zu zerlegen.",
+              "reason": "Die passende Begründung: Der ganze Teil besteht aus 3 · 3 = 9 Bruchteilen. Addiere den Bruchzähler: 9 + 1 = 10. Das Minus gilt für die ganze Zahl. Der neue Zähler ist −10."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Ganze und Bruchteile verbinden</b><div class=\"basis-equation\">−3 1/3 = −10/3</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:3",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 2
+          },
+          {
+            "title": "4 · Ganze und Bruchteile verbinden",
+            "label": "4 · Ganze und Bruchteile verbinden",
+            "html": "<span>Das Minus gilt für die ganze Zahl. Der neue Zähler ist −16.</span>",
+            "plain": "Das Minus gilt für die ganze Zahl. Der neue Zähler ist −16.",
+            "text": "Das Minus gilt für die ganze Zahl. Der neue Zähler ist −16.",
+            "explain": [
+              "Der ganze Teil besteht aus 3 · 5 = 15 Bruchteilen.",
+              "Addiere den Bruchzähler: 15 + 1 = 16."
+            ],
+            "hint": [
+              "Der ganze Teil besteht aus 3 · 5 = 15 Bruchteilen."
+            ],
+            "ask": "Wie schreibst du −3 1/5 als einen Bruch?",
+            "counterexample": {
+              "claim": "Den ganzen Teil und den Zähler addieren, ohne die Ganzen zuerst in Bruchteile zu zerlegen.",
+              "reason": "Die passende Begründung: Der ganze Teil besteht aus 3 · 5 = 15 Bruchteilen. Addiere den Bruchzähler: 15 + 1 = 16. Das Minus gilt für die ganze Zahl. Der neue Zähler ist −16."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Ganze und Bruchteile verbinden</b><div class=\"basis-equation\">−3 1/5 = −16/5</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:4",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 3
+          },
+          {
+            "title": "5 · Gleich große Bruchteile finden",
+            "label": "5 · Gleich große Bruchteile finden",
+            "html": "<span>Malreihe von 5: 5, 10, 15. Gemeinsamer Nenner: 15.</span>",
+            "plain": "Malreihe von 5: 5, 10, 15. Gemeinsamer Nenner: 15.",
+            "text": "Malreihe von 5: 5, 10, 15. Gemeinsamer Nenner: 15.",
+            "explain": [
+              "Suche eine Zahl, die in beiden Malreihen vorkommt.",
+              "Malreihe von 3: 3, 6, 9, 12, 15."
+            ],
+            "hint": [
+              "Suche eine Zahl, die in beiden Malreihen vorkommt."
+            ],
+            "ask": "Wie findest du einen gemeinsamen Nenner?",
+            "counterexample": {
+              "claim": "Die Zähler direkt vergleichen, obwohl die Teile noch unterschiedlich groß sind.",
+              "reason": "Die passende Begründung: Suche eine Zahl, die in beiden Malreihen vorkommt. Malreihe von 3: 3, 6, 9, 12, 15. Malreihe von 5: 5, 10, 15. Gemeinsamer Nenner: 15."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Gleich große Bruchteile finden</b><div class=\"basis-equation\">3 · 5 = 15<br>5 · 3 = 15</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Oben und unten dieselbe Malzahl",
+            "label": "6 · Oben und unten dieselbe Malzahl",
+            "html": "<span>Nenner: 3 · 5 = 15. Der Wert bleibt gleich.</span>",
+            "plain": "Nenner: 3 · 5 = 15. Der Wert bleibt gleich.",
+            "text": "Nenner: 3 · 5 = 15. Der Wert bleibt gleich.",
+            "explain": [
+              "Die passende Malzahl ist 5.",
+              "Zähler: -10 · 5 = -50."
+            ],
+            "hint": [
+              "Die passende Malzahl ist 5."
+            ],
+            "ask": "Wie erweiterst du −10/3 auf den Nenner 15?",
+            "counterexample": {
+              "claim": "Nur den Nenner verändern. Dann wäre der Bruch nicht mehr gleich viel.",
+              "reason": "Die passende Begründung: Die passende Malzahl ist 5. Zähler: -10 · 5 = -50. Nenner: 3 · 5 = 15. Der Wert bleibt gleich."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Oben und unten dieselbe Malzahl</b><div class=\"basis-equation\">-10/3 = -50/15</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
+          },
+          {
+            "title": "7 · Oben und unten dieselbe Malzahl",
+            "label": "7 · Oben und unten dieselbe Malzahl",
+            "html": "<span>Nenner: 5 · 3 = 15. Der Wert bleibt gleich.</span>",
+            "plain": "Nenner: 5 · 3 = 15. Der Wert bleibt gleich.",
+            "text": "Nenner: 5 · 3 = 15. Der Wert bleibt gleich.",
+            "explain": [
+              "Die passende Malzahl ist 3.",
+              "Zähler: -16 · 3 = -48."
+            ],
+            "hint": [
+              "Die passende Malzahl ist 3."
+            ],
+            "ask": "Wie erweiterst du −16/5 auf den Nenner 15?",
+            "counterexample": {
+              "claim": "Nur den Nenner verändern. Dann wäre der Bruch nicht mehr gleich viel.",
+              "reason": "Die passende Begründung: Die passende Malzahl ist 3. Zähler: -16 · 3 = -48. Nenner: 5 · 3 = 15. Der Wert bleibt gleich."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Oben und unten dieselbe Malzahl</b><div class=\"basis-equation\">-16/5 = -48/15</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:7",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 6
+          },
+          {
+            "title": "8 · Gleich große Teile vergleichen",
+            "label": "8 · Gleich große Teile vergleichen",
+            "html": "<span>Es gilt -50 &lt; -48. Also gilt auch -50/15 &lt; -48/15.</span>",
+            "plain": "Es gilt -50 < -48. Also gilt auch -50/15 < -48/15.",
+            "text": "Es gilt -50 < -48. Also gilt auch -50/15 < -48/15.",
+            "explain": [
+              "Die Teile sind jetzt gleich groß. Vergleiche die Zähler mit ihren Vorzeichen.",
+              "Bei zwei negativen Zahlen ist die Zahl mit dem größeren Abstand von null kleiner."
+            ],
+            "hint": [
+              "Die Teile sind jetzt gleich groß. Vergleiche die Zähler mit ihren Vorzeichen."
+            ],
+            "ask": "Was entscheidet bei gleichem Nenner?",
+            "counterexample": {
+              "claim": "Bei negativen Zählern die Vorzeichen weglassen.",
+              "reason": "Die passende Begründung: Die Teile sind jetzt gleich groß. Vergleiche die Zähler mit ihren Vorzeichen. Bei zwei negativen Zahlen ist die Zahl mit dem größeren Abstand von null kleiner. Es gilt -50 < -48. Also gilt auch -50/15 < -48/15."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Gleich große Teile vergleichen</b><div class=\"basis-equation\">-50 &lt; -48</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:8",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 7
+          },
+          {
+            "title": "9 · Weiter rechts bedeutet größer",
+            "label": "9 · Weiter rechts bedeutet größer",
+            "html": "<span>−3 1/3 &lt; −3 1/5.</span>",
+            "plain": "−3 1/3 < −3 1/5.",
+            "text": "−3 1/3 < −3 1/5.",
+            "explain": [
+              "Je größer der Abstand links von null, desto kleiner ist die negative Zahl."
+            ],
+            "hint": [
+              "Je größer der Abstand links von null, desto kleiner ist die negative Zahl."
+            ],
+            "ask": "Wie wirkt sich das Minus auf die Reihenfolge aus?",
+            "counterexample": {
+              "claim": "−0,70 für größer als −0,65 halten, weil 70 größer als 65 ist.",
+              "reason": "Die passende Begründung: Je größer der Abstand links von null, desto kleiner ist die negative Zahl. −3 1/3 < −3 1/5."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Weiter rechts bedeutet größer</b><svg viewBox=\"0 0 600 110\" role=\"img\" aria-label=\"−3 1/3 und −3 1/5 am Zahlenstrahl. Vergrößerter Ausschnitt zwischen den beiden Zahlen. Die Null liegt rechts außerhalb.\"><path d=\"M20 65H580m-8 -5 8 5-8 5\" stroke=\"currentColor\" fill=\"none\"/><circle cx=\"90\" cy=\"65\" r=\"6\" fill=\"#783d53\"/><text x=\"90\" y=\"24\" text-anchor=\"middle\">−3 1/3</text><circle cx=\"510\" cy=\"65\" r=\"6\" fill=\"#326b82\"/><text x=\"510\" y=\"45\" text-anchor=\"middle\">−3 1/5</text></svg><p>Vergrößerter Ausschnitt zwischen den beiden Zahlen. Die Null liegt rechts außerhalb.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:9",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 8
+          },
+          {
+            "title": "10 · Das passende Zeichen",
+            "label": "10 · Das passende Zeichen",
+            "html": "<span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span>",
+            "plain": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "text": "Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.",
+            "explain": [
+              "−3 1/3 ist kleiner als −3 1/5."
+            ],
+            "hint": [
+              "−3 1/3 ist kleiner als −3 1/5."
+            ],
+            "ask": "Wie liest du dein Ergebnis als Satz?",
+            "counterexample": {
+              "claim": "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben.",
+              "reason": "Die passende Begründung: −3 1/3 ist kleiner als −3 1/5. Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Das passende Zeichen</b><div class=\"basis-equation\">−3 1/3 &lt; −3 1/5</div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:8:10",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 9
           }
         ],
         "answer": [
-          "Max läuft weiter.",
-          "Er läuft 1,25 km; Lena läuft 1,205 km.",
-          "Der Unterschied beträgt 45 m."
+          "−3 1/3 &lt; −3 1/5"
         ],
         "hint": [
           "Bei einer Sachaufgabe musst du die Zahlen mit derselben Einheit vergleichen."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du nennst nur die größere Zahl, aber nicht die Person.",
-          "<b>Richtig:</b> Schreibe einen Antwortsatz mit Namen.",
-          "Hier läuft Max weiter."
+          "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "1,250 − 1,205 = 0,045 km.",
-          "Max läuft um 45 m weiter."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "Lena läuft 1,205 km, Max 1,25 km. Wer läuft weiter?",
+        "questionPlain": "−3 1/3 ? −3 1/5",
         "givenTokens": [
-          "1,205 km",
-          "1,25 km"
+          "−3 1/3 ? −3 1/5"
         ],
-        "intro": [
-          "Beide Strecken stehen schon in Kilometern.",
-          "Vergleiche die Kommazahlen von links nach rechts."
-        ],
-        "recognize": "Beide Strecken haben dieselbe Einheit. Vergleiche nur die Kommazahlen.",
-        "startHint": "Schreibe 1,25 als 1,250. Vergleiche dann die Ziffern von links.",
-        "notebookHtml": "<div class=\"school-calculation\">1,205 km &lt; 1,250 km</div>",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
+        "notebookHtml": "<div class=\"school-calculation\"><span>&lt; bedeutet kleiner, &gt; bedeutet größer, = bedeutet gleich groß.</span></div><div class=\"school-calculation\"><span>Beide Zahlen sind negativ. Vergleiche zuerst ihre Abstände zu null. Am Ende ist der größere Abstand die kleinere Zahl.</span></div><div class=\"school-calculation\"><span>Das Minus gilt für die ganze Zahl. Der neue Zähler ist −10.</span></div><div class=\"school-calculation\"><span>Das Minus gilt für die ganze Zahl. Der neue Zähler ist −16.</span></div><div class=\"school-calculation\"><span>Malreihe von 5: 5, 10, 15. Gemeinsamer Nenner: 15.</span></div><div class=\"school-calculation\"><span>Nenner: 3 · 5 = 15. Der Wert bleibt gleich.</span></div><div class=\"school-calculation\"><span>Nenner: 5 · 3 = 15. Der Wert bleibt gleich.</span></div><div class=\"school-calculation\"><span>Es gilt -50 &lt; -48. Also gilt auch -50/15 &lt; -48/15.</span></div><div class=\"school-calculation\"><span>−3 1/3 &lt; −3 1/5.</span></div><div class=\"school-calculation\"><span>Prüfe: Die offene Seite des Zeichens zeigt zur größeren Zahl.</span></div>",
         "source": {
-          "kind": "Ergänzung",
-          "page": 25,
-          "location": "Stellenvergleich",
-          "file": "20261023_065558.jpg",
-          "note": "Eigene Laufstrecken mit derselben Einheit; Sachkontext, keine Originalgeschichte.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "kind": "Originalwerte",
+          "page": 18,
+          "location": "Arbeitsheft Nr. 3f",
+          "file": "76361.jpg",
+          "note": "Werte und Aufgabenfamilie des hochgeladenen Schulblatts; kleinschrittiger eigener Erklärweg.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">−3 1/3 ? −3 1/5</div></figure>"
       },
       "9": {
         "id": 9,
@@ -29606,9 +31508,9 @@ window.MERKHEFT_COURSES = {
       },
       "12": {
         "id": 12,
-        "title": "Welche Ziffer passt?",
+        "title": "Alle Ziffern einer negativen Ungleichung finden",
         "question": [
-          "Welche Ziffern passen in 0,□9 < <span class=\"fraction\" aria-label=\"13 durch 20\"><span>13</span><span>20</span></span>?"
+          "−73,08 &lt; −7□,88"
         ],
         "givenPairs": [
           {
@@ -29618,110 +31520,344 @@ window.MERKHEFT_COURSES = {
         ],
         "steps": [
           {
-            "html": "<span class=\"fraction\" aria-label=\"13 durch 20\"><span>13</span><span>20</span></span> = <span class=\"fraction\" aria-label=\"65 durch 100\"><span>65</span><span>100</span></span> = 0,65",
-            "text": "1320 = 65100 = 0,65",
-            "label": "",
-            "pairs": [
-              {
-                "n": 13,
-                "d": 20
-              },
-              {
-                "n": 65,
-                "d": 100
-              }
-            ],
-            "plain": "13/20 = 65/100 = 0,65",
-            "tokens": [
-              "13/20",
-              "65/100",
-              "0,65"
-            ],
-            "operation": "",
+            "title": "1 · Die Aufgabe lesen",
+            "label": "1 · Die Aufgabe lesen",
+            "html": "<span>Das Zeichen &lt; verlangt echt kleiner.</span>",
+            "plain": "Das Zeichen < verlangt echt kleiner.",
+            "text": "Das Zeichen < verlangt echt kleiner.",
             "explain": [
-              "Erweitere dreizehn Zwanzigstel mit 5.",
-              "Das sind 65 Hundertstel, also 0,65."
+              "Das Kästchen steht für genau eine Ziffer: 0 bis 9.",
+              "Die übrigen Ziffern und das Vorzeichen bleiben unverändert."
             ],
             "hint": [
-              "Erweitere den Nenner 20 auf 100. So kannst du die rechte Zahl als Kommazahl lesen."
+              "Das Kästchen steht für genau eine Ziffer: 0 bis 9."
             ],
-            "ask": "Wie kannst du dreizehn Zwanzigstel für den Stellenvergleich umschreiben?",
+            "ask": "Was verlangt das Zeichen, und an welcher Stelle steht die Lücke?",
             "counterexample": {
-              "claim": "Den Nenner zwanzig als zwanzig Nachkommastellen lesen",
-              "reason": "Erweitere auf hundert. So werden daraus fünfundsechzig Hundertstel."
+              "claim": "Die Ziffer 0 vergessen oder bei < und > Gleichheit zulassen.",
+              "reason": "Die passende Begründung: Das Kästchen steht für genau eine Ziffer: 0 bis 9. Die übrigen Ziffern und das Vorzeichen bleiben unverändert. Das Zeichen < verlangt echt kleiner."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Die Aufgabe lesen</b><div class=\"basis-equation\">−73,08 &lt; −7□,88</div></div></figure>",
             "phaseId": "dezimalvergleich:examples:12:1",
             "revealCondition": "deliberate",
             "pictureBefore": "given",
             "pictureAfter": 0
           },
           {
-            "html": "Für die Lücke passen: 0; 1; 2; 3; 4; 5.",
-            "text": "Für die Lücke passen: 0; 1; 2; 3; 4; 5.",
-            "label": "",
-            "pairs": [],
-            "plain": "Für die Lücke passen: 0; 1; 2; 3; 4; 5.",
-            "tokens": [
-              "0",
-              "1",
-              "2",
-              "3"
-            ],
-            "operation": "",
+            "title": "2 · Jede Ziffer hat einen Platz",
+            "label": "2 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span>",
+            "plain": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "text": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
             "explain": [
-              "Mit 5 in der Lücke entsteht 0,59. Das ist noch kleiner als 0,65.",
-              "Mit 6 entsteht schon 0,69. Deshalb passen nur die Ziffern 0 bis 5."
+              "Setze nur diese Ziffer ein: −73,08 < −70,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 0.",
+              "Ohne Minus gilt 73,08 > 70,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist kleiner als −70,88."
             ],
             "hint": [
-              "Prüfe zuerst die 5 und die 6 als Zehntelziffer. Bei welcher wird die Zahl schon zu groß?"
+              "Setze nur diese Ziffer ein: −73,08 < −70,88."
             ],
-            "ask": "Was zeigen die Grenzfälle 0,59 und 0,69 für die Lückenziffer?",
+            "ask": "Passt die Ziffer 0?",
             "counterexample": {
-              "claim": "Auch sechs zulassen, weil sechs Zehntel zur Grenze passen",
-              "reason": "Bei gleicher Zehntelziffer sechs entscheiden die Hundertstel: neun ist größer als fünf. Deshalb ist 0,69 schon zu groß."
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −70,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 0. Ohne Minus gilt 73,08 > 70,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist kleiner als −70,88. Die verlangte Aussage stimmt. Merke diese Ziffer."
             },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">0</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
             "phaseId": "dezimalvergleich:examples:12:2",
             "revealCondition": "deliberate",
             "pictureBefore": "previous",
             "pictureAfter": 1
+          },
+          {
+            "title": "3 · Jede Ziffer hat einen Platz",
+            "label": "3 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span>",
+            "plain": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "text": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −71,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 1.",
+              "Ohne Minus gilt 73,08 > 71,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist kleiner als −71,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −71,88."
+            ],
+            "ask": "Passt die Ziffer 1?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −71,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 1. Ohne Minus gilt 73,08 > 71,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist kleiner als −71,88. Die verlangte Aussage stimmt. Merke diese Ziffer."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">1</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:3",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 2
+          },
+          {
+            "title": "4 · Jede Ziffer hat einen Platz",
+            "label": "4 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span>",
+            "plain": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "text": "Die verlangte Aussage stimmt. Merke diese Ziffer.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −72,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 2.",
+              "Ohne Minus gilt 73,08 > 72,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist kleiner als −72,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −72,88."
+            ],
+            "ask": "Passt die Ziffer 2?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −72,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 2. Ohne Minus gilt 73,08 > 72,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist kleiner als −72,88. Die verlangte Aussage stimmt. Merke diese Ziffer."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">2</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:4",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 3
+          },
+          {
+            "title": "5 · Jede Ziffer hat einen Platz",
+            "label": "5 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −73,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 0, rechts 8.",
+              "Ohne Minus gilt 73,08 < 73,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist größer als −73,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −73,88."
+            ],
+            "ask": "Passt die Ziffer 3?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −73,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Zehntel. Links steht 0, rechts 8. Ohne Minus gilt 73,08 < 73,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist größer als −73,88. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma \">Einer</th><th class=\"basis-first-difference\">Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma \">3</td><td class=\"basis-first-difference\">0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma \">3</td><td class=\"basis-first-difference\">8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:5",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 4
+          },
+          {
+            "title": "6 · Jede Ziffer hat einen Platz",
+            "label": "6 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −74,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 4.",
+              "Ohne Minus gilt 73,08 < 74,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist größer als −74,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −74,88."
+            ],
+            "ask": "Passt die Ziffer 4?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −74,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 4. Ohne Minus gilt 73,08 < 74,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist größer als −74,88. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">4</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:6",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 5
+          },
+          {
+            "title": "7 · Jede Ziffer hat einen Platz",
+            "label": "7 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −75,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 5.",
+              "Ohne Minus gilt 73,08 < 75,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist größer als −75,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −75,88."
+            ],
+            "ask": "Passt die Ziffer 5?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −75,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 5. Ohne Minus gilt 73,08 < 75,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist größer als −75,88. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">5</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:7",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 6
+          },
+          {
+            "title": "8 · Jede Ziffer hat einen Platz",
+            "label": "8 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −76,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 6.",
+              "Ohne Minus gilt 73,08 < 76,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist größer als −76,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −76,88."
+            ],
+            "ask": "Passt die Ziffer 6?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −76,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 6. Ohne Minus gilt 73,08 < 76,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist größer als −76,88. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">6</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:8",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 7
+          },
+          {
+            "title": "9 · Jede Ziffer hat einen Platz",
+            "label": "9 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −77,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 7.",
+              "Ohne Minus gilt 73,08 < 77,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist größer als −77,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −77,88."
+            ],
+            "ask": "Passt die Ziffer 7?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −77,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 7. Ohne Minus gilt 73,08 < 77,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist größer als −77,88. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">7</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:9",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 8
+          },
+          {
+            "title": "10 · Jede Ziffer hat einen Platz",
+            "label": "10 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −78,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 8.",
+              "Ohne Minus gilt 73,08 < 78,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist größer als −78,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −78,88."
+            ],
+            "ask": "Passt die Ziffer 8?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −78,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 8. Ohne Minus gilt 73,08 < 78,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist größer als −78,88. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">8</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:10",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 9
+          },
+          {
+            "title": "11 · Jede Ziffer hat einen Platz",
+            "label": "11 · Jede Ziffer hat einen Platz",
+            "html": "<span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span>",
+            "plain": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "text": "Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.",
+            "explain": [
+              "Setze nur diese Ziffer ein: −73,08 < −79,88.",
+              "Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 9.",
+              "Ohne Minus gilt 73,08 < 79,88. Mit Minus kehrt sich die Reihenfolge um.",
+              "−73,08 ist größer als −79,88."
+            ],
+            "hint": [
+              "Setze nur diese Ziffer ein: −73,08 < −79,88."
+            ],
+            "ask": "Passt die Ziffer 9?",
+            "counterexample": {
+              "claim": "Die Vorzeichen weglassen und die Abstände unverändert vergleichen. Bei zwei negativen Zahlen kehrt sich die Reihenfolge um.",
+              "reason": "Die passende Begründung: Setze nur diese Ziffer ein: −73,08 < −79,88. Alle Stellen links davon sind gleich. Die erste unterschiedliche Stelle: Einer. Links steht 3, rechts 9. Ohne Minus gilt 73,08 < 79,88. Mit Minus kehrt sich die Reihenfolge um. −73,08 ist größer als −79,88. Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Jede Ziffer hat einen Platz</b><div class=\"basis-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Stellenwerttafel, bei Bedarf seitlich verschieben\"><table><thead><tr><th>Zahl</th><th>Zeichen</th><th>Zehner</th><th class=\"basis-comma basis-first-difference\">Einer</th><th>Zehntel</th><th>Hundertstel</th></tr></thead><tbody><tr><th>links</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">3</td><td>0</td><td>8</td></tr><tr><th>rechts</th><td>−</td><td>7</td><td class=\"basis-comma basis-first-difference\">9</td><td>8</td><td>8</td></tr></tbody></table></div><p>Die dicke Linie trennt Einer und Zehntel. Dort steht das Komma. Jede Stelle rechts zählt ein Zehntel der Stelle links daneben.</p></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:11",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 10
+          },
+          {
+            "title": "12 · Vollständige Auswahl",
+            "label": "12 · Vollständige Auswahl",
+            "html": "<span>Lies mit jeder passenden Ziffer die ganze Aussage nochmals.</span>",
+            "plain": "Lies mit jeder passenden Ziffer die ganze Aussage nochmals.",
+            "text": "Lies mit jeder passenden Ziffer die ganze Aussage nochmals.",
+            "explain": [
+              "Alle zehn Ziffern wurden geprüft.",
+              "Passend: 0, 1, 2."
+            ],
+            "hint": [
+              "Alle zehn Ziffern wurden geprüft."
+            ],
+            "ask": "Hast du wirklich alle passenden Ziffern gefunden?",
+            "counterexample": {
+              "claim": "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind.",
+              "reason": "Die passende Begründung: Alle zehn Ziffern wurden geprüft. Passend: 0, 1, 2. Lies mit jeder passenden Ziffer die ganze Aussage nochmals."
+            },
+            "diagram": "<figure class=\"dv-phase-picture\"><div class=\"basis-picture\"><b>Vollständige Auswahl</b><div class=\"basis-units\"><span class=\"basis-to\">0</span><span class=\"basis-to\">1</span><span class=\"basis-to\">2</span><span class=\"\">3</span><span class=\"\">4</span><span class=\"\">5</span><span class=\"\">6</span><span class=\"\">7</span><span class=\"\">8</span><span class=\"\">9</span></div></div></figure>",
+            "phaseId": "dezimalvergleich:examples:12:12",
+            "revealCondition": "deliberate",
+            "pictureBefore": "previous",
+            "pictureAfter": 11
           }
         ],
         "answer": [
-          "In das Kästchen passen 0, 1, 2, 3, 4 oder 5."
+          "0, 1, 2"
         ],
         "hint": [
           "Wandle zuerst den Bruch um."
         ],
         "trap": [
-          "<b>Typischer Fehler:</b> Du setzt 6 ein, weil 6 Zehntel kleiner als 0,65 sind.",
-          "<b>Richtig:</b> Vergleiche die ganze Zahl 0,69 mit 0,65.",
-          "0,69 ist zu groß; die größte passende Ziffer ist 5."
+          "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind."
         ],
         "check": [
-          "Die größte erlaubte Zahl ist 0,59.",
-          "Die nächste Möglichkeit 0,69 ist bereits zu groß."
+          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
+          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
         ],
-        "questionPlain": "Welche Ziffern passen in 0,□9 < 13/20?",
+        "questionPlain": "−73,08 < −7□,88",
         "givenTokens": [
-          "0",
-          "9",
-          "13/20"
+          "−73,08 < −7□,88"
         ],
-        "intro": [
-          "Wandle den Bruch rechts zuerst in eine Kommazahl um.",
-          "Prüfe dann, welche Zehntelziffer links noch passt."
-        ],
-        "recognize": "Eine Lückenziffer wird mit einem Bruch verglichen. Wandle den Bruch zuerst um.",
-        "startHint": "Erweitere den Nenner 20 auf 100. So kannst du die rechte Zahl als Kommazahl lesen.",
-        "notebookHtml": "<div class=\"school-calculation\"><span class=\"fraction\" aria-label=\"13 durch 20\"><span>13</span><span>20</span></span> = <span class=\"fraction\" aria-label=\"65 durch 100\"><span>65</span><span>100</span></span> = 0,65</div><div class=\"school-calculation\">Für die Lücke passen: 0; 1; 2; 3; 4; 5.</div>",
+        "intro": [],
+        "recognize": "Prüfe zuerst den Aufgabentyp und die Vorzeichen. Wende dann die passende Vergleichsregel an.",
+        "startHint": "Lies die Erklärung und den Ablauf oben im Register Lernen. Vergleiche erst danach.",
+        "notebookHtml": "<div class=\"school-calculation\"><span>Das Zeichen &lt; verlangt echt kleiner.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt. Merke diese Ziffer.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Die verlangte Aussage stimmt nicht. Diese Ziffer passt nicht.</span></div><div class=\"school-calculation\"><span>Lies mit jeder passenden Ziffer die ganze Aussage nochmals.</span></div>",
         "source": {
           "kind": "Originalwerte",
-          "page": 33,
-          "location": "Runde 2, Aufgabe 6b",
-          "file": "20261023_065642.jpg",
-          "note": "0,□9 < 13/20.",
-          "review": "Originalfoto visuell gelesen; Werteidentität nur bei Kennzeichnung Originalwerte."
-        }
+          "page": 18,
+          "location": "Arbeitsheft Nr. 2b",
+          "file": "76361.jpg",
+          "note": "Werte und Aufgabenfamilie des hochgeladenen Schulblatts; kleinschrittiger eigener Erklärweg.",
+          "review": "Mit Foto 76361.jpg und Lösungsfoto 76362.jpg abgeglichen."
+        },
+        "startPicture": "<figure class=\"basis-picture\"><figcaption>Das ist gegeben</figcaption><div class=\"basis-equation\">−73,08 &lt; −7□,88</div></figure>"
       },
       "13": {
         "id": 13,

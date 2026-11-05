@@ -26,3 +26,9 @@ assert.equal(c.conversionPath('0','m','cm').result,'0 cm');
 assert(c.conversionPath('0','m','cm').phases.some(p=>p.why.some(x=>x.includes('null bleibt'))));
 assert.throws(()=>c.conversionPath('−1','m','cm'),/nicht negative/);
 console.log('PASS: exakte Ergebnisse aller 27 Aufgaben S.19/1–3, Vergleichs-/Lückenfälle S.18, beide Bruchrichtungen, Nullen, Vorzeichen und ungültige Eingaben.');
+
+assert.equal(c.gapPath('−73,08','−7□,88','<').result,'0, 1, 2');
+assert.equal(c.sortPath('1/5; 0,3; 9/10; 0,56; 3/50; 63/100').result,'3/50 < 1/5 < 0,3 < 0,56 < 63/100 < 9/10');
+assert.equal(c.sortPath('0,5; 0,50; −1').result,'−1 < 0,5 = 0,50');
+assert.equal(c.comparisonPath('0,6','0,600').result,'0,6 = 0,600');
+assert(c.comparisonPath('−2,004','−1,9999').phases.some(x=>x.picture.includes('rechts außerhalb')));

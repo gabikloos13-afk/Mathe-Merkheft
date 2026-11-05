@@ -2,7 +2,7 @@
 const {test,expect}=require('@playwright/test');
 const routes=[
  ['groessen','convert','2350 m'],['groessen','choose','1500 g'],['groessen','time','1,5 h'],
- ['dezimalvergleich','compare','−2,004 < −1,9999'],['dezimalvergleich','gap','0, 1, 2'],
+ ['dezimalvergleich','compare','−2,004 < −1,9999'],['dezimalvergleich','order','3/50 < 1/5 < 0,3 < 0,56 < 63/100 < 9/10'],['dezimalvergleich','gap','0, 1, 2'],
  ['dezimal','fraction','0,625'],['dezimal','decimal','−1/8']
 ];
 for(const width of [320,375,1280])for(const [topic,mode,result]of routes)test('Grundlagen '+mode+' bei '+width,async({page})=>{

@@ -4,7 +4,7 @@ const assert=require('node:assert/strict');
 const root=__dirname+'/../';
 const ctx={window:{},document:{body:{dataset:{topic:'dezimalvergleich'}},querySelectorAll(){return []}}};
 vm.createContext(ctx);
-for(const f of ['course-data.js','dezimalvergleich-bilder.js','rechenbilder.js'])
+for(const f of ['course-data.js','dezimalvergleich-bilder.js','rechenbilder.js','startbilder.js','dezimalvergleich-lernweg.js'])
  vm.runInContext(fs.readFileSync(root+f,'utf8'),ctx);
 const c=ctx.window.MERKHEFT_COURSES.dezimalvergleich;
 const draw=ctx.window.MerkheftPictures;
@@ -55,7 +55,7 @@ let exampleImages=0,learningImages=0;
 for(const [id,r] of Object.entries(c.cases)){
  for(let i=-1;i<r.steps.length;i++){
   const svg=pic(+id,i);
-  assert(svg.startsWith('<svg')&&svg.includes('aria-label='),'Bild fehlt '+id+'/'+i);
+  assert(/<svg|<figure/.test(svg),'Bild fehlt '+id+'/'+i);
   assert(!/NaN|Infinity|undefined/.test(svg),'ungültige Bildwerte '+id+'/'+i);
   assert(!svg.includes('width="-'),'negative SVG-Breite '+id+'/'+i);
   exampleImages++;
@@ -66,7 +66,7 @@ for(const [id,r] of Object.entries(c.cases)){
   learningImages++;
  }
 }
-assert.equal(exampleImages,40);
+assert.equal(exampleImages,134);
 assert.equal(learningImages,13);
 assert(matches(learned(1,1)).includes('Hundertstel'));
 assert(learned(1,1).includes('>6<')&&learned(1,1).includes('>2<'),'Stellenwert-Ziffern müssen stimmen');
@@ -75,31 +75,19 @@ assert(matches(learned(2,2)).includes('gleich viel'));
 assert(matches(learned(7,0)).includes('noch nicht sortiert'));
 assert(matches(learned(7,3)).includes('Originalzahlen geordnet'));
 
-// Die 13 Musterbeispiele bleiben erhalten, zeigen aber passende Bilder.
-assert(!matches(pic(1,-1)).includes('größer als'));
-assert(matches(pic(1,0)).includes('Hundertstel'));
-assert(matches(pic(2,0)).includes('gleich viel'));
-assert(matches(pic(3,1)).includes('−0,70')&&matches(pic(3,1)).includes('−0,65'));
-assert(!pic(4,-1).includes('0,60'),'Gemischter Bruch-Vergleich: Ergebnis nicht in der Vorschau');
-assert(pic(4,0).includes('60/100')&&pic(4,2).includes('3/5'));
-assert(!pic(5,-1).includes('0,40'));
-assert(pic(5,3).includes('0, 1 oder 2 passen'));
-assert(!pic(6,-1).includes('0,45'));
-assert(pic(6,0).includes('0,45'));
-assert(matches(pic(7,-1)).includes('noch nicht sortiert'));
-assert(matches(pic(7,1)).includes('Originalzahlen geordnet'));
-assert(pic(8,0).includes('1,205')&&pic(8,0).includes('1,250'));
-assert.equal((pic(9,0).match(/<circle[^>]+fill="#98536e"/g)||[]).length,9,'genau 9 Zahlen streng zwischen 0,95 und 1,05');
-assert(!pic(10,-1).includes('−0,405'));
-assert(!pic(10,1).includes('−0,405'));
-assert(pic(10,2).includes('−0,405'));
-assert(!pic(11,-1).includes('8,540'));
-assert(pic(11,0).includes('8,540')&&pic(11,1).includes('0,458'));
-assert(!pic(12,-1).includes('0,65'));
-assert(pic(12,0).includes('65/100')&&pic(12,1).includes('0,59'));
-assert(!pic(13,-1).includes('32,243'));
-assert(!pic(13,0).includes('32,243'));
-assert(pic(13,2).includes('32,243'));
+// Neue Arbeitsheftbeispiele: unabhängige Sollwerte und vollständige Phasenbilder.
+for(const [id,answer]of [[1,'0,45 &gt; 0,4455'],[2,'0,6 = 0,600'],[3,'−2,004 &lt; −1,9999'],[4,'47/100 &gt; 9/20'],[5,'8, 9'],[6,'0'],[8,'−3 1/3 &lt; −3 1/5'],[12,'0, 1, 2']]){
+ assert.equal(c.cases[id].answer[0],answer,'Originalaufgabe '+id);
+ assert(c.cases[id].steps.length>=6,'Keine mehreren Entscheidungen in einer Phase');
+ assert(!pic(id,-1).includes('Vollständige Auswahl'));
+ for(let i=0;i<c.cases[id].steps.length;i++)assert(pic(id,i).includes(c.cases[id].steps[i].diagram));
+}
+assert.equal(c.cases[7].answer[0],'3/50 &lt; 1/5 &lt; 0,3 &lt; 0,56 &lt; 63/100 &lt; 9/10');
+// Unveränderte eigenständige Zusatztypen behalten ihre Bildprüfungen.
+assert.equal((pic(9,0).match(/<circle[^>]+fill="#98536e"/g)||[]).length,9);
+assert(!pic(10,-1).includes('−0,405'));assert(!pic(10,1).includes('−0,405'));assert(pic(10,2).includes('−0,405'));
+assert(!pic(11,-1).includes('8,540'));assert(pic(11,0).includes('8,540')&&pic(11,1).includes('0,458'));
+assert(!pic(13,-1).includes('32,243'));assert(!pic(13,0).includes('32,243'));assert(pic(13,2).includes('32,243'));
 
 const values=s=>Number(s.replace('−','-').replace(',','.'));
 assert(values('0,43')>values('0,418'));

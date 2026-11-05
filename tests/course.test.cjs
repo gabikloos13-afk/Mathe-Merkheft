@@ -5,7 +5,7 @@ const topics=['brueche','gleichwertig','gemischt','zahlenstrahl','quotienten','v
 for(const topic of topics){
  const window={},document={body:{dataset:{topic}},querySelector(){return null},querySelectorAll(){return []},addEventListener(){}};
  const ctx={window,document};vm.createContext(ctx);vm.runInContext(raw,ctx);
- for(const f of ['dezimal-bilder.js','dezimalvergleich-bilder.js','groessen-bilder.js','rechenbilder.js',...(['gemischt','zahlenstrahl','quotienten'].includes(topic)?[topic+'-kapitel.js']:[]),'startbilder.js'])vm.runInContext(fs.readFileSync(f,'utf8'),ctx);
+ for(const f of ['dezimal-bilder.js','dezimalvergleich-bilder.js','groessen-bilder.js','rechenbilder.js',...(['gemischt','zahlenstrahl','quotienten'].includes(topic)?[topic+'-kapitel.js']:[]),'startbilder.js','dezimalvergleich-lernweg.js'])vm.runInContext(fs.readFileSync(f,'utf8'),ctx);
  const c=window.MERKHEFT_COURSES[topic],model=window.MerkheftPictures;
  for(const mode of ['learn','examples'])for(const id of mode==='learn'?c.lessons.map(l=>l.id):c.groups.flat()){
   count++;const base=c.cases[id],r=mode==='learn'&&base.learning?{...base,...base.learning}:base,steps=mode==='learn'?(r.learnSteps||r.steps):r.steps;
@@ -16,7 +16,7 @@ for(const topic of topics){
   }
  }
 }
-assert.equal(count,145);assert.equal(pictures,668);
+assert.equal(count,145);assert.equal(pictures,762);
 console.log('PASS: '+count+' Lern-/Beispielansichten und '+pictures+' Ausgangs-/Phasenbilder in allen neun Fachrenderern.');
 require('./erklaerstandard-audit.cjs');
 

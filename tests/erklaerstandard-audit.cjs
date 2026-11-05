@@ -5,7 +5,7 @@ const w={};vm.runInNewContext(fs.readFileSync('course-data.js','utf8'),{window:w
 const courses=w.MERKHEFT_COURSES,ids=new Set();let lessons=0,examples=0,phases=0,decisions=0,open=0;
 for(const [topic,c]of Object.entries(courses)){
  const html=fs.readFileSync(topic+'.html','utf8');
- assert(html.includes('course-data.js?v=20261104gesamt1'));
+ assert(html.includes('course-data.js?v=20261104regel2'));
  assert(html.includes('course.js?v=20261104gesamt2'));
  assert(html.includes('startbilder.js?v=20261104gesamt2'));
  assert(!/src="(?:erklaer-entscheidungen|beispiel-entscheidungen)\.js/.test(html),'Keine Schatten-Datensätze laden');
@@ -37,5 +37,5 @@ for(const [topic,c]of Object.entries(courses)){
   assert.equal(JSON.stringify(c),before,'Renderer darf Fachinhalt nicht überschreiben');
  }
 }
-assert.equal(lessons,34);assert.equal(examples,111);assert.equal(phases,523);assert.equal(decisions+open,phases);
+assert.equal(lessons,34);assert.equal(examples,111);assert.equal(phases,617);assert.equal(decisions+open,phases);
 console.log(JSON.stringify({status:'STRUCTURE_OK',topics:9,lessons,examples,phases,decisions,openQuestions:open,sourceAndVisualRelease:'separate'},null,2));
