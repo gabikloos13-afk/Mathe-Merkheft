@@ -1,0 +1,42 @@
+name: Einheiten-Werkstatt – Entwicklungstest
+on:
+  push:
+    branches:
+      - groessen-werkstatt-2026-11-05
+    paths:
+      - 'groessen.html'
+      - 'groessen-werkstatt.js'
+      - 'groessen-werkstatt.css'
+      - 'tests/groessen-werkstatt.spec.cjs'
+      - 'playwright.config.cjs'
+      - '.github/workflows/groessen-werkstatt-pruefung.yml'
+  workflow_dispatch:
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.55.0-noble
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Bestehende Mathe-Modelle unverändert prüfen
+        run: node tests/run-all.cjs
+      - name: Browserwerkzeuge bereitstellen
+        run: npm install --no-save @playwright/test@1.55.0
+      - name: Werkstatt im Chromium-Browser einschließlich Mobilansicht prüfen
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/mathe-http.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/groessen.html >/dev/null && break; sleep 1; done
+          npx playwright test tests/groessen-werkstatt.spec.cjs --workers=2
+      - name: Fehlerbilder bei Problemen bereitstellen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: groessen-werkstatt-browserpruefung
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14
