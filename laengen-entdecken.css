@@ -1,0 +1,48 @@
+/* Ein Hauptwerkzeug in der bisherigen Mathe-Merkheft-Farbwelt */
+.len-lead{color:#4d5e66;font-size:1.04rem}
+.len-steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px}
+.len-steps button{min-height:46px;padding:9px 12px;border:1px solid #cbb9c4;border-radius:12px;background:white;color:#783d53;font-weight:700}
+.len-steps button[aria-pressed="true"]{background:#783d53;color:white;border-color:#783d53}
+.len-steps button:disabled{background:#f6f3f5;color:#8c8589;cursor:default}
+.len-panel{background:#f7fbfc;border:1px solid #cbdfe7;border-radius:16px;padding:19px}
+.len-panel h3{font-size:1.18rem;line-height:1.3;color:#315e76;margin:0 0 12px}
+.len-meter{margin:18px 0}
+.len-meter-label{font-size:.88rem;color:#315d73;font-weight:700;margin:0 0 7px!important}
+.len-bar{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));border:2px solid #35677d;border-radius:9px;overflow:hidden;background:#fff}
+.len-block{display:flex;min-width:0;min-height:85px;flex-direction:column;border:0;border-right:2px solid #4d8198;background:#fff;padding:0;border-radius:0;color:#4d5b66}
+.len-block:last-child{border:0}
+button.len-block{cursor:pointer}
+.len-block:focus-visible{outline:3px solid #bd779d;outline-offset:-3px;z-index:2}
+.len-block small{display:flex;justify-content:center;align-items:center;min-height:26px;font-size:.64rem;font-weight:700}
+.len-block.complete small{background:#e5c6d8;color:#623747}
+.len-block.partial small{background:#fff0d5;color:#7b5e25}
+.len-cells{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));flex:1;border-top:1px solid #c7d8e1}
+.len-tick{border-right:1px solid #dce7ec;background:white;min-width:0}
+.len-tick:last-child{border:0}
+.len-tick.filled{background:#a86688}
+.len-tick.filled:nth-child(even){background:#915472}
+.len-axis{display:flex;justify-content:space-between;font-size:.83rem;color:#64717a;margin-top:4px}
+.len-readout{border:1px solid #d4c2cf;background:#fff;border-radius:13px;padding:13px 15px;margin:15px 0}
+.len-readout strong{display:block;color:#783d53;font-size:clamp(1.07rem,2vw,1.37rem)}
+.len-readout span{display:block;font-size:.94rem;margin-top:5px;color:#4c6270}
+.len-actions,.len-switch,.len-choices{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}
+.len-actions button,.len-switch button,.len-choices button{min-height:46px;padding:9px 13px;border:1px solid #c9b2c0;background:white;color:#783d53;border-radius:12px;font-weight:700}
+.len-actions button.len-main{background:#783d53;color:white;border-color:#783d53}
+.len-actions button:disabled{opacity:.42;cursor:default}
+.len-switch button[aria-pressed=true]{background:#783d53;color:#fff;border-color:#783d53}
+.len-feedback,.len-success{border:1px solid #d0e0e7;background:#fff;padding:13px 15px;border-radius:12px;color:#36566b;margin:15px 0;line-height:1.55}
+.len-feedback.good,.len-success{background:#edf7f1;border-color:#c8e0cf;color:#275b40}
+.len-place{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:480px;margin:17px 0 8px;background:white;border:1px solid #a7c1cf;border-radius:12px;overflow:hidden}
+.len-digit{display:flex;flex-direction:column;align-items:center;position:relative;border-right:1px solid #d2e0e6;padding:10px 5px 16px}
+.len-digit:last-child{border:0}
+.len-digit small{font-weight:700;color:#3d7189;font-size:.91rem}
+.len-digit strong{font-size:clamp(1.85rem,4vw,2.55rem);line-height:1.4;color:#334a58;font-variant-numeric:tabular-nums}
+.len-digit.comma:after{content:',';position:absolute;right:-10px;bottom:5px;font-size:2.6rem;line-height:1;color:#ad4f78;font-weight:900;z-index:3;text-shadow:0 0 3px white}
+.len-digit.comma:last-child:after{display:none}
+.len-help{color:#546c79;font-size:.92rem;margin-bottom:14px!important}
+.len-legacy{margin:19px 0;border:1px solid #ddd0d9;border-radius:16px;background:#fff}
+.len-legacy>summary{padding:16px 18px;cursor:pointer;font-weight:700;color:#783d53;min-height:50px}
+.len-old-content{padding:14px 13px 0}
+.len-old-content>.card{box-shadow:none}
+@media(max-width:470px){.len-panel{padding:15px 10px}.len-steps{gap:6px}.len-steps button{flex:1 1 92px;font-size:.83rem;padding:8px}.len-block{min-height:73px}.len-block small{min-height:23px;font-size:.55rem}.len-actions button{flex:1 1 90px}.len-choices button{flex:1 1 90px}.len-digit.comma:after{right:-8px}}
+@media(prefers-reduced-motion:reduce){.len-panel *{animation:none!important;transition:none!important}}
