@@ -1,6 +1,8 @@
 'use strict';
 (()=>{
  const root=document.getElementById('groessen-werkstatt');if(!root)return;
+ // Die neue handlungsorientierte Werkstatt bleibt im Lernregister ganz oben.
+ root.parentElement.prepend(root);
  const $=s=>root.querySelector(s),$$=s=>[...root.querySelectorAll(s)];
  const data={
   '1':[
@@ -80,10 +82,10 @@
   return '<div class="gw-chain" aria-label="Einheiten in Größenfolge">'+arr.slice(start,end+1).map((x,i,r)=>'<span>'+x[0]+'</span>'+(i<r.length-1?'<i>→ × '+arr[start+i][1]/arr[start+i+1][1]+'</i>':'')).join('')+'</div>'+
    '<p class="gw-muted">In der Reihe stehen die größeren Einheiten links und die kleineren rechts. Beim Zurückgehen wird geteilt.</p>';
  }
- function bars10(zoom,max){
+ function bars10(zoom,max,unit){
   const small=max/Math.pow(10,zoom+1),large=max/Math.pow(10,zoom);
   const label=v=>nfmt(v);
-  return '<div class="gw-ten">'+Array.from({length:10},(_,i)=>'<button type="button" data-gw-zoom-piece="'+i+'" aria-label="Teil '+(i+1)+' ansehen">'+label(small)+'<small>kleine Stücke</small></button>').join('')+'</div>'+
+  return '<div class="gw-ten">'+Array.from({length:10},(_,i)=>'<button type="button" data-gw-zoom-piece="'+i+'" aria-label="Teil '+(i+1)+' ansehen">'+label(small)+'<small>'+unit+'</small></button>').join('')+'</div>'+
     '<p><b>'+label(large)+' kleine Stücke</b> werden zu <b>10 Gruppen mit je '+label(small)+'</b>. '+(zoom<Math.round(Math.log10(max))-1?'Tippe auf eine Gruppe, um sie weiter in zehn Stücke zu zerlegen.':'Jetzt siehst du die kleinste Stückgröße in dieser Aufgabe.')+'</p>';
  }
  function visual(){
@@ -93,7 +95,7 @@
   if(k==='length'||k==='mass'||k==='money'){
    const maxZoom=Math.round(Math.log10(f));
    const zoom=Math.min(state.zoom,Math.max(0,maxZoom-1));
-   return common+'<div class="gw-feature">'+bars10(zoom,f)+'</div><div class="gw-toolrow"><button type="button" data-gw-zoom-back '+(zoom===0?'disabled':'')+'>← Zusammenfassen</button><button type="button" data-gw-zoom-next '+(zoom===maxZoom-1?'disabled':'')+'>Ein Teilstück vergrößern →</button></div>'+
+   return common+'<div class="gw-feature">'+bars10(zoom,f,small)+'</div><div class="gw-toolrow"><button type="button" data-gw-zoom-back '+(zoom===0?'disabled':'')+'>← Zusammenfassen</button><button type="button" data-gw-zoom-next '+(zoom===maxZoom-1?'disabled':'')+'>Ein Teilstück vergrößern →</button></div>'+
     '<p class="gw-muted">Ein großes Stück enthält '+nfmt(f)+' kleinere. Die Gruppen im Bild sind eine Vergrößerungsdarstellung, keine maßstabsgetreue Länge oder Masse.</p>';
   }
   if(k==='area'){
@@ -159,6 +161,7 @@
   pos+=delta;
   while(pos<1){digits='0'+digits;pos++;}
   while(pos>=digits.length){digits+='0';}
+  while(pos>1&&digits.startsWith('0')){digits=digits.slice(1);pos--;}
   let before=digits.slice(0,pos),after=digits.slice(pos);
   return {display:before+','+after,html:'<span class="gw-comma-digits">'+digits.slice(0,pos).split('').map(x=>'<b>'+x+'</b>').join('')+'<em>,</em>'+digits.slice(pos).split('').map(x=>'<b>'+x+'</b>').join('')+'</span>'};
  }
