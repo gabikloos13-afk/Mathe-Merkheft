@@ -1,3 +1,40 @@
+
+test('Grundlagen neu: Meter aus 10 Zentimeter-Zehnerstücken bauen',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+ await page.goto(url);
+ await expect(page.locator('#len-scene')).toContainText('0 von 10 Stücken gelegt');
+ await expect(page.locator('[data-len-phase="1"]')).toBeDisabled();
+ for(let i=1;i<=10;i++){
+  await page.locator('[data-len-add]').click();
+  await expect(page.locator('#len-scene')).toContainText(i+' von 10 Stücken gelegt');
+ }
+ await expect(page.locator('#len-scene .len-tick.filled')).toHaveCount(100);
+ await expect(page.locator('#len-scene')).toContainText('100 cm');
+ await expect(page.locator('#len-scene')).toContainText('1 Meter');
+ await page.locator('[data-len-next]').click();
+ await expect(page.locator('#len-scene .len-tick.filled')).toHaveCount(90);
+ await expect(page.locator('[data-len-phase="2"]')).toBeDisabled();
+ await page.locator('[data-len-answer="equal"]').click();
+ await expect(page.locator('#len-feedback')).toContainText('Noch nicht');
+ await expect(page.locator('[data-len-phase="2"]')).toBeDisabled();
+ await page.locator('[data-len-answer="less"]').click();
+ await expect(page.locator('#len-feedback')).toContainText('9 von 10 Teilen');
+ await page.locator('[data-len-next]').click();
+ await expect(page.locator('#len-scene .len-tick.filled')).toHaveCount(90);
+ await expect(page.locator('.len-result')).toContainText('90 cm');
+ await page.locator('[data-len-unit="dm"]').click();
+ await expect(page.locator('.len-result')).toContainText('9 dm');
+ await page.locator('[data-len-unit="m"]').click();
+ await expect(page.locator('.len-result')).toContainText('0,9 m');
+ await expect(page.locator('.len-digit.comma')).toContainText('0');
+ await page.locator('[data-len-value="125"]').click();
+ await expect(page.locator('#len-scene .len-tick.filled')).toHaveCount(125);
+ await expect(page.locator('.len-result')).toContainText('1,25 m');
+ await page.locator('[data-len-value="35"]').click();
+ await expect(page.locator('.len-result')).toContainText('0,35 m');
+ expect(errors).toEqual([]);
+});
+
 'use strict';
 const {test,expect}=require('@playwright/test');
 const url='http://127.0.0.1:8000/laengen.html';
@@ -19,6 +56,7 @@ test('Längen: ein Meter als 100 Zentimeter, 90 cm und 35 cm begreifen',async({p
 
 test('Komma: 90 cm wird nicht vorzeitig als 0,9 m gezeigt',async({page})=>{
  await page.goto(url);
+ await page.locator('#len-explanation').evaluate(el=>el.open=true);
  const stage=page.locator('#comma-stage');
  await expect(stage).not.toContainText('0,9 m');
  await page.locator('#comma-next').click();
