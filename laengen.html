@@ -51,6 +51,8 @@ main{max-width:1060px;margin:auto;padding:27px 26px 55px}.kicker{color:#826677;f
 @media(max-width:460px){.meter-band{min-height:74px}.meter-dm-title{font-size:.63rem}.comma-flow{gap:5px}.comma-box{padding:10px 8px;gap:5px}.comma-box .comma-number{font-size:1.15rem}.comma-arrow{padding:5px;font-size:.8rem}}
 
 </style>
+<link rel="stylesheet" href="laengen-entdecken.css?v=20261105b">
+<script src="laengen-entdecken.js?v=20261105b" defer></script>
 </head>
 <body>
 <header class="sitehead"><div class="top"><a class="brand" href="index.html">Mathe-Merkheft</a><a class="back" href="index.html">← Alle Themen</a></div></header>
@@ -65,6 +67,21 @@ main{max-width:1060px;margin:auto;padding:27px 26px 55px}.kicker{color:#826677;f
 </nav>
 
 <section id="pane-learn" class="tab-panel" role="tabpanel" aria-labelledby="tab-learn">
+<article class="card" id="len-hands">
+<p class="introline">Ein neuer Anfang · Erst anfassen, dann rechnen</p>
+<h2>Eine Länge selbst entdecken</h2>
+<p class="len-lead">Du musst noch keine Kommaregel kennen. Wir benutzen immer <strong>dieselbe Strecke</strong> und schauen zuerst, aus wie vielen kleinen Stücken sie besteht.</p>
+<div class="callout"><strong>Wenn du ein Lineal hast:</strong> Zeige darauf 1 cm und 10 cm. Das sind echte Längen. Das Bild unten zeigt nur die Verhältnisse – auf dem Bildschirm ist es nicht maßstabsgetreu.</div>
+<nav class="len-steps" aria-label="Entdeckerweg">
+<button type="button" data-len-phase="0" aria-pressed="true">1 · Meter bauen</button>
+<button type="button" data-len-phase="1" aria-pressed="false" disabled>2 · 90 cm vergleichen</button>
+<button type="button" data-len-phase="2" aria-pressed="false" disabled>3 · Komma entdecken</button>
+</nav>
+<div class="len-panel" id="len-scene" aria-live="polite"></div>
+<p class="len-note">Ohne Zeitdruck und ohne Punkte: Erst ausprobieren, dann die nächste Erklärung öffnen.</p>
+</article>
+<details id="len-explanation" class="len-legacy"><summary>Weitere Erklärungen, das ausführliche Meterband und den Rechenweg öffnen</summary><div class="len-old-content">
+
 <article class="card"><p class="introline">1 · Zuerst verstehen</p><h2>Was bedeutet eine Längeneinheit?</h2><p>Eine Länge sagt dir, <strong>wie weit etwas von einem Ende zum anderen reicht.</strong> Mit der Einheit legst du fest, in welchen Stücken du misst.</p>
 <div class="mini-grid">
 <div class="unit-card"><b>1 mm</b><span>Ein winziger Abstand zwischen zwei Millimeter-Strichen auf dem Lineal.</span></div>
@@ -103,6 +120,7 @@ main{max-width:1060px;margin:auto;padding:27px 26px 55px}.kicker{color:#826677;f
 <p class="comma-legend">Der rote Kommastrich hilft beim Sehen. Er ersetzt nicht das Verstehen, warum wir durch 10 teilen.</p>
 </article>
 
+</div></details>
 </section>
 
 <section id="pane-examples" class="tab-panel" role="tabpanel" aria-labelledby="tab-examples" hidden>
