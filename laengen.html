@@ -131,7 +131,7 @@ main{max-width:1060px;margin:auto;padding:27px 26px 55px}.kicker{color:#826677;f
 <p class="big">m → dm → cm → mm</p><p>Jeder Schritt nach rechts bedeutet: Die Einheit wird zehnmal kleiner. Für dieselbe Länge brauchst du deshalb zehnmal mehr Stücke.</p>
 <table class="ref-table"><thead><tr><th>Eine Einheit</th><th>entspricht</th></tr></thead><tbody><tr><td>1 m</td><td>10 dm = 100 cm = 1.000 mm</td></tr><tr><td>1 dm</td><td>10 cm = 100 mm</td></tr><tr><td>1 cm</td><td>10 mm</td></tr></tbody></table>
 <div class="formula">Nach rechts: × 10 je Schritt &nbsp; · &nbsp; Nach links: ÷ 10 je Schritt</div>
-<p class="quiet">Beispiel: 2 m → dm → cm. Das sind zwei Schritte nach rechts: 2 × 10 × 10 = 200 cm.</p><div class="callout"><strong>Wichtig beim Komma:</strong> 90 cm : 10 = 9 dm; 9 dm : 10 = 0,9 m. Zweimal durch 10 teilen heißt: Das Komma wandert zweimal nach links. Und 0,9 m sind dieselbe Länge wie 90 cm.</div></article>
+<p class="quiet">Beispiel: 2 m → dm → cm. Das sind zwei Schritte nach rechts: 2 × 10 × 10 = 200 cm.</p><div class="callout"><strong>Wichtig beim Komma:</strong> 9,0 ist dasselbe wie 9.  90 cm : 10 = 9 dm; 9 dm : 10 = 0,9 m. Zweimal durch 10 teilen heißt: Das Komma wandert zweimal nach links. Und 0,9 m sind dieselbe Länge wie 90 cm.</div></article>
 <article class="card"><h2>Typische Denkfallen</h2>
 <div class="danger"><b>„Eine größere Einheit bedeutet immer eine größere Zahl.“ – Falsch.</b><p>1 m und 100 cm sind gleich lang. Bei kleineren Einheiten wird die Zahl größer, nicht die Länge.</p></div>
 <div class="danger"><b>„Von Meter nach Zentimeter ist nur ein Zehnerschritt.“ – Falsch.</b><p>Von m nach dm ist ein Schritt (× 10). Von dm nach cm ist noch ein Schritt (× 10). Zusammen: × 100.</p></div>
@@ -209,7 +209,7 @@ $('#example-prev').addEventListener('click',()=>{exPhase=Math.max(0,exPhase-1);d
 // Für die Komma-Anzeige: ohne Vorwegnahme der Antwort sichtbar machen, wie Stellen rücken.
 function commaBadge(value,unit){
  const s=fmt(value), parts=s.split(',');
- return '<span class="comma-box"><span class="comma-number">'+parts[0]+'<span class="comma-mark">,</span>'+(parts[1]||'0')+'</span><span class="comma-unit">'+unit+'</span></span>';
+ return '<span class="comma-box"><span class="comma-number">'+parts[0]+'<span class="comma-mark">,</span>'+(parts[1]||'0')+'</span> <span class="comma-unit">'+unit+'</span></span>';
 }
 // Der Meterstreifen zeigt 100 Zentimeter als 10 Gruppen zu je 10 Zentimetern.
 const meter=$('#meter-band');
@@ -236,7 +236,7 @@ function renderComma(){
  if(commaPhase>=2)rows.push('<span class="comma-arrow">÷ 10<br>→</span>'+commaBadge(0.9,'m'));
  let msg;
  if(commaPhase===0) msg='<b>Start:</b> 90 cm liegen auf dem Meterband noch vor der 100. In Metern muss also weniger als 1 herauskommen. Zwischen cm und m liegt dm. Was geschieht bei einem Schritt in die größere Einheit?';
- else if(commaPhase===1) msg='<b>Schritt 1 – cm zu dm:</b> 10 cm ergeben 1 dm. Wir bündeln also 90 einzelne Zentimeter zu 9 Zehnergruppen: <span class="comma-math">90 : 10 = 9</span>. Das Komma rückt von 90,0 eine Stelle nach links zu 9,0.';
+ else if(commaPhase===1) msg='<b>Schritt 1 – cm zu dm:</b> 10 cm ergeben 1 dm. Wir bündeln also 90 einzelne Zentimeter zu 9 Zehnergruppen: <span class="comma-math">90 : 10 = 9</span>. Das Komma rückt von 90,0 eine Stelle nach links zu 9,0. Eine Null nach dem Komma verändert die Zahl nicht: 9,0 = 9.';
  else msg='<b>Schritt 2 – dm zu m:</b> 10 dm ergeben 1 m. 9 dm sind deshalb <span class="comma-math">9 : 10 = 0,9 m</span>. Das Komma rückt noch einmal nach links. <b>90 cm = 0,9 m</b>. Das sind keine zwei Längen, sondern zwei Namen für dieselbe Strecke.';
  $('#comma-stage').innerHTML='<div class="comma-flow">'+rows.join('')+'</div><div class="comma-step">'+msg+'</div>';
  $('#comma-back').disabled=commaPhase===0;$('#comma-next').disabled=commaPhase===2;
