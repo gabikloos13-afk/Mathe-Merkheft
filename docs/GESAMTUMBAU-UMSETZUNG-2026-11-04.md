@@ -2,6 +2,12 @@
 
 Stand: 04.11.2026. Entwicklungszweig `gesamtumbau-erklaerstandard-2026-11-04`. **Auf ausdrücklichen Wunsch in main übernommen und veröffentlicht. Die fachliche Gesamtfreigabe bleibt offen.**
 
+## Aktualisierung 05.11.2026
+
+Größenvergleich von Dezimalzahlen: Erklärung und Regelanwendung stehen vor den Eingabehilfen. Neun Musterbeispiele sind mit den Typen von Arbeitsheft S. 18 abgeglichen und in 112 konkrete Phasen zerlegt. Der Gesamtbestand umfasst jetzt 617 Phasen und 762 Ausgangs-/Phasenbilder bei weiterhin 34 Lernwegen und 111 Musterbeispielen. Die 523 Phasen/668 Bilder in der folgenden Beschreibung sind der historische Stand vom 04.11.
+
+Neuer Prüfstand: 682/682 Browsertests und 14/14 Fach-/Modell-Testdateien bestanden. [Kapitelabnahme und genaue Prüfgrenzen](DEZIMALVERGLEICH-ABNAHME-2026-11-05.md). Die allgemeine fachliche Gesamtfreigabe aller neun Kapitel wird dadurch nicht vorweggenommen.
+
 ## Tatsächlich umgesetzt
 
 - Ein kanonischer Fachdatensatz in `course-data.js`; drei Kapitelprogramme enthalten nur noch Bild- und Werkzeuglogik. Ihre früheren überschreibenden Fachdatensätze und sechs separate Dialogdateien sind aufgelöst.

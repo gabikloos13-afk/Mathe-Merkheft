@@ -5,7 +5,7 @@ const abs=n=>n<0n?-n:n;
 const gcd=(a,b)=>{a=abs(a);b=abs(b);while(b){[a,b]=[b,a%b];}return a||1n;};
 const rat=(n,d=1n)=>{if(!d)throw Error('Durch null darfst du nicht teilen.');if(d<0n){n=-n;d=-d;}const g=gcd(n,d);return{n:n/g,d:d/g};};
 function parse(value){
- const s=String(value).trim().replace(/−/g,'-').replace(/\s+/g,' ');
+ const s=String(value).trim().replace(/−/g,'-').replace(/\s+/g,' ').replace(/^\+/,'');
  let m=s.match(/^(-?)(\d+) (\d+)\/(\d+)$/);
  if(m){const w=BigInt(m[2]),n=BigInt(m[3]),d=BigInt(m[4]);if(n>=d)throw Error('Bei einer gemischten Zahl muss der Bruchteil kleiner als 1 sein.');return rat((m[1]?-1n:1n)*(w*d+n),d);}
  m=s.match(/^(-?\d+)\/(\d+)$/);if(m)return rat(BigInt(m[1]),BigInt(m[2]));
@@ -101,7 +101,7 @@ function compareConversion(value){
  return out;
 }
 function comparisonPath(left,right){
- const a=parse(left),b=parse(right),fa=String(left),fb=String(right),sign=cmp(a,b),symbol=sign<0?'<':sign>0?'>':'=',neg=a.n<0n&&b.n<0n;let finite=true,pad=0;try{pad=Math.max(decimals(a),decimals(b),...([left,right].map(x=>/^[-−]?\d+[,.]\d+$/.test(String(x))?String(x).split(/[,.]/)[1].length:0)));}catch(_){finite=false;}
+ const a=parse(left),b=parse(right),fa=String(left),fb=String(right),sign=cmp(a,b),symbol=sign<0?'<':sign>0?'>':'=',neg=a.n<0n&&b.n<0n;let finite=true,pad=0;try{pad=Math.max(decimals(a),decimals(b),...([left,right].map(x=>/^[+−-]?\d+[,.]\d+$/.test(String(x))?String(x).split(/[,.]/)[1].length:0)));}catch(_){finite=false;}
  const out=[phase('Was bedeuten die drei Vergleichszeichen?',['Die offene Seite zeigt zur größeren Zahl. Die Spitze zeigt zur kleineren.','< bedeutet kleiner, > bedeutet größer, = bedeutet gleich groß.'],box('Die Zeichen lesen','<div class="basis-equation">2 &lt; 5 &nbsp; · &nbsp; 5 &gt; 2 &nbsp; · &nbsp; 5 = 5</div>'),'Nur die Form des Zeichens auswendig lernen, ohne den Satz von links nach rechts zu lesen.')];
  if(finite)for(const [input,value]of [[left,a],[right,b]])if(String(input).includes('/')){
   const m=String(input).replace('−','-').match(/^(-?)(\d+) (\d+)\/(\d+)$/);

@@ -48,6 +48,10 @@ Alle 14 lokalen Fach-/Modell-Testdateien sind bestanden. Unabhängige Sollwerte 
 
 Zusätzliche Browserprüfungen kontrollieren bei 320, 375, 768 und 1280 px die Reihenfolge Erklärung/Anwendung/Beispiele, alle neun Blattverweise, die erste unterschiedliche Stelle und den horizontalen Überlauf. Der gemeinsame vollständige Browserlauf durchläuft weiterhin alle Lern- und Beispielansichten und sämtliche Phasen.
 
-**Status vor Abschluss des neuen Browserlaufs: fachliche Ausarbeitung fertig; technische Schlussprüfung läuft.** Der erfolgreiche ältere Lauf mit 675 Tests ist kein Nachweis für diesen geänderten Datenstand. Die neue Kapitelabnahme wird erst mit dem Ergebnis des neuen Laufs ergänzt.
+**Abschluss: Die fachliche und didaktische Ausarbeitung der neun oben beschriebenen Blatt-Typen ist abgeschlossen. Der Browserlauf hat 682/682 Tests bestanden; alle 14 Fach-/Modell-Testdateien sind bestanden.**
+
+Geprüfte Browserbasis: `2419ea626e6b0a9519d4c52a3beb8a959fc749d6`. [Erfolgreicher Lauf](https://github.com/gabikloos13-afk/Mathe-Merkheft/actions/runs/41981086035). Der Lauf durchläuft auch sämtliche aktuellen 617 Phasen des Gesamtmerkhefts.
+
+Für die Veröffentlichung wurden danach die neun Abschlussproben auf ihren jeweiligen Aufgabentyp zugeschnitten sowie die Schreibweise mit ausdrücklich gesetztem Pluszeichen (+0,2) erklärt und bei der Eingabe normalisiert. Diese Änderungen betreffen die Probeformulierungen und eine zusätzliche gültige Zahlen-Schreibweise; die 14 Fach-/Modell-Testdateien wurden anschließend erneut erfolgreich ausgeführt. Der vollständige Browserlauf wird hier ausdrücklich seiner oben genannten Prüfbasis zugeordnet.
 
 Der reale Verständlichkeitstest mit Hanna und die Prüfung auf ihrem tatsächlichen Smartphone bleiben Praxisprüfungen; kein automatischer Test kann einen individuellen Lernerfolg garantieren. Die hier dokumentierte Kapitelabnahme betrifft die aufgeführten Inhalte und Bedienprüfungen, nicht eine pauschale Gesamtfreigabe aller neun Kapitel.

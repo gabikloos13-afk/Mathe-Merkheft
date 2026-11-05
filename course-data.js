@@ -27579,7 +27579,7 @@ window.MERKHEFT_COURSES = {
     ]
   },
   "dezimalvergleich": {
-    "title": "Kommazahlen vergleichen",
+    "title": "Größenvergleich von Dezimalzahlen",
     "goal": "Verstehe zuerst die Vergleichsregeln. Wende sie Schritt für Schritt an. Übertrage den Weg dann auf deinen Aufgabentyp.",
     "lessons": [
       {
@@ -27861,8 +27861,8 @@ window.MERKHEFT_COURSES = {
           "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "Schreibe 0,45 als 0,4500. Die Hundertstel entscheiden: links 5, rechts 4.",
+          "Lies rückwärts: 0,4455 ist kleiner als 0,45. Beide Aussagen passen zusammen."
         ],
         "questionPlain": "0,45 ? 0,4455",
         "givenTokens": [
@@ -28292,8 +28292,8 @@ window.MERKHEFT_COURSES = {
           "Eine Zahl größer oder kleiner nennen, obwohl beide Angaben gleich viel sind."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "0,600 und 0,6 beschreiben dieselben sechs Zehntel. Die Endnullen fügen keinen Wert hinzu.",
+          "Beide Angaben liegen auf demselben Punkt des Zahlenstrahls. Deshalb ist nur = richtig."
         ],
         "questionPlain": "0,6 ? 0,600",
         "givenTokens": [
@@ -28654,8 +28654,8 @@ window.MERKHEFT_COURSES = {
           "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "Ohne Minus gilt 2,004 &gt; 1,9999. Mit Minus gilt die umgekehrte Reihenfolge.",
+          "−2,004 liegt weiter links als −1,9999. Weiter links bedeutet kleiner."
         ],
         "questionPlain": "−2,004 ? −1,9999",
         "givenTokens": [
@@ -28979,8 +28979,8 @@ window.MERKHEFT_COURSES = {
           "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "47/100 = 0,47. 9/20 = 45/100 = 0,45.",
+          "47 Hundertstel sind mehr als 45 Hundertstel. Deshalb gilt 47/100 &gt; 9/20."
         ],
         "questionPlain": "47/100 ? 9/20",
         "givenTokens": [
@@ -29326,8 +29326,8 @@ window.MERKHEFT_COURSES = {
           "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "Mit 8 und 9 entstehen 5,8 und 5,9. Beide Zahlen sind größer als 5,7.",
+          "Mit 7 wäre die Zahl nur gleich groß. Die Ziffern 0 bis 6 ergeben kleinere Zahlen."
         ],
         "questionPlain": "5,□ > 5,7",
         "givenTokens": [
@@ -29673,8 +29673,8 @@ window.MERKHEFT_COURSES = {
           "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "Mit 0 entsteht 0,00340. Die Endnull ändert nichts: 0,00340 = 0,0034.",
+          "Mit jeder Ziffer von 1 bis 9 kommt ein positiver Anteil hinzu. Dann sind die Werte nicht mehr gleich."
         ],
         "questionPlain": "0,0034□ = 0,0034",
         "givenTokens": [
@@ -30652,8 +30652,9 @@ window.MERKHEFT_COURSES = {
           "Nur die umgewandelten Zahlen notieren, wenn die ursprünglichen Angaben geordnet werden sollen."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "Die sechs ursprünglichen Zahlen müssen jeweils genau einmal vorkommen.",
+          "Kontrolliere die Werte paarweise: 0,06 &lt; 0,2 &lt; 0,3 &lt; 0,56 &lt; 0,63 &lt; 0,9.",
+          "Die ursprünglichen Brüche stehen an denselben Plätzen wie ihre umgewandelten Kommazahlen."
         ],
         "questionPlain": "Beginne mit der kleinsten Zahl: 1/5; 0,3; 9/10; 0,56; 3/50; 63/100",
         "givenTokens": [
@@ -31171,8 +31172,8 @@ window.MERKHEFT_COURSES = {
           "Das richtige Zahlenpaar finden, aber das Zeichen andersherum schreiben."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "−3 1/3 = −10/3 = −50/15. −3 1/5 = −16/5 = −48/15.",
+          "Die Nenner sind gleich. −50 ist kleiner als −48. Deshalb ist auch −50/15 kleiner als −48/15."
         ],
         "questionPlain": "−3 1/3 ? −3 1/5",
         "givenTokens": [
@@ -31838,8 +31839,9 @@ window.MERKHEFT_COURSES = {
           "Nach der ersten richtigen Ziffer aufhören, obwohl alle passenden Ziffern gefragt sind."
         ],
         "check": [
-          "Prüfe die Vorzeichen, die erste unterschiedliche Stelle und das Vergleichszeichen.",
-          "Bei Ziffernlücken muss jede Ziffer von 0 bis 9 berücksichtigt werden. Bei einer Ordnung muss jede ursprüngliche Zahl genau einmal vorkommen."
+          "Die Ziffern 0, 1 und 2 ergeben rechts −70,88; −71,88 und −72,88. Alle drei Werte sind größer als −73,08.",
+          "Die Grenze ist bei 3 überschritten: −73,88 ist kleiner als −73,08. Dann wäre das verlangte Zeichen &lt; falsch.",
+          "Auch die Ziffern 4 bis 9 ergeben rechts noch kleinere Zahlen und passen deshalb nicht."
         ],
         "questionPlain": "−73,08 < −7□,88",
         "givenTokens": [
