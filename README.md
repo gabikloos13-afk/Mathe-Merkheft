@@ -1,3 +1,15 @@
+## Didaktische Überarbeitung Längen – Lernen durch Bauen (5.11.2026)
+
+Nach der Rückmeldung, dass das reine Erklären des Umrechnens noch nicht verständlich war, beginnt `laengen.html` jetzt mit **einem einzigen interaktiven Hauptwerkzeug**. Die bisherigen Erläuterungen bleiben unter „Weitere Erklärungen …“ bei Bedarf erreichbar, drängen sich aber nicht vor das eigene Entdecken.
+
+1. **Meter bauen:** 10 gleich große 10-cm-Stücke nacheinander auf einem immer gleich langen Meterband markieren; erst beim vollständigen Streifen wird die Gleichheit `100 cm = 1 m` erklärt.
+2. **90 cm vergleichen:** neun von zehn Stücken sind gefärbt; eigene Entscheidung „kürzer / gleich / länger“ vor der Erklärung. Danach werden neun von zehn Meterteilen als neun Dezimeter verständlich.
+3. **Komma-Schieber:** dieselbe Strecke in cm, dm oder m benennen, mit feststehenden Stellenwerten m | dm | cm und veränderter Kommaposition. Beispiele 90 cm, 100 cm, 125 cm und 35 cm. Bei 125 cm wird die Strecke als voller erster Meter plus 25 cm im zweiten Meterband gezeigt.
+
+Die visuelle Darstellung ist **nicht maßstabsgetreu in Bildschirmzentimetern**. Der Einstieg empfiehlt ein echtes Lineal als Bezug. Das Werkzeug enthält keine Punktebewertung und keine Zeitbegrenzung. Die HTML-Seite nutzt `laengen-entdecken.css` und `laengen-entdecken.js`, damit die bestehenden Lernwege und Tools unabhängig bleiben.
+
+**Abnahme:** GitHub Actions „Längen-Grundlagen – Browserprüfung“, neun Chromium-Tests bestanden am 5.11.2026. Die Tests prüfen Aufbau und Bedienung des Meterbands, versteckte und aufgedeckte Zwischenlösungen, Stellenwertwechsel einschließlich 90/100/125/35 cm, den vorhandenen Umrechner und Ansichten bei 320, 375, 768 und 1.280 Pixeln. Diese technische Prüfung ersetzt keine tatsächliche Verständniserprobung mit Hanna.
+
 ## Neues Grundlagenkapitel: Längen verstehen und umrechnen (5.11.2026)
 
 Das eigenständige Kapitel `laengen.html` steht auf der Startseite direkt vor „Mit Größen rechnen“ und ist von dort aus verlinkt. Es ersetzt keine der bestehenden Größen-Erklärungen.
